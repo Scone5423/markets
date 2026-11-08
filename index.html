@@ -43,8 +43,8 @@
     <div id="indices" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8"></div>
     <div class="grid lg:grid-cols-3 gap-4">
       <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
-        <h3 class="font-medium text-white">Closest to your target</h3>
-        <p class="text-xs text-slate-500 mb-2">Price as a share of your target price</p>
+        <h3 class="font-medium text-white">Below Target</h3>
+        <p class="text-xs text-slate-500 mb-2">Lowest price-to-target ratio first</p>
         <ul id="hTarget" class="divide-y divide-slate-800"></ul>
       </div>
       <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
@@ -130,28 +130,21 @@
     <label class="sr-only" for="filter">Filter</label>
     <input id="filter" placeholder="Filter by name, ticker or note"
       class="flex-1 min-w-[12rem] rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm placeholder:text-slate-500">
-    <label class="sr-only" for="sort">Sort</label>
-    <select id="sort" class="rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm">
-      <option value="ticker">Sort: Ticker A–Z</option>
-      <option value="ratio">Sort: Lowest price vs. target</option>
-      <option value="low">Sort: Closest to 52-week low</option>
-      <option value="chg">Sort: Biggest move today</option>
-    </select>
   </div>
 
   <div class="overflow-x-auto max-h-[70vh] rounded-lg border border-slate-800 bg-[#151b22]">
     <table class="w-full text-sm">
       <thead class="text-left text-slate-400 border-b border-slate-800">
         <tr>
-          <th class="px-4 py-3 font-medium">Stock</th>
-          <th class="px-4 py-3 font-medium text-right">Target</th>
-          <th class="px-4 py-3 font-medium text-right">Price</th>
-          <th class="px-4 py-3 font-medium text-right">Today</th>
-          <th class="px-4 py-3 font-medium text-right">P/E</th>
-          <th class="px-4 py-3 font-medium text-right">Price / target</th>
-          <th class="px-4 py-3 font-medium text-right">52-wk high</th>
-          <th class="px-4 py-3 font-medium text-right">52-wk low</th>
-          <th class="px-4 py-3 font-medium text-right">Price / 52-wk high</th>
+          <th class="px-4 py-3 font-medium" data-col="ticker" aria-sort="none"><button type="button" title="Sort by ticker" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Stock<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-3 font-medium text-right" data-col="target" aria-sort="none"><button type="button" title="Sort by target price" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Target<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-3 font-medium text-right" data-col="price" aria-sort="none"><button type="button" title="Sort by price" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Price<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-3 font-medium text-right" data-col="chg" aria-sort="none"><button type="button" title="Sort by change today" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Today<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-3 font-medium text-right" data-col="pe" aria-sort="none"><button type="button" title="Sort by price-to-earnings ratio" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">P/E<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-3 font-medium text-right" data-col="ratio" aria-sort="none"><button type="button" title="Price / target price. Sort by this ratio" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">P/T<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-3 font-medium text-right" data-col="hi" aria-sort="none"><button type="button" title="Sort by 52-week high" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">52-wk high<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-3 font-medium text-right" data-col="lo" aria-sort="none"><button type="button" title="Sort by 52-week low" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">52-wk low<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-3 font-medium text-right" data-col="p52" aria-sort="none"><button type="button" title="Price / 52-week high. Sort by this ratio" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">P/52H<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
           <th class="px-4 py-3"><span class="sr-only">Remove</span></th>
         </tr>
       </thead>
@@ -459,13 +452,14 @@ function renderHome(info) {
     }
     box.appendChild(card);
   }
-  const nearT = info.filter(i => i.ratio !== null).sort((x, y) => x.ratio - y.ratio)
-    .map(i => ({h: i.h, text: Math.round(i.ratio * 100) + '% of target', tone: Math.round(i.ratio * 100) < 100 ? 'text-emerald-400' : 'text-red-400'}));
+  const withTarget = info.filter(i => i.ratio !== null);
+  const nearT = withTarget.filter(i => Math.round(i.ratio * 100) < 100).sort((x, y) => x.ratio - y.ratio)   // lowest ratio first
+    .map(i => ({h: i.h, text: Math.round(i.ratio * 100) + '% of target', tone: 'text-emerald-400'}));
   const nearL = info.filter(i => i.k && i.k.lo).sort((x, y) => x.k.price / x.k.lo - y.k.price / y.k.lo)
     .map(i => ({h: i.h, text: ((i.k.price / i.k.lo - 1) * 100).toFixed(1) + '% above low', tone: 'text-slate-300'}));
   const moves = info.filter(i => i.k && i.k.live && i.chg !== null).sort((x, y) => Math.abs(y.chg) - Math.abs(x.chg))
     .map(i => ({h: i.h, text: pct(i.chg), tone: tone(i.chg)}));
-  fillList('hTarget', nearT, 'Set target prices on the Watchlist tab to see this list.');
+  fillList('hTarget', nearT, withTarget.length ? 'No stocks are below their target right now.' : 'Set target prices on the Watchlist tab to see this list.');
   fillList('hLow', nearL, '52-week lows appear once live prices load.');
   fillList('hMove', moves, 'Daily moves appear once live prices load.');
 }
@@ -675,6 +669,19 @@ function show() {
 }
 window.addEventListener('hashchange', show);
 
+const SORT = {key: null, dir: 1};
+const SORTS = {
+  ticker: x => x.h.s.replace('^', '').toUpperCase(),
+  target: x => x.h.t,
+  price: x => x.k ? x.k.price : null,
+  chg: x => x.k && x.k.live ? x.chg : null,
+  pe: x => x.k && x.k.pe ? x.k.pe : null,
+  ratio: x => x.ratio,
+  hi: x => x.k && x.k.hi ? x.k.hi : null,
+  lo: x => x.k && x.k.lo ? x.k.lo : null,
+  p52: x => x.k && x.k.hi ? x.k.price / x.k.hi : null
+};
+
 function render() {
   const q = $('filter').value.trim().toLowerCase();
   const info = list.map(h => {
@@ -696,19 +703,27 @@ function render() {
 
   // filter + sort
   let rows = info.filter(i => !q || (i.h.s + ' ' + i.h.n + ' ' + (i.h.note || '')).toLowerCase().includes(q));
-  const mode = $('sort').value;
-  const nul = (a, b, f, dir) => (f(a) === null) - (f(b) === null) || (f(a) === null ? 0 : dir * (f(a) - f(b)));
-  if (mode === 'ticker') rows.sort((a, b) => a.h.s.replace('^','').localeCompare(b.h.s.replace('^','')));
-  if (mode === 'ratio') rows.sort((a, b) => nul(a, b, x => x.ratio, 1));
-  if (mode === 'low') rows.sort((a, b) => nul(a, b, x => x.k && x.k.lo ? x.k.price / x.k.lo : null, 1));
-  if (mode === 'chg') rows.sort((a, b) => nul(a, b, x => x.chg === null ? null : Math.abs(x.chg), -1));
+  const get = SORTS[SORT.key || 'ticker'], dir = SORT.key ? SORT.dir : 1;
+  const missing = v => v === null || v === undefined;
+  rows.sort((a, b) => {
+    const va = get(a), vb = get(b);
+    if (missing(va) !== missing(vb)) return missing(va) ? 1 : -1;   // blanks always sort last
+    const r = missing(va) ? 0 : dir * (typeof va === 'string' ? va.localeCompare(vb) : va - vb);
+    return r || SORTS.ticker(a).localeCompare(SORTS.ticker(b));
+  });
+  document.querySelectorAll('thead th[data-col]').forEach(th => {
+    const on = SORT.key === th.dataset.col;
+    th.setAttribute('aria-sort', on ? (SORT.dir === 1 ? 'ascending' : 'descending') : 'none');
+    th.querySelector('.arr').textContent = on ? (SORT.dir === 1 ? '▲' : '▼') : '';
+    th.querySelector('button').classList.toggle('text-white', on);
+  });
 
   const body = $('rows'); body.innerHTML = '';
   $('empty').classList.toggle('hidden', rows.length > 0);
   rows.forEach(({h, k, chg, ratio}) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="px-4 py-3"><div class="font-semibold text-white"></div><div class="text-xs text-slate-400 n truncate max-w-[8rem]"></div><div class="text-xs text-slate-500 note truncate max-w-[8rem]"></div></td>
+      <td class="px-4 py-3"><div class="font-semibold text-white"></div><div class="text-xs text-slate-400 n truncate max-w-[5rem]"></div><div class="text-xs text-slate-500 note truncate max-w-[5rem]"></div></td>
       <td class="px-4 py-3 text-right"><input type="number" min="0" step="any" value="${h.t ?? ''}" placeholder="—" aria-label="Target price for ${h.s}"
         class="num w-24 text-right rounded bg-[#0f1419] border border-slate-700 px-2 py-1 placeholder:text-slate-600"></td>
       <td class="px-4 py-3 text-right num ${k && !k.live ? 'text-slate-500' : 'text-white'}">${k ? money(k.price, k.cur) : '…'}</td>
@@ -766,7 +781,11 @@ $('cfgSave').addEventListener('click', () => {
 });
 $('refresh').addEventListener('click', refresh);
 $('filter').addEventListener('input', render);
-$('sort').addEventListener('change', render);
+document.querySelectorAll('thead th[data-col] button').forEach(btn => btn.addEventListener('click', () => {
+  const k = btn.closest('th').dataset.col;
+  if (SORT.key === k) SORT.dir = -SORT.dir; else { SORT.key = k; SORT.dir = 1; }  // first click: low to high, second: high to low
+  render();
+}));
 show();
 render();
 refresh();
