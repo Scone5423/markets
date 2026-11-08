@@ -7,16 +7,14 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; background:#0f1419; color:#d7dde4; }
-  .num { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
-  input:focus-visible, button:focus-visible { outline: 2px solid #5eb0e5; outline-offset: 2px; }
-  @keyframes flash { from { background:#1d2a36 } to { background:transparent } }
-  .flash { animation: flash 1s ease-out; }
-  @media (prefers-reduced-motion: reduce) { .flash { animation:none } }
+  body { font-family:'IBM Plex Sans',system-ui,sans-serif; background:#0f1419; color:#d7dde4; }
+  .num { font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+  input:focus-visible, button:focus-visible, select:focus-visible { outline:2px solid #5eb0e5; outline-offset:2px; }
+  thead th { position:sticky; top:0; background:#151b22; z-index:1; }
 </style>
 </head>
 <body class="min-h-screen">
-<main class="max-w-4xl mx-auto px-4 py-8">
+<main class="max-w-5xl mx-auto px-4 py-8">
 
   <header class="flex flex-wrap items-end justify-between gap-3 mb-6">
     <div>
@@ -25,170 +23,265 @@
     </div>
     <div class="flex items-center gap-3">
       <span id="mode" class="text-xs px-2 py-1 rounded border border-slate-700 text-slate-400">…</span>
-      <button id="refresh" class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Refresh prices</button>
+      <button id="refresh" class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 disabled:opacity-50">Refresh prices</button>
     </div>
   </header>
 
-  <section class="grid sm:grid-cols-3 gap-3 mb-6" aria-label="Portfolio summary">
-    <div class="sm:col-span-2 rounded-lg border border-slate-800 bg-[#151b22] p-5">
-      <div class="text-sm text-slate-400">Portfolio value</div>
-      <div id="total" class="num text-4xl font-medium text-white mt-1">$0.00</div>
-      <div id="totalDay" class="num text-sm mt-2 text-slate-400">Today: —</div>
+  <section class="grid sm:grid-cols-3 gap-3 mb-6" aria-label="Summary">
+    <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
+      <div class="text-sm text-slate-400">Stocks tracked</div>
+      <div id="cTracked" class="num text-2xl font-medium text-white mt-1">0</div>
     </div>
-    <div class="rounded-lg border border-slate-800 bg-[#151b22] p-5">
-      <div class="text-sm text-slate-400">Largest holding</div>
-      <div id="top" class="num text-2xl font-medium text-white mt-1">—</div>
-      <div id="topPct" class="text-sm mt-2 text-slate-400">Add shares to see allocation</div>
+    <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
+      <div class="text-sm text-slate-400">At or below target price</div>
+      <div id="cBelow" class="num text-2xl font-medium text-emerald-400 mt-1">0</div>
+      <div id="cBelowSub" class="text-xs text-slate-500 mt-1">of 0 with a target</div>
+    </div>
+    <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
+      <div class="text-sm text-slate-400">Biggest move today</div>
+      <div id="cMove" class="num text-2xl font-medium text-white mt-1">—</div>
     </div>
   </section>
 
-  <form id="addForm" class="flex flex-wrap gap-2 mb-4">
+  <form id="addForm" class="flex flex-wrap gap-2 mb-3">
     <label class="sr-only" for="sym">Ticker symbol</label>
-    <input id="sym" placeholder="Ticker (e.g. NVDA)" maxlength="10" autocomplete="off"
-      class="uppercase flex-1 min-w-[9rem] rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm placeholder:normal-case placeholder:text-slate-500">
-    <label class="sr-only" for="qty">Shares owned</label>
-    <input id="qty" type="number" min="0" step="any" placeholder="Shares owned"
-      class="w-36 rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm placeholder:text-slate-500">
+    <input id="sym" placeholder="Ticker (e.g. NVDA, BRK-B, CSU.TO)" maxlength="14" autocomplete="off"
+      class="uppercase flex-1 min-w-[12rem] rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm placeholder:normal-case placeholder:text-slate-500">
+    <label class="sr-only" for="tgt">Target price</label>
+    <input id="tgt" type="number" min="0" step="any" placeholder="Target price (optional)"
+      class="w-48 rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm placeholder:text-slate-500">
     <button class="rounded bg-sky-600 hover:bg-sky-500 text-white text-sm font-medium px-4 py-2">Add ticker</button>
     <p id="err" class="w-full text-sm text-red-400 hidden" role="alert"></p>
   </form>
 
-  <div class="overflow-x-auto rounded-lg border border-slate-800 bg-[#151b22]">
+  <div class="flex flex-wrap gap-2 mb-3">
+    <label class="sr-only" for="filter">Filter</label>
+    <input id="filter" placeholder="Filter by name, ticker or note"
+      class="flex-1 min-w-[12rem] rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm placeholder:text-slate-500">
+    <label class="sr-only" for="sort">Sort</label>
+    <select id="sort" class="rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm">
+      <option value="ticker">Sort: Ticker A–Z</option>
+      <option value="ratio">Sort: Lowest price vs. target</option>
+      <option value="chg">Sort: Biggest move today</option>
+    </select>
+  </div>
+
+  <div class="overflow-x-auto max-h-[70vh] rounded-lg border border-slate-800 bg-[#151b22]">
     <table class="w-full text-sm">
       <thead class="text-left text-slate-400 border-b border-slate-800">
         <tr>
-          <th class="px-4 py-3 font-medium">Ticker</th>
+          <th class="px-4 py-3 font-medium">Stock</th>
           <th class="px-4 py-3 font-medium text-right">Price</th>
           <th class="px-4 py-3 font-medium text-right">Today</th>
-          <th class="px-4 py-3 font-medium text-right">Shares</th>
-          <th class="px-4 py-3 font-medium text-right">Value</th>
+          <th class="px-4 py-3 font-medium text-right">Target</th>
+          <th class="px-4 py-3 font-medium text-right">Price vs. target</th>
           <th class="px-4 py-3"><span class="sr-only">Remove</span></th>
         </tr>
       </thead>
       <tbody id="rows" class="divide-y divide-slate-800"></tbody>
     </table>
-    <p id="empty" class="hidden px-4 py-8 text-center text-slate-400">No tickers yet. Add one above to start tracking.</p>
+    <p id="empty" class="hidden px-4 py-8 text-center text-slate-400">Nothing to show. Add a ticker above or clear the filter.</p>
   </div>
 
   <p class="text-xs text-slate-500 mt-4">
-    Prices come from Yahoo Finance through a public CORS proxy and may be delayed. If the request fails, the page falls back to simulated demo prices so the layout still works. Holdings are saved in this browser only.
+    Prices come from Yahoo Finance through a public CORS proxy and may be delayed. Prices appear in each stock's own currency, and targets should be entered in that currency. If a request fails, the page shows the last price from your spreadsheet and the badge reads "Demo data". Your list and targets are saved in this browser only.
   </p>
 </main>
 
 <script>
-const KEY = 'watchlist.v1';
+const KEY = 'watchlist.v2';
 const PROXY = 'https://api.allorigins.win/raw?url=';
-const DEFAULTS = [{s:'AAPL',q:10},{s:'MSFT',q:5},{s:'TSLA',q:3},{s:'SPY',q:8}];
-const MOCK_BASE = {AAPL:230,MSFT:430,TSLA:250,SPY:580,NVDA:140,GOOGL:175,AMZN:200,QQQ:500};
+// [Yahoo symbol, name, target price, price when imported, note]
+const DEFAULTS = [
+['ADBE','Adobe',200,239.3,''],
+['AMR','Alpha Metallurgical Resources',100,147.93,'Pabrai - buy some a 175?'],
+['GOOGL','Alphabet Class A',null,284.78,''],
+['AGO','Assured Guaranty',45,73.45,'Tim Travis'],
+['ADSK','Autodesk',200,261.72,''],
+['BRK-B','Berkshire Hathaway Class B',null,570.89,'Semper'],
+['OWL','Blue Owl Capital',8.75,9.82,'Tim Travis'],
+['BF-A','Brown-Forman Class A',25,31.47,''],
+['BLDR','Builders FirstSource',null,62.54,'Semper'],
+['CALM','Cal-Maine Foods',80,64.6,''],
+['CHD','Church & Dwight',null,109.33,''],
+['CPRT','Copart',25,31.95,'Todd (VAH?)'],
+['DECK','Deckers Outdoor',80,86.71,'smper'],
+['DEO','Diageo',85,99.76,''],
+['EXPD','Expeditors International of Washington',90,184.61,'VSG'],
+['FFXDF','Fairfax India Holdings',null,17.8,''],
+['FXAIX','Fidelity 500 Index Fund',null,256.48,'Peak = $265 = SP7,600 : I should sell a chunk'],
+['FAF','First American Financial',53.09,67.01,'Buffet'],
+['FISV','Fiserv',50,62.88,'VSG, FC'],
+['FCPT','Four Corners Property Trust',null,23.41,''],
+['GMTAS.IS','Gimat Magazacilik (Istanbul)',null,47.42,'What else does Pabrai own'],
+['HRL','Hormel Foods',20,21.95,''],
+['IBM','IBM',null,245,''],
+['JKHY','Jack Henry & Associates',null,173.23,'VSG, FC; Pabrai'],
+['KSPI','Kaspi.kz ADR',null,91.68,'mohnish'],
+['KMB','Kimberly-Clark',null,108.43,''],
+['LEN','Lennar Class A',null,88.74,'Semper'],
+['LKQ','LKQ Corp',null,20.05,'VSG'],
+['LMT','Lockheed Martin',null,567.08,''],
+['MKC','McCormick & Company',60,48.4,'weird merger...'],
+['MRK','Merck & Co',75,146.73,'VSG'],
+['MSFT','Microsoft',300,530.61,''],
+['NC','NACCO Industries',32,33.99,'Sell it at 58? Right?!?'],
+['NWL','Newell Brands',null,5.47,''],
+['NKE','Nike',40,38.59,''],
+['NE','Noble Corporation',18,40.87,'Pabrai'],
+['NDSN','Nordson',null,309.86,'VSG'],
+['NVR','NVR Inc',null,6298.29,'Semper'],
+['OXY','Occidental Petroleum',35,56.38,''],
+['OMC','Omnicom Group',70,86.37,'Gannon'],
+['OTCM','OTC Markets Group',42,52.37,'Gannon'],
+['PRKA','Parks! America',30.01,40.11,'FC'],
+['PYPL','PayPal Holdings',40,59.24,'JTE'],
+['PROSY','Prosus ADR',7,8.37,'Pabrai'],
+['RYN','Rayonier',20,21.55,'South Eastern - worth 30 or 40'],
+['RYSAS.IS','Reysas Tasimacilik ve Lojistik (Istanbul)',12,27.34,'Pabrai'],
+['RIVN','Rivian',12,13.61,'value works'],
+['^GSPC','S&P 500',null,7376.86,''],
+['STE','Steris',180,252.3,'VSG'],
+['SWGAY','Swatch Group ADR',7.5,10.95,''],
+['TAVHY','TAV Havalimanlari ADR',20,23,'Pabrai'],
+['TAVHL.IS','TAV Havalimanlari Holding (Istanbul)',200,294.5,''],
+['RIG','Transocean',null,5.24,'Pabrai'],
+['VAL','Valaris',32,79.77,'Pabrai'],
+['VICI','VICI Properties',22,24.79,'tim travis'],
+['WALMEX.MX','Walmart de Mexico',51,54.2,'First Eagle...'],
+['DIS','Walt Disney',80,116.75,''],
+['HCC','Warrior Met Coal',45,84.15,'Pabrai'],
+['000660.KS','SK Hynix',null,null,''],
+['PEP','PepsiCo',100,141.34,''],
+['HHH','Howard Hughes Holdings',30,77.73,'Ackman takes 15 million out every quarter!'],
+['CSU.TO','Constellation Software',2500,3526.52,'']
+].map(([s,n,t,p,note]) => ({s,n,t,p,note}));
 
-let holdings = load();
-let quotes = {};   // sym -> {price, prev, live}
+let list = load();
+let quotes = {};   // symbol -> {price, prev, cur, live}
 
 function load() {
-  try { const v = JSON.parse(localStorage.getItem(KEY)); if (Array.isArray(v)) return v; } catch (e) {}
-  return DEFAULTS.slice();
+  try { const v = JSON.parse(localStorage.getItem(KEY)); if (Array.isArray(v) && v.length) return v; } catch (e) {}
+  return DEFAULTS.map(d => ({...d}));
 }
-function save() { try { localStorage.setItem(KEY, JSON.stringify(holdings)); } catch (e) {} }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {} }
 
 const $ = id => document.getElementById(id);
-const usd = n => n.toLocaleString('en-US', {style:'currency', currency:'USD'});
 const pct = n => (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
 const tone = n => n > 0 ? 'text-emerald-400' : n < 0 ? 'text-red-400' : 'text-slate-400';
+function money(n, cur) {
+  try { return n.toLocaleString('en-US', cur ? {style:'currency', currency:cur} : {maximumFractionDigits:2}); }
+  catch (e) { return n.toLocaleString('en-US', {maximumFractionDigits:2}); }
+}
 
 async function fetchLive(sym) {
   const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=1d';
   const r = await fetch(PROXY + encodeURIComponent(url));
   if (!r.ok) throw new Error('HTTP ' + r.status);
   const m = (await r.json()).chart.result[0].meta;
-  const price = m.regularMarketPrice, prev = m.chartPreviousClose ?? m.previousClose;
-  if (typeof price !== 'number') throw new Error('No price');
-  return {price, prev: typeof prev === 'number' ? prev : price, live: true};
+  if (typeof m.regularMarketPrice !== 'number') throw new Error('No price');
+  const prev = m.chartPreviousClose ?? m.previousClose;
+  return {price: m.regularMarketPrice, prev: typeof prev === 'number' ? prev : m.regularMarketPrice, cur: sym.startsWith('^') ? '' : m.currency, live: true};
 }
-
-function mockQuote(sym) {
-  const old = quotes[sym];
-  let base = old ? old.price : (MOCK_BASE[sym] || 50 + (sym.charCodeAt(0) * 7 % 250));
-  const prev = old ? old.prev : base * (1 + (Math.random() - 0.5) * 0.02);
-  return {price: base * (1 + (Math.random() - 0.5) * 0.004), prev, live: false};
+function fallback(h) {
+  if (typeof h.p !== 'number') return null;
+  return {price: h.p, prev: h.p, cur: '', live: false};
 }
 
 async function refresh() {
-  $('refresh').disabled = true;
-  $('updated').textContent = 'Updating prices…';
-  let live = 0;
-  await Promise.all(holdings.map(async h => {
-    try { quotes[h.s] = await fetchLive(h.s); live++; }
-    catch (e) { quotes[h.s] = mockQuote(h.s); }
-  }));
-  const n = holdings.length;
-  const badge = $('mode');
-  badge.textContent = !n ? 'No tickers' : live === n ? 'Live data' : live ? 'Partly live' : 'Demo data';
-  badge.className = 'text-xs px-2 py-1 rounded border ' + (live === n && n ? 'border-emerald-700 text-emerald-400' : 'border-amber-700 text-amber-400');
+  const btn = $('refresh'); btn.disabled = true;
+  const queue = list.slice(), total = queue.length; let done = 0, live = 0;
+  const worker = async () => {
+    while (queue.length) {
+      const h = queue.shift();
+      try { quotes[h.s] = await fetchLive(h.s); live++; }
+      catch (e) { const f = fallback(h); if (f) quotes[h.s] = f; else delete quotes[h.s]; }
+      $('updated').textContent = `Updating prices… ${++done} of ${total}`;
+    }
+  };
+  await Promise.all(Array.from({length: 6}, worker));
+  const b = $('mode');
+  b.textContent = !total ? 'No tickers' : live === total ? 'Live data' : live ? `Live: ${live} of ${total}` : 'Demo data';
+  b.className = 'text-xs px-2 py-1 rounded border ' + (total && live === total ? 'border-emerald-700 text-emerald-400' : 'border-amber-700 text-amber-400');
   $('updated').textContent = 'Last updated ' + new Date().toLocaleTimeString();
-  $('refresh').disabled = false;
-  render(true);
+  btn.disabled = false;
+  render();
 }
 
-function render(flash) {
-  const body = $('rows');
-  body.innerHTML = '';
-  $('empty').classList.toggle('hidden', holdings.length > 0);
-  let total = 0, prevTotal = 0, top = null;
+function render() {
+  const q = $('filter').value.trim().toLowerCase();
+  const info = list.map(h => {
+    const k = quotes[h.s];
+    return {h, k, chg: k && k.prev ? (k.price / k.prev - 1) * 100 : null, ratio: k && h.t ? k.price / h.t : null};
+  });
 
-  holdings.forEach((h, i) => {
-    const q = quotes[h.s];
-    const value = q ? q.price * h.q : 0;
-    if (q) { total += value; prevTotal += q.prev * h.q; }
-    if (q && (!top || value > top.v)) top = {s: h.s, v: value};
-    const chg = q && q.prev ? (q.price / q.prev - 1) * 100 : 0;
+  // summary
+  let withT = 0, below = 0, big = null;
+  info.forEach(i => {
+    if (i.ratio !== null) { withT++; if (i.ratio <= 1) below++; }
+    if (i.k && i.k.live && i.chg !== null && (!big || Math.abs(i.chg) > Math.abs(big.chg))) big = i;
+  });
+  $('cTracked').textContent = list.length;
+  $('cBelow').textContent = below;
+  $('cBelowSub').textContent = `of ${withT} with a target`;
+  $('cMove').textContent = big ? `${big.h.s} ${pct(big.chg)}` : '—';
+  $('cMove').className = 'num text-2xl font-medium mt-1 ' + (big ? tone(big.chg) : 'text-white');
 
+  // filter + sort
+  let rows = info.filter(i => !q || (i.h.s + ' ' + i.h.n + ' ' + (i.h.note || '')).toLowerCase().includes(q));
+  const mode = $('sort').value;
+  const nul = (a, b, f, dir) => (f(a) === null) - (f(b) === null) || (f(a) === null ? 0 : dir * (f(a) - f(b)));
+  if (mode === 'ticker') rows.sort((a, b) => a.h.s.replace('^','').localeCompare(b.h.s.replace('^','')));
+  if (mode === 'ratio') rows.sort((a, b) => nul(a, b, x => x.ratio, 1));
+  if (mode === 'chg') rows.sort((a, b) => nul(a, b, x => x.chg === null ? null : Math.abs(x.chg), -1));
+
+  const body = $('rows'); body.innerHTML = '';
+  $('empty').classList.toggle('hidden', rows.length > 0);
+  rows.forEach(({h, k, chg, ratio}) => {
     const tr = document.createElement('tr');
-    if (flash) tr.className = 'flash';
     tr.innerHTML = `
-      <td class="px-4 py-3 font-semibold text-white"></td>
-      <td class="px-4 py-3 text-right num">${q ? usd(q.price) : '…'}</td>
-      <td class="px-4 py-3 text-right num ${tone(chg)}">${q ? pct(chg) : ''}</td>
-      <td class="px-4 py-3 text-right"><input type="number" min="0" step="any" value="${h.q}" aria-label="Shares of ${h.s}"
-        class="num w-24 text-right rounded bg-[#0f1419] border border-slate-700 px-2 py-1"></td>
-      <td class="px-4 py-3 text-right num text-white">${q ? usd(value) : ''}</td>
-      <td class="px-4 py-3 text-right"><button class="text-slate-500 hover:text-red-400 px-2" aria-label="Remove ${h.s}">&times;</button></td>`;
-    tr.children[0].textContent = h.s;
+      <td class="px-4 py-3"><div class="font-semibold text-white"></div><div class="text-xs text-slate-400 n"></div><div class="text-xs text-slate-500 note"></div></td>
+      <td class="px-4 py-3 text-right num ${k && !k.live ? 'text-slate-500' : 'text-white'}">${k ? money(k.price, k.cur) : '…'}</td>
+      <td class="px-4 py-3 text-right num ${tone(chg || 0)}">${k && k.live && chg !== null ? pct(chg) : '—'}</td>
+      <td class="px-4 py-3 text-right"><input type="number" min="0" step="any" value="${h.t ?? ''}" placeholder="—" aria-label="Target price for ${h.s}"
+        class="num w-24 text-right rounded bg-[#0f1419] border border-slate-700 px-2 py-1 placeholder:text-slate-600"></td>
+      <td class="px-4 py-3 text-right num ${ratio === null ? 'text-slate-600' : ratio <= 1 ? 'text-emerald-400' : 'text-slate-300'}">${ratio === null ? '—' : Math.round(ratio * 100) + '%'}</td>
+      <td class="px-4 py-3 text-right"><button class="text-slate-500 hover:text-red-400 px-2 text-lg leading-none" aria-label="Remove ${h.s}">&times;</button></td>`;
+    tr.querySelector('.font-semibold').textContent = h.s;
+    tr.querySelector('.n').textContent = h.n;
+    tr.querySelector('.note').textContent = h.note || '';
     tr.querySelector('input').addEventListener('change', e => {
-      holdings[i].q = Math.max(0, parseFloat(e.target.value) || 0);
-      save(); render(false);
+      const v = parseFloat(e.target.value);
+      h.t = v > 0 ? v : null; save(); render();
     });
     tr.querySelector('button').addEventListener('click', () => {
-      holdings.splice(i, 1); delete quotes[h.s]; save(); render(false);
+      list = list.filter(x => x !== h); delete quotes[h.s]; save(); render();
     });
     body.appendChild(tr);
   });
-
-  $('total').textContent = usd(total);
-  const d = total - prevTotal, dp = prevTotal ? d / prevTotal * 100 : 0;
-  const td = $('totalDay');
-  td.textContent = total ? `Today: ${d >= 0 ? '+' : '−'}${usd(Math.abs(d))} (${pct(dp)})` : 'Today: —';
-  td.className = 'num text-sm mt-2 ' + tone(d);
-  $('top').textContent = top && total ? top.s : '—';
-  $('topPct').textContent = top && total ? `${(top.v / total * 100).toFixed(1)}% of portfolio` : 'Add shares to see allocation';
 }
 
 $('addForm').addEventListener('submit', async e => {
   e.preventDefault();
-  const s = $('sym').value.trim().toUpperCase(), q = parseFloat($('qty').value) || 0, err = $('err');
+  const s = $('sym').value.trim().toUpperCase(), t = parseFloat($('tgt').value), err = $('err');
   err.classList.add('hidden');
-  if (!/^[A-Z0-9.\-^=]{1,10}$/.test(s)) { err.textContent = 'Enter a ticker using letters and numbers, like AAPL or BRK-B.'; err.classList.remove('hidden'); return; }
-  if (holdings.some(h => h.s === s)) { err.textContent = s + ' is already in your list. Edit its shares in the table.'; err.classList.remove('hidden'); return; }
-  holdings.push({s, q}); save();
-  $('sym').value = ''; $('qty').value = '';
-  render(false);
-  try { quotes[s] = await fetchLive(s); } catch (x) { quotes[s] = mockQuote(s); }
-  render(true);
+  const fail = m => { err.textContent = m; err.classList.remove('hidden'); };
+  if (!/^[A-Z0-9.\-^=]{1,14}$/.test(s)) return fail('Use a Yahoo Finance symbol, like AAPL, BRK-B or CSU.TO.');
+  if (list.some(h => h.s === s)) return fail(s + ' is already on your list. Edit its target in the table.');
+  const h = {s, n: s, t: t > 0 ? t : null, p: null, note: ''};
+  list.push(h); save();
+  $('sym').value = ''; $('tgt').value = '';
+  try { quotes[s] = await fetchLive(s); }
+  catch (x) { fail("Couldn't get a price for " + s + '. Check the symbol; the proxy may also be busy.'); }
+  render();
 });
 
 $('refresh').addEventListener('click', refresh);
-render(false);
+$('filter').addEventListener('input', render);
+$('sort').addEventListener('change', render);
+render();
 refresh();
-setInterval(refresh, 60000);
+setInterval(refresh, 300000);
 </script>
 </body>
 </html>
