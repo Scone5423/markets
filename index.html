@@ -83,14 +83,31 @@
     <p id="empty" class="hidden px-4 py-8 text-center text-slate-400">Nothing to show. Add a ticker above or clear the filter.</p>
   </div>
 
-  <p class="text-xs text-slate-500 mt-4">
-    Prices come from Yahoo Finance through a public CORS proxy and may be delayed. Prices appear in each stock's own currency, and targets should be entered in that currency. If a request fails, the page shows the last price from your spreadsheet and the badge reads "Demo data". Your list and targets are saved in this browser only.
+  <details class="mt-6 rounded-lg border border-slate-800 bg-[#151b22] p-4 text-sm">
+    <summary class="cursor-pointer text-slate-200 font-medium">Price sources</summary>
+    <div class="mt-3 space-y-4 text-slate-400">
+      <p>By default the page asks Yahoo Finance through free public proxies, which are often busy or blocked. For steadier prices, add either option below. Both are saved only in this browser.</p>
+      <div>
+        <label for="cfgFh" class="block text-slate-300 mb-1">Finnhub API key</label>
+        <input id="cfgFh" type="password" autocomplete="off" class="w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2">
+        <p class="text-xs mt-1">Free at finnhub.io. Covers US-listed stocks at 60 requests a minute. Other tickers still use Yahoo.</p>
+      </div>
+      <div>
+        <label for="cfgWorker" class="block text-slate-300 mb-1">Your own proxy URL</label>
+        <input id="cfgWorker" placeholder="https://watchlist-proxy.your-name.workers.dev" autocomplete="off" class="w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2 placeholder:text-slate-600">
+        <p class="text-xs mt-1">A free Cloudflare Worker that fetches Yahoo prices for you. It covers every ticker, including international ones. Setup steps are at the top of worker.js.</p>
+      </div>
+      <button id="cfgSave" class="rounded bg-sky-600 hover:bg-sky-500 text-white font-medium px-4 py-2">Save and refresh</button>
+    </div>
+  </details>
+  <p id="diag" class="text-xs text-slate-500 mt-4" aria-live="polite"></p>
+  <p class="text-xs text-slate-500 mt-2">
+    Prices may be delayed and appear in each stock's own currency, so enter targets in that currency. If a stock can't be fetched, the page shows the grey price from your spreadsheet. Your list, targets and settings are saved in this browser only.
   </p>
 </main>
 
 <script>
 const KEY = 'watchlist.v2';
-const PROXY = 'https://api.allorigins.win/raw?url=';
 // [Yahoo symbol, name, target price, price when imported, note]
 const DEFAULTS = [
 ['ADBE','Adobe',200,239.3,''],
@@ -174,35 +191,105 @@ function money(n, cur) {
   catch (e) { return n.toLocaleString('en-US', {maximumFractionDigits:2}); }
 }
 
-async function fetchLive(sym) {
-  const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=1d';
-  const r = await fetch(PROXY + encodeURIComponent(url));
-  if (!r.ok) throw new Error('HTTP ' + r.status);
-  const m = (await r.json()).chart.result[0].meta;
-  if (typeof m.regularMarketPrice !== 'number') throw new Error('No price');
-  const prev = m.chartPreviousClose ?? m.previousClose;
-  return {price: m.regularMarketPrice, prev: typeof prev === 'number' ? prev : m.regularMarketPrice, cur: sym.startsWith('^') ? '' : m.currency, live: true};
+// ---- Price sources -------------------------------------------------------
+// Order: your own proxy (if set) -> Finnhub (if key set, US tickers) -> Yahoo via public proxies.
+let cfg = {};
+try { cfg = JSON.parse(localStorage.getItem('watchlist.cfg')) || {}; } catch (e) {}
+// Default proxy. A value saved in Price sources (even an empty one) takes priority.
+if (cfg.worker === undefined) cfg.worker = 'https://markets-proxy.jmf702.workers.dev';
+const saveCfg = () => { try { localStorage.setItem('watchlist.cfg', JSON.stringify(cfg)); } catch (e) {} };
+
+const PROXIES = [
+  u => 'https://corsproxy.io/?url=' + encodeURIComponent(u),
+  u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u),
+  u => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u)
+];
+let proxyIdx = 0, lastErr = '';
+
+async function getJSON(url, ms = 10000) {
+  const c = new AbortController(), t = setTimeout(() => c.abort(), ms);
+  try {
+    const r = await fetch(url, {signal: c.signal});
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return await r.json();
+  } finally { clearTimeout(t); }
 }
-function fallback(h) {
-  if (typeof h.p !== 'number') return null;
-  return {price: h.p, prev: h.p, cur: '', live: false};
+const isUS = s => /^[A-Z]{1,5}(-[A-Z])?$/.test(s);
+const curOf = (s, c) => s.startsWith('^') ? '' : (c || '');
+
+async function viaWorker(syms) {
+  const data = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?symbols=' + encodeURIComponent(syms.join(',')), 25000);
+  const out = {};
+  syms.forEach(s => {
+    const d = data[s];
+    if (d && typeof d.price === 'number') out[s] = {price: d.price, prev: typeof d.prev === 'number' ? d.prev : d.price, cur: curOf(s, d.cur), live: true, src: 'worker'};
+  });
+  return out;
+}
+async function viaFinnhub(s) {
+  const d = await getJSON('https://finnhub.io/api/v1/quote?symbol=' + encodeURIComponent(s.replace('-', '.')) + '&token=' + encodeURIComponent(cfg.fh));
+  if (!d || !d.c) throw new Error('no data');
+  return {price: d.c, prev: d.pc || d.c, cur: 'USD', live: true, src: 'finnhub'};
+}
+async function viaYahoo(s) {
+  const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(s) + '?interval=1d&range=1d';
+  for (let i = 0; i < PROXIES.length; i++) {
+    const idx = (proxyIdx + i) % PROXIES.length;
+    try {
+      const m = (await getJSON(PROXIES[idx](url))).chart.result[0].meta;
+      if (typeof m.regularMarketPrice !== 'number') throw new Error('no price');
+      proxyIdx = idx;
+      const prev = m.chartPreviousClose ?? m.previousClose;
+      return {price: m.regularMarketPrice, prev: typeof prev === 'number' ? prev : m.regularMarketPrice, cur: curOf(s, m.currency), live: true, src: 'yahoo'};
+    } catch (e) { lastErr = `Yahoo proxy ${idx + 1} (${s}): ${e.message}`; }
+  }
+  throw new Error('all proxies failed');
+}
+async function fetchOne(s) {
+  if (cfg.worker) {
+    try { const m = await viaWorker([s]); if (m[s]) return m[s]; } catch (e) { lastErr = 'Your proxy: ' + e.message; }
+  }
+  if (cfg.fh && isUS(s)) {
+    try { return await viaFinnhub(s); } catch (e) { lastErr = `Finnhub (${s}): ${e.message}`; }
+  }
+  return viaYahoo(s);
+}
+const fallback = h => typeof h.p === 'number' ? {price: h.p, prev: h.p, cur: '', live: false, src: 'demo'} : null;
+
+async function pool(items, n, fn) {
+  const q = items.slice();
+  await Promise.all(Array.from({length: n}, async () => { while (q.length) await fn(q.shift()); }));
 }
 
 async function refresh() {
-  const btn = $('refresh'); btn.disabled = true;
-  const queue = list.slice(), total = queue.length; let done = 0, live = 0;
-  const worker = async () => {
-    while (queue.length) {
-      const h = queue.shift();
-      try { quotes[h.s] = await fetchLive(h.s); live++; }
-      catch (e) { const f = fallback(h); if (f) quotes[h.s] = f; else delete quotes[h.s]; }
-      $('updated').textContent = `Updating prices… ${++done} of ${total}`;
+  const btn = $('refresh'); btn.disabled = true; lastErr = '';
+  const syms = list.map(h => h.s), total = syms.length, got = new Set();
+  let done = 0;
+  const tick = () => $('updated').textContent = `Updating prices… ${done} of ${total}`;
+  tick();
+
+  if (cfg.worker) {
+    for (let i = 0; i < syms.length; i += 30) {
+      const batch = syms.slice(i, i + 30);
+      try { const m = await viaWorker(batch); Object.assign(quotes, m); Object.keys(m).forEach(s => { got.add(s); done++; }); }
+      catch (e) { lastErr = 'Your proxy: ' + e.message; }
+      tick();
     }
-  };
-  await Promise.all(Array.from({length: 6}, worker));
+  }
+  const todo = list.filter(h => !got.has(h.s));
+  await pool(todo, 4, async h => {
+    try { quotes[h.s] = await fetchOne(h.s); got.add(h.s); }
+    catch (e) { const f = fallback(h); if (f) quotes[h.s] = f; else delete quotes[h.s]; }
+    done++; tick();
+  });
+
+  const by = {worker: 0, finnhub: 0, yahoo: 0};
+  got.forEach(s => { const k = quotes[s]; if (k && by[k.src] !== undefined) by[k.src]++; });
+  const live = got.size, failed = total - live;
   const b = $('mode');
   b.textContent = !total ? 'No tickers' : live === total ? 'Live data' : live ? `Live: ${live} of ${total}` : 'Demo data';
   b.className = 'text-xs px-2 py-1 rounded border ' + (total && live === total ? 'border-emerald-700 text-emerald-400' : 'border-amber-700 text-amber-400');
+  $('diag').textContent = `Last refresh: ${by.worker} from your proxy, ${by.finnhub} from Finnhub, ${by.yahoo} from Yahoo via public proxies, ${failed} without a live price.` + (lastErr && failed ? ' Last error: ' + lastErr : '');
   $('updated').textContent = 'Last updated ' + new Date().toLocaleTimeString();
   btn.disabled = false;
   render();
@@ -271,11 +358,19 @@ $('addForm').addEventListener('submit', async e => {
   const h = {s, n: s, t: t > 0 ? t : null, p: null, note: ''};
   list.push(h); save();
   $('sym').value = ''; $('tgt').value = '';
-  try { quotes[s] = await fetchLive(s); }
+  try { quotes[s] = await fetchOne(s); }
   catch (x) { fail("Couldn't get a price for " + s + '. Check the symbol; the proxy may also be busy.'); }
   render();
 });
 
+$('cfgFh').value = cfg.fh || '';
+$('cfgWorker').value = cfg.worker || '';
+$('cfgSave').addEventListener('click', () => {
+  cfg.fh = $('cfgFh').value.trim();
+  let w = $('cfgWorker').value.trim();
+  if (w && !/^https:\/\//.test(w)) w = 'https://' + w;
+  cfg.worker = w; saveCfg(); refresh();
+});
 $('refresh').addEventListener('click', refresh);
 $('filter').addEventListener('input', render);
 $('sort').addEventListener('change', render);
