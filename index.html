@@ -37,7 +37,7 @@
       <h2 class="text-3xl font-semibold text-white">Market snapshot</h2>
       <p id="homeDate" class="text-sm text-slate-400 mt-1"></p>
     </div>
-    <div id="indices" class="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-8"></div>
+    <div id="indices" class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8"></div>
     <div class="grid lg:grid-cols-3 gap-4">
       <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
         <h3 class="font-medium text-white">Closest to your target</h3>
@@ -298,8 +298,7 @@ async function fetchOne(s) {
 const fallback = h => typeof h.p === 'number' ? {price: h.p, prev: h.p, cur: '', live: false, src: 'demo'} : null;
 
 const INDEX = [
-  {s: '^GSPC', n: 'S&P 500'}, {s: '^IXIC', n: 'Nasdaq Composite'}, {s: '^DJI', n: 'Dow Jones'},
-  {s: '^VIX', n: 'VIX (volatility)'}, {s: '^TNX', n: '10-year Treasury yield'}
+  {s: '^GSPC', n: 'S&P 500'}, {s: '^TNX', n: '10-year Treasury yield'}, {s: '^VIX', n: 'VIX (volatility)'}
 ];
 
 async function pool(items, n, fn) {
@@ -431,7 +430,7 @@ function render() {
   rows.forEach(({h, k, chg, ratio}) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="px-4 py-3"><div class="font-semibold text-white"></div><div class="text-xs text-slate-400 n"></div><div class="text-xs text-slate-500 note"></div></td>
+      <td class="px-4 py-3"><div class="font-semibold text-white"></div><div class="text-xs text-slate-400 n truncate max-w-[8rem]"></div><div class="text-xs text-slate-500 note truncate max-w-[8rem]"></div></td>
       <td class="px-4 py-3 text-right"><input type="number" min="0" step="any" value="${h.t ?? ''}" placeholder="—" aria-label="Target price for ${h.s}"
         class="num w-24 text-right rounded bg-[#0f1419] border border-slate-700 px-2 py-1 placeholder:text-slate-600"></td>
       <td class="px-4 py-3 text-right num ${k && !k.live ? 'text-slate-500' : 'text-white'}">${k ? money(k.price, k.cur) : '…'}</td>
@@ -444,7 +443,9 @@ function render() {
       <td class="px-4 py-3 text-right"><button class="text-slate-500 hover:text-red-400 px-2 text-lg leading-none" aria-label="Remove ${h.s}">&times;</button></td>`;
     tr.querySelector('.font-semibold').textContent = h.s;
     tr.querySelector('.n').textContent = h.n;
+    tr.querySelector('.n').title = h.n;
     tr.querySelector('.note').textContent = h.note || '';
+    tr.querySelector('.note').title = h.note || '';
     tr.querySelector('input').addEventListener('change', e => {
       const v = parseFloat(e.target.value);
       h.t = v > 0 ? v : null; save(); render();
