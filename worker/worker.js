@@ -159,6 +159,20 @@ export default {
       'cache-control': 'public, max-age=60'
     };
 
+    // Diagnostics: open /?debug=1 to see how each data source answers from Cloudflare.
+    if (url.searchParams.get('debug')) {
+      const t = async (name, fn) => { try { return [name, await fn()]; } catch (e) { return [name, 'ERROR ' + (e.message || e)]; } };
+      const peek = async r => 'HTTP ' + r.status + ' ' + (await r.text()).slice(0, 120).replace(/\s+/g, ' ');
+      const res = await Promise.all([
+        t('yahoo_chart_GSPC', async () => peek(await fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?interval=1d&range=1d', { headers: { 'User-Agent': UA } }))),
+        t('yahoo_session', async () => { const s = await getSession(); return 'ok crumb ' + s.crumb.length + ' chars'; }),
+        t('yahoo_quote', async () => { const q = await fetchQuotes(['AAPL']); return Object.keys(q).length + ' quote(s)'; }),
+        t('yahoo_screener', async () => (await screen('percentchange', 'DESC', 3)).length + ' rows'),
+        t('fred', async () => peek(await fetch('https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US', { headers: { 'User-Agent': UA } })))
+      ]);
+      return new Response(JSON.stringify(Object.fromEntries(res), null, 2), { headers });
+    }
+
     if (url.searchParams.get('mortgage')) {
       const m = await fetchMortgage().catch(() => ({}));
       return new Response(JSON.stringify(m), { headers });
