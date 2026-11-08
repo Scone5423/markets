@@ -59,6 +59,15 @@
       </div>
     </div>
     <p class="mt-6 text-sm"><a href="#watchlist" class="text-sky-400 hover:text-sky-300">Open the full watchlist</a></p>
+
+    <div class="mt-10">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+        <h2 class="text-2xl font-semibold text-white">Market movers</h2>
+        <p id="mvMeta" class="text-xs text-slate-500"></p>
+      </div>
+      <div id="movers" class="grid lg:grid-cols-3 gap-4"></div>
+      <p class="text-xs text-slate-500 mt-3">Day and year: U.S. stocks worth over $2 billion with a price over $5, ranked by Yahoo Finance. Week: the 500 largest of those, measured over the last 5 trading days, since Yahoo has no weekly ranking. Click a row to open its chart.</p>
+    </div>
   </section>
 
   <section id="view-charts" hidden>
@@ -400,6 +409,59 @@ async function refresh() {
   $('updated').textContent = 'Last updated ' + new Date().toLocaleTimeString();
   btn.disabled = false;
   render();
+}
+
+// ---- Market movers ---------------------------------------------------------
+let movers = null, moversMsg = 'Loading market movers…';
+const PERIODS = [{k: 'day', label: 'Day'}, {k: 'week', label: 'Week'}, {k: 'year', label: 'Year'}];
+
+async function loadMovers() {
+  if (!cfg.worker) { moversMsg = 'Market movers need your Cloudflare Worker. Add its address under Price sources.'; renderMovers(); return; }
+  try {
+    const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?movers=1', 60000);
+    if (!d || !d.asOf) throw new Error(d && d.error ? d.error : 'old worker');
+    movers = d;
+  } catch (e) {
+    if (!movers) moversMsg = "Couldn't load market movers. Update your Cloudflare Worker with the latest worker.js, then press Refresh prices.";
+  }
+  renderMovers();
+}
+
+function moverRow(r) {
+  const a = document.createElement('a');
+  a.href = '#charts/' + encodeURIComponent(r.s);
+  a.className = 'flex items-baseline justify-between gap-3 py-1 px-1 rounded hover:bg-slate-800/50';
+  a.innerHTML = '<span class="min-w-0 truncate"><span class="font-semibold text-white"></span> <span class="text-xs text-slate-500"></span></span><span class="num text-sm whitespace-nowrap"></span>';
+  const [name, chg] = [a.children[0], a.children[1]];
+  name.children[0].textContent = r.s; name.children[1].textContent = r.n;
+  chg.textContent = pct(r.c); chg.className = 'num text-sm whitespace-nowrap ' + tone(r.c);
+  return a;
+}
+
+function renderMovers() {
+  const box = $('movers'); box.innerHTML = '';
+  if (!movers) {
+    const p = document.createElement('p'); p.className = 'text-sm text-slate-400 lg:col-span-3'; p.textContent = moversMsg; box.appendChild(p);
+    $('mvMeta').textContent = ''; return;
+  }
+  PERIODS.forEach(per => {
+    const card = document.createElement('div');
+    card.className = 'rounded-lg border border-slate-800 bg-[#151b22] p-4';
+    const h = document.createElement('h3'); h.className = 'font-medium text-white mb-2'; h.textContent = per.label;
+    card.appendChild(h);
+    const data = movers[per.k];
+    if (!data) {
+      const p = document.createElement('p'); p.className = 'text-sm text-slate-500'; p.textContent = 'Unavailable right now. Try Refresh prices in a minute.'; card.appendChild(p);
+    } else {
+      [['up', 'Biggest winners', 'text-emerald-400'], ['down', 'Biggest losers', 'text-red-400']].forEach(([key, title, cls], i) => {
+        const t = document.createElement('div'); t.className = 'text-xs font-medium mb-1 ' + cls + (i ? ' mt-4' : ''); t.textContent = title; card.appendChild(t);
+        data[key].forEach(r => card.appendChild(moverRow(r)));
+      });
+    }
+    box.appendChild(card);
+  });
+  const t = new Date(movers.asOf);
+  $('mvMeta').textContent = isNaN(t) ? '' : 'Updated ' + t.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'});
 }
 
 function goTo(sym) { $('filter').value = sym; location.hash = '#watchlist'; render(); }
@@ -778,6 +840,8 @@ $('cfgSave').addEventListener('click', () => {
   cfg.worker = w; saveCfg(); refresh();
 });
 $('refresh').addEventListener('click', refresh);
+$('refresh').addEventListener('click', loadMovers);
+$('cfgSave').addEventListener('click', loadMovers);
 $('filter').addEventListener('input', render);
 document.querySelectorAll('thead th[data-col] button').forEach(btn => btn.addEventListener('click', () => {
   const k = btn.closest('th').dataset.col;
@@ -788,6 +852,9 @@ show();
 render();
 refresh();
 setInterval(refresh, 300000);
+renderMovers();
+loadMovers();
+setInterval(loadMovers, 600000);
 </script>
 </body>
 </html>
