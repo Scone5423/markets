@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Watchlist</title>
+<title>Markets</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +18,7 @@
 
   <header class="flex flex-wrap items-end justify-between gap-3 mb-6">
     <div>
-      <h1 class="text-2xl font-semibold text-white">Watchlist</h1>
+      <h1 class="text-2xl font-semibold text-white">Markets</h1>
       <p id="updated" class="text-sm text-slate-400 mt-1">Loading prices…</p>
     </div>
     <div class="flex items-center gap-3">
@@ -26,6 +26,39 @@
       <button id="refresh" class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 disabled:opacity-50">Refresh prices</button>
     </div>
   </header>
+
+  <nav class="flex gap-6 border-b border-slate-800 mb-6" aria-label="Pages">
+    <a href="#home" data-nav="home" class="pb-3 text-sm">Home</a>
+    <a href="#watchlist" data-nav="watchlist" class="pb-3 text-sm">Watchlist</a>
+  </nav>
+
+  <section id="view-home">
+    <div class="mb-6">
+      <h2 class="text-3xl font-semibold text-white">Market snapshot</h2>
+      <p id="homeDate" class="text-sm text-slate-400 mt-1"></p>
+    </div>
+    <div id="indices" class="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-8"></div>
+    <div class="grid lg:grid-cols-3 gap-4">
+      <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
+        <h3 class="font-medium text-white">Closest to your target</h3>
+        <p class="text-xs text-slate-500 mb-2">Price as a share of your target price</p>
+        <ul id="hTarget" class="divide-y divide-slate-800"></ul>
+      </div>
+      <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
+        <h3 class="font-medium text-white">Nearest a 52-week low</h3>
+        <p class="text-xs text-slate-500 mb-2">How far above the low each stock trades</p>
+        <ul id="hLow" class="divide-y divide-slate-800"></ul>
+      </div>
+      <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
+        <h3 class="font-medium text-white">Biggest moves today</h3>
+        <p class="text-xs text-slate-500 mb-2">From your watchlist</p>
+        <ul id="hMove" class="divide-y divide-slate-800"></ul>
+      </div>
+    </div>
+    <p class="mt-6 text-sm"><a href="#watchlist" class="text-sky-400 hover:text-sky-300">Open the full watchlist</a></p>
+  </section>
+
+  <div id="view-watchlist" hidden>
 
   <section class="grid sm:grid-cols-3 gap-3 mb-6" aria-label="Summary">
     <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
@@ -85,6 +118,8 @@
       <tbody id="rows" class="divide-y divide-slate-800"></tbody>
     </table>
     <p id="empty" class="hidden px-4 py-8 text-center text-slate-400">Nothing to show. Add a ticker above or clear the filter.</p>
+  </div>
+
   </div>
 
   <details class="mt-6 rounded-lg border border-slate-800 bg-[#151b22] p-4 text-sm">
@@ -261,6 +296,11 @@ async function fetchOne(s) {
 }
 const fallback = h => typeof h.p === 'number' ? {price: h.p, prev: h.p, cur: '', live: false, src: 'demo'} : null;
 
+const INDEX = [
+  {s: '^GSPC', n: 'S&P 500'}, {s: '^IXIC', n: 'Nasdaq Composite'}, {s: '^DJI', n: 'Dow Jones'},
+  {s: '^VIX', n: 'VIX (volatility)'}, {s: '^TNX', n: '10-year Treasury yield'}
+];
+
 async function pool(items, n, fn) {
   const q = items.slice();
   await Promise.all(Array.from({length: n}, async () => { while (q.length) await fn(q.shift()); }));
@@ -268,7 +308,8 @@ async function pool(items, n, fn) {
 
 async function refresh() {
   const btn = $('refresh'); btn.disabled = true; lastErr = '';
-  const syms = list.map(h => h.s), total = syms.length, got = new Set();
+  const items = list.concat(INDEX.filter(i => !list.some(h => h.s === i.s)).map(i => ({s: i.s, n: i.n, p: null})));
+  const syms = items.map(h => h.s), total = syms.length, got = new Set();
   let done = 0;
   const tick = () => $('updated').textContent = `Updating prices… ${done} of ${total}`;
   tick();
@@ -281,7 +322,7 @@ async function refresh() {
       tick();
     }
   }
-  const todo = list.filter(h => !got.has(h.s));
+  const todo = items.filter(h => !got.has(h.s));
   await pool(todo, 4, async h => {
     try { quotes[h.s] = await fetchOne(h.s); got.add(h.s); }
     catch (e) { const f = fallback(h); if (f) quotes[h.s] = f; else delete quotes[h.s]; }
@@ -299,6 +340,62 @@ async function refresh() {
   btn.disabled = false;
   render();
 }
+
+function goTo(sym) { $('filter').value = sym; location.hash = '#watchlist'; render(); }
+
+function fillList(id, rows, empty) {
+  const ul = $(id); ul.innerHTML = '';
+  if (!rows.length) { const li = document.createElement('li'); li.className = 'py-3 text-sm text-slate-500'; li.textContent = empty; ul.appendChild(li); return; }
+  rows.slice(0, 5).forEach(r => {
+    const li = document.createElement('li');
+    li.innerHTML = '<button class="w-full flex items-baseline justify-between gap-3 py-2 text-left hover:bg-slate-800/50 rounded px-1"><span class="min-w-0"><span class="font-semibold text-white"></span> <span class="text-xs text-slate-500 truncate"></span></span><span class="num text-sm whitespace-nowrap"></span></button>';
+    const sp = li.querySelectorAll('span');
+    sp[1].textContent = r.h.s; sp[2].textContent = r.h.n;
+    sp[3].textContent = r.text; sp[3].className = 'num text-sm whitespace-nowrap ' + r.tone;
+    li.querySelector('button').addEventListener('click', () => goTo(r.h.s));
+    ul.appendChild(li);
+  });
+}
+
+function renderHome(info) {
+  $('homeDate').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'});
+  const box = $('indices'); box.innerHTML = '';
+  INDEX.forEach(ix => {
+    const k = quotes[ix.s], yld = ix.s === '^TNX';
+    const d = k ? (yld ? (k.price - k.prev) * 100 : (k.price / k.prev - 1) * 100) : null;
+    const card = document.createElement('div');
+    card.className = 'rounded-lg border border-slate-800 bg-[#151b22] p-4';
+    card.innerHTML = '<div class="text-xs text-slate-400"></div><div class="num text-xl font-medium text-white mt-1"></div><div class="num text-sm mt-1"></div>';
+    const [a, b, c] = card.children;
+    a.textContent = ix.n;
+    b.textContent = k ? (yld ? k.price.toFixed(2) + '%' : money(k.price, '')) : '—';
+    c.textContent = k && k.live && d !== null ? (yld ? (d >= 0 ? '+' : '') + d.toFixed(0) + ' bp' : pct(d)) : '—';
+    c.className = 'num text-sm mt-1 ' + (k && k.live && d !== null ? tone(d) : 'text-slate-600');
+    box.appendChild(card);
+  });
+  const nearT = info.filter(i => i.ratio !== null).sort((x, y) => x.ratio - y.ratio)
+    .map(i => ({h: i.h, text: Math.round(i.ratio * 100) + '% of target', tone: i.ratio <= 1 ? 'text-emerald-400' : 'text-slate-300'}));
+  const nearL = info.filter(i => i.k && i.k.lo).sort((x, y) => x.k.price / x.k.lo - y.k.price / y.k.lo)
+    .map(i => ({h: i.h, text: ((i.k.price / i.k.lo - 1) * 100).toFixed(1) + '% above low', tone: 'text-slate-300'}));
+  const moves = info.filter(i => i.k && i.k.live && i.chg !== null).sort((x, y) => Math.abs(y.chg) - Math.abs(x.chg))
+    .map(i => ({h: i.h, text: pct(i.chg), tone: tone(i.chg)}));
+  fillList('hTarget', nearT, 'Set target prices on the Watchlist tab to see this list.');
+  fillList('hLow', nearL, '52-week lows appear once live prices load.');
+  fillList('hMove', moves, 'Daily moves appear once live prices load.');
+}
+
+function show() {
+  const v = location.hash === '#watchlist' ? 'watchlist' : 'home';
+  $('view-home').hidden = v !== 'home';
+  $('view-watchlist').hidden = v !== 'watchlist';
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    const on = a.dataset.nav === v;
+    a.className = 'pb-3 text-sm border-b-2 -mb-px ' + (on ? 'text-white border-sky-500' : 'text-slate-400 border-transparent hover:text-slate-200');
+    on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
+  });
+  document.title = v === 'home' ? 'Markets' : 'Watchlist | Markets';
+}
+window.addEventListener('hashchange', show);
 
 function render() {
   const q = $('filter').value.trim().toLowerCase();
@@ -355,6 +452,7 @@ function render() {
     });
     body.appendChild(tr);
   });
+  renderHome(info);
 }
 
 $('addForm').addEventListener('submit', async e => {
@@ -383,6 +481,7 @@ $('cfgSave').addEventListener('click', () => {
 $('refresh').addEventListener('click', refresh);
 $('filter').addEventListener('input', render);
 $('sort').addEventListener('change', render);
+show();
 render();
 refresh();
 setInterval(refresh, 300000);
