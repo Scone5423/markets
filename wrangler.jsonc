@@ -1,0 +1,7 @@
+{
+  // Deploys the Cloudflare Worker (the price/data proxy) even when the build runs from the repo root.
+  // The name must match the Worker in the Cloudflare dashboard.
+  "name": "markets-proxy",
+  "main": "worker/worker.js",
+  "compatibility_date": "2026-11-01"
+}
