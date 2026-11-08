@@ -68,6 +68,29 @@
       <div id="movers" class="grid lg:grid-cols-3 gap-4"></div>
       <p class="text-xs text-slate-500 mt-3">Day and year: U.S. stocks worth over $2 billion with a price over $5, ranked by Yahoo Finance. Week: the 500 largest of those, measured over the last 5 trading days, since Yahoo has no weekly ranking. Click a row to open its chart.</p>
     </div>
+
+    <div class="mt-10">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+        <h2 class="text-2xl font-semibold text-white">Markets by country</h2>
+        <p id="ctMeta" class="text-xs text-slate-500"></p>
+      </div>
+      <div class="overflow-x-auto rounded-lg border border-slate-800 bg-[#151b22]">
+        <table class="w-full text-sm">
+          <thead class="text-xs text-slate-400 border-b border-slate-800">
+            <tr>
+              <th class="px-4 py-2 font-medium text-left">Country</th>
+              <th class="px-4 py-2 font-medium text-right">Day</th>
+              <th class="px-4 py-2 font-medium text-right">Week</th>
+              <th class="px-4 py-2 font-medium text-right">1 yr</th>
+              <th class="px-4 py-2 font-medium text-right">5 yr</th>
+              <th class="px-4 py-2 font-medium text-right">10 yr</th>
+            </tr>
+          </thead>
+          <tbody id="countries" class="divide-y divide-slate-800"></tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3">Price change of each country's main stock index, in local currency, dividends not included. The latest figures are the most recent trading day, so markets that are closed show their last close. Click a row to open its chart.</p>
+    </div>
   </section>
 
   <section id="view-charts" hidden>
@@ -432,6 +455,44 @@ async function loadMovers() {
     if (!movers) moversMsg = "Couldn't load market movers. Update your Cloudflare Worker with the latest worker.js, then press Refresh prices.";
   }
   renderMovers();
+}
+
+// ---- Markets by country ----
+let countries = null, countriesMsg = 'Loading markets by country…';
+async function loadCountries() {
+  if (!cfg.worker) { countriesMsg = 'Markets by country need your Cloudflare Worker. Add its address under Price sources.'; renderCountries(); return; }
+  try {
+    const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?countries=1', 60000);
+    if (!d || !d.rows) throw new Error(d && d.error ? d.error : 'old worker');
+    countries = d;
+  } catch (e) {
+    if (!countries) countriesMsg = "Couldn't load markets by country. Try Refresh prices in a minute.";
+  }
+  renderCountries();
+}
+function renderCountries() {
+  const body = $('countries'); body.innerHTML = '';
+  if (!countries) {
+    const tr = document.createElement('tr'), td = document.createElement('td');
+    td.colSpan = 6; td.className = 'px-4 py-3 text-slate-400'; td.textContent = countriesMsg;
+    tr.appendChild(td); body.appendChild(tr); $('ctMeta').textContent = ''; return;
+  }
+  countries.rows.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.className = 'hover:bg-slate-800/50 cursor-pointer';
+    tr.innerHTML = '<td class="px-4 py-1.5"><span class="font-semibold text-white"></span> <span class="text-xs text-slate-500"></span></td>';
+    tr.children[0].children[0].textContent = r.country; tr.children[0].children[1].textContent = r.index;
+    ['day', 'week', 'y1', 'y5', 'y10'].forEach(k => {
+      const td = document.createElement('td'), v = r[k];
+      td.className = 'px-4 py-1.5 text-right num ' + (typeof v === 'number' ? tone(v) : 'text-slate-600');
+      td.textContent = typeof v === 'number' ? pct(v) : '—';
+      tr.appendChild(td);
+    });
+    tr.addEventListener('click', () => { location.hash = '#charts/' + encodeURIComponent(r.s); });
+    body.appendChild(tr);
+  });
+  const t = new Date(countries.asOf);
+  $('ctMeta').textContent = isNaN(t) ? '' : 'Updated ' + t.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'});
 }
 
 function moverRow(r) {
@@ -897,8 +958,8 @@ $('cfgSave').addEventListener('click', () => {
   cfg.worker = w; saveCfg(); refresh();
 });
 $('refresh').addEventListener('click', refresh);
-$('refresh').addEventListener('click', loadMovers);
-$('cfgSave').addEventListener('click', loadMovers);
+$('refresh').addEventListener('click', () => { loadMovers(); loadCountries(); });
+$('cfgSave').addEventListener('click', () => { loadMovers(); loadCountries(); });
 $('refresh').addEventListener('click', loadYearly);
 $('cfgSave').addEventListener('click', loadYearly);
 $('filter').addEventListener('input', render);
@@ -913,7 +974,8 @@ refresh();
 setInterval(refresh, 300000);
 renderMovers();
 loadMovers();
-setInterval(loadMovers, 600000);
+loadCountries();
+setInterval(() => { loadMovers(); loadCountries(); }, 600000);
 loadYearly();
 setInterval(loadYearly, 1800000);
 </script>

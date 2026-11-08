@@ -83,6 +83,54 @@ async function fetchFundYield(sym) {
   return { yield: last.amount * 12 / px * 100, src: 'payout', date: new Date(last.date * 1000).toISOString().slice(0, 10) };
 }
 
+// ---- Markets by country (Home page) ----------------------------------------
+// One headline stock index per country. Changes are price changes in local currency.
+const COUNTRIES = [
+  ['United States', 'S&P 500', '^GSPC'], ['Canada', 'S&P/TSX', '^GSPTSE'], ['Mexico', 'IPC', '^MXX'], ['Brazil', 'Bovespa', '^BVSP'],
+  ['United Kingdom', 'FTSE 100', '^FTSE'], ['Germany', 'DAX', '^GDAXI'], ['France', 'CAC 40', '^FCHI'], ['Netherlands', 'AEX', '^AEX'],
+  ['Switzerland', 'SMI', '^SSMI'], ['Spain', 'IBEX 35', '^IBEX'], ['Italy', 'FTSE MIB', 'FTSEMIB.MI'],
+  ['Japan', 'Nikkei 225', '^N225'], ['China', 'Shanghai Composite', '000001.SS'], ['Hong Kong', 'Hang Seng', '^HSI'],
+  ['India', 'BSE Sensex', '^BSESN'], ['South Korea', 'KOSPI', '^KS11'], ['Taiwan', 'TAIEX', '^TWII'],
+  ['Australia', 'ASX 200', '^AXJO'], ['Singapore', 'Straits Times', '^STI']
+];
+
+async function countryRow([country, index, sym]) {
+  const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?range=10y&interval=1d', { headers: { 'User-Agent': UA } });
+  const res = (await r.json()).chart.result[0];
+  const ts = res.timestamp || [], cl = (res.indicators.quote[0] || {}).close || [];
+  const bars = [];
+  ts.forEach((t, i) => { if (typeof cl[i] === 'number' && isFinite(cl[i])) bars.push([t * 1000, cl[i]]); });
+  if (bars.length < 3) throw new Error('no data');
+  const last = bars[bars.length - 1];
+  const px = num(res.meta.regularMarketPrice) ?? last[1];
+  // Close on or just before the date this long ago; null when the index has less history than that.
+  const back = (years, days) => {
+    const d = new Date(last[0]);
+    if (years) d.setUTCFullYear(d.getUTCFullYear() - years); else d.setUTCDate(d.getUTCDate() - days);
+    if (bars[0][0] > d.getTime() + 10 * 86400000) return null;
+    let v = null;
+    for (const b of bars) { if (b[0] <= d.getTime()) v = b[1]; else break; }
+    return v;
+  };
+  const chg = base => (base ? (px / base - 1) * 100 : null);
+  return {
+    country, index, s: sym, price: px,
+    day: chg(bars[bars.length - 2][1]) === null ? null : chg(bars[bars.length - 2][1]),
+    week: chg(back(0, 7)), y1: chg(back(1)), y5: chg(back(5)), y10: chg(back(10)),
+    asOf: new Date(last[0]).toISOString().slice(0, 10)
+  };
+}
+
+let countriesCache = null;
+async function getCountries() {
+  if (countriesCache && Date.now() - countriesCache.t < 600000) return countriesCache.d;
+  const rows = (await Promise.all(COUNTRIES.map(c => countryRow(c).catch(() => ({ country: c[0], index: c[1], s: c[2], failed: true }))))).filter(Boolean);
+  if (rows.every(x => x.failed)) throw new Error('no country data');
+  const d = { asOf: new Date().toISOString(), rows };
+  countriesCache = { t: Date.now(), d };
+  return d;
+}
+
 const RANGES = ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'];
 const INTERVALS = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'];
 
@@ -205,6 +253,14 @@ export default {
       if (!/^[A-Za-z0-9.\-]{1,10}$/.test(sym)) return new Response('{}', { status: 400, headers });
       const y = await fetchFundYield(sym).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(y), { headers });
+    }
+
+    if (url.searchParams.get('countries')) {
+      try {
+        return new Response(JSON.stringify(await getCountries()), { headers: { ...headers, 'cache-control': 'public, max-age=300' } });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: String(e.message || e) }), { headers });
+      }
     }
 
     if (url.searchParams.get('mortgage')) {
