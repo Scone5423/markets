@@ -348,8 +348,8 @@ let mortgage = null;
 function parseFred(txt) {
   const rows = txt.trim().split(/\r?\n/).slice(1).map(l => l.split(',')).filter(r => r.length >= 2 && isFinite(parseFloat(r[1])));
   if (rows.length < 2) throw new Error('no data');
-  const a = rows[rows.length - 1], b = rows[rows.length - 2];
-  return {rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0]};
+  const a = rows[rows.length - 1], b = rows[rows.length - 2], y = rows[rows.length - 53];
+  return {rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null};
 }
 async function getText(url, ms = 10000) {
   const c = new AbortController(), t = setTimeout(() => c.abort(), ms);
@@ -360,12 +360,19 @@ async function fetchMortgage() {
   if (cfg.worker) {
     try {
       const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?mortgage=1');
-      if (nz(d.rate) !== null) { mortgage = {rate: d.rate, prev: nz(d.prev) ?? d.rate, date: d.date}; return; }
+      if (nz(d.rate) !== null) {
+        mortgage = {rate: d.rate, prev: nz(d.prev) ?? d.rate, date: d.date, yago: nz(d.yago)};
+        if (mortgage.yago !== null) return;
+      }
     } catch (e) {}
   }
   const url = 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US';
   for (const mk of PROXIES) {
-    try { mortgage = parseFred(await getText(mk(url))); return; } catch (e) {}
+    try {
+      const m = parseFred(await getText(mk(url)));
+      mortgage = mortgage ? Object.assign(mortgage, {yago: m.yago}) : m;   // an older Worker has no year-ago rate, so fill it in here
+      return;
+    } catch (e) {}
   }
 }
 
@@ -480,40 +487,68 @@ function fillList(id, rows, empty) {
   });
 }
 
-function renderHome(info) {
-  $('homeDate').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'});
+// Year-ago price for each snapshot card (one year of daily prices, via the Charts data source).
+const yearly = {};
+async function loadYearly() {
+  await Promise.all(INDEX.map(async ix => {
+    try {
+      const d = await fetchChartData(ix.s, RANGES[3]);
+      if (d.bars.length > 20) yearly[ix.s] = {base: d.bars[0].close, last: d.bars[d.bars.length - 1].close};
+    } catch (e) {}
+  }));
+  renderIndices();
+}
+
+function statRow(label, text, cls) {
+  const r = document.createElement('div');
+  r.className = 'flex items-baseline justify-between gap-2 mt-1';
+  r.innerHTML = '<span class="text-xs text-slate-500"></span><span class="num text-sm"></span>';
+  r.children[0].textContent = label;
+  r.children[1].textContent = text; r.children[1].className = 'num text-sm ' + (text === '—' ? 'text-slate-600' : cls);
+  return r;
+}
+const bpText = v => (v >= 0 ? '+' : '') + v.toFixed(0) + ' bp';
+
+function renderIndices() {
   const box = $('indices'); box.innerHTML = '';
   INDEX.forEach(ix => {
-    const k = quotes[ix.s], yld = ix.s === '^TNX';
-    const d = k ? (yld ? (k.price - k.prev) * 100 : (k.price / k.prev - 1) * 100) : null;
+    const k = quotes[ix.s], yld = ix.s === '^TNX', y = yearly[ix.s];
+    const day = k && k.live && k.prev ? (yld ? (k.price - k.prev) * 100 : (k.price / k.prev - 1) * 100) : null;
+    const lastPx = k ? k.price : (y ? y.last : null);
+    const yr = y && lastPx !== null ? (yld ? (lastPx - y.base) * 100 : (lastPx / y.base - 1) * 100) : null;
     const card = document.createElement('div');
     card.className = 'rounded-lg border border-slate-800 bg-[#151b22] p-4';
-    card.innerHTML = '<div class="text-xs text-slate-400"></div><div class="num text-xl font-medium text-white mt-1"></div><div class="num text-sm mt-1"></div>';
-    const [a, b, c] = card.children;
-    a.textContent = ix.n;
-    b.textContent = k ? (yld ? k.price.toFixed(2) + '%' : money(k.price, ix.s.startsWith('^') ? '' : k.cur)) : '—';
-    c.textContent = k && k.live && d !== null ? (yld ? (d >= 0 ? '+' : '') + d.toFixed(0) + ' bp' : pct(d)) : '—';
-    c.className = 'num text-sm mt-1 ' + (k && k.live && d !== null ? tone(d) : 'text-slate-600');
+    card.innerHTML = '<div class="text-xs text-slate-400"></div><div class="num text-xl font-medium text-white mt-1"></div>';
+    card.children[0].textContent = ix.n;
+    card.children[1].textContent = k ? (yld ? k.price.toFixed(2) + '%' : money(k.price, ix.s.startsWith('^') ? '' : k.cur)) : '—';
+    card.appendChild(statRow('Day', day === null ? '—' : (yld ? bpText(day) : pct(day)), day === null ? '' : tone(day)));
+    card.appendChild(statRow('Year', yr === null ? '—' : (yld ? bpText(yr) : pct(yr)), yr === null ? '' : tone(yr)));
     box.appendChild(card);
   });
-  {
-    const card = document.createElement('div');
-    card.className = 'rounded-lg border border-slate-800 bg-[#151b22] p-4';
-    card.innerHTML = '<div class="text-xs text-slate-400">Average 30-year mortgage rate</div><div class="num text-xl font-medium text-white mt-1"></div><div class="num text-sm mt-1"></div><div class="text-xs text-slate-500 mt-1"></div>';
-    const [, b, c, d] = card.children;
-    if (mortgage) {
-      const bp = (mortgage.rate - mortgage.prev) * 100;
-      b.textContent = mortgage.rate.toFixed(2) + '%';
-      c.textContent = (bp >= 0 ? '+' : '') + bp.toFixed(0) + ' bp vs. last week';
-      c.className = 'num text-sm mt-1 ' + tone(bp);
-      const dt = new Date(mortgage.date + 'T00:00:00');
-      d.textContent = 'Freddie Mac survey' + (isNaN(dt) ? '' : ', week of ' + dt.toLocaleDateString('en-US', {month: 'short', day: 'numeric'}));
-    } else {
-      b.textContent = '—'; c.textContent = '—'; c.className = 'num text-sm mt-1 text-slate-600';
-      d.textContent = 'Freddie Mac weekly survey';
-    }
-    box.appendChild(card);
+  const card = document.createElement('div');
+  card.className = 'rounded-lg border border-slate-800 bg-[#151b22] p-4';
+  card.innerHTML = '<div class="text-xs text-slate-400">Average 30-year mortgage rate</div><div class="num text-xl font-medium text-white mt-1"></div>';
+  const val = card.children[1], cap = document.createElement('div');
+  cap.className = 'text-xs text-slate-500 mt-2';
+  if (mortgage) {
+    const wk = (mortgage.rate - mortgage.prev) * 100, yr = mortgage.yago == null ? null : (mortgage.rate - mortgage.yago) * 100;
+    val.textContent = mortgage.rate.toFixed(2) + '%';
+    card.appendChild(statRow('Week', bpText(wk), tone(wk)));
+    card.appendChild(statRow('Year', yr === null ? '—' : bpText(yr), yr === null ? '' : tone(yr)));
+    const dt = new Date(mortgage.date + 'T00:00:00');
+    cap.textContent = 'Freddie Mac survey' + (isNaN(dt) ? '' : ', week of ' + dt.toLocaleDateString('en-US', {month: 'short', day: 'numeric'}));
+  } else {
+    val.textContent = '—';
+    card.appendChild(statRow('Week', '—', '')); card.appendChild(statRow('Year', '—', ''));
+    cap.textContent = 'Freddie Mac weekly survey';
   }
+  card.appendChild(cap);
+  box.appendChild(card);
+}
+
+function renderHome(info) {
+  $('homeDate').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'});
+  renderIndices();
   const withTarget = info.filter(i => i.ratio !== null);
   const nearT = withTarget.filter(i => Math.round(i.ratio * 100) < 100).sort((x, y) => x.ratio - y.ratio)   // lowest ratio first
     .map(i => ({h: i.h, text: Math.round(i.ratio * 100) + '% of target', tone: 'text-emerald-400'}));
@@ -842,6 +877,8 @@ $('cfgSave').addEventListener('click', () => {
 $('refresh').addEventListener('click', refresh);
 $('refresh').addEventListener('click', loadMovers);
 $('cfgSave').addEventListener('click', loadMovers);
+$('refresh').addEventListener('click', loadYearly);
+$('cfgSave').addEventListener('click', loadYearly);
 $('filter').addEventListener('input', render);
 document.querySelectorAll('thead th[data-col] button').forEach(btn => btn.addEventListener('click', () => {
   const k = btn.closest('th').dataset.col;
@@ -855,6 +892,8 @@ setInterval(refresh, 300000);
 renderMovers();
 loadMovers();
 setInterval(loadMovers, 600000);
+loadYearly();
+setInterval(loadYearly, 1800000);
 </script>
 </body>
 </html>
