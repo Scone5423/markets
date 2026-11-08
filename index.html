@@ -128,7 +128,7 @@
 
   <div class="flex flex-wrap gap-2 mb-3">
     <label class="sr-only" for="filter">Filter</label>
-    <input id="filter" placeholder="Filter by name, ticker or note"
+    <input id="filter" placeholder="Filter by ticker or name"
       class="flex-1 min-w-[12rem] rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm placeholder:text-slate-500">
   </div>
 
@@ -136,16 +136,16 @@
     <table class="w-full text-sm">
       <thead class="text-left text-slate-400 border-b border-slate-800">
         <tr>
-          <th class="px-4 py-3 font-medium" data-col="ticker" aria-sort="none"><button type="button" title="Sort by ticker" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Stock<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
-          <th class="px-4 py-3 font-medium text-right" data-col="target" aria-sort="none"><button type="button" title="Sort by target price" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Target<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
-          <th class="px-4 py-3 font-medium text-right" data-col="price" aria-sort="none"><button type="button" title="Sort by price" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Price<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
-          <th class="px-4 py-3 font-medium text-right" data-col="chg" aria-sort="none"><button type="button" title="Sort by change today" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Today<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
-          <th class="px-4 py-3 font-medium text-right" data-col="pe" aria-sort="none"><button type="button" title="Sort by price-to-earnings ratio" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">P/E<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
-          <th class="px-4 py-3 font-medium text-right" data-col="ratio" aria-sort="none"><button type="button" title="Price / target price. Sort by this ratio" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">P/T<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
-          <th class="px-4 py-3 font-medium text-right" data-col="hi" aria-sort="none"><button type="button" title="Sort by 52-week high" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">52-wk high<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
-          <th class="px-4 py-3 font-medium text-right" data-col="lo" aria-sort="none"><button type="button" title="Sort by 52-week low" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">52-wk low<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
-          <th class="px-4 py-3 font-medium text-right" data-col="p52" aria-sort="none"><button type="button" title="Price / 52-week high. Sort by this ratio" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">P/52H<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
-          <th class="px-4 py-3"><span class="sr-only">Remove</span></th>
+          <th class="px-4 py-2 font-medium" data-col="ticker" aria-sort="none"><button type="button" title="Sort by ticker" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Stock<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-2 font-medium text-right" data-col="target" aria-sort="none"><button type="button" title="Sort by target price" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Target<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-2 font-medium text-right" data-col="price" aria-sort="none"><button type="button" title="Sort by price" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Price<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-2 font-medium text-right" data-col="chg" aria-sort="none"><button type="button" title="Sort by change today" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">Today<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-2 font-medium text-right" data-col="pe" aria-sort="none"><button type="button" title="Sort by price-to-earnings ratio" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">P/E<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-2 font-medium text-right" data-col="ratio" aria-sort="none"><button type="button" title="Price / target price. Sort by this ratio" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">P/T<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-2 font-medium text-right" data-col="hi" aria-sort="none"><button type="button" title="Sort by 52-week high" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">52-wk high<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-2 font-medium text-right" data-col="lo" aria-sort="none"><button type="button" title="Sort by 52-week low" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">52-wk low<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-2 font-medium text-right" data-col="p52" aria-sort="none"><button type="button" title="Price / 52-week high. Sort by this ratio" class="inline-flex items-center gap-1 hover:text-white focus-visible:text-white">P/52H<span class="arr inline-block w-3 text-[10px]" aria-hidden="true"></span></button></th>
+          <th class="px-4 py-2"><span class="sr-only">Remove</span></th>
         </tr>
       </thead>
       <tbody id="rows" class="divide-y divide-slate-800"></tbody>
@@ -702,7 +702,7 @@ function render() {
   $('cMove').className = 'num text-2xl font-medium mt-1 ' + (big ? tone(big.chg) : 'text-white');
 
   // filter + sort
-  let rows = info.filter(i => !q || (i.h.s + ' ' + i.h.n + ' ' + (i.h.note || '')).toLowerCase().includes(q));
+  let rows = info.filter(i => !q || (i.h.s + ' ' + i.h.n).toLowerCase().includes(q));
   const get = SORTS[SORT.key || 'ticker'], dir = SORT.key ? SORT.dir : 1;
   const missing = v => v === null || v === undefined;
   rows.sort((a, b) => {
@@ -723,17 +723,17 @@ function render() {
   rows.forEach(({h, k, chg, ratio}) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="px-4 py-3"><div class="font-semibold text-white"></div><div class="text-xs text-slate-400 n truncate max-w-[5rem]"></div><div class="text-xs text-slate-500 note truncate max-w-[5rem]"></div></td>
-      <td class="px-4 py-3 text-right"><input type="number" min="0" step="any" value="${h.t ?? ''}" placeholder="—" aria-label="Target price for ${h.s}"
+      <td class="px-4 py-1.5"><div class="font-semibold text-white leading-tight"></div><div class="text-xs leading-tight text-slate-400 n truncate max-w-[5rem]"></div></td>
+      <td class="px-4 py-1.5 text-right"><input type="number" min="0" step="any" value="${h.t ?? ''}" placeholder="—" aria-label="Target price for ${h.s}"
         class="num w-24 text-right rounded bg-[#0f1419] border border-slate-700 px-2 py-1 placeholder:text-slate-600"></td>
-      <td class="px-4 py-3 text-right num ${k && !k.live ? 'text-slate-500' : 'text-white'}">${k ? money(k.price, k.cur) : '…'}</td>
-      <td class="px-4 py-3 text-right num ${tone(chg || 0)}">${k && k.live && chg !== null ? pct(chg) : '—'}</td>
-      <td class="px-4 py-3 text-right num ${!(k && k.pe) ? 'text-slate-600' : (Number(k.pe.toFixed(1)) > 0 && Number(k.pe.toFixed(1)) < 15) ? 'text-emerald-400' : 'text-red-400'}">${k && k.pe ? k.pe.toFixed(1) : '—'}</td>
-      <td class="px-4 py-3 text-right num ${ratio === null ? 'text-slate-600' : Math.round(ratio * 100) < 100 ? 'text-emerald-400' : 'text-red-400'}">${ratio === null ? '—' : Math.round(ratio * 100) + '%'}</td>
-      <td class="px-4 py-3 text-right num ${k && k.hi ? 'text-slate-300' : 'text-slate-600'}">${k && k.hi ? money(k.hi, k.cur) : '—'}</td>
-      <td class="px-4 py-3 text-right num ${k && k.lo ? 'text-slate-300' : 'text-slate-600'}">${k && k.lo ? money(k.lo, k.cur) : '—'}</td>
-      <td class="px-4 py-3 text-right num ${k && k.hi ? 'text-slate-300' : 'text-slate-600'}">${k && k.hi ? Math.round(k.price / k.hi * 100) + '%' : '—'}</td>
-      <td class="px-4 py-3 text-right"><button class="text-slate-500 hover:text-red-400 px-2 text-lg leading-none" aria-label="Remove ${h.s}">&times;</button></td>`;
+      <td class="px-4 py-1.5 text-right num ${k && !k.live ? 'text-slate-500' : 'text-white'}">${k ? money(k.price, k.cur) : '…'}</td>
+      <td class="px-4 py-1.5 text-right num ${tone(chg || 0)}">${k && k.live && chg !== null ? pct(chg) : '—'}</td>
+      <td class="px-4 py-1.5 text-right num ${!(k && k.pe) ? 'text-slate-600' : (Number(k.pe.toFixed(1)) > 0 && Number(k.pe.toFixed(1)) < 15) ? 'text-emerald-400' : 'text-red-400'}">${k && k.pe ? k.pe.toFixed(1) : '—'}</td>
+      <td class="px-4 py-1.5 text-right num ${ratio === null ? 'text-slate-600' : Math.round(ratio * 100) < 100 ? 'text-emerald-400' : 'text-red-400'}">${ratio === null ? '—' : Math.round(ratio * 100) + '%'}</td>
+      <td class="px-4 py-1.5 text-right num ${k && k.hi ? 'text-slate-300' : 'text-slate-600'}">${k && k.hi ? money(k.hi, k.cur) : '—'}</td>
+      <td class="px-4 py-1.5 text-right num ${k && k.lo ? 'text-slate-300' : 'text-slate-600'}">${k && k.lo ? money(k.lo, k.cur) : '—'}</td>
+      <td class="px-4 py-1.5 text-right num ${k && k.hi ? 'text-slate-300' : 'text-slate-600'}">${k && k.hi ? Math.round(k.price / k.hi * 100) + '%' : '—'}</td>
+      <td class="px-4 py-1.5 text-right"><button class="text-slate-500 hover:text-red-400 px-2 text-lg leading-none" aria-label="Remove ${h.s}">&times;</button></td>`;
     {
       const a = document.createElement('a');
       a.href = '#charts/' + encodeURIComponent(h.s); a.textContent = h.s; a.title = 'Open chart';
@@ -742,8 +742,6 @@ function render() {
     }
     tr.querySelector('.n').textContent = h.n;
     tr.querySelector('.n').title = h.n;
-    tr.querySelector('.note').textContent = h.note || '';
-    tr.querySelector('.note').title = h.note || '';
     tr.querySelector('input').addEventListener('change', e => {
       const v = parseFloat(e.target.value);
       h.t = v > 0 ? v : null; save(); render();
