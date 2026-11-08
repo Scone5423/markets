@@ -878,7 +878,7 @@ const DEFAULT_GURUS = [
     sources: [{kind: 'letters', label: 'Semper Augustus client letters', url: 'https://www.semperaugustus.com/clientletter'}]},
   {name: 'Berkshire Hathaway', code: 'BRK', search: false, links: [],
     sources: [{kind: 'letters', label: 'Shareholder letters', url: 'https://www.berkshirehathaway.com/letters/letters.html'}]},
-  {name: 'Geoff Gannon', code: '', search: true,
+  {name: 'Geoff Gannon', code: '', search: true, photo: 'photos/geoff-gannon.jpg',
     links: [{label: 'Website', url: 'https://focusedcompounding.com/'}, {label: 'X', url: 'https://x.com/FocusedCompound'}],
     sources: [{kind: 'posts', label: 'focusedcompounding.com', url: 'https://focusedcompounding.com/'},
               {kind: 'podcast', label: 'Focused Compounding podcast', url: 'https://feed.podbean.com/focusedcompoundinginvest/feed.xml'}]}
@@ -947,7 +947,7 @@ const initials = n => n.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].t
 function avatar(g, size) {
   const wrap = el('div', 'shrink-0 rounded-full overflow-hidden bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 font-semibold ' + size);
   const fallback = () => { wrap.innerHTML = ''; wrap.textContent = initials(g.name); };
-  if (g.photo && /^https:\/\//i.test(g.photo)) {
+  if (g.photo && /^(https:\/\/|photos\/)/i.test(g.photo)) {
     const img = new Image(); img.alt = g.name; img.referrerPolicy = 'no-referrer'; img.className = 'w-full h-full object-cover';
     img.onerror = fallback; img.src = g.photo; wrap.appendChild(img);
   } else fallback();
@@ -1008,7 +1008,7 @@ function renderGurus() {
     pf.innerHTML = '<input type="url" placeholder="Address of a photo (https://…)" class="flex-1 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600"><button class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Save</button>';
     pf.firstChild.value = g.photo || '';
     ph.addEventListener('click', () => { pf.hidden = !pf.hidden; if (!pf.hidden) pf.firstChild.focus(); });
-    pf.addEventListener('submit', e => { e.preventDefault(); const v = pf.firstChild.value.trim(); g.photo = /^https:\/\//i.test(v) ? v : ''; saveGurus(); renderGurus(); });
+    pf.addEventListener('submit', e => { e.preventDefault(); const v = pf.firstChild.value.trim(); g.photo = /^(https:\/\/|photos\/)/i.test(v) ? v : ''; saveGurus(); renderGurus(); });
     card.appendChild(pf);
 
     const cols = el('div', 'grid lg:grid-cols-3 gap-6');
