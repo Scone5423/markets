@@ -556,7 +556,7 @@ function renderHome(info) {
     .map(i => ({h: i.h, text: ((i.k.price / i.k.lo - 1) * 100).toFixed(1) + '% above low', tone: 'text-slate-300'}));
   const moves = info.filter(i => i.k && i.k.live && i.chg !== null).sort((x, y) => Math.abs(y.chg) - Math.abs(x.chg))
     .map(i => ({h: i.h, text: pct(i.chg), tone: tone(i.chg)}));
-  fillList('hTarget', nearT, withTarget.length ? 'No stocks are below their target right now.' : 'Set target prices on the Watchlist tab to see this list.');
+  fillList('hTarget', nearT, withTarget.length ? 'No stocks are below their target right now.' : 'Set target prices on the Watchlist tab to see this list.', 10);
   fillList("hLow", nearL, '52-week lows appear once live prices load.', 10);
   fillList("hMove", moves, 'Daily moves appear once live prices load.', 10);
 }
