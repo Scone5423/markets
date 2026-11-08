@@ -131,6 +131,75 @@ async function getCountries() {
   return d;
 }
 
+// ---- Gurus page ---------------------------------------------------------------
+// Holdings: public 13F data as shown on dataroma.com. Letters: news search. Podcasts: Apple Podcasts search.
+const BROWSER_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
+const textOf = h => h.replace(/<[^>]*>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').replace(/&amp;/g, '&').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\s+/g, ' ').trim();
+const cache = new Map();
+async function cached(key, ttl, fn) {
+  const hit = cache.get(key);
+  if (hit && Date.now() - hit.t < ttl) return hit.d;
+  const d = await fn();
+  cache.set(key, { t: Date.now(), d });
+  return d;
+}
+
+function parseDataroma(html) {
+  const period = (html.match(/Period:\s*(Q\d\s*\d{4})/i) || [])[1] || null;
+  const date = (html.match(/Portfolio date:\s*(\d{1,2}\s+\w+\s+\d{4})/i) || [])[1] || null;
+  const holdings = [];
+  for (const row of html.split(/<tr[^>]*>/i).slice(1)) {
+    const cells = [...row.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map(m => textOf(m[1]));
+    const si = cells.findIndex(c => /^[A-Z0-9][A-Z0-9.\-]{0,9}\s+-\s+\S/.test(c));
+    if (si < 0) continue;
+    const m = cells[si].match(/^([A-Z0-9][A-Z0-9.\-]{0,9})\s+-\s+(.+)$/);
+    const rest = cells.slice(si + 1);
+    const pct = parseFloat((rest.find(c => /^\d+(\.\d+)?$/.test(c)) || ''));
+    const act = rest.find(c => /^(Add|Reduce|Buy|Sell|New)\b/i.test(c)) || '';
+    const shares = parseInt(((rest.find(c => /^\d{1,3}(,\d{3})+$/.test(c))) || '').replace(/,/g, ''), 10);
+    if (!isFinite(pct)) continue;
+    holdings.push({ s: m[1], n: m[2], pct, act, shares: isFinite(shares) ? shares : null });
+  }
+  return { period, date, holdings };
+}
+
+async function getGuruHoldings(code) {
+  return cached('h:' + code, 6 * 3600000, async () => {
+    const r = await fetch('https://www.dataroma.com/m/holdings.php?m=' + encodeURIComponent(code), { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html' } });
+    if (!r.ok) throw new Error('Dataroma HTTP ' + r.status);
+    const d = parseDataroma(await r.text());
+    if (!d.holdings.length) throw new Error('no holdings found for code ' + code);
+    return d;
+  });
+}
+
+function parseRss(xml) {
+  const tag = (s, t) => { const m = s.match(new RegExp('<' + t + '[^>]*>([\\s\\S]*?)</' + t + '>', 'i')); return m ? textOf(m[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')) : ''; };
+  return xml.split(/<item>/i).slice(1).map(it => ({
+    title: tag(it, 'title'), link: tag(it, 'link'), source: tag(it, 'source'), t: Date.parse(tag(it, 'pubDate')) || null
+  })).filter(x => x.title && x.link);
+}
+
+async function getGuruNews(name) {
+  return cached('n:' + name.toLowerCase(), 3600000, async () => {
+    const last = name.trim().split(/\s+/).pop().toLowerCase();
+    const q = '"' + name + '" (letter OR "shareholder letter" OR "investor letter" OR "annual letter" OR "quarterly letter")';
+    const [news, pod] = await Promise.all([
+      fetch('https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=' + encodeURIComponent(q + ' when:365d'), { headers: { 'User-Agent': BROWSER_UA } })
+        .then(r => r.text()).then(parseRss).catch(() => []),
+      fetch('https://itunes.apple.com/search?media=podcast&entity=podcastEpisode&limit=40&term=' + encodeURIComponent(name), { headers: { 'User-Agent': BROWSER_UA } })
+        .then(r => r.json()).then(j => j.results || []).catch(() => [])
+    ]);
+    const nameRe = new RegExp('\\b' + name.trim().split(/\s+/)[0].toLowerCase() + '\\b.*\\b' + last + '\\b|\\b' + last + '\\b', 'i');
+    const letters = news.filter(x => nameRe.test(x.title) && /letter/i.test(x.title)).sort((a, b) => (b.t || 0) - (a.t || 0)).slice(0, 5)
+      .map(x => ({ title: x.title, url: x.link, source: x.source, t: x.t }));
+    const podcasts = pod.filter(e => e.trackName && new RegExp('\\b' + last + '\\b', 'i').test(e.trackName + ' ' + (e.description || '')))
+      .sort((a, b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate)).slice(0, 5)
+      .map(e => ({ title: e.trackName, show: e.collectionName, url: e.trackViewUrl, t: Date.parse(e.releaseDate) || null }));
+    return { letters, podcasts };
+  });
+}
+
 const RANGES = ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'];
 const INTERVALS = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'];
 
@@ -261,6 +330,20 @@ export default {
       } catch (e) {
         return new Response(JSON.stringify({ error: String(e.message || e) }), { headers });
       }
+    }
+
+    if (url.searchParams.get('guru')) {
+      const code = url.searchParams.get('guru');
+      if (!/^[A-Za-z0-9_\-]{1,20}$/.test(code)) return new Response('{}', { status: 400, headers });
+      const d = await getGuruHoldings(code).catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=3600' } });
+    }
+
+    if (url.searchParams.get('gurunews')) {
+      const name = url.searchParams.get('gurunews').slice(0, 60);
+      if (!/^[\p{L}.' \-]{2,60}$/u.test(name)) return new Response('{}', { status: 400, headers });
+      const d = await getGuruNews(name).catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=1800' } });
     }
 
     if (url.searchParams.get('mortgage')) {

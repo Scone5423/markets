@@ -33,6 +33,7 @@
     <a href="#home" data-nav="home" class="pb-3 text-sm">Home</a>
     <a href="#watchlist" data-nav="watchlist" class="pb-3 text-sm">Watchlist</a>
     <a href="#charts" data-nav="charts" class="pb-3 text-sm">Charts</a>
+    <a href="#gurus" data-nav="gurus" class="pb-3 text-sm">Gurus</a>
   </nav>
 
   <section id="view-home">
@@ -91,6 +92,25 @@
       </div>
       <p class="text-xs text-slate-500 mt-3">Price change of each country's main stock index, in local currency, dividends not included. The latest figures are the most recent trading day, so markets that are closed show their last close. Click a row to open its chart.</p>
     </div>
+  </section>
+
+  <section id="view-gurus" hidden>
+    <div class="mb-6">
+      <h2 class="text-3xl font-semibold text-white">Gurus</h2>
+      <p class="text-sm text-slate-400 mt-1">Professional investors you follow: their latest 13F holdings (from Dataroma), new letters, and new podcast appearances.</p>
+    </div>
+    <form id="guruForm" class="flex flex-wrap items-end gap-3 mb-6">
+      <label class="text-xs text-slate-400">Name
+        <input id="gName" required maxlength="60" placeholder="Seth Klarman" class="block mt-1 w-56 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
+      </label>
+      <label class="text-xs text-slate-400">Dataroma code
+        <input id="gCode" maxlength="20" placeholder="BAUPOST" class="block mt-1 w-36 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
+      </label>
+      <button class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Add</button>
+      <p class="text-xs text-slate-500 basis-full">The code is the end of the manager's Dataroma address (dataroma.com/m/holdings.php?m=<span class="text-slate-300">BAUPOST</span>). Leave it blank to follow letters and podcasts only.</p>
+    </form>
+    <div id="guruNew" class="mb-6" hidden></div>
+    <div id="guruCards" class="grid lg:grid-cols-2 gap-4"></div>
   </section>
 
   <section id="view-charts" hidden>
@@ -835,17 +855,162 @@ $('chForm').addEventListener('submit', e => {
   if (/^[A-Z0-9.\-^=]{1,14}$/.test(s)) { $('chSym').value = ''; pickSymbol(s); }
 });
 
+// ---- Gurus ----------------------------------------------------------------
+let guruList = [];
+try { guruList = JSON.parse(localStorage.getItem('gurus.v1')) || []; } catch (e) {}
+const saveGurus = () => { try { localStorage.setItem('gurus.v1', JSON.stringify(guruList)); } catch (e) {} };
+const gData = {};          // name -> {hold, news, err}
+let gLoadedAt = 0;
+const NEW_DAYS = 30;
+const gDate = t => t ? new Date(t).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}) : '';
+const isNew = t => t && Date.now() - t < NEW_DAYS * 86400000;
+
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+function gLink(item, sub) {
+  const a = el('a', 'block py-1.5 hover:bg-slate-800/50 rounded px-1');
+  a.href = item.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+  const top = el('div', 'text-sm text-slate-200 leading-snug');
+  if (isNew(item.t)) top.appendChild(el('span', 'mr-2 text-[10px] font-semibold uppercase tracking-wide text-sky-400', 'New'));
+  top.appendChild(document.createTextNode(item.title));
+  a.appendChild(top);
+  a.appendChild(el('div', 'text-xs text-slate-500', [sub, gDate(item.t)].filter(Boolean).join(' · ')));
+  return a;
+}
+
+async function loadGuru(g) {
+  const base = cfg.worker ? cfg.worker.replace(/\/+$/, '') : null;
+  const d = gData[g.name] = gData[g.name] || {};
+  if (!base) { d.err = 'Needs your Cloudflare Worker (add its address under Price sources).'; return; }
+  const jobs = [];
+  if (g.code) jobs.push(getJSON(base + '/?guru=' + encodeURIComponent(g.code), 40000).then(x => { d.hold = x; }).catch(e => { d.hold = {error: e.message}; }));
+  jobs.push(getJSON(base + '/?gurunews=' + encodeURIComponent(g.name), 40000).then(x => { d.news = x; }).catch(e => { d.news = {error: e.message}; }));
+  await Promise.all(jobs);
+}
+
+function gurusShow() {
+  renderGurus();
+  if (Date.now() - gLoadedAt > 600000 && guruList.length) gurusRefresh();
+}
+async function gurusRefresh() {
+  gLoadedAt = Date.now();
+  await Promise.all(guruList.map(loadGuru));
+  renderGurus();
+}
+
+function renderGurus() {
+  const box = $('guruCards'); box.innerHTML = '';
+  const mine = new Set(list.map(h => h.s.replace('.', '-')));
+  const feed = [];
+  if (!guruList.length) {
+    const p = el('p', 'text-sm text-slate-400 lg:col-span-2', 'Add an investor above to get started.');
+    box.appendChild(p);
+  }
+  guruList.forEach((g, gi) => {
+    const d = gData[g.name] || {};
+    const card = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-4');
+    const head = el('div', 'flex items-start justify-between gap-3 mb-3');
+    const title = el('div');
+    title.appendChild(el('h3', 'text-lg font-medium text-white', g.name));
+    if (g.code) {
+      const a = el('a', 'text-xs text-sky-400 hover:text-sky-300', 'Dataroma');
+      a.href = 'https://www.dataroma.com/m/holdings.php?m=' + encodeURIComponent(g.code); a.target = '_blank'; a.rel = 'noopener noreferrer';
+      title.appendChild(a);
+    }
+    head.appendChild(title);
+    const rm = el('button', 'text-xs text-slate-500 hover:text-red-400', 'Remove');
+    rm.type = 'button';
+    rm.addEventListener('click', () => { guruList.splice(gi, 1); delete gData[g.name]; saveGurus(); renderGurus(); });
+    head.appendChild(rm);
+    card.appendChild(head);
+
+    // Holdings
+    if (g.code) {
+      const hold = d.hold;
+      card.appendChild(el('div', 'text-xs font-medium text-slate-400 mb-1', hold && hold.period ? 'Holdings, ' + hold.period + (hold.date ? ' (as of ' + hold.date + ')' : '') : 'Holdings'));
+      if (!hold) card.appendChild(el('p', 'text-sm text-slate-500', d.err || 'Loading…'));
+      else if (hold.error) card.appendChild(el('p', 'text-sm text-slate-500', "Couldn't load holdings (" + hold.error + ')'));
+      else {
+        const tbl = el('div', 'divide-y divide-slate-800/70');
+        const draw = all => {
+          tbl.innerHTML = '';
+          hold.holdings.slice(0, all ? hold.holdings.length : 10).forEach(x => {
+            const row = el('a', 'flex items-baseline justify-between gap-3 py-1 px-1 rounded hover:bg-slate-800/50');
+            row.href = '#charts/' + encodeURIComponent(x.s.replace('.', '-'));
+            const l = el('span', 'min-w-0 truncate');
+            l.appendChild(el('span', 'font-semibold text-white', x.s));
+            l.appendChild(document.createTextNode(' '));
+            l.appendChild(el('span', 'text-xs text-slate-500', x.n));
+            if (mine.has(x.s.replace('.', '-'))) l.appendChild(el('span', 'ml-1 text-[10px] text-sky-400', '● on your watchlist'));
+            const r = el('span', 'num text-sm whitespace-nowrap');
+            if (x.act) r.appendChild(el('span', 'mr-3 text-xs ' + (/^(add|buy|new)/i.test(x.act) ? 'text-emerald-400' : 'text-red-400'), x.act));
+            r.appendChild(el('span', 'text-slate-300', x.pct.toFixed(2) + '%'));
+            row.appendChild(l); row.appendChild(r); tbl.appendChild(row);
+          });
+        };
+        draw(false);
+        card.appendChild(tbl);
+        if (hold.holdings.length > 10) {
+          const more = el('button', 'mt-1 text-xs text-sky-400 hover:text-sky-300', 'Show all ' + hold.holdings.length);
+          more.type = 'button';
+          let all = false;
+          more.addEventListener('click', () => { all = !all; draw(all); more.textContent = all ? 'Show top 10' : 'Show all ' + hold.holdings.length; });
+          card.appendChild(more);
+        }
+      }
+    }
+
+    // Letters and podcasts
+    const news = d.news;
+    [['letters', 'Letters', 'No letters found in the past year.'], ['podcasts', 'Podcasts', 'No recent podcast appearances found.']].forEach(([k, label, none]) => {
+      card.appendChild(el('div', 'text-xs font-medium text-slate-400 mt-4 mb-1', label));
+      if (!news) { card.appendChild(el('p', 'text-sm text-slate-500', d.err || 'Loading…')); return; }
+      if (news.error) { card.appendChild(el('p', 'text-sm text-slate-500', "Couldn't load (" + news.error + ')')); return; }
+      const items = news[k] || [];
+      if (!items.length) { card.appendChild(el('p', 'text-sm text-slate-500', none)); return; }
+      items.slice(0, 3).forEach(it => card.appendChild(gLink(it, k === 'letters' ? it.source : it.show)));
+      items.forEach(it => { if (isNew(it.t)) feed.push({g: g.name, kind: k === 'letters' ? 'Letter' : 'Podcast', it}); });
+    });
+    box.appendChild(card);
+  });
+
+  const nb = $('guruNew'); nb.innerHTML = '';
+  nb.hidden = !feed.length;
+  if (feed.length) {
+    feed.sort((a, b) => b.it.t - a.it.t);
+    const wrap = el('div', 'rounded-lg border border-sky-900/60 bg-[#151b22] p-4');
+    wrap.appendChild(el('h3', 'font-medium text-white mb-1', 'New in the last ' + NEW_DAYS + ' days'));
+    feed.slice(0, 10).forEach(f => {
+      const a = gLink(f.it, f.g + ' · ' + f.kind);
+      a.querySelectorAll('span').forEach(s => s.remove());
+      wrap.appendChild(a);
+    });
+    nb.appendChild(wrap);
+  }
+}
+
+$('guruForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('gName').value.trim().replace(/\s+/g, ' '), code = $('gCode').value.trim();
+  if (!name || guruList.some(g => g.name.toLowerCase() === name.toLowerCase())) return;
+  const g = {name, code: code.replace(/[^A-Za-z0-9_\-]/g, '')};
+  guruList.push(g); saveGurus();
+  $('gName').value = ''; $('gCode').value = '';
+  renderGurus();
+  loadGuru(g).then(renderGurus);
+});
+
 function show() {
   const h = location.hash;
-  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : 'home';
-  ['home', 'watchlist', 'charts'].forEach(n => { $('view-' + n).hidden = v !== n; });
+  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : 'home';
+  ["home", "watchlist", "charts", "gurus"].forEach(n => { $('view-' + n).hidden = v !== n; });
   document.querySelectorAll('[data-nav]').forEach(a => {
     const on = a.dataset.nav === v;
     a.className = 'pb-3 text-sm border-b-2 -mb-px ' + (on ? 'text-white border-sky-500' : 'text-slate-400 border-transparent hover:text-slate-200');
     on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   });
-  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets'}[v];
+  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets"}[v];
   if (v === 'charts') chartsRoute();
+  if (v === "gurus") gurusShow();
 }
 window.addEventListener('hashchange', show);
 
