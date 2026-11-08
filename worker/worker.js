@@ -200,6 +200,70 @@ async function getGuruNews(name) {
   });
 }
 
+// Generic "follow this page" source: an RSS/Atom feed, a page that advertises one, or a page of links.
+function parseFeed(xml) {
+  const tag = (s, t) => { const m = s.match(new RegExp('<' + t + '[^>]*>([\\s\\S]*?)</' + t + '>', 'i')); return m ? textOf(m[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')) : ''; };
+  const out = [];
+  for (const it of xml.split(/<item[\s>]/i).slice(1)) {
+    const link = tag(it, 'link') || (it.match(/<enclosure[^>]+url="([^"]+)"/i) || [])[1] || '';
+    out.push({ title: tag(it, 'title'), url: link, t: Date.parse(tag(it, 'pubDate')) || null });
+  }
+  if (!out.length) {
+    for (const it of xml.split(/<entry[\s>]/i).slice(1)) {
+      const link = (it.match(/<link[^>]+rel="alternate"[^>]*href="([^"]+)"/i) || it.match(/<link[^>]*href="([^"]+)"/i) || [])[1] || '';
+      out.push({ title: tag(it, 'title'), url: link, t: Date.parse(tag(it, 'published') || tag(it, 'updated')) || null });
+    }
+  }
+  return out.filter(x => x.title && x.url);
+}
+
+function pageLinks(html, base, kind) {
+  const seen = new Set(), out = [];
+  const re = kind === 'letters'
+    ? /<a\s[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi
+    : /<h[1-4][^>]*>\s*<a\s[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  for (const m of html.matchAll(re)) {
+    let u; try { u = new URL(m[1].replace(/&amp;/g, '&'), base).href; } catch (e) { continue; }
+    let title = textOf(m[2]);
+    if (!/^https?:/.test(u) || seen.has(u) || !title) continue;
+    if (kind === 'letters' && !/letter|ltr|annual|quarter|shareholder|\.pdf/i.test(title + ' ' + u)) continue;
+    if (kind !== 'letters' && title.length < 12) continue;
+    if (/^\d{4}$/.test(title)) title = 'Letter ' + title;
+    seen.add(u); out.push({ title, url: u, t: null });
+  }
+  return out.slice(0, 30);
+}
+
+async function getSource(src, kind) {
+  return cached('s:' + kind + ':' + src, 3600000, async () => {
+    const get = async u => {
+      const r = await fetch(u, { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html,application/xml,application/rss+xml,*/*' } });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return { type: r.headers.get('content-type') || '', text: (await r.text()).slice(0, 2000000) };
+    };
+    const first = await get(src);
+    const isXml = /xml|rss|atom/i.test(first.type) || /^\s*<\?xml|^\s*<rss|^\s*<feed/i.test(first.text);
+    if (isXml) { const items = parseFeed(first.text).slice(0, 10); return { via: 'feed', items }; }
+    if (kind !== 'letters') {
+      for (const tg of first.text.match(/<link\b[^>]*>/gi) || []) {
+        if (/alternate/i.test(tg) && /(rss|atom)\+xml/i.test(tg)) {
+          const href = (tg.match(/href=["']([^"']+)["']/i) || [])[1];
+          if (href) {
+            try {
+              const f = await get(new URL(href, src).href);
+              const items = parseFeed(f.text).slice(0, 10);
+              if (items.length) return { via: 'feed', items };
+            } catch (e) {}
+          }
+        }
+      }
+    }
+    const items = pageLinks(first.text, src, kind).slice(0, 10);
+    if (!items.length) throw new Error('no links found on that page');
+    return { via: 'page', items };
+  });
+}
+
 const RANGES = ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'];
 const INTERVALS = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'];
 
@@ -343,6 +407,17 @@ export default {
       const name = url.searchParams.get('gurunews').slice(0, 60);
       if (!/^[\p{L}.' \-]{2,60}$/u.test(name)) return new Response('{}', { status: 400, headers });
       const d = await getGuruNews(name).catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=1800' } });
+    }
+
+    if (url.searchParams.get('source')) {
+      const src = url.searchParams.get('source'), kind = url.searchParams.get('kind') || 'posts';
+      let host = '';
+      try { const u = new URL(src); host = u.protocol === 'https:' ? u.hostname : ''; } catch (e) {}
+      if (!host || !/\.[a-z]{2,}$/i.test(host) || /^\d+\.\d+\.\d+\.\d+$/.test(host) || !['letters', 'posts', 'podcast'].includes(kind)) {
+        return new Response(JSON.stringify({ error: 'needs a public https address' }), { status: 400, headers });
+      }
+      const d = await getSource(src, kind).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=1800' } });
     }
 
