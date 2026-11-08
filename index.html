@@ -869,10 +869,10 @@ $('chForm').addEventListener('submit', e => {
 // ---- Gurus ----------------------------------------------------------------
 // kind: letters = page or feed of letters, posts = blog/site, podcast = podcast feed or page.
 const DEFAULT_GURUS = [
-  {name: 'Mohnish Pabrai', code: 'DS', search: true,
+  {name: 'Mohnish Pabrai', code: 'DS', search: false, sync: true,
     photo: 'https://cdn.prod.website-files.com/6913ba09c594c4cd77f9d47f/691c3c499915d5878e9e12f0_20251009-mp-profile-picture-vf_orig.jpg',
     links: [{label: 'Website', url: 'https://www.chaiwithpabrai.com/'}],
-    sources: [{kind: 'posts', label: 'chaiwithpabrai.com', url: 'https://www.chaiwithpabrai.com/'}]},
+    sources: [{kind: 'posts', label: 'chaiwithpabrai.com', url: 'https://www.chaiwithpabrai.com/', match: '/blog/'}]},
   {name: 'Christopher Bloomstran', code: 'SA', search: true,
     photo: 'https://static.fmgsuite.com/media/images/f6b203fd-1365-4654-8cbb-a08a07a44185.jpg',
     links: [{label: 'Website', url: 'https://www.semperaugustus.com/'}],
@@ -888,7 +888,7 @@ let guruList = null;
 try { const s = localStorage.getItem('gurus.v1'); guruList = s === null ? null : JSON.parse(s); } catch (e) {}
 if (!Array.isArray(guruList)) guruList = DEFAULT_GURUS.map(g => JSON.parse(JSON.stringify(g)));
 // Photos you gave me for investors already in a saved list.
-guruList.forEach(g => { const d = DEFAULT_GURUS.find(x => x.name === g.name); if (d && d.photo && !g.photo) g.photo = d.photo; });
+guruList.forEach(g => { const d = DEFAULT_GURUS.find(x => x.name === g.name); if (d && d.photo && !g.photo) g.photo = d.photo; if (d && d.sync) { g.search = d.search; g.sources = JSON.parse(JSON.stringify(d.sources)); } });
 const saveGurus = () => { try { localStorage.setItem('gurus.v1', JSON.stringify(guruList)); } catch (e) {} };
 let gSeen = {};
 try { gSeen = JSON.parse(localStorage.getItem('gurus.seen')) || {}; } catch (e) {}
@@ -921,7 +921,7 @@ async function loadGuru(g) {
   if (g.search !== false) jobs.push(getJSON(base + '/?gurunews=' + encodeURIComponent(g.name), 40000).then(x => { d.news = x; }).catch(e => { d.news = {error: e.message}; }));
   d.src = [];
   (g.sources || []).forEach((s, i) => {
-    jobs.push(getJSON(base + '/?source=' + encodeURIComponent(s.url) + '&kind=' + encodeURIComponent(s.kind), 40000).then(x => {
+    jobs.push(getJSON(base + '/?source=' + encodeURIComponent(s.url) + '&kind=' + encodeURIComponent(s.kind) + (s.match ? '&match=' + encodeURIComponent(s.match) : ''), 40000).then(x => {
       if (x.error) { d.src[i] = {error: x.error}; return; }
       // Pages without dates: an item is "new" if it was not on the page the last time you looked.
       const key = s.url, prev = gSeen[key], urls = x.items.map(it => it.url);

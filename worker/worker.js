@@ -247,25 +247,32 @@ function parseFeed(xml) {
   return out.filter(x => x.title && x.url);
 }
 
-function pageLinks(html, base, kind) {
+function pageLinks(html, base, kind, match) {
   const seen = new Set(), out = [];
-  const re = kind === 'letters'
+  const re = kind === 'letters' || match
     ? /<a\s[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi
     : /<h[1-4][^>]*>\s*<a\s[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
   for (const m of html.matchAll(re)) {
     let u; try { u = new URL(m[1].replace(/&amp;/g, '&'), base).href; } catch (e) { continue; }
     let title = textOf(m[2]);
     if (!/^https?:/.test(u) || seen.has(u) || !title) continue;
-    if (kind === 'letters' && !/letter|ltr|annual|quarter|shareholder|\.pdf/i.test(title + ' ' + u)) continue;
-    if (kind !== 'letters' && title.length < 12) continue;
+    if (match && !u.includes(match)) continue;
+    if (!match && kind === 'letters' && !/letter|ltr|annual|quarter|shareholder|\.pdf/i.test(title + ' ' + u)) continue;
+    if (!match && kind !== 'letters' && title.length < 12) continue;
+    // Pick up a date like 11/4/2026 shown in or just after the link.
+    const near = m[0] + html.slice(m.index + m[0].length, m.index + m[0].length + 300);
+    const dm = textOf(near).match(/\b(\d{1,2})\/(\d{1,2})\/(20\d{2})\b/);
+    const t = dm ? Date.UTC(+dm[3], +dm[1] - 1, +dm[2]) : null;
+    title = title.replace(/\s*\b\d{1,2}\/\d{1,2}\/20\d{2}\b.*$/, '').trim() || title;
     if (/^\d{4}$/.test(title)) title = 'Letter ' + title;
-    seen.add(u); out.push({ title, url: u, t: null });
+    seen.add(u); out.push({ title, url: u, t });
   }
+  if (out.some(x => x.t)) out.sort((a, b) => (b.t || 0) - (a.t || 0));
   return out.slice(0, 30);
 }
 
-async function getSource(src, kind) {
-  return cached('s:' + kind + ':' + src, 3600000, async () => {
+async function getSource(src, kind, match) {
+  return cached('s:' + kind + ':' + src + ':' + (match || ''), 3600000, async () => {
     const get = async u => {
       const r = await fetch(u, { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html,application/xml,application/rss+xml,*/*' } });
       if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -274,7 +281,7 @@ async function getSource(src, kind) {
     const first = await get(src);
     const isXml = /xml|rss|atom/i.test(first.type) || /^\s*<\?xml|^\s*<rss|^\s*<feed/i.test(first.text);
     if (isXml) { const items = parseFeed(first.text).slice(0, 10); return { via: 'feed', items }; }
-    if (kind !== 'letters') {
+    if (kind !== 'letters' && !match) {
       for (const tg of first.text.match(/<link\b[^>]*>/gi) || []) {
         if (/alternate/i.test(tg) && /(rss|atom)\+xml/i.test(tg)) {
           const href = (tg.match(/href=["']([^"']+)["']/i) || [])[1];
@@ -288,7 +295,7 @@ async function getSource(src, kind) {
         }
       }
     }
-    const items = pageLinks(first.text, src, kind).slice(0, 10);
+    const items = pageLinks(first.text, src, kind, match).slice(0, 10);
     if (!items.length) throw new Error('no links found on that page');
     return { via: 'page', items };
   });
@@ -442,12 +449,13 @@ export default {
 
     if (url.searchParams.get('source')) {
       const src = url.searchParams.get('source'), kind = url.searchParams.get('kind') || 'posts';
+      const match = (url.searchParams.get('match') || '').replace(/[^A-Za-z0-9\/_\-.]/g, '').slice(0, 40);
       let host = '';
       try { const u = new URL(src); host = u.protocol === 'https:' ? u.hostname : ''; } catch (e) {}
       if (!host || !/\.[a-z]{2,}$/i.test(host) || /^\d+\.\d+\.\d+\.\d+$/.test(host) || !['letters', 'posts', 'podcast'].includes(kind)) {
         return new Response(JSON.stringify({ error: 'needs a public https address' }), { status: 400, headers });
       }
-      const d = await getSource(src, kind).catch(e => ({ error: String(e.message || e) }));
+      const d = await getSource(src, kind, match).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=1800' } });
     }
 
