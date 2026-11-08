@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Markets</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"
+  onerror="var s=document.createElement('script');s.src='https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js';document.head.appendChild(s)"></script>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   body { font-family:'IBM Plex Sans',system-ui,sans-serif; background:#0f1419; color:#d7dde4; }
@@ -30,6 +32,7 @@
   <nav class="flex gap-6 border-b border-slate-800 mb-6" aria-label="Pages">
     <a href="#home" data-nav="home" class="pb-3 text-sm">Home</a>
     <a href="#watchlist" data-nav="watchlist" class="pb-3 text-sm">Watchlist</a>
+    <a href="#charts" data-nav="charts" class="pb-3 text-sm">Charts</a>
   </nav>
 
   <section id="view-home">
@@ -56,6 +59,42 @@
       </div>
     </div>
     <p class="mt-6 text-sm"><a href="#watchlist" class="text-sky-400 hover:text-sky-300">Open the full watchlist</a></p>
+  </section>
+
+  <section id="view-charts" hidden>
+    <div class="flex flex-wrap items-end gap-3 mb-4">
+      <div>
+        <label for="chSel" class="block text-xs text-slate-400 mb-1">Stock</label>
+        <select id="chSel" class="rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm w-64 max-w-full"></select>
+      </div>
+      <form id="chForm" class="flex items-end gap-2">
+        <div>
+          <label for="chSym" class="block text-xs text-slate-400 mb-1">Any other ticker</label>
+          <input id="chSym" placeholder="e.g. NVDA" maxlength="14" autocomplete="off"
+            class="uppercase w-36 rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm placeholder:normal-case placeholder:text-slate-500">
+        </div>
+        <button class="rounded bg-sky-600 hover:bg-sky-500 text-white text-sm font-medium px-4 py-2">Show chart</button>
+      </form>
+    </div>
+
+    <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
+      <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+        <div class="min-w-0">
+          <div id="chTitle" class="text-xl font-semibold text-white"><span></span><span class="text-sm font-normal text-slate-400 ml-2"></span></div>
+          <div id="chSub" class="num text-sm mt-1 text-slate-400">&nbsp;</div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <div id="chRanges" role="group" aria-label="Time range" class="flex divide-x divide-slate-700 rounded border border-slate-700 overflow-hidden text-sm"></div>
+          <div id="chTypes" role="group" aria-label="Chart type" class="flex divide-x divide-slate-700 rounded border border-slate-700 overflow-hidden text-sm"></div>
+        </div>
+      </div>
+      <div id="chLegend" class="num text-xs text-slate-400 h-4 mb-2"></div>
+      <div class="relative">
+        <div id="chBox" class="h-[320px] sm:h-[440px]"></div>
+        <p id="chMsg" class="pointer-events-none absolute inset-0 flex items-center justify-center px-6 text-center text-sm text-slate-400"></p>
+      </div>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">Drag to pan, scroll or pinch to zoom, and hover for the exact price. Intraday times are in the stock's local exchange time. Click any ticker on the Watchlist tab to open its chart here.</p>
   </section>
 
   <div id="view-watchlist" hidden>
@@ -431,16 +470,208 @@ function renderHome(info) {
   fillList('hMove', moves, 'Daily moves appear once live prices load.');
 }
 
+// ---- Charts tab ----------------------------------------------------------
+const RANGES = [
+  {label: '1D', range: '1d', interval: '5m', over: 'today', intraday: true},
+  {label: '1W', range: '5d', interval: '30m', over: 'over the past 5 trading days', intraday: true},
+  {label: '1M', range: '1mo', interval: '1d', over: 'over the past month'},
+  {label: '1Y', range: '1y', interval: '1d', over: 'over the past year'},
+  {label: '5Y', range: '5y', interval: '1wk', over: 'over the past 5 years'},
+  {label: 'All', range: 'max', interval: '1mo', over: 'since the first price on record'}
+];
+const CH = {sym: '', ri: 3, type: 0, token: 0, key: ''};
+let lwChart = null, priceSeries = null, volSeries = null, chartBars = [], barByTime = {}, chartCur = '';
+const chartCache = {};
+
+function parseChart(res) {
+  const ts = res.timestamp || [], q = (res.indicators && res.indicators.quote && res.indicators.quote[0]) || {};
+  const meta = res.meta || {}, off = meta.gmtoffset || 0;
+  const f = (v, d) => (typeof v === 'number' && isFinite(v) ? v : d);
+  let bars = [];
+  for (let i = 0; i < ts.length; i++) {
+    const c = q.close ? q.close[i] : null;
+    if (typeof c !== 'number' || !isFinite(c)) continue;
+    const o = f(q.open && q.open[i], c), h = f(q.high && q.high[i], c), l = f(q.low && q.low[i], c);
+    bars.push({time: ts[i] + off, open: o, high: Math.max(o, h, c), low: Math.min(o, l, c), close: c, vol: f(q.volume && q.volume[i], 0)});
+  }
+  bars.sort((a, b) => a.time - b.time);
+  bars = bars.filter((b, i) => i === bars.length - 1 || bars[i + 1].time !== b.time); // chart needs strictly rising times
+  const sym = meta.symbol || '';
+  return {bars, cur: sym.startsWith('^') ? '' : (meta.currency || ''), name: meta.longName || meta.shortName || '', prev: f(meta.chartPreviousClose, null)};
+}
+
+async function fetchChartData(sym, R) {
+  const key = sym + '|' + R.range, hit = chartCache[key];
+  if (hit && Date.now() - hit.t < 60000) return hit.d;
+  const yurl = 'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?range=' + R.range + '&interval=' + R.interval;
+  let res = null;
+  if (cfg.worker) {
+    try {
+      const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?chart=' + encodeURIComponent(sym) + '&range=' + R.range + '&interval=' + R.interval, 20000);
+      if (d && d.chart && d.chart.result && d.chart.result[0]) res = d.chart.result[0];
+    } catch (e) {}
+  }
+  for (let i = 0; i < PROXIES.length && !res; i++) {
+    try {
+      const d = await getJSON(PROXIES[(proxyIdx + i) % PROXIES.length](yurl), 20000);
+      if (d && d.chart && d.chart.result && d.chart.result[0]) res = d.chart.result[0];
+    } catch (e) {}
+  }
+  if (!res) throw new Error('no response');
+  const d = parseChart(res);
+  chartCache[key] = {t: Date.now(), d};
+  return d;
+}
+
+function ensureChart() {
+  if (lwChart) return true;
+  const LW = window.LightweightCharts;
+  if (!LW) return false;
+  const box = $('chBox');
+  lwChart = LW.createChart(box, {
+    width: box.clientWidth, height: box.clientHeight,
+    layout: {background: {type: 'solid', color: '#151b22'}, textColor: '#9aa7b5', fontFamily: "'IBM Plex Sans', system-ui, sans-serif"},
+    grid: {vertLines: {color: '#1d2630'}, horzLines: {color: '#1d2630'}},
+    rightPriceScale: {borderColor: '#263040'},
+    timeScale: {borderColor: '#263040', timeVisible: false, secondsVisible: false},
+    crosshair: {mode: LW.CrosshairMode.Normal}
+  });
+  new ResizeObserver(() => {
+    if (box.clientWidth > 0) lwChart.applyOptions({width: box.clientWidth, height: box.clientHeight});
+  }).observe(box);
+  lwChart.subscribeCrosshairMove(p => {
+    if (!chartBars.length) return;
+    legendFor(p && p.time && barByTime[p.time] ? barByTime[p.time] : chartBars[chartBars.length - 1]);
+  });
+  return true;
+}
+
+function legendFor(bar) {
+  const R = RANGES[CH.ri], dt = new Date(bar.time * 1000), fm = v => money(v, chartCur);
+  const when = R.intraday
+    ? dt.toLocaleString('en-US', {timeZone: 'UTC', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'})
+    : dt.toLocaleDateString('en-US', {timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric'});
+  let t = when + '   ' + (CH.type === 1 ? `Open ${fm(bar.open)}   High ${fm(bar.high)}   Low ${fm(bar.low)}   Close ${fm(bar.close)}` : `Close ${fm(bar.close)}`);
+  if (bar.vol) t += '   Volume ' + new Intl.NumberFormat('en-US', {notation: 'compact', maximumFractionDigits: 1}).format(bar.vol);
+  $('chLegend').textContent = t;
+}
+
+function clearSeries() {
+  if (lwChart && priceSeries) { lwChart.removeSeries(priceSeries); priceSeries = null; }
+  if (lwChart && volSeries) { lwChart.removeSeries(volSeries); volSeries = null; }
+  chartBars = []; barByTime = {};
+  $('chLegend').textContent = '';
+}
+function setHeader(sym, name, sub, subClass) {
+  const [a, b] = $('chTitle').children;
+  a.textContent = sym; b.textContent = name || '';
+  const el = $('chSub'); el.textContent = sub || ' '; el.className = 'num text-sm mt-1 ' + (subClass || 'text-slate-400');
+}
+function setMsg(t) { const m = $('chMsg'); m.textContent = t; m.hidden = !t; }
+
+function drawChart(d) {
+  const R = RANGES[CH.ri], bars = d.bars;
+  if (bars.length < 2) {
+    setHeader(CH.sym, d.name || '', '');
+    setMsg('No price history for this range. Funds and some international tickers have no intraday prices, so try 1M or longer.');
+    return false;
+  }
+  chartBars = bars; chartCur = d.cur; barByTime = {};
+  bars.forEach(b => { barByTime[b.time] = b; });
+  const first = (R.range === '1d' && d.prev) ? d.prev : bars[0].close, last = bars[bars.length - 1].close;
+  const up = last >= first, col = up ? '#34d399' : '#f87171';
+  if (CH.type === 1) {
+    priceSeries = lwChart.addCandlestickSeries({upColor: '#34d399', downColor: '#f87171', borderVisible: false, wickUpColor: '#34d399', wickDownColor: '#f87171'});
+    priceSeries.setData(bars.map(b => ({time: b.time, open: b.open, high: b.high, low: b.low, close: b.close})));
+  } else {
+    priceSeries = lwChart.addAreaSeries({lineColor: col, topColor: up ? 'rgba(52,211,153,0.28)' : 'rgba(248,113,113,0.28)', bottomColor: 'rgba(21,27,34,0)', lineWidth: 2});
+    priceSeries.setData(bars.map(b => ({time: b.time, value: b.close})));
+  }
+  if (bars.some(b => b.vol > 0)) {
+    volSeries = lwChart.addHistogramSeries({priceFormat: {type: 'volume'}, priceScaleId: ''});
+    volSeries.priceScale().applyOptions({scaleMargins: {top: 0.82, bottom: 0}});
+    volSeries.setData(bars.map((b, i) => ({time: b.time, value: b.vol, color: b.close >= (i ? bars[i - 1].close : b.open) ? 'rgba(52,211,153,0.3)' : 'rgba(248,113,113,0.3)'})));
+  }
+  lwChart.applyOptions({timeScale: {timeVisible: !!R.intraday}});
+  lwChart.timeScale().fitContent();
+  const abs = last - first, chg = (last / first - 1) * 100;
+  setHeader(CH.sym, d.name || ((list.find(h => h.s === CH.sym) || {}).n || ''),
+    `${money(last, d.cur)}   ${abs >= 0 ? '+' : '−'}${money(Math.abs(abs), d.cur)} (${pct(chg)}) ${R.over}`, tone(chg));
+  legendFor(bars[bars.length - 1]);
+  setMsg('');
+  return true;
+}
+
+async function loadChart() {
+  const token = ++CH.token, R = RANGES[CH.ri], key = CH.sym + '|' + CH.ri + '|' + CH.type;
+  if (!ensureChart()) { setMsg('The chart library could not load. Check your connection and reload the page.'); return; }
+  clearSeries();
+  setHeader(CH.sym, '', '');
+  setMsg('Loading chart…');
+  try {
+    const d = await fetchChartData(CH.sym, R);
+    if (token !== CH.token) return;
+    if (drawChart(d)) CH.key = key;
+  } catch (e) {
+    if (token !== CH.token) return;
+    setMsg(`Couldn't load a chart for ${CH.sym}. Check the symbol, or try again in a minute since the free proxies are sometimes busy.`);
+  }
+}
+
+function buildGroup(id, labels, active, onPick) {
+  const box = $(id); box.innerHTML = '';
+  labels.forEach((t, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.textContent = t; b.setAttribute('aria-pressed', String(i === active));
+    b.className = 'px-3 py-1.5 ' + (i === active ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800');
+    b.addEventListener('click', () => onPick(i));
+    box.appendChild(b);
+  });
+}
+function buildControls() {
+  const sel = $('chSel'); sel.innerHTML = '';
+  const items = list.slice().sort((a, b) => a.s.replace('^', '').localeCompare(b.s.replace('^', '')));
+  if (!items.some(h => h.s === CH.sym)) items.unshift({s: CH.sym, n: 'Other ticker'});
+  items.forEach(h => {
+    const o = document.createElement('option');
+    o.value = h.s; o.textContent = `${h.s} (${h.n})`; o.selected = h.s === CH.sym;
+    sel.appendChild(o);
+  });
+  buildGroup('chRanges', RANGES.map(r => r.label), CH.ri, i => { CH.ri = i; buildControls(); loadChart(); });
+  buildGroup('chTypes', ['Line', 'Candles'], CH.type, i => { CH.type = i; buildControls(); loadChart(); });
+}
+function pickSymbol(sym) {
+  CH.sym = sym;
+  try { history.replaceState(null, '', '#charts/' + encodeURIComponent(sym)); } catch (e) {}
+  buildControls(); loadChart();
+}
+function chartsRoute() {
+  const m = location.hash.match(/^#charts\/(.+)$/);
+  let want = null;
+  try { want = m ? decodeURIComponent(m[1]).toUpperCase() : null; } catch (e) {}
+  if (want && /^[A-Z0-9.\-^=]{1,14}$/.test(want)) CH.sym = want;
+  if (!CH.sym) CH.sym = list.some(h => h.s === '^GSPC') ? '^GSPC' : ((list[0] && list[0].s) || 'SPY');
+  buildControls();
+  if (CH.key !== CH.sym + '|' + CH.ri + '|' + CH.type) loadChart();
+}
+$('chSel').addEventListener('change', e => pickSymbol(e.target.value));
+$('chForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const s = $('chSym').value.trim().toUpperCase();
+  if (/^[A-Z0-9.\-^=]{1,14}$/.test(s)) { $('chSym').value = ''; pickSymbol(s); }
+});
+
 function show() {
-  const v = location.hash === '#watchlist' ? 'watchlist' : 'home';
-  $('view-home').hidden = v !== 'home';
-  $('view-watchlist').hidden = v !== 'watchlist';
+  const h = location.hash;
+  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : 'home';
+  ['home', 'watchlist', 'charts'].forEach(n => { $('view-' + n).hidden = v !== n; });
   document.querySelectorAll('[data-nav]').forEach(a => {
     const on = a.dataset.nav === v;
     a.className = 'pb-3 text-sm border-b-2 -mb-px ' + (on ? 'text-white border-sky-500' : 'text-slate-400 border-transparent hover:text-slate-200');
     on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   });
-  document.title = v === 'home' ? 'Markets' : 'Watchlist | Markets';
+  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets'}[v];
+  if (v === 'charts') chartsRoute();
 }
 window.addEventListener('hashchange', show);
 
@@ -488,7 +719,12 @@ function render() {
       <td class="px-4 py-3 text-right num ${k && k.lo ? 'text-slate-300' : 'text-slate-600'}">${k && k.lo ? money(k.lo, k.cur) : '—'}</td>
       <td class="px-4 py-3 text-right num ${k && k.hi ? 'text-slate-300' : 'text-slate-600'}">${k && k.hi ? Math.round(k.price / k.hi * 100) + '%' : '—'}</td>
       <td class="px-4 py-3 text-right"><button class="text-slate-500 hover:text-red-400 px-2 text-lg leading-none" aria-label="Remove ${h.s}">&times;</button></td>`;
-    tr.querySelector('.font-semibold').textContent = h.s;
+    {
+      const a = document.createElement('a');
+      a.href = '#charts/' + encodeURIComponent(h.s); a.textContent = h.s; a.title = 'Open chart';
+      a.className = 'hover:text-sky-300';
+      tr.querySelector('.font-semibold').appendChild(a);
+    }
     tr.querySelector('.n').textContent = h.n;
     tr.querySelector('.n').title = h.n;
     tr.querySelector('.note').textContent = h.note || '';
