@@ -14,7 +14,7 @@
 </style>
 </head>
 <body class="min-h-screen">
-<main class="max-w-5xl mx-auto px-4 py-8">
+<main class="max-w-6xl mx-auto px-4 py-8">
 
   <header class="flex flex-wrap items-end justify-between gap-3 mb-6">
     <div>
@@ -62,6 +62,7 @@
     <select id="sort" class="rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm">
       <option value="ticker">Sort: Ticker A–Z</option>
       <option value="ratio">Sort: Lowest price vs. target</option>
+      <option value="low">Sort: Closest to 52-week low</option>
       <option value="chg">Sort: Biggest move today</option>
     </select>
   </div>
@@ -73,6 +74,9 @@
           <th class="px-4 py-3 font-medium">Stock</th>
           <th class="px-4 py-3 font-medium text-right">Price</th>
           <th class="px-4 py-3 font-medium text-right">Today</th>
+          <th class="px-4 py-3 font-medium text-right">P/E</th>
+          <th class="px-4 py-3 font-medium text-right">52-wk low</th>
+          <th class="px-4 py-3 font-medium text-right">52-wk high</th>
           <th class="px-4 py-3 font-medium text-right">Target</th>
           <th class="px-4 py-3 font-medium text-right">Price vs. target</th>
           <th class="px-4 py-3"><span class="sr-only">Remove</span></th>
@@ -102,7 +106,7 @@
   </details>
   <p id="diag" class="text-xs text-slate-500 mt-4" aria-live="polite"></p>
   <p class="text-xs text-slate-500 mt-2">
-    Prices may be delayed and appear in each stock's own currency, so enter targets in that currency. If a stock can't be fetched, the page shows the grey price from your spreadsheet. Your list, targets and settings are saved in this browser only.
+    Prices may be delayed and appear in each stock's own currency, so enter targets in that currency. P/E is trailing and needs your own proxy (updated worker.js); it shows a dash when Yahoo has no figure, such as for funds or companies with negative earnings. If a stock can't be fetched, the page shows the grey price from your spreadsheet. Your list, targets and settings are saved in this browser only.
   </p>
 </main>
 
@@ -215,6 +219,7 @@ async function getJSON(url, ms = 10000) {
   } finally { clearTimeout(t); }
 }
 const isUS = s => /^[A-Z]{1,5}(-[A-Z])?$/.test(s);
+const nz = v => (typeof v === 'number' && isFinite(v) ? v : null);
 const curOf = (s, c) => s.startsWith('^') ? '' : (c || '');
 
 async function viaWorker(syms) {
@@ -222,7 +227,7 @@ async function viaWorker(syms) {
   const out = {};
   syms.forEach(s => {
     const d = data[s];
-    if (d && typeof d.price === 'number') out[s] = {price: d.price, prev: typeof d.prev === 'number' ? d.prev : d.price, cur: curOf(s, d.cur), live: true, src: 'worker'};
+    if (d && typeof d.price === 'number') out[s] = {price: d.price, prev: typeof d.prev === 'number' ? d.prev : d.price, cur: curOf(s, d.cur), pe: nz(d.pe), hi: nz(d.hi), lo: nz(d.lo), live: true, src: 'worker'};
   });
   return out;
 }
@@ -240,7 +245,7 @@ async function viaYahoo(s) {
       if (typeof m.regularMarketPrice !== 'number') throw new Error('no price');
       proxyIdx = idx;
       const prev = m.chartPreviousClose ?? m.previousClose;
-      return {price: m.regularMarketPrice, prev: typeof prev === 'number' ? prev : m.regularMarketPrice, cur: curOf(s, m.currency), live: true, src: 'yahoo'};
+      return {price: m.regularMarketPrice, prev: typeof prev === 'number' ? prev : m.regularMarketPrice, cur: curOf(s, m.currency), pe: null, hi: nz(m.fiftyTwoWeekHigh), lo: nz(m.fiftyTwoWeekLow), live: true, src: 'yahoo'};
     } catch (e) { lastErr = `Yahoo proxy ${idx + 1} (${s}): ${e.message}`; }
   }
   throw new Error('all proxies failed');
@@ -320,6 +325,7 @@ function render() {
   const nul = (a, b, f, dir) => (f(a) === null) - (f(b) === null) || (f(a) === null ? 0 : dir * (f(a) - f(b)));
   if (mode === 'ticker') rows.sort((a, b) => a.h.s.replace('^','').localeCompare(b.h.s.replace('^','')));
   if (mode === 'ratio') rows.sort((a, b) => nul(a, b, x => x.ratio, 1));
+  if (mode === 'low') rows.sort((a, b) => nul(a, b, x => x.k && x.k.lo ? x.k.price / x.k.lo : null, 1));
   if (mode === 'chg') rows.sort((a, b) => nul(a, b, x => x.chg === null ? null : Math.abs(x.chg), -1));
 
   const body = $('rows'); body.innerHTML = '';
@@ -330,6 +336,9 @@ function render() {
       <td class="px-4 py-3"><div class="font-semibold text-white"></div><div class="text-xs text-slate-400 n"></div><div class="text-xs text-slate-500 note"></div></td>
       <td class="px-4 py-3 text-right num ${k && !k.live ? 'text-slate-500' : 'text-white'}">${k ? money(k.price, k.cur) : '…'}</td>
       <td class="px-4 py-3 text-right num ${tone(chg || 0)}">${k && k.live && chg !== null ? pct(chg) : '—'}</td>
+      <td class="px-4 py-3 text-right num ${k && k.pe ? 'text-slate-200' : 'text-slate-600'}">${k && k.pe ? k.pe.toFixed(1) : '—'}</td>
+      <td class="px-4 py-3 text-right num ${k && k.lo ? 'text-slate-300' : 'text-slate-600'}">${k && k.lo ? money(k.lo, k.cur) : '—'}</td>
+      <td class="px-4 py-3 text-right num ${k && k.hi ? 'text-slate-300' : 'text-slate-600'}">${k && k.hi ? money(k.hi, k.cur) : '—'}</td>
       <td class="px-4 py-3 text-right"><input type="number" min="0" step="any" value="${h.t ?? ''}" placeholder="—" aria-label="Target price for ${h.s}"
         class="num w-24 text-right rounded bg-[#0f1419] border border-slate-700 px-2 py-1 placeholder:text-slate-600"></td>
       <td class="px-4 py-3 text-right num ${ratio === null ? 'text-slate-600' : ratio <= 1 ? 'text-emerald-400' : 'text-slate-300'}">${ratio === null ? '—' : Math.round(ratio * 100) + '%'}</td>
