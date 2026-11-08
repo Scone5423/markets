@@ -105,13 +105,14 @@
       <thead class="text-left text-slate-400 border-b border-slate-800">
         <tr>
           <th class="px-4 py-3 font-medium">Stock</th>
+          <th class="px-4 py-3 font-medium text-right">Target</th>
           <th class="px-4 py-3 font-medium text-right">Price</th>
           <th class="px-4 py-3 font-medium text-right">Today</th>
           <th class="px-4 py-3 font-medium text-right">P/E</th>
-          <th class="px-4 py-3 font-medium text-right">52-wk low</th>
+          <th class="px-4 py-3 font-medium text-right">Price / target</th>
           <th class="px-4 py-3 font-medium text-right">52-wk high</th>
-          <th class="px-4 py-3 font-medium text-right">Target</th>
-          <th class="px-4 py-3 font-medium text-right">Price vs. target</th>
+          <th class="px-4 py-3 font-medium text-right">52-wk low</th>
+          <th class="px-4 py-3 font-medium text-right">Price / 52-wk high</th>
           <th class="px-4 py-3"><span class="sr-only">Remove</span></th>
         </tr>
       </thead>
@@ -374,7 +375,7 @@ function renderHome(info) {
     box.appendChild(card);
   });
   const nearT = info.filter(i => i.ratio !== null).sort((x, y) => x.ratio - y.ratio)
-    .map(i => ({h: i.h, text: Math.round(i.ratio * 100) + '% of target', tone: i.ratio <= 1 ? 'text-emerald-400' : 'text-slate-300'}));
+    .map(i => ({h: i.h, text: Math.round(i.ratio * 100) + '% of target', tone: Math.round(i.ratio * 100) < 100 ? 'text-emerald-400' : 'text-red-400'}));
   const nearL = info.filter(i => i.k && i.k.lo).sort((x, y) => x.k.price / x.k.lo - y.k.price / y.k.lo)
     .map(i => ({h: i.h, text: ((i.k.price / i.k.lo - 1) * 100).toFixed(1) + '% above low', tone: 'text-slate-300'}));
   const moves = info.filter(i => i.k && i.k.live && i.chg !== null).sort((x, y) => Math.abs(y.chg) - Math.abs(x.chg))
@@ -431,14 +432,15 @@ function render() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td class="px-4 py-3"><div class="font-semibold text-white"></div><div class="text-xs text-slate-400 n"></div><div class="text-xs text-slate-500 note"></div></td>
-      <td class="px-4 py-3 text-right num ${k && !k.live ? 'text-slate-500' : 'text-white'}">${k ? money(k.price, k.cur) : '…'}</td>
-      <td class="px-4 py-3 text-right num ${tone(chg || 0)}">${k && k.live && chg !== null ? pct(chg) : '—'}</td>
-      <td class="px-4 py-3 text-right num ${k && k.pe ? 'text-slate-200' : 'text-slate-600'}">${k && k.pe ? k.pe.toFixed(1) : '—'}</td>
-      <td class="px-4 py-3 text-right num ${k && k.lo ? 'text-slate-300' : 'text-slate-600'}">${k && k.lo ? money(k.lo, k.cur) : '—'}</td>
-      <td class="px-4 py-3 text-right num ${k && k.hi ? 'text-slate-300' : 'text-slate-600'}">${k && k.hi ? money(k.hi, k.cur) : '—'}</td>
       <td class="px-4 py-3 text-right"><input type="number" min="0" step="any" value="${h.t ?? ''}" placeholder="—" aria-label="Target price for ${h.s}"
         class="num w-24 text-right rounded bg-[#0f1419] border border-slate-700 px-2 py-1 placeholder:text-slate-600"></td>
-      <td class="px-4 py-3 text-right num ${ratio === null ? 'text-slate-600' : ratio <= 1 ? 'text-emerald-400' : 'text-slate-300'}">${ratio === null ? '—' : Math.round(ratio * 100) + '%'}</td>
+      <td class="px-4 py-3 text-right num ${k && !k.live ? 'text-slate-500' : 'text-white'}">${k ? money(k.price, k.cur) : '…'}</td>
+      <td class="px-4 py-3 text-right num ${tone(chg || 0)}">${k && k.live && chg !== null ? pct(chg) : '—'}</td>
+      <td class="px-4 py-3 text-right num ${!(k && k.pe) ? 'text-slate-600' : (Number(k.pe.toFixed(1)) > 0 && Number(k.pe.toFixed(1)) < 15) ? 'text-emerald-400' : 'text-red-400'}">${k && k.pe ? k.pe.toFixed(1) : '—'}</td>
+      <td class="px-4 py-3 text-right num ${ratio === null ? 'text-slate-600' : Math.round(ratio * 100) < 100 ? 'text-emerald-400' : 'text-red-400'}">${ratio === null ? '—' : Math.round(ratio * 100) + '%'}</td>
+      <td class="px-4 py-3 text-right num ${k && k.hi ? 'text-slate-300' : 'text-slate-600'}">${k && k.hi ? money(k.hi, k.cur) : '—'}</td>
+      <td class="px-4 py-3 text-right num ${k && k.lo ? 'text-slate-300' : 'text-slate-600'}">${k && k.lo ? money(k.lo, k.cur) : '—'}</td>
+      <td class="px-4 py-3 text-right num ${k && k.hi ? 'text-slate-300' : 'text-slate-600'}">${k && k.hi ? Math.round(k.price / k.hi * 100) + '%' : '—'}</td>
       <td class="px-4 py-3 text-right"><button class="text-slate-500 hover:text-red-400 px-2 text-lg leading-none" aria-label="Remove ${h.s}">&times;</button></td>`;
     tr.querySelector('.font-semibold').textContent = h.s;
     tr.querySelector('.n').textContent = h.n;
