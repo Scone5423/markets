@@ -1,0 +1,7 @@
+{
+  // Cloudflare Worker that fetches Yahoo Finance and FRED data for the Markets page.
+  // The name must match the Worker in the Cloudflare dashboard.
+  "name": "markets-proxy",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-01"
+}
