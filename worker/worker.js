@@ -56,6 +56,33 @@ async function fetchMortgage() {
   return { rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null };
 }
 
+// Yield for a money market fund such as FZCXX. Tries Yahoo's own yield field first, then
+// annualizes the most recent monthly payout (payout x 12 / price).
+async function fetchFundYield(sym) {
+  try {
+    const s = await getSession();
+    const r = await fetch(
+      'https://query1.finance.yahoo.com/v10/finance/quoteSummary/' + encodeURIComponent(sym) + '?modules=summaryDetail&crumb=' + encodeURIComponent(s.crumb),
+      { headers: { 'User-Agent': UA, Cookie: s.cookie } }
+    );
+    if (r.ok) {
+      const d = ((await r.json()).quoteSummary.result || [])[0];
+      const y = d && d.summaryDetail && d.summaryDetail.yield;
+      const v = y && typeof y === 'object' ? y.raw : y;
+      if (typeof v === 'number' && v > 0) return { yield: v * 100, src: 'yahoo' };
+    }
+  } catch (e) {}
+  const r = await fetch(
+    'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?range=6mo&interval=1d&events=div',
+    { headers: { 'User-Agent': UA } }
+  );
+  const res = (await r.json()).chart.result[0];
+  const divs = Object.values((res.events && res.events.dividends) || {}).sort((a, b) => a.date - b.date);
+  const last = divs[divs.length - 1], px = res.meta.regularMarketPrice;
+  if (!last || !px) throw new Error('no payout data');
+  return { yield: last.amount * 12 / px * 100, src: 'payout', date: new Date(last.date * 1000).toISOString().slice(0, 10) };
+}
+
 const RANGES = ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'];
 const INTERVALS = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'];
 
@@ -171,6 +198,13 @@ export default {
         t('fred', async () => peek(await fetch('https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US', { headers: { 'User-Agent': UA } })))
       ]);
       return new Response(JSON.stringify(Object.fromEntries(res), null, 2), { headers });
+    }
+
+    if (url.searchParams.get('fundyield')) {
+      const sym = url.searchParams.get('fundyield');
+      if (!/^[A-Za-z0-9.\-]{1,10}$/.test(sym)) return new Response('{}', { status: 400, headers });
+      const y = await fetchFundYield(sym).catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(y), { headers });
     }
 
     if (url.searchParams.get('mortgage')) {

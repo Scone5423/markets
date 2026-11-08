@@ -340,7 +340,7 @@ const fallback = h => typeof h.p === 'number' ? {price: h.p, prev: h.p, cur: '',
 
 const INDEX = [
   {s: '^GSPC', n: 'S&P 500'}, {s: 'EFA', n: 'International stocks (MSCI EAFE fund)'},
-  {s: '^TNX', n: '10-year Treasury yield'}, {s: '^VIX', n: 'VIX (volatility)'}
+  {s: '^TNX', n: '10-year Treasury yield'}, {s: 'FZCXX', n: 'Fidelity Government money market (FZCXX)', mm: true}
 ];
 
 // Average US 30-year mortgage rate: Freddie Mac weekly survey, published by FRED.
@@ -383,7 +383,7 @@ async function pool(items, n, fn) {
 
 async function refresh() {
   const btn = $('refresh'); btn.disabled = true; lastErr = '';
-  const items = list.concat(INDEX.filter(i => !list.some(h => h.s === i.s)).map(i => ({s: i.s, n: i.n, p: null})));
+  const items = list.concat(INDEX.filter(i => !i.mm && !list.some(h => h.s === i.s)).map(i => ({s: i.s, n: i.n, p: null})));
   const syms = items.map(h => h.s), total = syms.length, got = new Set();
   let done = 0;
   const mp = fetchMortgage();
@@ -487,10 +487,22 @@ function fillList(id, rows, empty, max = 5) {
   });
 }
 
+// Money market fund yield (FZCXX), from the Worker.
+let fundYield = null;
+async function loadFundYield() {
+  if (!cfg.worker) return;
+  try {
+    const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?fundyield=FZCXX');
+    if (nz(d.yield) !== null) fundYield = d;
+  } catch (e) {}
+  renderIndices();
+}
+
 // Year-ago price for each snapshot card (one year of daily prices, via the Charts data source).
 const yearly = {};
 async function loadYearly() {
-  await Promise.all(INDEX.map(async ix => {
+  loadFundYield();
+  await Promise.all(INDEX.filter(ix => !ix.mm).map(async ix => {
     try {
       const d = await fetchChartData(ix.s, RANGES[3]);
       if (d.bars.length > 20) yearly[ix.s] = {base: d.bars[0].close, last: d.bars[d.bars.length - 1].close};
@@ -512,6 +524,16 @@ const bpText = v => (v >= 0 ? '+' : '') + v.toFixed(0) + ' bp';
 function renderIndices() {
   const box = $('indices'); box.innerHTML = '';
   INDEX.forEach(ix => {
+    if (ix.mm) {
+      const c = document.createElement('div');
+      c.className = 'rounded-lg border border-slate-800 bg-[#151b22] p-4';
+      c.innerHTML = '<div class="text-xs text-slate-400"></div><div class="num text-xl font-medium text-white mt-1"></div><div class="text-xs text-slate-500 mt-2"></div>';
+      c.children[0].textContent = ix.n;
+      c.children[1].textContent = fundYield ? fundYield.yield.toFixed(2) + '%' : '—';
+      c.children[2].textContent = fundYield ? (fundYield.src === 'payout' ? 'Annualized from latest monthly payout' : 'Fund yield, per Yahoo Finance') : 'Yield';
+      box.appendChild(c);
+      return;
+    }
     const k = quotes[ix.s], yld = ix.s === '^TNX', y = yearly[ix.s];
     const day = k && k.live && k.prev ? (yld ? (k.price - k.prev) * 100 : (k.price / k.prev - 1) * 100) : null;
     const lastPx = k ? k.price : (y ? y.last : null);
