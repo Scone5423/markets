@@ -163,12 +163,38 @@ function parseDataroma(html) {
   return { period, date, holdings };
 }
 
+// New positions ("Buy") in the two most recent reported quarters, from Dataroma's activity page.
+function parseNewBuys(html) {
+  const quarters = [], buys = [];
+  let q = null;
+  for (const row of html.split(/<tr[^>]*>/i).slice(1)) {
+    const cells = [...row.matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi)].map(m => textOf(m[1]));
+    const joined = cells.join(' ');
+    const si = cells.findIndex(c => /^[A-Z0-9][A-Z0-9.\-]{0,9}\s+-\s+\S/.test(c));
+    if (si < 0) {
+      const m = joined.match(/\bQ([1-4])\s+(\d{4})\b/);
+      if (m && joined.length < 40) { q = 'Q' + m[1] + ' ' + m[2]; if (!quarters.includes(q)) quarters.push(q); }
+      continue;
+    }
+    if (!q || quarters.indexOf(q) > 1) continue;
+    const act = cells.slice(si + 1).find(c => /^(Add|Reduce|Buy|Sell)\b/i.test(c)) || '';
+    if (!/^Buy\b/i.test(act)) continue;
+    const m = cells[si].match(/^([A-Z0-9][A-Z0-9.\-]{0,9})\s+-\s+(.+)$/);
+    const pct = parseFloat(cells[cells.length - 1]);
+    buys.push({ s: m[1], n: m[2], q, pct: isFinite(pct) ? pct : null });
+  }
+  return { quarters: quarters.slice(0, 2), buys };
+}
+
 async function getGuruHoldings(code) {
   return cached('h:' + code, 6 * 3600000, async () => {
-    const r = await fetch('https://www.dataroma.com/m/holdings.php?m=' + encodeURIComponent(code), { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html' } });
+    const get = p => fetch('https://www.dataroma.com/m/' + p + '?m=' + encodeURIComponent(code) + (p.startsWith('m_activity') ? '&typ=a' : ''), { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html' } });
+    const [r, ra] = await Promise.all([get('holdings.php'), get('m_activity.php').catch(() => null)]);
     if (!r.ok) throw new Error('Dataroma HTTP ' + r.status);
     const d = parseDataroma(await r.text());
     if (!d.holdings.length) throw new Error('no holdings found for code ' + code);
+    d.newBuys = null;
+    if (ra && ra.ok) { try { const nb = parseNewBuys(await ra.text()); if (nb.quarters.length) d.newBuys = nb; } catch (e) {} }
     return d;
   });
 }
@@ -184,19 +210,23 @@ async function getGuruNews(name) {
   return cached('n:' + name.toLowerCase(), 3600000, async () => {
     const last = name.trim().split(/\s+/).pop().toLowerCase();
     const q = '"' + name + '" (letter OR "shareholder letter" OR "investor letter" OR "annual letter" OR "quarterly letter")';
-    const [news, pod] = await Promise.all([
+    const [news, pod, arts] = await Promise.all([
       fetch('https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=' + encodeURIComponent(q + ' when:365d'), { headers: { 'User-Agent': BROWSER_UA } })
         .then(r => r.text()).then(parseRss).catch(() => []),
       fetch('https://itunes.apple.com/search?media=podcast&entity=podcastEpisode&limit=40&term=' + encodeURIComponent(name), { headers: { 'User-Agent': BROWSER_UA } })
-        .then(r => r.json()).then(j => j.results || []).catch(() => [])
+        .then(r => r.json()).then(j => j.results || []).catch(() => []),
+      fetch('https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=' + encodeURIComponent('"' + name + '" when:90d'), { headers: { 'User-Agent': BROWSER_UA } })
+        .then(r => r.text()).then(parseRss).catch(() => [])
     ]);
     const nameRe = new RegExp('\\b' + name.trim().split(/\s+/)[0].toLowerCase() + '\\b.*\\b' + last + '\\b|\\b' + last + '\\b', 'i');
+    const articles = arts.filter(x => new RegExp('\\b' + last + '\\b', 'i').test(x.title)).sort((a, b) => (b.t || 0) - (a.t || 0)).slice(0, 8)
+      .map(x => ({ title: x.title, url: x.link, source: x.source, t: x.t }));
     const letters = news.filter(x => nameRe.test(x.title) && /letter/i.test(x.title)).sort((a, b) => (b.t || 0) - (a.t || 0)).slice(0, 5)
       .map(x => ({ title: x.title, url: x.link, source: x.source, t: x.t }));
     const podcasts = pod.filter(e => e.trackName && new RegExp('\\b' + last + '\\b', 'i').test(e.trackName + ' ' + (e.description || '')))
       .sort((a, b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate)).slice(0, 5)
       .map(e => ({ title: e.trackName, show: e.collectionName, url: e.trackViewUrl, t: Date.parse(e.releaseDate) || null }));
-    return { letters, podcasts };
+    return { letters, podcasts, articles };
   });
 }
 

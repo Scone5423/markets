@@ -114,11 +114,14 @@
           <option value="letters">a letters page</option><option value="posts">a blog or site</option><option value="podcast">a podcast feed</option>
         </select>
       </label>
+      <label class="text-xs text-slate-400">Photo address (optional)
+        <input id="gPhoto" type="url" placeholder="https://…/photo.jpg" class="block mt-1 w-64 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
+      </label>
       <button class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Add</button>
       <p class="text-xs text-slate-500 basis-full">The code is the end of the manager's Dataroma address (dataroma.com/m/holdings.php?m=<span class="text-slate-300">BAUPOST</span>). Leave it blank for investors who don't file a 13F. The page or feed can be a letters page, a blog, or a podcast feed; pages without dates flag new links since your last visit.</p>
     </form>
     <div id="guruNew" class="mb-6" hidden></div>
-    <div id="guruCards" class="grid lg:grid-cols-2 gap-4"></div>
+    <div id="guruCards" class="space-y-4"></div>
   </section>
 
   <section id="view-charts" hidden>
@@ -937,114 +940,165 @@ async function gurusRefresh() {
   renderGurus();
 }
 
+const initials = n => n.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+function avatar(g, size) {
+  const wrap = el('div', 'shrink-0 rounded-full overflow-hidden bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 font-semibold ' + size);
+  const fallback = () => { wrap.innerHTML = ''; wrap.textContent = initials(g.name); };
+  if (g.photo && /^https:\/\//i.test(g.photo)) {
+    const img = new Image(); img.alt = g.name; img.referrerPolicy = 'no-referrer'; img.className = 'w-full h-full object-cover';
+    img.onerror = fallback; img.src = g.photo; wrap.appendChild(img);
+  } else fallback();
+  return wrap;
+}
+
+// Everything new about one investor, newest first.
+function guruMedia(g, d) {
+  const out = [], seen = new Set();
+  const add = (it, type, from, fresh) => { if (!it.url || seen.has(it.url)) return; seen.add(it.url); out.push({it, type, from, fresh}); };
+  (g.sources || []).forEach((s, i) => {
+    const r = (d.src || [])[i];
+    if (r && r.items) r.items.forEach(it => add(it, {letters: 'Letter', posts: 'Post', podcast: 'Podcast'}[s.kind], s.label, it.t ? isNew(it.t) : r.fresh.has(it.url)));
+  });
+  const n = d.news;
+  if (n && !n.error) {
+    (n.letters || []).forEach(it => add(it, 'Letter', it.source, isNew(it.t)));
+    (n.podcasts || []).forEach(it => add(it, 'Podcast', it.show, isNew(it.t)));
+    (n.articles || []).forEach(it => add(it, 'Article', it.source, isNew(it.t)));
+  }
+  out.sort((a, b) => (b.fresh - a.fresh) || ((b.it.t || 0) - (a.it.t || 0)));
+  return out;
+}
+
 function renderGurus() {
   const box = $('guruCards'); box.innerHTML = '';
   const mine = new Set(list.map(h => h.s.replace('.', '-')));
-  const feed = [];
-  if (!guruList.length) box.appendChild(el('p', 'text-sm text-slate-400 lg:col-span-2', 'Add an investor above to get started.'));
+  if (!guruList.length) box.appendChild(el('p', 'text-sm text-slate-400', 'Add an investor above to get started.'));
+  const section = (title, sub) => {
+    const s = el('div');
+    s.appendChild(el('div', 'text-xs font-medium text-slate-400 mb-1', title));
+    if (sub) s.lastChild.appendChild(el('span', 'font-normal text-slate-500', ' ' + sub));
+    return s;
+  };
+  const note = (t) => el('p', 'text-sm text-slate-500 py-1', t);
+
   guruList.forEach((g, gi) => {
     const d = gData[g.name] || {};
-    const card = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-4');
-    const head = el('div', 'flex items-start justify-between gap-3 mb-3');
-    const title = el('div');
-    title.appendChild(el('h3', 'text-lg font-medium text-white', g.name));
-    const chips = el('div', 'flex flex-wrap gap-x-3 text-xs');
-    const chip = (label, url) => { const a = el('a', 'text-sky-400 hover:text-sky-300', label); a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; chips.appendChild(a); };
-    if (g.code) chip('Dataroma', 'https://www.dataroma.com/m/holdings.php?m=' + encodeURIComponent(g.code));
-    (g.links || []).forEach(l => chip(l.label, l.url));
+    const card = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-5');
+
+    // Header: photo, name, website links
+    const head = el('div', 'flex items-center gap-4 mb-4');
+    head.appendChild(avatar(g, 'w-16 h-16 text-xl'));
+    const title = el('div', 'min-w-0 flex-1');
+    title.appendChild(el('h3', 'text-xl font-medium text-white', g.name));
+    const chips = el('div', 'flex flex-wrap gap-x-3 text-xs mt-0.5');
+    (g.links || []).forEach(l => { const a = el('a', 'text-sky-400 hover:text-sky-300', l.label); a.href = l.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; chips.appendChild(a); });
+    const ph = el('button', 'text-slate-500 hover:text-slate-300', g.photo ? 'Change photo' : 'Add photo'); ph.type = 'button';
+    chips.appendChild(ph);
     title.appendChild(chips);
     head.appendChild(title);
-    const rm = el('button', 'text-xs text-slate-500 hover:text-red-400', 'Remove');
-    rm.type = 'button';
+    const rm = el('button', 'self-start text-xs text-slate-500 hover:text-red-400', 'Remove'); rm.type = 'button';
     rm.addEventListener('click', () => { guruList.splice(gi, 1); delete gData[g.name]; saveGurus(); renderGurus(); });
     head.appendChild(rm);
     card.appendChild(head);
 
-    // Holdings
-    if (g.code) {
-      const hold = d.hold;
-      card.appendChild(el('div', 'text-xs font-medium text-slate-400 mb-1', hold && hold.period ? 'Holdings, ' + hold.period + (hold.date ? ' (as of ' + hold.date + ')' : '') : 'Holdings'));
-      if (!hold) card.appendChild(el('p', 'text-sm text-slate-500', d.err || 'Loading…'));
-      else if (hold.error) card.appendChild(el('p', 'text-sm text-slate-500', "Couldn't load holdings (" + hold.error + ')'));
-      else {
-        const tbl = el('div', 'divide-y divide-slate-800/70');
-        const draw = all => {
-          tbl.innerHTML = '';
-          hold.holdings.slice(0, all ? hold.holdings.length : 10).forEach(x => {
-            const row = el('a', 'flex items-baseline justify-between gap-3 py-1 px-1 rounded hover:bg-slate-800/50');
-            row.href = '#charts/' + encodeURIComponent(x.s.replace('.', '-'));
-            const l = el('span', 'min-w-0 truncate');
-            l.appendChild(el('span', 'font-semibold text-white', x.s));
-            l.appendChild(document.createTextNode(' '));
-            l.appendChild(el('span', 'text-xs text-slate-500', x.n));
-            if (mine.has(x.s.replace('.', '-'))) l.appendChild(el('span', 'ml-1 text-[10px] text-sky-400', '● on your watchlist'));
-            const r = el('span', 'num text-sm whitespace-nowrap');
-            if (x.act) r.appendChild(el('span', 'mr-3 text-xs ' + (/^(add|buy|new)/i.test(x.act) ? 'text-emerald-400' : 'text-red-400'), x.act));
-            r.appendChild(el('span', 'text-slate-300', x.pct.toFixed(2) + '%'));
-            row.appendChild(l); row.appendChild(r); tbl.appendChild(row);
-          });
-        };
-        draw(false);
-        card.appendChild(tbl);
-        if (hold.holdings.length > 10) {
-          const more = el('button', 'mt-1 text-xs text-sky-400 hover:text-sky-300', 'Show all ' + hold.holdings.length);
-          more.type = 'button';
-          let all = false;
-          more.addEventListener('click', () => { all = !all; draw(all); more.textContent = all ? 'Show top 10' : 'Show all ' + hold.holdings.length; });
-          card.appendChild(more);
-        }
+    const pf = el('form', 'flex gap-2 mb-4'); pf.hidden = true;
+    pf.innerHTML = '<input type="url" placeholder="Address of a photo (https://…)" class="flex-1 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600"><button class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Save</button>';
+    pf.firstChild.value = g.photo || '';
+    ph.addEventListener('click', () => { pf.hidden = !pf.hidden; if (!pf.hidden) pf.firstChild.focus(); });
+    pf.addEventListener('submit', e => { e.preventDefault(); const v = pf.firstChild.value.trim(); g.photo = /^https:\/\//i.test(v) ? v : ''; saveGurus(); renderGurus(); });
+    card.appendChild(pf);
+
+    const cols = el('div', 'grid lg:grid-cols-3 gap-6');
+
+    // Top 10 holdings
+    const hs = section('Top 10 holdings', d.hold && d.hold.period ? '· ' + d.hold.period : '');
+    if (!g.code) hs.appendChild(note('Not a 13F filer, so no holdings to show.'));
+    else if (!d.hold) hs.appendChild(note(d.err || 'Loading…'));
+    else if (d.hold.error) hs.appendChild(note("Couldn't load holdings (" + d.hold.error + ')'));
+    else {
+      const tbl = el('div', 'divide-y divide-slate-800/70');
+      d.hold.holdings.slice(0, 10).forEach(x => {
+        const row = el('a', 'flex items-baseline justify-between gap-3 py-1 px-1 rounded hover:bg-slate-800/50');
+        row.href = '#charts/' + encodeURIComponent(x.s.replace('.', '-'));
+        const l = el('span', 'min-w-0 truncate');
+        l.appendChild(el('span', 'font-semibold text-white', x.s)); l.appendChild(document.createTextNode(' '));
+        l.appendChild(el('span', 'text-xs text-slate-500', x.n));
+        if (mine.has(x.s.replace('.', '-'))) l.appendChild(el('span', 'ml-1 text-[10px] text-sky-400', '●'));
+        const r = el('span', 'num text-sm whitespace-nowrap');
+        if (x.act) r.appendChild(el('span', 'mr-2 text-xs ' + (/^(add|buy|new)/i.test(x.act) ? 'text-emerald-400' : 'text-red-400'), x.act));
+        r.appendChild(el('span', 'text-slate-300', x.pct.toFixed(1) + '%'));
+        row.appendChild(l); row.appendChild(r); tbl.appendChild(row);
+      });
+      hs.appendChild(tbl);
+    }
+    cols.appendChild(hs);
+
+    // New holdings, last 6 months
+    const ns = section('New holdings', '· last 6 months');
+    if (!g.code) ns.appendChild(note('Not a 13F filer.'));
+    else if (!d.hold) ns.appendChild(note(d.err || 'Loading…'));
+    else if (d.hold.error) ns.appendChild(note('Unavailable.'));
+    else if (!d.hold.newBuys) ns.appendChild(note("Couldn't read the trade history."));
+    else if (!d.hold.newBuys.buys.length) ns.appendChild(note('No new positions in ' + d.hold.newBuys.quarters.join(' or ') + '.'));
+    else {
+      const tbl = el('div', 'divide-y divide-slate-800/70');
+      d.hold.newBuys.buys.forEach(x => {
+        const row = el('a', 'flex items-baseline justify-between gap-3 py-1 px-1 rounded hover:bg-slate-800/50');
+        row.href = '#charts/' + encodeURIComponent(x.s.replace('.', '-'));
+        const l = el('span', 'min-w-0 truncate');
+        l.appendChild(el('span', 'font-semibold text-white', x.s)); l.appendChild(document.createTextNode(' '));
+        l.appendChild(el('span', 'text-xs text-slate-500', x.n));
+        if (mine.has(x.s.replace('.', '-'))) l.appendChild(el('span', 'ml-1 text-[10px] text-sky-400', '●'));
+        const r = el('span', 'num text-xs whitespace-nowrap text-slate-400', x.q + (x.pct !== null ? ' · ' + x.pct.toFixed(1) + '%' : ''));
+        row.appendChild(l); row.appendChild(r); tbl.appendChild(row);
+      });
+      ns.appendChild(tbl);
+    }
+    cols.appendChild(ns);
+
+    // New media
+    const ms = section('New media', '· podcasts, articles, letters');
+    const media = guruMedia(g, d);
+    const loading = !d.news && g.search !== false || (g.sources || []).some((s, i) => !(d.src || [])[i]);
+    const fresh = media.filter(m => m.fresh);
+    if (loading && !media.length) ms.appendChild(note(d.err || 'Loading…'));
+    else {
+      const wrapM = el('div');
+      const draw = all => {
+        wrapM.innerHTML = '';
+        const rows = all ? media.slice(0, 8) : fresh.slice(0, 8);
+        if (!rows.length) wrapM.appendChild(note('Nothing new in the last ' + NEW_DAYS + ' days.'));
+        rows.forEach(m => {
+          const a = gLink(m.it, m.type + (m.from ? ' · ' + m.from : ''), m.fresh);
+          wrapM.appendChild(a);
+        });
+      };
+      draw(false);
+      ms.appendChild(wrapM);
+      if (media.length > fresh.length) {
+        const more = el('button', 'mt-1 text-xs text-sky-400 hover:text-sky-300', 'Show recent'); more.type = 'button';
+        let all = false;
+        more.addEventListener('click', () => { all = !all; draw(all); more.textContent = all ? 'Show new only' : 'Show recent'; });
+        ms.appendChild(more);
       }
+      ms.appendChild(el('p', 'text-[11px] text-slate-600 mt-2', 'Tweets can’t be pulled in here; use the X link above if listed.'));
     }
+    cols.appendChild(ms);
 
-    // Followed pages and feeds
-    (g.sources || []).forEach((s, i) => {
-      card.appendChild(el('div', 'text-xs font-medium text-slate-400 mt-4 mb-1', KIND_LABEL[s.kind] + ' · ' + s.label));
-      const r = (d.src || [])[i];
-      if (!r) { card.appendChild(el('p', 'text-sm text-slate-500', d.err || 'Loading…')); return; }
-      if (r.error) { card.appendChild(el('p', 'text-sm text-slate-500', "Couldn't load (" + r.error + ')')); return; }
-      r.items.slice(0, 3).forEach(it => {
-        const fresh = it.t ? isNew(it.t) : r.fresh.has(it.url);
-        card.appendChild(gLink(it, '', fresh));
-      });
-      r.items.forEach(it => { if (it.t ? isNew(it.t) : r.fresh.has(it.url)) feed.push({g: g.name, kind: KIND_LABEL[s.kind], it}); });
-    });
-
-    // Letters and podcasts found by searching for the name
-    if (g.search !== false) {
-      const news = d.news;
-      [['letters', 'Letters in the news', 'No letters found in the past year.'], ['podcasts', 'Podcast appearances', 'No recent podcast appearances found.']].forEach(([k, label, none]) => {
-        card.appendChild(el('div', 'text-xs font-medium text-slate-400 mt-4 mb-1', label));
-        if (!news) { card.appendChild(el('p', 'text-sm text-slate-500', d.err || 'Loading…')); return; }
-        if (news.error) { card.appendChild(el('p', 'text-sm text-slate-500', "Couldn't load (" + news.error + ')')); return; }
-        const items = news[k] || [];
-        if (!items.length) { card.appendChild(el('p', 'text-sm text-slate-500', none)); return; }
-        items.slice(0, 3).forEach(it => card.appendChild(gLink(it, k === 'letters' ? it.source : it.show, isNew(it.t))));
-        items.forEach(it => { if (isNew(it.t)) feed.push({g: g.name, kind: k === 'letters' ? 'Letter' : 'Podcast', it}); });
-      });
-    }
+    card.appendChild(cols);
     box.appendChild(card);
   });
-
-  const nb = $('guruNew'); nb.innerHTML = '';
-  nb.hidden = !feed.length;
-  if (feed.length) {
-    feed.sort((a, b) => (b.it.t || 0) - (a.it.t || 0));
-    const wrap = el('div', 'rounded-lg border border-sky-900/60 bg-[#151b22] p-4');
-    wrap.appendChild(el('h3', 'font-medium text-white mb-1', 'New'));
-    wrap.appendChild(el('p', 'text-xs text-slate-500 mb-1', 'Dated items from the last ' + NEW_DAYS + ' days, plus anything that appeared on a followed page since you last looked.'));
-    feed.slice(0, 12).forEach(f => wrap.appendChild(gLink(f.it, f.g + ' · ' + f.kind, false)));
-    nb.appendChild(wrap);
-  }
+  $('guruNew').hidden = true;
 }
 
 $('guruForm').addEventListener('submit', e => {
   e.preventDefault();
   const name = $('gName').value.trim().replace(/\s+/g, ' '), code = $('gCode').value.trim(), src = $('gSrc').value.trim();
   if (!name || guruList.some(g => g.name.toLowerCase() === name.toLowerCase())) return;
-  const g = {name, code: code.replace(/[^A-Za-z0-9_\-]/g, ''), search: true, links: [], sources: []};
+  const g = {name, code: code.replace(/[^A-Za-z0-9_\-]/g, ''), search: true, links: [], sources: [], photo: /^https:\/\//i.test($('gPhoto').value.trim()) ? $('gPhoto').value.trim() : ''};
   if (/^https:\/\//i.test(src)) { g.sources.push({kind: $('gKind').value, label: src.replace(/^https:\/\/(www\.)?/i, '').replace(/\/$/, '').slice(0, 40), url: src}); g.links.push({label: 'Website', url: src}); }
   guruList.push(g); saveGurus();
-  $('gName').value = ''; $('gCode').value = ''; $('gSrc').value = '';
+  $('gName').value = ''; $('gCode').value = ''; $('gSrc').value = ''; $('gPhoto').value = '';
   renderGurus();
   loadGuru(g).then(renderGurus);
 });
