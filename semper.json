@@ -426,5 +426,154 @@
    ]
   ]
  },
- "footnote": "Values are as Semper Augustus published them in each annual client letter. Where a later letter updated a prior year to actual results, the updated figures are used. Letters for 2014 and 2015 were not available, and the 2016 letter was not in this set, so 2016 comes from the 2017 letter."
+ "footnote": "Values are as Semper Augustus published them in each annual client letter. Where a later letter updated a prior year to actual results, the updated figures are used. Letters for 2014 and 2015 were not available, and the 2016 letter was not in this set, so 2016 comes from the 2017 letter.",
+ "stocks": [
+  {
+   "name": "Alleghany",
+   "ticker": "Y",
+   "status": "Former holding",
+   "years": "2019–2022",
+   "text": "Semper bought Alleghany in March 2020 at roughly half of book value, and it turned into one of the better calls of the period. He had long held its insurance operation in high regard, crowning CEO Weston Hicks' shareholder letters the best written by any CEO and describing a transparent, quietly excellent underwriter that \"flies under the radar.\" When Berkshire bought the company in 2022 he called it a superb purchase on extremely attractive terms for Berkshire; he notes that Semper had fortunately bought it at half of book value."
+  },
+  {
+   "name": "Bank of America",
+   "ticker": "BAC",
+   "status": "Berkshire holding",
+   "years": "2022–2025",
+   "text": "Not a Semper holding, but he approves of it inside Berkshire's portfolio. He says Berkshire bought its largest positions, including Bank of America, \"at terrific prices and at great moments,\" and notes that it trades at a low multiple alongside Chevron while the earnings of that half of Berkshire's portfolio are durable, predictable and growing. His stance: the bank is not expensive and the retained earnings help Berkshire's intrinsic value, though he doesn't expect the multiple to expand much."
+  },
+  {
+   "name": "Berkshire Hathaway",
+   "ticker": "BRK-B",
+   "status": "Largest Semper holding",
+   "years": "All years",
+   "text": "The anchor of the portfolio and Semper's largest position for most of the last quarter century, first bought in 2000 at about 105% of book value. He sees a diversified, durably predictable business earning roughly 10% unleveraged on equity, with conservative accounting, modest leverage offset by cash and exceptional governance, trading at a discount to intrinsic value (about 75% of his estimate in 2023, 87% in 2024 and 90% in 2025; 17.6x economic earnings at the latest). He is a regular buyer on weakness and complains only that the market overlooks it, calling the stock an \"ugly stepsister\" in out-of-favor years. See the valuation table above."
+  },
+  {
+   "name": "Chevron",
+   "ticker": "CVX",
+   "status": "Berkshire holding",
+   "years": "2022–2025",
+   "text": "Praised through Berkshire's lens: one of the five positions (with Apple, Bank of America, Coca-Cola and American Express) that he says were acquired at terrific prices. He observes that it trades at a low multiple, and he regards the energy patch as likely to produce high profits for the foreseeable future given supply scarcities created partly by public policy. He views Chevron and Occidental as sensible complements to Berkshire's renewable build-out at BHE, since a balanced approach to energy is the only viable one."
+  },
+  {
+   "name": "Costco",
+   "ticker": "COST",
+   "status": "Admired, not owned now",
+   "years": "2017–2025",
+   "text": "One of his favorite companies and a former Semper holding (first bought in 2004). He sees a historically terrific company earning mid-20s returns on equity on a thin 2–3% net margin. But he repeatedly says it is priced too high to buy: at 45x to 53x earnings he would be \"paying a sky-high price for a great company,\" and uses it to illustrate that even a wonderful business at the wrong price can be a terrible investment. Good company, no bargain."
+  },
+  {
+   "name": "Deckers Outdoor",
+   "ticker": "DECK",
+   "status": "New 2025 holding",
+   "years": "2025",
+   "text": "A new, sizable 2025 addition. Its shares were the fourth-worst S&P 500 performer of the year, down 49%. He built the position gradually at first and then \"suddenly\" near the low, and it earned about 5.6% for the year. He likes the high-teens profit margin it brought to the portfolio and singles out the HOKA brand as \"the best shoe around.\""
+  },
+  {
+   "name": "Dollar General",
+   "ticker": "DG",
+   "status": "Semper holding",
+   "years": "2017–2025",
+   "text": "His most-discussed stock. Bought in 2016–17 at about $69, roughly 14x earnings, after a two-year, 30% slide on fears that Amazon would kill brick-and-mortar retail. He regards it as the best dollar-store business: small rural boxes that are hard to disrupt online, 1,000 new stores and 1,000 remodels a year, initiative-driven management and mid-20s returns on capital. He trimmed during the 2020 pandemic spike, then bought heavily as the shares collapsed in 2023, taking it from 1% to over 10% of the portfolio, its second-largest holding. In 2024 he admitted the company faced headwinds, some self-inflicted (shrink, self-checkout, over-stocking), but remained \"quite optimistic,\" saying the stock was priced as though the business were broken and that normalized margins still earn attractive returns."
+  },
+  {
+   "name": "Dollar Tree",
+   "ticker": "DLTR",
+   "status": "Semper holding",
+   "years": "2021–2025",
+   "text": "Added in 2021 as a second dollar-store position after concluding Dollar General was the better company, since Dollar Tree suffered the winner's curse in its heavily debt-financed $8.5 billion purchase of Family Dollar. By 2024 he was optimistic: both chains share the same problem of inflation-lowered margins, but at normalized profitability and with years of store growth, he sees still-attractive returns on capital and an \"embedded call option on a strengthening consumer.\" Shares rose substantially in 2025."
+  },
+  {
+   "name": "Five Below",
+   "ticker": "FIVE",
+   "status": "Semper holding",
+   "years": "2024–2025",
+   "text": "A small new position in 2024, which he materially added to at lower prices when tariff fears hit in early 2025. It sits alongside Dollar General and Dollar Tree in a retail cluster that grew from 17.1% of the portfolio to 25.9% of capital by the end of 2025 as the shares rose. He accepts that retailers drag down the portfolio's profit margin but says they earn good returns on capital."
+  },
+  {
+   "name": "HollyFrontier / Valero",
+   "ticker": "HFC / VLO",
+   "status": "Semper holdings (refiners)",
+   "years": "2021",
+   "text": "Semper's first two refiners, bought in October 2020 at \"prices making no sense\" and added to ever since. He argued refining is perhaps the dirtiest corner of energy but one the world cannot live without, with short breakevens at the prices paid (HollyFrontier bought a refinery from Shell for little over one times cash flow) and a European energy shortage looming."
+  },
+  {
+   "name": "Kinross Gold",
+   "ticker": "KGC",
+   "status": "Semper holding",
+   "years": "2025",
+   "text": "One of two gold miners in the portfolio. He materially trimmed it in 2025 after the shares rose about 204% to fund other purchases, but remains positive on the business: with gold near $5,000 an ounce against all-in costs around $1,600, net margin jumped from 8% in 2022 to about 33%, with net cash and mid-20s returns on equity. He notes his own mid-cycle estimates are far below current profits."
+  },
+  {
+   "name": "Mercury General",
+   "ticker": "MCY",
+   "status": "Traded holding",
+   "years": "2019, 2024",
+   "text": "A California auto insurer held since 1999, bought after a stretch of 88–90% combined ratios. He likes its conservative underwriting but treats it as a cyclical to trade. He sold the stock in 2024 after it nearly doubled to about 12% of capital, redeploying the proceeds into the most undervalued names, and says trading it over the years has proven worthwhile."
+  },
+  {
+   "name": "Microsoft",
+   "ticker": "MSFT",
+   "status": "Former holding",
+   "years": "2019–2023",
+   "text": "A good past experience: first bought on April 28, 2006 at $24.26 after the stock fell nearly 60%, then trimmed and added for a decade. He still calls it a great business, but has been a frequent critic of the price. He notes that anyone who bought at the 2000 peak of 80x earnings lost money for 15 years. Positive on the company, cautious on the stock."
+  },
+  {
+   "name": "Newmont",
+   "ticker": "NEM",
+   "status": "Semper holding",
+   "years": "2025",
+   "text": "The second gold miner in the portfolio. Like Kinross, it benefits from gold's surge: net margin rose from 12% in 2022 to about 32%, with strong balance sheets, net cash and mid-20s returns on equity. A key driver of the portfolio margin rising in 2025."
+  },
+  {
+   "name": "Nike",
+   "ticker": "NKE",
+   "status": "Semper holding",
+   "years": "2017–2019",
+   "text": "Bought in 2017 together with Dollar General. He had \"long admired\" Nike, and added it after the shares suffered what he judged a temporary price decline on fears of industry disruption. In 2019 he cited it, with Heineken, as a way to benefit from the growth of the Chinese middle class without taking the governance risk of owning Chinese companies directly."
+  },
+  {
+   "name": "Occidental Petroleum",
+   "ticker": "OXY",
+   "status": "Berkshire holding",
+   "years": "2022–2025",
+   "text": "Positive through Berkshire's lens, not as a Semper position. He views Berkshire's growing stake as a bet on the Permian and CEO Vicki Holub, calls the big Chevron and Occidental holdings \"nice complements\" to BHE's energy build-out, and in 2025 said Berkshire's $9.7 billion OxyChem purchase at about 10x mid-cycle free cash flow was a deal he likes \"quite a bit\". He has criticized the equity-method accounting for these stakes."
+  },
+  {
+   "name": "Olin",
+   "ticker": "OLN",
+   "status": "Semper holding",
+   "years": "2021–2025",
+   "text": "A major Semper holding, the second largest in 2022 and still one of the largest in 2025. He admires the St. Louis company as the largest, lowest-cost chlor-alkali producer in the world, vertically integrated into epoxy and other higher-margin products after buying Dow's chlorine business in 2015. He uses it as the example of a business with little room to reinvest, where paying out profits or buying back cheap stock makes the most sense."
+  },
+  {
+   "name": "Progressive",
+   "ticker": "PGR",
+   "status": "Admired business",
+   "years": "2022–2025",
+   "text": "A business he rates highly: with GEICO it is taking market share from State Farm, and he says it leads the industry in telematics and technology in underwriting and claims. He notes it is \"more profitably gobbling up market share\" than GEICO and may pass it. He is complimentary but this is not a Semper holding."
+  },
+  {
+   "name": "Richemont",
+   "ticker": "CFR",
+   "status": "Semper holding",
+   "years": "2017–2019",
+   "text": "A holding noted for its very high margins (about 65% gross and 15% net) and for benefiting from sales of Cartier and Van Cleef & Arpels jewelry to wealthy Chinese customers, a way to share in that growth through stores in New York and Paris rather than owning Chinese companies directly."
+  },
+  {
+   "name": "Ross Stores",
+   "ticker": "ROST",
+   "status": "Sold in 2002 (a regret)",
+   "years": "2018",
+   "text": "The stock he regrets selling. Bought in 2000 at under 10x earnings and under half of sales, as a beautiful company with net cash and a long runway, then sold in 2002 at $4.43 (split-adjusted) after a steep gain. It then compounded at over 20% a year, becoming a 20-bagger, and he uses it as the cautionary tale about selling a great business too early."
+  },
+  {
+   "name": "Starbucks",
+   "ticker": "SBUX",
+   "status": "Semper holding",
+   "years": "2019–2024",
+   "text": "Held around a 5% position in 2019. He likes the business and says buybacks done at cheap prices in 2018 were fine (\"who needs stated book value\"), though he warns they become harmful if made in size at high prices. Starbucks later became part of a group of four retail holdings that totaled nearly 20% of the portfolio in 2024."
+  }
+ ]
 }

@@ -107,7 +107,7 @@
   <section id="view-semper" hidden>
     <div class="mb-6">
       <h2 class="text-3xl font-semibold text-white">Semper Augustus</h2>
-      <p class="text-sm text-slate-400 mt-1">Christopher Bloomstran's Berkshire Hathaway valuations from his annual client letters: four methods, year by year, set against where the stock traded.</p>
+      <p class="text-sm text-slate-400 mt-1">Christopher Bloomstran's Berkshire Hathaway valuations from his annual client letters: four methods, year by year, set against where the stock traded, and the stocks he writes about positively.</p>
     </div>
     <div id="semperBody"><p class="text-sm text-slate-400">Loading…</p></div>
   </section>
@@ -1305,6 +1305,24 @@ function renderSemper() {
       b2.appendChild(tr);
     });
     t2.appendChild(b2); card.appendChild(t2); box.appendChild(card);
+  }
+  // Stocks he writes about positively
+  if (Array.isArray(semperData.stocks) && semperData.stocks.length) {
+    box.appendChild(el('h3', 'text-lg font-medium text-white mt-10 mb-1', 'Stocks he writes about positively'));
+    box.appendChild(el('p', 'text-xs text-slate-500 mb-4', 'Alphabetical. Summarized from the 2014–2025 letters: companies Semper owns or has owned, plus Berkshire holdings he praises. Companies he admires as businesses but calls overvalued (Apple, Coca-Cola, Nvidia and others) are left out.'));
+    const list = el('div', 'space-y-3 mb-6');
+    semperData.stocks.forEach(s => {
+      const card = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-4');
+      const head = el('div', 'flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-1');
+      head.appendChild(el('h4', 'font-medium text-white', s.name));
+      if (s.ticker) head.appendChild(el('span', 'text-xs text-slate-500 num', s.ticker));
+      head.appendChild(el('span', 'text-[11px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300', s.status));
+      head.appendChild(el('span', 'text-xs text-slate-500 ml-auto', s.years));
+      card.appendChild(head);
+      card.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed', s.text));
+      list.appendChild(card);
+    });
+    box.appendChild(list);
   }
   if (semperData.footnote) box.appendChild(el('p', 'text-xs text-slate-600', semperData.footnote));
 }
