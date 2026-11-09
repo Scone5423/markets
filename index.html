@@ -874,8 +874,9 @@ const DEFAULT_GURUS = [
     photo: 'https://static.fmgsuite.com/media/images/f6b203fd-1365-4654-8cbb-a08a07a44185.jpg',
     links: [{label: 'Website', url: 'https://www.semperaugustus.com/'}],
     sources: [{kind: 'letters', label: 'Semper Augustus client letters', url: 'https://www.semperaugustus.com/clientletter'}]},
-  {name: 'Berkshire Hathaway', code: 'BRK', cik: '1067983', search: false, photo: 'photos/berkshire-hathaway.jpg', links: [],
-    sources: [{kind: 'letters', label: 'Shareholder letters', url: 'https://www.berkshirehathaway.com/letters/letters.html'}]},
+  {name: 'Berkshire Hathaway', code: 'BRK', cik: '1067983', search: false, sync: true, recent: true, photo: 'photos/berkshire-hathaway.jpg', links: [],
+    sources: [{kind: 'letters', label: 'Shareholder letters', url: 'https://www.berkshirehathaway.com/letters/letters.html',
+      pinned: [{title: 'Letter 2025 (Greg Abel)', url: 'https://www.berkshirehathaway.com/letters/2025ltr.pdf', t: null}]}]},
   {name: 'Geoff Gannon', code: '', cik: '', insider: '1840586', search: true, photo: 'photos/geoff-gannon.jpg',
     links: [{label: 'Website', url: 'https://focusedcompounding.com/'}, {label: 'X', url: 'https://x.com/FocusedCompound'}],
     sources: [{kind: 'posts', label: 'focusedcompounding.com', url: 'https://focusedcompounding.com/'},
@@ -920,13 +921,15 @@ async function loadGuru(g) {
   d.src = [];
   (g.sources || []).forEach((s, i) => {
     jobs.push(getJSON(base + '/?source=' + encodeURIComponent(s.url) + '&kind=' + encodeURIComponent(s.kind) + (s.match ? '&match=' + encodeURIComponent(s.match) : ''), 40000).then(x => {
-      if (x.error) { d.src[i] = {error: x.error}; return; }
+      const pin = (items) => (s.pinned || []).filter(p => !items.some(it => it.url === p.url || (/\b2025\b/.test(p.title) && /\b2025\b/.test(it.title)))).concat(items);
+      if (x.error) { d.src[i] = s.pinned ? {items: pin([]), fresh: new Set(), via: 'page'} : {error: x.error}; return; }
+      x.items = pin(x.items);
       // Pages without dates: an item is "new" if it was not on the page the last time you looked.
       const key = s.url, prev = gSeen[key], urls = x.items.map(it => it.url);
       const fresh = new Set(prev && x.via === 'page' ? urls.filter(u => !prev.includes(u)) : []);
       gSeen[key] = Array.from(new Set((prev || []).concat(urls))).slice(-200);
       d.src[i] = {items: x.items, fresh, via: x.via};
-    }).catch(e => { d.src[i] = {error: e.message}; }));
+    }).catch(e => { d.src[i] = s.pinned ? {items: s.pinned.slice(), fresh: new Set(), via: 'page'} : {error: e.message}; }));
   });
   await Promise.all(jobs);
   saveSeen();
