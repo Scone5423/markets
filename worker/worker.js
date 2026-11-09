@@ -550,6 +550,22 @@ export default {
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=1800' } });
     }
 
+    // Look up who files 13Fs under a name: /?findfiler=focused%20compounding
+    if (url.searchParams.get('findfiler')) {
+      const q = url.searchParams.get('findfiler').replace(/[^A-Za-z0-9 .&,\-]/g, '').slice(0, 60);
+      try {
+        const r = await secGet('https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&company=' + encodeURIComponent(q) + '&type=13F-HR&owner=include&count=40&output=atom');
+        const x = await r.text();
+        const found = [...new Set([...x.matchAll(/<title>([^<]*13F[^<]*)<\/title>/gi)].map(m => textOf(m[1])))].slice(0, 20);
+        const r2 = await secGet('https://www.sec.gov/cgi-bin/browse-edgar?company=' + encodeURIComponent(q) + '&type=13F-HR&owner=include&count=40&action=getcompany&output=atom');
+        const y = await r2.text();
+        const cos = [...y.matchAll(/<conformed-name>([^<]*)<\/conformed-name>|<cik>(\d+)<\/cik>/gi)].map(m => m[1] || m[2]);
+        return new Response(JSON.stringify({ recentFilings: found, companies: cos.slice(0, 40), bytes: [x.length, y.length] }, null, 2), { headers });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: String(e.message || e) }), { headers });
+      }
+    }
+
     if (url.searchParams.get('filer')) {
       const cik = url.searchParams.get('filer');
       if (!/^\d{1,10}$/.test(cik)) return new Response('{}', { status: 400, headers });
