@@ -268,7 +268,13 @@ function pageLinks(html, base, kind, match) {
     seen.add(u); out.push({ title, url: u, t });
   }
   if (out.some(x => x.t)) out.sort((a, b) => (b.t || 0) - (a.t || 0));
-  return out.slice(0, 30);
+  // Letters pages: keep the entries that start with a year ("2025 SAI Letter: ..."), newest year first, and drop menu links.
+  if (kind === 'letters' && !match) {
+    const yr = x => (x.title.match(/^((?:19|20)\d{2})\b/) || [])[1];
+    const dated = out.filter(x => yr(x));
+    if (dated.length) return dated.sort((a, b) => yr(b) - yr(a)).slice(0, 30);
+  }
+  return out.filter(x => x.url.split('#')[0] !== base.split('#')[0]).slice(0, 30);
 }
 
 async function getSource(src, kind, match) {
