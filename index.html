@@ -97,26 +97,8 @@
   <section id="view-gurus" hidden>
     <div class="mb-6">
       <h2 class="text-3xl font-semibold text-white">Gurus</h2>
-      <p class="text-sm text-slate-400 mt-1">Professional investors you follow: their latest 13F holdings (from Dataroma), new letters, and new podcast appearances.</p>
+      <p class="text-sm text-slate-400 mt-1">Professional investors you follow: their latest holdings from SEC filings, plus letters and media.</p>
     </div>
-    <form id="guruForm" class="flex flex-wrap items-end gap-3 mb-6">
-      <label class="text-xs text-slate-400">Name
-        <input id="gName" required maxlength="60" placeholder="Seth Klarman" class="block mt-1 w-56 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
-      </label>
-      <label class="text-xs text-slate-400">SEC CIK number (13F filers)
-        <input id="gCode" maxlength="10" inputmode="numeric" placeholder="1061768" class="block mt-1 w-36 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
-      </label>
-      <label class="text-xs text-slate-400">Page or feed to follow (optional)
-        <input id="gSrc" type="url" placeholder="https://example.com/letters" class="block mt-1 w-72 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
-      </label>
-      <label class="text-xs text-slate-400">It is
-        <select id="gKind" class="block mt-1 rounded bg-slate-900 border border-slate-700 px-2 py-1.5 text-sm text-white">
-          <option value="letters">a letters page</option><option value="posts">a blog or site</option><option value="podcast">a podcast feed</option>
-        </select>
-      </label>
-      <button class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Add</button>
-      <p class="text-xs text-slate-500 basis-full">The CIK is the manager's number on sec.gov: search their firm name on EDGAR (sec.gov/edgar/searchedgar/companysearch) and copy the number after "CIK". Leave it blank for investors who don't file a 13F. The page or feed can be a letters page, a blog, or a podcast feed; pages without dates flag new links since your last visit.</p>
-    </form>
     <div id="guruNew" class="mb-6" hidden></div>
     <div id="guruCards" class="space-y-4"></div>
   </section>
@@ -999,9 +981,6 @@ function renderGurus() {
     (g.links || []).forEach(l => { const a = el('a', 'text-sky-400 hover:text-sky-300', l.label); a.href = l.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; chips.appendChild(a); });
     title.appendChild(chips);
     head.appendChild(title);
-    const rm = el('button', 'self-start text-xs text-slate-500 hover:text-red-400', 'Remove'); rm.type = 'button';
-    rm.addEventListener('click', () => { guruList.splice(gi, 1); delete gData[g.name]; saveGurus(); renderGurus(); });
-    head.appendChild(rm);
     card.appendChild(head);
 
 
@@ -1138,17 +1117,6 @@ function renderGurus() {
   $('guruNew').hidden = true;
 }
 
-$('guruForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const name = $('gName').value.trim().replace(/\s+/g, ' '), code = $('gCode').value.trim(), src = $('gSrc').value.trim();
-  if (!name || guruList.some(g => g.name.toLowerCase() === name.toLowerCase())) return;
-  const g = {name, cik: code.replace(/\D/g, ''), search: true, links: [], sources: []};
-  if (/^https:\/\//i.test(src)) { g.sources.push({kind: $('gKind').value, label: src.replace(/^https:\/\/(www\.)?/i, '').replace(/\/$/, '').slice(0, 40), url: src}); g.links.push({label: 'Website', url: src}); }
-  guruList.push(g); saveGurus();
-  $('gName').value = ''; $('gCode').value = ''; $('gSrc').value = '';
-  renderGurus();
-  loadGuru(g).then(renderGurus);
-});
 
 function show() {
   const h = location.hash;
