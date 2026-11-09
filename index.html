@@ -953,6 +953,12 @@ function guruMedia(g, d) {
     (n.articles || []).forEach(it => add(it, 'Article', it.source, isNew(it.t)));
   }
   out.sort((a, b) => (b.fresh - a.fresh) || ((b.it.t || 0) - (a.it.t || 0)));
+  if (g.recent) {
+    // Letters only: keep entries with a year in the title (drops menu links like "About Us"), newest year first.
+    const yr = m => +((m.it.title.match(/\b(19|20)\d{2}\b/) || [0])[0]);
+    const lettersOnly = out.filter(m => yr(m));
+    if (lettersOnly.length) return lettersOnly.sort((a, b) => yr(b) - yr(a));
+  }
   return out;
 }
 

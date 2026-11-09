@@ -275,7 +275,7 @@ function pageLinks(html, base, kind, match) {
     const dated = out.filter(x => { const y = yr(x); if (!y || seenYr.has(y)) return false; seenYr.add(y); return true; });
     if (dated.length) return dated.sort((a, b) => yr(b) - yr(a)).slice(0, 30);
   }
-  return out.filter(x => x.url.split('#')[0] !== base.split('#')[0]).slice(0, 30);
+  return out.filter(x => x.url.split('#')[0] !== base.split('#')[0] && !/^(home|about( us)?|contact( us)?|products\/services|client letters|interviews and podcasts)$/i.test(x.title)).slice(0, 30);
 }
 
 async function getSource(src, kind, match) {
