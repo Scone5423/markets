@@ -442,6 +442,32 @@ async function getInsider(cik) {
   });
 }
 
+// ---- Recent posts from an X (Twitter) account, via X's public embed timeline --------------
+async function getTweets(handle) {
+  return cached('t:' + handle.toLowerCase(), 1800000, async () => {
+    const r = await fetch('https://syndication.twitter.com/srv/timeline-profile/screen-name/' + encodeURIComponent(handle), {
+      headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html' }
+    });
+    if (!r.ok) throw new Error('X HTTP ' + r.status);
+    const html = await r.text();
+    const m = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/i);
+    if (!m) throw new Error('X returned no timeline');
+    const data = JSON.parse(m[1]);
+    const entries = (((data.props || {}).pageProps || {}).timeline || {}).entries || [];
+    const out = [];
+    for (const e of entries) {
+      const t = e && e.content && e.content.tweet;
+      if (!t || !t.full_text && !t.text) continue;
+      const text = textOf(String(t.full_text || t.text)).replace(/https:\/\/t\.co\/\w+/g, '').trim();
+      if (!text || /^RT @/.test(text)) continue;
+      const id = t.id_str || e.entry_id && String(e.entry_id).replace(/\D/g, '');
+      out.push({ text: text.slice(0, 280), url: 'https://x.com/' + handle + '/status/' + id, t: Date.parse(t.created_at) || null });
+    }
+    if (!out.length) throw new Error('no posts found');
+    return { posts: out.slice(0, 8) };
+  });
+}
+
 const RANGES = ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'];
 const INTERVALS = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'];
 
@@ -622,6 +648,13 @@ export default {
       if (!/^\d{1,10}$/.test(cik)) return new Response('{}', { status: 400, headers });
       const d = await getInsider(cik).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=3600' } });
+    }
+
+    if (url.searchParams.get('tweets')) {
+      const handle = url.searchParams.get('tweets');
+      if (!/^\w{1,15}$/.test(handle)) return new Response('{}', { status: 400, headers });
+      const d = await getTweets(handle).catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=900' } });
     }
 
     if (url.searchParams.get('filer')) {
