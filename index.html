@@ -1279,7 +1279,7 @@ function renderSemper() {
 
   // Chart
   const chartCard = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-5 mb-6');
-  chartCard.appendChild(el('h3', 'font-medium text-white mb-1', 'Intrinsic value estimates vs. market price'));
+  chartCard.appendChild(el('h3', 'font-medium text-white mb-1', 'Berkshire Valuation'));
   chartCard.appendChild(el('p', 'text-xs text-slate-500 mb-3', 'Each line is one of Semper\'s valuation methods, by year. The dashed amber line is where the stock actually closed the year (B shares, from live data).'));
   const c = semperChart(vals, unit);
   chartCard.appendChild(c.svg);
