@@ -1,0 +1,430 @@
+{
+ "updated": "November 2026",
+ "valuations": [
+  {
+   "year": 2016,
+   "source": "2017 letter",
+   "status": "final",
+   "methods": {
+    "sotp": {
+     "mcap": 532,
+     "a": 323837,
+     "b": 216
+    },
+    "gaap": {
+     "mcap": 514,
+     "a": 312709,
+     "b": 208
+    },
+    "book": {
+     "mcap": 495,
+     "a": 301189,
+     "b": 201
+    },
+    "two": {
+     "mcap": 517,
+     "a": 314555,
+     "b": 210
+    },
+    "avg": {
+     "mcap": 515,
+     "a": 313071,
+     "b": 209
+    }
+   }
+  },
+  {
+   "year": 2017,
+   "source": "2018 letter",
+   "status": "final",
+   "methods": {
+    "sotp": {
+     "mcap": 630,
+     "a": 383049,
+     "b": 255
+    },
+    "gaap": {
+     "mcap": 595,
+     "a": 361768,
+     "b": 241
+    },
+    "book": {
+     "mcap": 609,
+     "a": 370247,
+     "b": 247
+    },
+    "two": {
+     "mcap": 610,
+     "a": 370895,
+     "b": 247
+    },
+    "avg": {
+     "mcap": 611,
+     "a": 371463,
+     "b": 248
+    }
+   }
+  },
+  {
+   "year": 2018,
+   "source": "2019 letter",
+   "status": "final",
+   "methods": {
+    "sotp": {
+     "mcap": 659,
+     "a": 401274,
+     "b": 268
+    },
+    "gaap": {
+     "mcap": 668,
+     "a": 406754,
+     "b": 271
+    },
+    "book": {
+     "mcap": 611,
+     "a": 372046,
+     "b": 248
+    },
+    "two": {
+     "mcap": 672,
+     "a": 409190,
+     "b": 273
+    },
+    "avg": {
+     "mcap": 653,
+     "a": 397316,
+     "b": 265
+    }
+   }
+  },
+  {
+   "year": 2019,
+   "source": "2020 letter",
+   "status": "final",
+   "methods": {
+    "sotp": {
+     "mcap": 715,
+     "a": 438188,
+     "b": 292
+    },
+    "gaap": {
+     "mcap": 754,
+     "a": 462090,
+     "b": 308
+    },
+    "book": {
+     "mcap": 764,
+     "a": 468218,
+     "b": 312
+    },
+    "two": {
+     "mcap": 807,
+     "a": 494751,
+     "b": 330
+    },
+    "avg": {
+     "mcap": 760,
+     "a": 465767,
+     "b": 311
+    }
+   }
+  },
+  {
+   "year": 2020,
+   "source": "2021 letter",
+   "status": "final",
+   "methods": {
+    "sotp": {
+     "mcap": 746,
+     "a": 486871,
+     "b": 325
+    },
+    "gaap": {
+     "mcap": 801,
+     "a": 522556,
+     "b": 348
+    },
+    "book": {
+     "mcap": 779,
+     "a": 507925,
+     "b": 339
+    },
+    "two": {
+     "mcap": 838,
+     "a": 547179,
+     "b": 365
+    },
+    "avg": {
+     "mcap": 791,
+     "a": 516133,
+     "b": 344
+    }
+   }
+  },
+  {
+   "year": 2021,
+   "source": "2022 letter",
+   "status": "final",
+   "methods": {
+    "sotp": {
+     "mcap": 885,
+     "a": 599014,
+     "b": 399
+    },
+    "gaap": {
+     "mcap": 844,
+     "a": 571263,
+     "b": 381
+    },
+    "book": {
+     "mcap": 885,
+     "a": 599589,
+     "b": 400
+    },
+    "two": {
+     "mcap": 943,
+     "a": 638271,
+     "b": 426
+    },
+    "avg": {
+     "mcap": 889,
+     "a": 601890,
+     "b": 401
+    }
+   }
+  },
+  {
+   "year": 2022,
+   "source": "2023 letter",
+   "status": "final",
+   "methods": {
+    "sotp": {
+     "mcap": 928,
+     "a": 635733,
+     "b": 424
+    },
+    "gaap": {
+     "mcap": 945,
+     "a": 647379,
+     "b": 432
+    },
+    "book": {
+     "mcap": 843,
+     "a": 577463,
+     "b": 385
+    },
+    "two": {
+     "mcap": 1004,
+     "a": 687579,
+     "b": 458
+    },
+    "avg": {
+     "mcap": 930,
+     "a": 637039,
+     "b": 425
+    }
+   }
+  },
+  {
+   "year": 2023,
+   "source": "2024 letter",
+   "status": "final",
+   "methods": {
+    "sotp": {
+     "mcap": 1046,
+     "a": 725642,
+     "b": 484
+    },
+    "gaap": {
+     "mcap": 968,
+     "a": 671808,
+     "b": 448
+    },
+    "book": {
+     "mcap": 982,
+     "a": 681401,
+     "b": 454
+    },
+    "two": {
+     "mcap": 1090,
+     "a": 756443,
+     "b": 504
+    },
+    "avg": {
+     "mcap": 1022,
+     "a": 708824,
+     "b": 472
+    }
+   }
+  },
+  {
+   "year": 2024,
+   "source": "2025 letter",
+   "status": "final",
+   "methods": {
+    "sotp": {
+     "mcap": 1122,
+     "a": 780463,
+     "b": 520
+    },
+    "gaap": {
+     "mcap": 1089,
+     "a": 757508,
+     "b": 505
+    },
+    "book": {
+     "mcap": 1130,
+     "a": 785965,
+     "b": 524
+    },
+    "two": {
+     "mcap": 1161,
+     "a": 807869,
+     "b": 539
+    },
+    "avg": {
+     "mcap": 1126,
+     "a": 782951,
+     "b": 522
+    }
+   }
+  },
+  {
+   "year": 2025,
+   "source": "2025 letter",
+   "status": "expected",
+   "methods": {
+    "sotp": {
+     "mcap": 1208,
+     "a": 839925,
+     "b": 560
+    },
+    "gaap": {
+     "mcap": 1200,
+     "a": 834363,
+     "b": 556
+    },
+    "book": {
+     "mcap": 1261,
+     "a": 876776,
+     "b": 585
+    },
+    "two": {
+     "mcap": 1252,
+     "a": 870519,
+     "b": 580
+    },
+    "avg": {
+     "mcap": 1230,
+     "a": 855396,
+     "b": 570
+    }
+   },
+   "note": "Expected: year-end estimate as of the February 2026 letter; Semper revises it once Berkshire reports."
+  }
+ ],
+ "sumOfParts": {
+  "years": [
+   "2019",
+   "2020",
+   "2021",
+   "2022",
+   "2023",
+   "2024",
+   "2025 (e)"
+  ],
+  "rows": [
+   [
+    "Berkshire Hathaway Energy",
+    "$50-58",
+    "$62-72",
+    "$75-86",
+    "$81-86",
+    "$81-86",
+    "$86-91",
+    "$86-91"
+   ],
+   [
+    "BNSF",
+    "$100-110",
+    "$100-110",
+    "$115-135",
+    "$117-137",
+    "$120-140",
+    "$120-140",
+    "$120-140"
+   ],
+   [
+    "Manufacturing, Service and Retail (includes finance; Pilot from 2025)",
+    "$170-180",
+    "$170-180",
+    "$200-210",
+    "$228-241",
+    "$230-244",
+    "$230-244",
+    "$245-275"
+   ],
+   [
+    "Pilot Travel Centers",
+    "",
+    "",
+    "",
+    "",
+    "$12-14",
+    "$12-14",
+    "In MSR"
+   ],
+   [
+    "Insurance underwriting, capitalized",
+    "$36",
+    "$39",
+    "$41",
+    "$49",
+    "$65",
+    "$71",
+    "$74"
+   ],
+   [
+    "Insurance investments",
+    "$330",
+    "$372",
+    "$453",
+    "$415",
+    "$492",
+    "$565",
+    "$567"
+   ],
+   [
+    "Investments premium / discount",
+    "-$19",
+    "-$39",
+    "-$50",
+    "None",
+    "None",
+    "None",
+    "None"
+   ],
+   [
+    "Holding company investments, net of debt",
+    "$34",
+    "$32",
+    "$28",
+    "$19",
+    "$27",
+    "$17",
+    "$89"
+   ],
+   [
+    "Total valuation (billions)",
+    "$701-729",
+    "$736-766",
+    "$862-903",
+    "$909-947",
+    "$1,027-1,068",
+    "$1,101-1,142",
+    "$1,181-1,236"
+   ]
+  ]
+ },
+ "footnote": "Values are as Semper Augustus published them in each annual client letter. Where a later letter updated a prior year to actual results, the updated figures are used. Letters for 2014 and 2015 were not available, and the 2016 letter was not in this set, so 2016 comes from the 2017 letter."
+}
