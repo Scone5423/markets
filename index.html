@@ -879,7 +879,7 @@ const DEFAULT_GURUS = [
     sources: [{kind: 'letters', label: 'Semper Augustus client letters', url: 'https://www.semperaugustus.com/clientletter'}]},
   {name: 'Berkshire Hathaway', code: 'BRK', cik: '1067983', search: false, photo: 'photos/berkshire-hathaway.jpg', links: [],
     sources: [{kind: 'letters', label: 'Shareholder letters', url: 'https://www.berkshirehathaway.com/letters/letters.html'}]},
-  {name: 'Geoff Gannon', code: '', cik: '1840586', search: true, photo: 'photos/geoff-gannon.jpg',
+  {name: 'Geoff Gannon', code: '', cik: '', search: true, photo: 'photos/geoff-gannon.jpg',
     links: [{label: 'Website', url: 'https://focusedcompounding.com/'}, {label: 'X', url: 'https://x.com/FocusedCompound'}],
     sources: [{kind: 'posts', label: 'focusedcompounding.com', url: 'https://focusedcompounding.com/'},
               {kind: 'podcast', label: 'Focused Compounding podcast', url: 'https://feed.podbean.com/focusedcompoundinginvest/feed.xml'}]}
@@ -888,7 +888,7 @@ let guruList = null;
 try { const s = localStorage.getItem('gurus.v1'); guruList = s === null ? null : JSON.parse(s); } catch (e) {}
 if (!Array.isArray(guruList)) guruList = DEFAULT_GURUS.map(g => JSON.parse(JSON.stringify(g)));
 // Photos you gave me for investors already in a saved list.
-guruList.forEach(g => { const d = DEFAULT_GURUS.find(x => x.name === g.name); if (d && d.photo && !g.photo) g.photo = d.photo; if (d && d.cik && !g.cik) g.cik = d.cik; if (d && d.sync) { g.search = d.search; g.sources = JSON.parse(JSON.stringify(d.sources)); } });
+guruList.forEach(g => { const d = DEFAULT_GURUS.find(x => x.name === g.name); if (d && d.photo && !g.photo) g.photo = d.photo; if (d && d.cik && !g.cik) g.cik = d.cik; if (d && d.cik === '' && g.cik === '1840586') g.cik = ''; if (d && d.sync) { g.search = d.search; g.sources = JSON.parse(JSON.stringify(d.sources)); } });
 const saveGurus = () => { try { localStorage.setItem('gurus.v1', JSON.stringify(guruList)); } catch (e) {} };
 let gSeen = {};
 try { gSeen = JSON.parse(localStorage.getItem('gurus.seen')) || {}; } catch (e) {}
