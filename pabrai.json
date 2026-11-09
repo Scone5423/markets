@@ -821,7 +821,60 @@
    ],
    "status": "Favorable view (not owned)",
    "when": "Jul 2026, May 2026",
-   "text": "Used as his example of the market getting software wrong. After AI fears knocked the stock down (36% in a year, 63% from its 2024 high, per the interviewer), he argues that being able to write code quickly does not put Adobe or Photoshop out of business, because software is far more than coding. In his view the advantage goes to incumbents, who can use AI to cut costs. He says the market \"has gotten it wrong\" on vertical software, and he treats the selloff in hated, unloved software names as a place to look."
+   "text": "Used as his example of the market getting software wrong. After AI fears knocked the stock down (36% in a year, 63% from its 2024 high, per the interviewer), he argues that being able to write code quickly does not put Adobe or Photoshop out of business, because software is far more than coding. In his view the advantage goes to incumbents, who can use AI to cut costs. He says the market \"has gotten it wrong\" on vertical software, and he treats the selloff in hated, unloved software names as a place to look.",
+   "held": "Not held",
+   "value": "No number given. His argument is that the selloff (36% in a year, 63% from the 2024 high, per the interviewer) prices Adobe as if AI makes software worthless.",
+   "refs": [
+    {
+     "date": "2026-05-05",
+     "title": "Interview with My First Million",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99cc74269ac63cfaf48d_20260625_mohnish_pabrais_interview_with_shaan_puri_at_my_first_million_on_may_5_2026_v3.pdf"
+    },
+    {
+     "date": "2026-07-21",
+     "title": "Interview with New Money",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a8fecf911c6f0666682170e_20260819%20Mohnish%20Pabrai%27s%20Interview%20with%20New%20Money%20on%20July%2021%2C%202026.pdf"
+    }
+   ],
+   "docs": 2
+  },
+  {
+   "name": "Alibaba",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding (a mistake)",
+   "when": "2023–24",
+   "paid": "Not stated.",
+   "value": "He calls it a mistake because Chinese state actions \"came from left field\". The stock went sideways.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2020-12-03",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 11,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463feed1e5f2f75a57d2fb_mohnish_pabrai_q_a_at_peking_university__guanghua_school_of_mgmt__on_dec_3_2020_v2.pdf"
+    },
+    {
+     "date": "2021-05-19",
+     "title": "QA with MBA Students at the London Business School LBS",
+     "n": 4
+    },
+    {
+     "date": "2021-10-14",
+     "title": "Session at the Boston College",
+     "n": 17,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4641bb591535098c9f1a98_mohnish_pabrai%E2%80%99s_lecture_at_boston_college_on_october_14_2021.pdf"
+    },
+    {
+     "date": "2022-01-19",
+     "title": "Value Investing Masterclass with NUS MBA students at NUS Business School",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a47952cf446d31309b9896d_value_investing_masterclass_with_nus_mba_students_at_nus_business_school_on_january_19_2022.pdf"
+    }
+   ],
+   "docs": 21
   },
   {
    "name": "Alpha Metallurgical Resources",
@@ -833,7 +886,30 @@
    ],
    "status": "Current holding",
    "when": "Mar–May 2026",
-   "text": "One of his coal bets. He moved from thermal coal (CONSOL) to metallurgical coal, which he found even more favorable, and now holds Alpha and Warrior. He holds Alpha up as his example of an \"uber-cannibal\": it bought back 32% of its shares in four years, more than Apple (11%) or Microsoft (10%), by putting its spare cash into the stock. He is open that the coal bets can fail, with low-probability things that could go wrong, but calls them favorable bets, part of a group where he does not need every one to work."
+   "text": "One of his coal bets. He moved from thermal coal (CONSOL) to metallurgical coal, which he found even more favorable, and now holds Alpha and Warrior. He holds Alpha up as his example of an \"uber-cannibal\": it bought back 32% of its shares in four years, more than Apple (11%) or Microsoft (10%), by putting its spare cash into the stock. He is open that the coal bets can fail, with low-probability things that could go wrong, but calls them favorable bets, part of a group where he does not need every one to work.",
+   "held": "Current holding",
+   "paid": "Not stated per share.",
+   "value": "In SumZero (Jun 2025) he says the met-coal assets would cost $10–20 billion to build and could be bought for about $2 billion. Alpha bought back 32% of its shares in four years.",
+   "refs": [
+    {
+     "date": "2024-01-30",
+     "title": "QA at London School of Economics",
+     "n": 1
+    },
+    {
+     "date": "2026-03-23",
+     "title": "Interview with The Investor's Podcast",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99a459907c751a93ecf7_20260603_mohnish_pabrais_interview_with_the_investors_podcast_on_march_23_2026_v2.pdf"
+    },
+    {
+     "date": "2026-04-21",
+     "title": "Mental Models at Heilbrunn Center for Graham and Dodd Investing",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99597e7e01d646f4d746_20260528_mohnish_pabrais_session_at_heilbrunn_center_on_april_21_2026_v3.pdf"
+    }
+   ],
+   "docs": 3
   },
   {
    "name": "Alphabet and Amazon",
@@ -849,7 +925,36 @@
    ],
    "status": "Admired",
    "when": "Apr–May 2026",
-   "text": "Named as great \"spawners,\" companies that create new businesses, one of his models for finding compounders. He also tells how Nick Sleep's fund let Amazon grow to roughly 80% of the portfolio and still came out ahead of nearly everyone, as an illustration of letting a winner run. He doesn't say he owns either."
+   "text": "Named as great \"spawners,\" companies that create new businesses, one of his models for finding compounders. He also tells how Nick Sleep's fund let Amazon grow to roughly 80% of the portfolio and still came out ahead of nearly everyone, as an illustration of letting a winner run. He doesn't say he owns either.",
+   "held": "Not stated as held",
+   "value": "In 2015 he cited Amazon at about 576 times earnings as an example of a frothy valuation. By 2026 he says Amazon is \"just starting\" (roughly $1 trillion revenue, $3 trillion market cap) and calls it, with Alphabet, a spawner. He never says he owns either.",
+   "refs": [
+    {
+     "date": "2020-12-03",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 26,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463feed1e5f2f75a57d2fb_mohnish_pabrai_q_a_at_peking_university__guanghua_school_of_mgmt__on_dec_3_2020_v2.pdf"
+    },
+    {
+     "date": "2021-10-14",
+     "title": "Session at the Boston College",
+     "n": 33,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4641bb591535098c9f1a98_mohnish_pabrai%E2%80%99s_lecture_at_boston_college_on_october_14_2021.pdf"
+    },
+    {
+     "date": "2022-10-27",
+     "title": "Session at the Boston College (Carroll School of Management) and HBS",
+     "n": 25,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4797f9e754e4499d3bbd9b_mohnish_pabrais_q_a_session_with_students_at_the_boston_college_on_oct_27_2022_v2.pdf"
+    },
+    {
+     "date": "2025-05-02",
+     "title": "Sessions at UNO (May 2, 2025) and Columbia Business School (March 25, 2025)",
+     "n": 31,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b973f9b86b5bc60be0964_20250611_mohnish_pabrais_sessions_at_uno_on_may_2_2025_and_CBS_on_march_25_2025_v2.pdf"
+    }
+   ],
+   "docs": 82
   },
   {
    "name": "American Express",
@@ -861,7 +966,72 @@
    ],
    "status": "Admired (moat business)",
    "when": "May–Aug 2026",
-   "text": "Included among the businesses with a moat that he would not sell \"unless egregiously overpriced,\" a bar he says AmEx does not currently meet. He retells Buffett's 1964 bet, putting 40% of his fund into the company after the salad-oil scandal knocked the stock down, because the core moat, trust in the card, was intact."
+   "text": "Included among the businesses with a moat that he would not sell \"unless egregiously overpriced,\" a bar he says AmEx does not currently meet. He retells Buffett's 1964 bet, putting 40% of his fund into the company after the salad-oil scandal knocked the stock down, because the core moat, trust in the card, was intact.",
+   "held": "Not held",
+   "paid": "Buffett put 40% of his partnership into it after the 1964 salad-oil scandal; he cites the stock at about $70 in 2015.",
+   "value": "He says AmEx should be held unless egregiously overpriced, which it is not. His 2002 view: even blue chips like AmEx should be valued on 10 years of free cash flow, sold at 10x in year 10, then halved for margin of safety.",
+   "refs": [
+    {
+     "date": "2015-12-03",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463bd6e15d43ce4825ef4b_20230118_mohnish_pabrais_presentation_at_the_boston_college_carroll_school_of_mgmt_on_dec_3_2015.pdf"
+    },
+    {
+     "date": "2015-12-22",
+     "title": "Talk and QA at the MDI Gurgaon India",
+     "n": 4
+    },
+    {
+     "date": "2026-05-05",
+     "title": "Interview with My First Million",
+     "n": 11,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99cc74269ac63cfaf48d_20260625_mohnish_pabrais_interview_with_shaan_puri_at_my_first_million_on_may_5_2026_v3.pdf"
+    },
+    {
+     "date": "2026-08-19",
+     "title": "Interview with Knowledge Inside podcast, Episode 1",
+     "n": 31,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6ac3f477dc28413ffe31abd4_20260930%20Mohnish%20Pabrai%27s%20Interview%20with%20Knowledge%20Inside%20on%20August%2019%2C%202026%20-%20Episode%201.pdf"
+    }
+   ],
+   "docs": 40
+  },
+  {
+   "name": "Apple",
+   "links": [],
+   "held": "Not held",
+   "status": "Not held",
+   "when": "2014–2026",
+   "paid": "Never owned.",
+   "value": "In 2014, at a $700 billion market cap, he asked if you'd buy the whole company. In 2018 he used a trailing P/E near 10 as a thought example. Apple bought back 39% of its shares in 10 years against Teledyne's 90% in 12 years.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2022-08-30",
+     "title": "QA session with the Asian Institute of Technology Bangkok",
+     "n": 15
+    },
+    {
+     "date": "2022-10-27",
+     "title": "Session at the Boston College (Carroll School of Management) and HBS",
+     "n": 19,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4797f9e754e4499d3bbd9b_mohnish_pabrais_q_a_session_with_students_at_the_boston_college_on_oct_27_2022_v2.pdf"
+    },
+    {
+     "date": "2023-07-28",
+     "title": "Interview at the Meb Faber Show",
+     "n": 12,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a47a0d13753097db49a12e9_mohnish_pabrais_interview_at_the_meb_faber_show_on_july_28_2023.pdf"
+    },
+    {
+     "date": "2026-08-19",
+     "title": "Interview with Knowledge Inside podcast, Episode 1",
+     "n": 12,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6ac3f477dc28413ffe31abd4_20260930%20Mohnish%20Pabrai%27s%20Interview%20with%20Knowledge%20Inside%20on%20August%2019%2C%202026%20-%20Episode%201.pdf"
+    }
+   ],
+   "docs": 59
   },
   {
    "name": "Berkshire Hathaway",
@@ -873,7 +1043,73 @@
    ],
    "status": "Recommended to beginners",
    "when": "Aug 2026",
-   "text": "His advice for a retail investor just starting: buy Berkshire Hathaway, \"100% of the portfolio,\" while you are still in kindergarten and learning the alphabet of investing. Only after that does he suggest moving to businesses whose products you personally use. He also notes Coca-Cola is Berkshire's longest-held stock, bought in 1988."
+   "text": "His advice for a retail investor just starting: buy Berkshire Hathaway, \"100% of the portfolio,\" while you are still in kindergarten and learning the alphabet of investing. Only after that does he suggest moving to businesses whose products you personally use. He also notes Coca-Cola is Berkshire's longest-held stock, bought in 1988.",
+   "held": "Not stated",
+   "value": "No price target. He says a beginner should put 100% of a portfolio in Berkshire B shares and treat it \"like an index\". He also discusses what Buffett paid for See's ($25 million, three times book) and Coke.",
+   "refs": [
+    {
+     "date": "2023-10-10",
+     "title": "Conversation at Schroders, The Value Perspective podcast",
+     "n": 27,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b91de924a815a0b05a057_20231206_mohnish_pabrais_conversation_at_schroders_the_value_perspective_podcast_on_oct_10_2023.pdf"
+    },
+    {
+     "date": "2024-05-03",
+     "title": "Session at The University of Nebraska, Omaha",
+     "n": 45,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b943d0dcb58f8ae79b264_20240620_mohnish_pabrais_session_at_the_university_of_nebraska_omaha_on_may_3_2024_v2.pdf"
+    },
+    {
+     "date": "2025-05-02",
+     "title": "Sessions at UNO (May 2, 2025) and Columbia Business School (March 25, 2025)",
+     "n": 31,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b973f9b86b5bc60be0964_20250611_mohnish_pabrais_sessions_at_uno_on_may_2_2025_and_CBS_on_march_25_2025_v2.pdf"
+    },
+    {
+     "date": "2026-03-23",
+     "title": "Interview with The Investor's Podcast",
+     "n": 30,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99a459907c751a93ecf7_20260603_mohnish_pabrais_interview_with_the_investors_podcast_on_march_23_2026_v2.pdf"
+    }
+   ],
+   "docs": 109
+  },
+  {
+   "name": "Blue Dart",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding (a regret)",
+   "when": "1995",
+   "paid": "About $3,000.",
+   "value": "Sold flat. He says it later went up 300–500x.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2016-10-14",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c71291fdab4e4d9b2fe_mohnishs_lecture_at_peking_university__guanghua_school_of_mgmt__oct_14__2016.pdf"
+    },
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2023-04-11",
+     "title": "Interview at the mint-Equitymaster Investor Hour",
+     "n": 9,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e3719c4c5fe0f493cab_mohnish_pabrais_interview_at_mint-equitymaster_investor_hour_on_april_11_2023.pdf"
+    },
+    {
+     "date": "2025-04-22",
+     "title": "Session with Ashoka Investment Club",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b96e79b86b5bc60bdd825_20250514_mohnish_pabrais_session_with_ashoka_investment_club_on_april_22_2025_v2.pdf"
+    }
+   ],
+   "docs": 7
   },
   {
    "name": "Chipotle",
@@ -885,7 +1121,108 @@
    ],
    "status": "Admired (never bought)",
    "when": "Various",
-   "text": "Says he is a big fan of the business but never bought it because it always looked expensive."
+   "text": "Says he is a big fan of the business but never bought it because it always looked expensive.",
+   "held": "Not held",
+   "value": "No number given; he says it always looked expensive.",
+   "refs": [
+    {
+     "date": "2020-10-08",
+     "title": "Session at the Boston College",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463f9e39cc914db687ecd7_mohnish_pabrai%E2%80%99s_lecture_at_the_boston_college__carroll_school_of_management__v2.pdf"
+    },
+    {
+     "date": "2020-12-03",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463feed1e5f2f75a57d2fb_mohnish_pabrai_q_a_at_peking_university__guanghua_school_of_mgmt__on_dec_3_2020_v2.pdf"
+    },
+    {
+     "date": "2023-09-29",
+     "title": "QA at Mendoza College of Business University of Notre Dame",
+     "n": 7
+    },
+    {
+     "date": "2024-05-03",
+     "title": "Session at The University of Nebraska, Omaha",
+     "n": 9,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b943d0dcb58f8ae79b264_20240620_mohnish_pabrais_session_at_the_university_of_nebraska_omaha_on_may_3_2024_v2.pdf"
+    }
+   ],
+   "docs": 9
+  },
+  {
+   "name": "Cisco",
+   "links": [],
+   "held": "Not held",
+   "status": "Valued in 2000–01, not bought",
+   "when": "Dec 2000 – Jul 2001",
+   "paid": "Said to buy under $7–9 a share.",
+   "value": "Intrinsic value about $15 a share (about $149 billion, Dec 2000, stock at about $38); with a 40% margin of safety, $9. He liked its capital-light model and acquisition engine.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2000-12-31",
+     "title": "The Intrinsic Value of Microsoft, Intel, and Cisco (Ch. 26, Mosaic)",
+     "n": 46,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a5608143b4831a63a107ea6_the_intrinsic_value_of_microsoft_intel_and_cisco.pdf"
+    },
+    {
+     "date": "2015-12-03",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463bd6e15d43ce4825ef4b_20230118_mohnish_pabrais_presentation_at_the_boston_college_carroll_school_of_mgmt_on_dec_3_2015.pdf"
+    },
+    {
+     "date": "2015-12-22",
+     "title": "Talk and QA at the MDI Gurgaon India",
+     "n": 3
+    },
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    }
+   ],
+   "docs": 13
+  },
+  {
+   "name": "CMGI",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding (big win)",
+   "when": "1995–2000",
+   "paid": "Slightly above book value, in the mid-1990s; a $100,000 position (10% of his capital).",
+   "value": "Became about $10 million (about 100x), selling 20–30% below the peak. He later called it a \"fake spawner\".",
+   "text": "",
+   "refs": [
+    {
+     "date": "2014-10-09",
+     "title": "Presentation and Q&A Session at the Boston College",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463b25756b4af583368842_mohnish_pabrais_boston_college_presentation_and_q_a_on_october_9_2014.pdf"
+    },
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2020-10-08",
+     "title": "Session at the Boston College",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463f9e39cc914db687ecd7_mohnish_pabrai%E2%80%99s_lecture_at_the_boston_college__carroll_school_of_management__v2.pdf"
+    },
+    {
+     "date": "2020-12-03",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463feed1e5f2f75a57d2fb_mohnish_pabrai_q_a_at_peking_university__guanghua_school_of_mgmt__on_dec_3_2020_v2.pdf"
+    }
+   ],
+   "docs": 7
   },
   {
    "name": "Coca-Cola",
@@ -897,7 +1234,73 @@
    ],
    "status": "Admired (moat business)",
    "when": "Apr–Aug 2026",
-   "text": "A prime example of a brand moat: he lists it with Costco, Visa, Mastercard and AmEx as businesses you hold unless they become egregiously overpriced, which he says they are not now. He cites it as Berkshire's longest-held stock (since 1988, 38 years) and a model for the buy-and-hold discipline he wants investors to adopt earlier in life. He also contrasts a Coke bottler in Turkey with a Pepsi bottler in India, the same business trading at very different prices."
+   "text": "A prime example of a brand moat: he lists it with Costco, Visa, Mastercard and AmEx as businesses you hold unless they become egregiously overpriced, which he says they are not now. He cites it as Berkshire's longest-held stock (since 1988, 38 years) and a model for the buy-and-hold discipline he wants investors to adopt earlier in life. He also contrasts a Coke bottler in Turkey with a Pepsi bottler in India, the same business trading at very different prices.",
+   "held": "Not held",
+   "paid": "Buffett paid about $6 a share (split-adjusted) in 1987–88, $1.2 billion for about 6% of the company and 25% of Berkshire's book value.",
+   "value": "His 2002 Mosaic article says the whole company could be bought for under $20 billion in 1988 while the brand alone was worth over $100 billion. He notes Coke traded at 40–45x earnings in 2000 and returned under 3% a year from 2000 to 2018. In 2021 he said it is worth more than 15x trailing earnings, maybe 25–30x, and that a purchase at 5x would be a no-brainer.",
+   "refs": [
+    {
+     "date": "2016-05-24",
+     "title": "Session at the University of California, Irvine (UCI)",
+     "n": 187,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c2621f1a58e7cb7e10e_mohnish_pabrai%E2%80%99s_lecture_at_the_university_of_california__irvine__uci__on_may_24__2016_v2.pdf"
+    },
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 29,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2023-12-25",
+     "title": "Presentation and Q&A at FLAME University",
+     "n": 89,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b92c7f49a4628602f90a1_20240212_mohnish_pabrais_presentation_and_q_a_at_the_flame_university_on_december_25_2023.pdf"
+    },
+    {
+     "date": "2024-03-12",
+     "title": "Session with YPO's Mosaic Chapter",
+     "n": 30,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b93b7d6c7f92c88c96c1c_20240409_mohnish_pabrais_session_with_ypo_united_mosaic_on_march_20_2024_v2.pdf"
+    }
+   ],
+   "docs": 77
+  },
+  {
+   "name": "Coca-Cola Icecek (Turkish bottler)",
+   "links": [],
+   "held": "Not stated",
+   "status": "Used as an example",
+   "when": "2023",
+   "value": "The Pakistan bottler was valued at $600 million and Icecek bought 51% for $300 million; he uses it to show how cheap things are in Turkey.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2023-12-25",
+     "title": "Presentation and Q&A at FLAME University",
+     "n": 22,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b92c7f49a4628602f90a1_20240212_mohnish_pabrais_presentation_and_q_a_at_the_flame_university_on_december_25_2023.pdf"
+    }
+   ],
+   "docs": 1
+  },
+  {
+   "name": "Computer Associates",
+   "links": [],
+   "held": "Not held",
+   "status": "Criticized",
+   "when": "Aug 2001",
+   "value": "He said he could not predict its cash flow because booked revenue diverged from cash collected.",
+   "text": "A good business model gone awry: he called its accounting hard to understand.",
+   "refs": [
+    {
+     "date": "2001-08-01",
+     "title": "Computer Associates - A Good Business Model Gone Awry (Ch. 24, Mosaic)",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a5608726bc4cd1886b63f8c_computer_associates_-_a_good_business_model_gone_awry.pdf"
+    }
+   ],
+   "docs": 1
   },
   {
    "name": "CONSOL Energy",
@@ -909,7 +1312,37 @@
    ],
    "status": "Former holding",
    "when": "Mar–May 2026",
-   "text": "His entry into coal. He found it after a post on X noted that David Einhorn's CONSOL bet looked like his own 2003–04 IPSCO trade: the company forward-sold its coal inside a price band, so future cash flows were visible and the risk-reward was favorable. He later switched the thermal-coal bet to metallurgical coal (Alpha and Warrior), which he found even more attractive."
+   "text": "His entry into coal. He found it after a post on X noted that David Einhorn's CONSOL bet looked like his own 2003–04 IPSCO trade: the company forward-sold its coal inside a price band, so future cash flows were visible and the risk-reward was favorable. He later switched the thermal-coal bet to metallurgical coal (Alpha and Warrior), which he found even more attractive.",
+   "held": "Former holding",
+   "paid": "Not stated per share. The company had a market cap near $1.8 billion in early 2024.",
+   "value": "Its coal is forward-sold a year ahead inside a price band, so the cash flow is largely known. It put 100% of discretionary cash flow into buybacks after cancelling the dividend. He compared it to IPSCO.",
+   "refs": [
+    {
+     "date": "2024-02-08",
+     "title": "Session at the SumZero Virtual Investor Summit 2024",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9372924a815a0b068a32_20240308_mohnish_pabrais_session_at_the_sumzero_virtual_investor_summit_2024_on_feb_8_2024_v2.pdf"
+    },
+    {
+     "date": "2024-06-12",
+     "title": "Session with Rotary Bangalore DownTown",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b945dc00560f70f903919_20240709_mohnish_pabrais_session_with_rotary_bangalore_downtown_on_june_19_2024_v3.pdf"
+    },
+    {
+     "date": "2025-01-21",
+     "title": "Interview at MOI Global",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9600324670c95bd2b97c_20250225_mohnish_pabrais_interview_at_the_manual_of_ideas_global_on_january_21_2025_v2.pdf"
+    },
+    {
+     "date": "2026-03-23",
+     "title": "Interview with The Investor's Podcast",
+     "n": 10,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99a459907c751a93ecf7_20260603_mohnish_pabrais_interview_with_the_investors_podcast_on_march_23_2026_v2.pdf"
+    }
+   ],
+   "docs": 6
   },
   {
    "name": "Constellation Software",
@@ -921,7 +1354,37 @@
    ],
    "status": "Current holding",
    "when": "Mar–Aug 2026",
-   "text": "A major position in his Wagons fund and the stock he talks about most. He calls it a rare company, and says that in many ways it is superior to Berkshire: it buys only one kind of business, small vertical software companies, through a delegated model where deal teams can close purchases up to $20 million without approval. He describes a machine reinvesting at about 25% and growing cash flow 20–25% a year, with founder Mark Leonard's culture passed down to the units. It compounded around 35% a year for about 15 years. He says AI fears took the stock \"out back and shot\" and that the market is wrong that cloners can replace this software, and that is when he got interested. He criticizes fund managers who trim it at 10% of the portfolio."
+   "text": "A major position in his Wagons fund and the stock he talks about most. He calls it a rare company, and says that in many ways it is superior to Berkshire: it buys only one kind of business, small vertical software companies, through a delegated model where deal teams can close purchases up to $20 million without approval. He describes a machine reinvesting at about 25% and growing cash flow 20–25% a year, with founder Mark Leonard's culture passed down to the units. It compounded around 35% a year for about 15 years. He says AI fears took the stock \"out back and shot\" and that the market is wrong that cloners can replace this software, and that is when he got interested. He criticizes fund managers who trim it at 10% of the portfolio.",
+   "held": "Current holding",
+   "refs": [
+    {
+     "date": "2022-10-27",
+     "title": "Session at the Boston College (Carroll School of Management) and HBS",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4797f9e754e4499d3bbd9b_mohnish_pabrais_q_a_session_with_students_at_the_boston_college_on_oct_27_2022_v2.pdf"
+    },
+    {
+     "date": "2023-04-25",
+     "title": "Interview at the Investor's Podcast",
+     "n": 14,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e57b23620f6a9867120_20260119_mohnish_pabrais_interview_with_the_investors_podcast_on_april_25_2023_v2.pdf"
+    },
+    {
+     "date": "2026-03-23",
+     "title": "Interview with The Investor's Podcast",
+     "n": 11,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99a459907c751a93ecf7_20260603_mohnish_pabrais_interview_with_the_investors_podcast_on_march_23_2026_v2.pdf"
+    },
+    {
+     "date": "2026-05-05",
+     "title": "Interview with My First Million",
+     "n": 12,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99cc74269ac63cfaf48d_20260625_mohnish_pabrais_interview_with_shaan_puri_at_my_first_million_on_may_5_2026_v3.pdf"
+    }
+   ],
+   "docs": 7,
+   "paid": "Not disclosed.",
+   "value": "He says it compounded about 35% a year for about 15 years and reinvests at about 25%. AI fears knocked the stock down and he thinks the market is wrong about cloners replacing the software; that is when he became interested."
   },
   {
    "name": "Costco",
@@ -933,14 +1396,215 @@
    ],
    "status": "Admired (moat business)",
    "when": "Mar–Jul 2026",
-   "text": "One of the companies he is most fanatical about, citing the trust it earns from customers, employees (paid well above Walmart, with a CEO who started as a forklift operator) and vendors. On price he says Costco has traded around 50x trailing earnings and has never been \"egregiously overpriced,\" so he would not sell it. He cites it as one of several names to hold long term."
+   "text": "One of the companies he is most fanatical about, citing the trust it earns from customers, employees (paid well above Walmart, with a CEO who started as a forklift operator) and vendors. On price he says Costco has traded around 50x trailing earnings and has never been \"egregiously overpriced,\" so he would not sell it. He cites it as one of several names to hold long term.",
+   "held": "Not held",
+   "paid": "Hypothetical only: he says if he had bought at 9x earnings he would hold it at 40x.",
+   "value": "He notes Munger holds it at 40x earnings and that at about 50x trailing earnings it has never been egregiously overpriced, so he would not sell. He would not buy at that level. He likes its 15% markup cap.",
+   "refs": [
+    {
+     "date": "2020-10-08",
+     "title": "Session at the Boston College",
+     "n": 24,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463f9e39cc914db687ecd7_mohnish_pabrai%E2%80%99s_lecture_at_the_boston_college__carroll_school_of_management__v2.pdf"
+    },
+    {
+     "date": "2020-12-03",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 19,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463feed1e5f2f75a57d2fb_mohnish_pabrai_q_a_at_peking_university__guanghua_school_of_mgmt__on_dec_3_2020_v2.pdf"
+    },
+    {
+     "date": "2021-05-12",
+     "title": "QA Session with the Kolkata Value Hunters Club",
+     "n": 20
+    },
+    {
+     "date": "2025-03-27",
+     "title": "Talk with the My First Million podcast",
+     "n": 23,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b96c49160988294e59cbc_20250507_mohnish_pabrais_talk_at_my_first_million_podcast_on_march_27_2025.pdf"
+    }
+   ],
+   "docs": 49
+  },
+  {
+   "name": "Delta Financial",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding (a loss)",
+   "when": "2006–08",
+   "paid": "$50–60 million.",
+   "value": "Went to zero.",
+   "text": "A mortgage lender with sensible underwriting caught short on warehouse lines. His lesson: leverage is the top reason investments fail.",
+   "refs": [
+    {
+     "date": "2013-07-13",
+     "title": "Presentation and Q&A at Indian School of Business",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463a29485588b48252b38b_mohnish_pabrais_presentation_and_q_a_at_the_indian_school_of_business_on_july_13_2013.pdf"
+    },
+    {
+     "date": "2016-05-24",
+     "title": "Session at the University of California, Irvine (UCI)",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c2621f1a58e7cb7e10e_mohnish_pabrai%E2%80%99s_lecture_at_the_university_of_california__irvine__uci__on_may_24__2016_v2.pdf"
+    },
+    {
+     "date": "2017-12-22",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463d0df4b348cccbd2a46d_mohnish_pabrai_lecture_at_peking_university__guanghua_school_of_mgmt__on_dec_22_2017_v2.pdf"
+    },
+    {
+     "date": "2021-03-04",
+     "title": "Session at Georgetown University",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a46406e95afd154764c3110_mohnish_pabrais_qa_session_at_st_georgetown_univ_march_4_2021.pdf"
+    }
+   ],
+   "docs": 7
+  },
+  {
+   "name": "Disney",
+   "links": [],
+   "held": "Not held",
+   "status": "Not held",
+   "when": "2015–26",
+   "value": "Cited at 82x earnings in 1972 as Nifty 50 froth.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2015-12-03",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463bd6e15d43ce4825ef4b_20230118_mohnish_pabrais_presentation_at_the_boston_college_carroll_school_of_mgmt_on_dec_3_2015.pdf"
+    },
+    {
+     "date": "2024-05-03",
+     "title": "Session at The University of Nebraska, Omaha",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b943d0dcb58f8ae79b264_20240620_mohnish_pabrais_session_at_the_university_of_nebraska_omaha_on_may_3_2024_v2.pdf"
+    },
+    {
+     "date": "2024-09-24",
+     "title": "Podcast with Kevin (Age 10) and Justin (Age 6)",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b94df977364687597c0d6_20241008_mohnish_pabrais_session_at_the_kevin_justin_fin_podcast_on_september_24_2024.pdf"
+    },
+    {
+     "date": "2026-05-05",
+     "title": "Interview with My First Million",
+     "n": 6,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99cc74269ac63cfaf48d_20260625_mohnish_pabrais_interview_with_shaan_puri_at_my_first_million_on_may_5_2026_v3.pdf"
+    }
+   ],
+   "docs": 15
   },
   {
    "name": "DMart (Avenue Supermarts)",
    "links": [],
    "status": "Admired, priced too high",
    "when": "Various",
-   "text": "Sees it as a very good model in the Costco and Aldi mold, but says it is priced to perfection."
+   "text": "Sees it as a very good model in the Costco and Aldi mold, but says it is priced to perfection.",
+   "held": "Not stated",
+   "refs": [
+    {
+     "date": "2022-06-16",
+     "title": "Session at the Narsee Monjee Institute of Management Studies, Mumbai",
+     "n": 9,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4795dc022a55787cc057d8_mohnish_pabrai_lecture_on_approaches_to_value_investing_at_narsee_monjee_on_june_16_2022.pdf"
+    },
+    {
+     "date": "2022-12-23",
+     "title": "QA Session with students at JNV Bangalore Rural",
+     "n": 3
+    },
+    {
+     "date": "2025-04-22",
+     "title": "Session with Ashoka Investment Club",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b96e79b86b5bc60bdd825_20250514_mohnish_pabrais_session_with_ashoka_investment_club_on_april_22_2025_v2.pdf"
+    },
+    {
+     "date": "2026-10-22",
+     "title": "Interview with CNBC TV18",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6aeb5d7d8b685c3cf44b223f_20261102%20Mohnish%20Pabrai%27s%20Interview%20with%20CNBC%20TV18%20on%20October%2022%2C%202026.pdf"
+    }
+   ],
+   "docs": 5,
+   "value": "No number; he says it is priced to perfection."
+  },
+  {
+   "name": "Facebook (Meta)",
+   "links": [],
+   "held": "Not held",
+   "status": "Not held",
+   "when": "2015",
+   "value": "In 2015 he named it at 95x earnings as an example of the frothy tech valuations then.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2023-07-28",
+     "title": "Interview at the Meb Faber Show",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a47a0d13753097db49a12e9_mohnish_pabrais_interview_at_the_meb_faber_show_on_july_28_2023.pdf"
+    },
+    {
+     "date": "2024-02-08",
+     "title": "Session at the SumZero Virtual Investor Summit 2024",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9372924a815a0b068a32_20240308_mohnish_pabrais_session_at_the_sumzero_virtual_investor_summit_2024_on_feb_8_2024_v2.pdf"
+    },
+    {
+     "date": "2025-01-21",
+     "title": "Interview at MOI Global",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9600324670c95bd2b97c_20250225_mohnish_pabrais_interview_at_the_manual_of_ideas_global_on_january_21_2025_v2.pdf"
+    },
+    {
+     "date": "2025-06-10",
+     "title": "Session with SumZero",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b97667e7e01d646f392b2_20250630_mohnish_pabrais_session_with_sumzero_on_june_10_2025_final.pdf"
+    }
+   ],
+   "docs": 42
+  },
+  {
+   "name": "Fairfax Financial",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding",
+   "when": "2008",
+   "paid": "Not stated.",
+   "value": "Held in 2008 for its large equity puts and CDS, then sold after a big gain.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2013-11-19",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463aa7af31597e8fcb58b2_mohnish_pabrais_presentation_and_q_a_at_the_boston_college_v2.pdf"
+    },
+    {
+     "date": "2014-10-09",
+     "title": "Presentation and Q&A Session at the Boston College",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463b25756b4af583368842_mohnish_pabrais_boston_college_presentation_and_q_a_on_october_9_2014.pdf"
+    },
+    {
+     "date": "2020-04-07",
+     "title": "QA Session with Francis Chou at Harvard",
+     "n": 4
+    },
+    {
+     "date": "2021-11-18",
+     "title": "QA Session with students at the University of Georgia",
+     "n": 3
+    }
+   ],
+   "docs": 8
   },
   {
    "name": "Ferrari",
@@ -952,14 +1616,71 @@
    ],
    "status": "Former holding (a regret)",
    "when": "Apr–Aug 2026",
-   "text": "His fund once owned nearly 1% of the company, bought for about $6–10 million, an effective market value of under $1 billion at the time. He says it should never have been sold: a moat that everyone can see, models sold out within ten minutes, and around 80% margins on cars that sell for millions. He calls selling it an example of interrupting compounding unnecessarily."
+   "text": "His fund once owned nearly 1% of the company, bought for about $6–10 million, an effective market value of under $1 billion at the time. He says it should never have been sold: a moat that everyone can see, models sold out within ten minutes, and around 80% margins on cars that sell for millions. He calls selling it an example of interrupting compounding unnecessarily.",
+   "held": "Former holding",
+   "paid": "About $13 a share in 2012 (through Fiat Chrysler), roughly 1% of the company for about $6–10 million, an effective market value under $1 billion.",
+   "value": "At the IPO ($40–45) he thought it worth $50–60. It has since traded far higher (about $270 in 2022, market cap about $50 billion). In 2023 he said $20 million of his $60 million Fiat position was Ferrari and that he collected about $150 million.",
+   "refs": [
+    {
+     "date": "2019-11-07",
+     "title": "Session at the Boston College (Carroll School of Management)",
+     "n": 20,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463e42f38bfb12c942c56c_mohnish_pabrai_lecture_at_boston_college__carroll_school_of_mgmt__v2.pdf"
+    },
+    {
+     "date": "2022-04-04",
+     "title": "QA at Harvard Business School Investment Conference",
+     "n": 15
+    },
+    {
+     "date": "2023-12-25",
+     "title": "Presentation and Q&A at FLAME University",
+     "n": 40,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b92c7f49a4628602f90a1_20240212_mohnish_pabrais_presentation_and_q_a_at_the_flame_university_on_december_25_2023.pdf"
+    },
+    {
+     "date": "2025-05-02",
+     "title": "Sessions at UNO (May 2, 2025) and Columbia Business School (March 25, 2025)",
+     "n": 17,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b973f9b86b5bc60be0964_20250611_mohnish_pabrais_sessions_at_uno_on_may_2_2025_and_CBS_on_march_25_2025_v2.pdf"
+    }
+   ],
+   "docs": 30
   },
   {
    "name": "Fiat Chrysler",
    "links": [],
    "status": "Former holding",
    "when": "2012 onward",
-   "text": "Owned from 2012 at under $5 a share. He describes it as another \"P/E of one\" situation like IPSCO: a business priced as if it were nearly worthless, with little downside. The position grew roughly 7-8x by 2018, and Ferrari came out of it as a spin-off. At one point it was a 10% position."
+   "text": "Owned from 2012 at under $5 a share. He describes it as another \"P/E of one\" situation like IPSCO: a business priced as if it were nearly worthless, with little downside. The position grew roughly 7-8x by 2018, and Ferrari came out of it as a spin-off. At one point it was a 10% position.",
+   "held": "Former holding",
+   "paid": "Under $5 a share in 2012. Pabrai Funds bought almost 12 million shares (about 1% of the company, about $60 million). Guy Spier bought 2 million at about $5.",
+   "value": "In Nov 2016 the market cap was about $9 billion and the stock under $7, while the company guided to 2018 earnings above $5.50 a share. Ferrari was about $5 billion of the value. The position rose roughly 7–8x by 2018.",
+   "refs": [
+    {
+     "date": "2018-10-12",
+     "title": "The Ten Commandments of Investment Management",
+     "n": 24,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463d7a18ff44f9cde0641c_the_ten_commandments_of_investment_management_v2.pdf"
+    },
+    {
+     "date": "2019-05-01",
+     "title": "QA Session at the Peking University Guanghua School of Management",
+     "n": 23
+    },
+    {
+     "date": "2019-11-07",
+     "title": "Session at the Boston College (Carroll School of Management)",
+     "n": 29,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463e42f38bfb12c942c56c_mohnish_pabrai_lecture_at_boston_college__carroll_school_of_mgmt__v2.pdf"
+    },
+    {
+     "date": "2023-02-28",
+     "title": "QA session with students at the University of Texas",
+     "n": 20
+    }
+   ],
+   "docs": 31
   },
   {
    "name": "Frontline",
@@ -971,7 +1692,108 @@
    ],
    "status": "Former holding (a regret)",
    "when": "Mar 2026",
-   "text": "His 2002 tanker investment, bought with little downside. He doubled his money, sold, and watched it rise about 200x. On a visit to its Oslo headquarters he realized he had once owned 2% of the whole thing. It is his standing cautionary tale about selling a great business too early, and he sees similarities to the metallurgical coal thesis."
+   "text": "His 2002 tanker investment, bought with little downside. He doubled his money, sold, and watched it rise about 200x. On a visit to its Oslo headquarters he realized he had once owned 2% of the whole thing. It is his standing cautionary tale about selling a great business too early, and he sees similarities to the metallurgical coal thesis.",
+   "held": "Former holding",
+   "paid": "About $6 a share in 2002, above liquidation value, when tanker rates were $5,000–10,000 a day.",
+   "value": "He sold at about $9 for the quick gain. In 2016 he put the missed gain at about 30–35x ($6 to $160 with dividends and the Ship Finance spin-off); in 2026 he cites about 200x.",
+   "refs": [
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 17,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2021-04-01",
+     "title": "Session with students at Indiana Univ. Kelley School of Business",
+     "n": 12,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4640d72e76ad0a8085d6de_mohnish_pabrais_q_a_session_at_indiana_university_kelly_school_of_business_on_april_1_2021_v2.pdf"
+    },
+    {
+     "date": "2025-03-27",
+     "title": "Talk with the My First Million podcast",
+     "n": 14,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b96c49160988294e59cbc_20250507_mohnish_pabrais_talk_at_my_first_million_podcast_on_march_27_2025.pdf"
+    },
+    {
+     "date": "2026-03-23",
+     "title": "Interview with The Investor's Podcast",
+     "n": 12,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99a459907c751a93ecf7_20260603_mohnish_pabrais_interview_with_the_investors_podcast_on_march_23_2026_v2.pdf"
+    }
+   ],
+   "docs": 9
+  },
+  {
+   "name": "Geico",
+   "links": [],
+   "held": "Not held",
+   "status": "Not held",
+   "when": "2016–24",
+   "value": "He lists Geico with Amazon and Costco as an example of a business to keep, and as one of Buffett's great decisions.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2016-05-24",
+     "title": "Session at the University of California, Irvine (UCI)",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c2621f1a58e7cb7e10e_mohnish_pabrai%E2%80%99s_lecture_at_the_university_of_california__irvine__uci__on_may_24__2016_v2.pdf"
+    },
+    {
+     "date": "2021-11-18",
+     "title": "QA Session with students at the University of Georgia",
+     "n": 13
+    },
+    {
+     "date": "2023-05-05",
+     "title": "Presentation and Q&A at the University of Nebraska, Omaha",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e9f03549021968134ac_mohnish_pabrais_presentation_and_q_a_at_the_university_of_omaha_on_may_5_2023.pdf"
+    },
+    {
+     "date": "2023-10-10",
+     "title": "Conversation at Schroders, The Value Perspective podcast",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b91de924a815a0b05a057_20231206_mohnish_pabrais_conversation_at_schroders_the_value_perspective_podcast_on_oct_10_2023.pdf"
+    }
+   ],
+   "docs": 23
+  },
+  {
+   "name": "General Motors",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding",
+   "when": "2012–13",
+   "paid": "Bought alongside Fiat.",
+   "value": "Made 40–50% over several years and sold, preferring Sergio Marchionne's leadership at Fiat.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2013-11-19",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 18,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463aa7af31597e8fcb58b2_mohnish_pabrais_presentation_and_q_a_at_the_boston_college_v2.pdf"
+    },
+    {
+     "date": "2016-05-24",
+     "title": "Session at the University of California, Irvine (UCI)",
+     "n": 11,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c2621f1a58e7cb7e10e_mohnish_pabrai%E2%80%99s_lecture_at_the_university_of_california__irvine__uci__on_may_24__2016_v2.pdf"
+    },
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 14,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2023-09-29",
+     "title": "QA at Mendoza College of Business University of Notre Dame",
+     "n": 11
+    }
+   ],
+   "docs": 23
   },
   {
    "name": "Goldman Sachs",
@@ -983,7 +1805,158 @@
    ],
    "status": "Former holding (a regret)",
    "when": "Apr–May 2026",
-   "text": "He bought it during the financial crisis at about $65 a share, half of what Buffett paid ($130), then sold. He lists it with Ferrari and Progressive as part of the pie he dropped on the way back from the counter, a position that should have been kept."
+   "text": "He bought it during the financial crisis at about $65 a share, half of what Buffett paid ($130), then sold. He lists it with Ferrari and Progressive as part of the pie he dropped on the way back from the counter, a position that should have been kept.",
+   "held": "Former holding",
+   "paid": "About $65 a share in the financial crisis (Buffett paid $130).",
+   "value": "Sold at a good gain, which he now calls a mistake.",
+   "refs": [
+    {
+     "date": "2002-03-11",
+     "title": "Yes But I Like to Punt! (Ch. 17, Mosaic)",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a560a4a062599497d775435_yes_but_i_like_to_punt_.pdf"
+    },
+    {
+     "date": "2015-12-03",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463bd6e15d43ce4825ef4b_20230118_mohnish_pabrais_presentation_at_the_boston_college_carroll_school_of_mgmt_on_dec_3_2015.pdf"
+    },
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2024-01-30",
+     "title": "QA at London School of Economics",
+     "n": 2
+    }
+   ],
+   "docs": 15
+  },
+  {
+   "name": "GrafTech",
+   "links": [],
+   "held": "Current holding",
+   "status": "Holding (as of 2019–21)",
+   "when": "2019–2021",
+   "paid": "Current price was close to his purchase price in 2019.",
+   "value": "A dominant electrode maker with much of its output sold under take-or-pay contracts. By May 2021 he said he had less interest in it than when he invested.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2019-11-07",
+     "title": "Session at the Boston College (Carroll School of Management)",
+     "n": 30,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463e42f38bfb12c942c56c_mohnish_pabrai_lecture_at_boston_college__carroll_school_of_mgmt__v2.pdf"
+    },
+    {
+     "date": "2021-05-19",
+     "title": "QA with MBA Students at the London Business School LBS",
+     "n": 11
+    }
+   ],
+   "docs": 2
+  },
+  {
+   "name": "Horsehead Holdings",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding (a loss)",
+   "when": "",
+   "paid": "A significant position; amount not stated.",
+   "value": "Went to zero.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2019-11-07",
+     "title": "Session at the Boston College (Carroll School of Management)",
+     "n": 6,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463e42f38bfb12c942c56c_mohnish_pabrai_lecture_at_boston_college__carroll_school_of_mgmt__v2.pdf"
+    },
+    {
+     "date": "2023-12-25",
+     "title": "Presentation and Q&A at FLAME University",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b92c7f49a4628602f90a1_20240212_mohnish_pabrais_presentation_and_q_a_at_the_flame_university_on_december_25_2023.pdf"
+    }
+   ],
+   "docs": 2
+  },
+  {
+   "name": "Infosys",
+   "links": [],
+   "held": "Not held",
+   "status": "Valued in 2001, not bought",
+   "when": "Dec 2001",
+   "paid": "Never bought. He said buy at $11 or less.",
+   "value": "Intrinsic value $21.40 a share (the stock was about $48). A 50% margin of safety gives $11; for a 30% return, $5, about a tenth of the then price.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2001-12-01",
+     "title": "Is it time to buy Infosys? (Ch. 20, Mosaic)",
+     "n": 23,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a5609bf46de6447d285819d_is_it_time_to_buy_infosys.pdf"
+    },
+    {
+     "date": "2013-07-13",
+     "title": "Presentation and Q&A at Indian School of Business",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463a29485588b48252b38b_mohnish_pabrais_presentation_and_q_a_at_the_indian_school_of_business_on_july_13_2013.pdf"
+    },
+    {
+     "date": "2022-06-16",
+     "title": "Session at the Narsee Monjee Institute of Management Studies, Mumbai",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4795dc022a55787cc057d8_mohnish_pabrai_lecture_on_approaches_to_value_investing_at_narsee_monjee_on_june_16_2022.pdf"
+    },
+    {
+     "date": "2025-02-15",
+     "title": "Interview at The Money Mindset with Sonia Shenoy",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b966f6ff4f2bb45903d3a_20250421_mohnish_pabrais_interview_at_the_money_mindset_on_february_15_2025.pdf"
+    }
+   ],
+   "docs": 6
+  },
+  {
+   "name": "Intel",
+   "links": [],
+   "held": "Not held",
+   "status": "Valued in 2000–01, not bought",
+   "when": "Dec 2000 – Jul 2001",
+   "paid": "Said to buy under $7–8 a share.",
+   "value": "Intrinsic value $11.85 a share (Dec 2000, stock at about $31, market cap about $210 billion); with a 40% margin of safety, about $7. He expected 2005 free cash flow of $12.4 billion.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2000-12-31",
+     "title": "The Intrinsic Value of Microsoft, Intel, and Cisco (Ch. 26, Mosaic)",
+     "n": 32,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a5608143b4831a63a107ea6_the_intrinsic_value_of_microsoft_intel_and_cisco.pdf"
+    },
+    {
+     "date": "2014-02-24",
+     "title": "Talk at TiE SoCal (Irvine, CA) on Marketing & Branding",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463adad1e5f2f75a5479eb_20230118_mohnish_pabrai_talk_at_tie_socal__irvine__ca__on_marketing___branding_on_feb_24_2014_v2.pdf"
+    },
+    {
+     "date": "2021-10-26",
+     "title": "QA Session with students at the William  Mary College",
+     "n": 2
+    },
+    {
+     "date": "2022-10-27",
+     "title": "Session at the Boston College (Carroll School of Management) and HBS",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4797f9e754e4499d3bbd9b_mohnish_pabrais_q_a_session_with_students_at_the_boston_college_on_oct_27_2022_v2.pdf"
+    }
+   ],
+   "docs": 9
   },
   {
    "name": "IPSCO",
@@ -995,7 +1968,37 @@
    ],
    "status": "Former holding (his template)",
    "when": "Mar–May 2026",
-   "text": "The Canadian steel company he bought in 2003–04 with about $15 a share in cash, a $40 stock price and guidance for $15 a year in free cash flow for two years, which made the plant and inventory effectively free. He put about 10% of the fund into it and sold after a Swedish buyer offered $160 and the stock hit $155. He treats it as the model for a no-downside bet and a reference point for later ideas like CONSOL."
+   "text": "The Canadian steel company he bought in 2003–04 with about $15 a share in cash, a $40 stock price and guidance for $15 a year in free cash flow for two years, which made the plant and inventory effectively free. He put about 10% of the fund into it and sold after a Swedish buyer offered $160 and the stock hit $155. He treats it as the model for a no-downside bet and a reference point for later ideas like CONSOL.",
+   "held": "Former holding",
+   "paid": "About $40 a share in 2003–04, with 10% of the fund.",
+   "value": "It had $15 a share in cash and guidance for $15 a share of free cash flow in each of the next two years, so about $45 in cash within two years against a $40 price. Third-year guidance of another $15 brought the cash to $60. He sold when a Swedish buyer offered $160 and the stock hit $155. He calls it a \"P/E of one\".",
+   "refs": [
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 12,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2019-11-07",
+     "title": "Session at the Boston College (Carroll School of Management)",
+     "n": 17,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463e42f38bfb12c942c56c_mohnish_pabrai_lecture_at_boston_college__carroll_school_of_mgmt__v2.pdf"
+    },
+    {
+     "date": "2024-02-14",
+     "title": "Session with Columbia Business School (CSIMA)",
+     "n": 16,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9395a2c8994aa34c9312_20240307_mohnish_pabrais_session_with_columbia_business_school__csima__on_february_14_2024.pdf"
+    },
+    {
+     "date": "2024-05-03",
+     "title": "Session at The University of Nebraska, Omaha",
+     "n": 14,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b943d0dcb58f8ae79b264_20240620_mohnish_pabrais_session_at_the_university_of_nebraska_omaha_on_may_3_2024_v2.pdf"
+    }
+   ],
+   "docs": 21
   },
   {
    "name": "Kaspi.kz",
@@ -1007,14 +2010,169 @@
    ],
    "status": "Current holding (newer)",
    "when": "Jul–Aug 2026",
-   "text": "One of his most recent investments: a Nasdaq-listed Kazakh \"super app\" he compares to WeChat, with about 15 million users out of roughly 20 million people and around $2 billion a year in cash flow. A rockstar CEO who owns about 40–43% turned a failing bank into a fintech, and is now copying the playbook in Turkey. He says he isn't paying much for a tech business with a simple thesis, and that there is a \"moonshot\" element, with the outcome unknown but the manager's record exceptional. He tells students to read the Harvard Business School case studies on its founder."
+   "text": "One of his most recent investments: a Nasdaq-listed Kazakh \"super app\" he compares to WeChat, with about 15 million users out of roughly 20 million people and around $2 billion a year in cash flow. A rockstar CEO who owns about 40–43% turned a failing bank into a fintech, and is now copying the playbook in Turkey. He says he isn't paying much for a tech business with a simple thesis, and that there is a \"moonshot\" element, with the outcome unknown but the manager's record exceptional. He tells students to read the Harvard Business School case studies on its founder.",
+   "held": "Current holding",
+   "paid": "Not disclosed.",
+   "value": "About $2 billion a year in cash flow; founders own about 40–44%. He says he isn't paying much and that it is a moonshot bet on an exceptional manager.",
+   "refs": [
+    {
+     "date": "2026-07-21",
+     "title": "Interview with New Money",
+     "n": 15,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a8fecf911c6f0666682170e_20260819%20Mohnish%20Pabrai%27s%20Interview%20with%20New%20Money%20on%20July%2021%2C%202026.pdf"
+    },
+    {
+     "date": "2026-08-25",
+     "title": "Session with Copenhagen Business School Investment Club",
+     "n": 10,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6aa12b39b075dd148c1d96e7_20260903%20Mohnish%20Pabrai%27s%20Session%20with%20Copenhagen%20Business%20School%20on%20August%2025%2C%202026.pdf"
+    }
+   ],
+   "docs": 2
+  },
+  {
+   "name": "Kodak, Xerox and Polaroid",
+   "links": [],
+   "held": "Not held",
+   "status": "Cautionary",
+   "when": "2015–26",
+   "value": "Nifty 50 names that he says \"went to zero\" in his thought experiment.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2001-12-01",
+     "title": "Is it time to buy Infosys? (Ch. 20, Mosaic)",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a5609bf46de6447d285819d_is_it_time_to_buy_infosys.pdf"
+    },
+    {
+     "date": "2015-12-03",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 10,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463bd6e15d43ce4825ef4b_20230118_mohnish_pabrais_presentation_at_the_boston_college_carroll_school_of_mgmt_on_dec_3_2015.pdf"
+    },
+    {
+     "date": "2023-05-05",
+     "title": "Presentation and Q&A at the University of Nebraska, Omaha",
+     "n": 6,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e9f03549021968134ac_mohnish_pabrais_presentation_and_q_a_at_the_university_of_omaha_on_may_5_2023.pdf"
+    },
+    {
+     "date": "2025-04-22",
+     "title": "Session with Ashoka Investment Club",
+     "n": 6,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b96e79b86b5bc60bdd825_20250514_mohnish_pabrais_session_with_ashoka_investment_club_on_april_22_2025_v2.pdf"
+    }
+   ],
+   "docs": 17
+  },
+  {
+   "name": "Kotak Mahindra",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding (a regret)",
+   "when": "1995–2000",
+   "paid": "A small investment in 1995.",
+   "value": "Sold in 2000 for almost no gain; he says it later went up 350–500x.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2020-12-03",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463feed1e5f2f75a57d2fb_mohnish_pabrai_q_a_at_peking_university__guanghua_school_of_mgmt__on_dec_3_2020_v2.pdf"
+    },
+    {
+     "date": "2022-06-01",
+     "title": "FINSEC Dialog Conversation with Mohnish Pabrai",
+     "n": 10,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4795b42a4d5cf1031c558a_finsec_dialog_conversation_with_mohnish_pabrai.pdf"
+    },
+    {
+     "date": "2023-04-11",
+     "title": "Interview at the mint-Equitymaster Investor Hour",
+     "n": 14,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e3719c4c5fe0f493cab_mohnish_pabrais_interview_at_mint-equitymaster_investor_hour_on_april_11_2023.pdf"
+    },
+    {
+     "date": "2025-04-22",
+     "title": "Session with Ashoka Investment Club",
+     "n": 12,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b96e79b86b5bc60bdd825_20250514_mohnish_pabrais_session_with_ashoka_investment_club_on_april_22_2025_v2.pdf"
+    }
+   ],
+   "docs": 10
   },
   {
    "name": "Kweichow Moutai",
    "links": [],
-   "status": "Held",
-   "when": "2019",
-   "text": "Cited as a company with a clear, strong moat, and one he bought. He says it was bought at about half of what he thought it was worth."
+   "status": "Former holding (a regret)",
+   "when": "Various",
+   "text": "He bought it, sold after about a 5–6x gain when Li Lu told him he was selling, and says it should have been held forever. He had no other China idea he liked.",
+   "held": "Former holding",
+   "paid": "Under 150 RMB a share, about four or five years before 2019 (roughly 2014–15).",
+   "value": "He sold at about 5–6x after Li Lu said he was selling (around 2017–18); the stock later more than doubled again and reached about 1,200 RMB by 2019. He values it on a bottle costing under $2 selling for about $1,400, a 99.9% operating margin.",
+   "refs": [
+    {
+     "date": "2017-12-22",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 24,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463d0df4b348cccbd2a46d_mohnish_pabrai_lecture_at_peking_university__guanghua_school_of_mgmt__on_dec_22_2017_v2.pdf"
+    },
+    {
+     "date": "2019-11-07",
+     "title": "Session at the Boston College (Carroll School of Management)",
+     "n": 26,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463e42f38bfb12c942c56c_mohnish_pabrai_lecture_at_boston_college__carroll_school_of_mgmt__v2.pdf"
+    },
+    {
+     "date": "2023-03-03",
+     "title": "QA session with students at the Rotman School of Management",
+     "n": 17
+    },
+    {
+     "date": "2023-06-28",
+     "title": "Interview with Weekly on Stocks",
+     "n": 22,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a47a0a00354902196825af8_mohnish_pabrais_interview_with_weekly_on_stocks_on_june_28_2023.pdf"
+    }
+   ],
+   "docs": 12
+  },
+  {
+   "name": "McDonald's",
+   "links": [],
+   "held": "Not held",
+   "status": "Not held",
+   "when": "2013–2026",
+   "value": "He uses a McDonald's franchise to illustrate valuing a business, and cites its 86x earnings in 1972 as Nifty 50 froth.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2013-07-13",
+     "title": "Presentation and Q&A at Indian School of Business",
+     "n": 15,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463a29485588b48252b38b_mohnish_pabrais_presentation_and_q_a_at_the_indian_school_of_business_on_july_13_2013.pdf"
+    },
+    {
+     "date": "2015-12-22",
+     "title": "Talk and QA at the MDI Gurgaon India",
+     "n": 6
+    },
+    {
+     "date": "2020-12-03",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 11,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463feed1e5f2f75a57d2fb_mohnish_pabrai_q_a_at_peking_university__guanghua_school_of_mgmt__on_dec_3_2020_v2.pdf"
+    },
+    {
+     "date": "2022-06-16",
+     "title": "Session at the Narsee Monjee Institute of Management Studies, Mumbai",
+     "n": 24,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4795dc022a55787cc057d8_mohnish_pabrai_lecture_on_approaches_to_value_investing_at_narsee_monjee_on_june_16_2022.pdf"
+    }
+   ],
+   "docs": 42
   },
   {
    "name": "Micron",
@@ -1026,14 +2184,107 @@
    ],
    "status": "Former holding",
    "when": "Mar–Oct 2026",
-   "text": "Owned from about 2017 to 2023 alongside Li Lu, who manages some of Charlie Munger's money. He sold after roughly a double (a low-teens annual return) when the three-player memory oligopoly of Samsung, SK Hynix and Micron turned into a price war, and he says he does not regret that decision. But he still likes the business, a protected oligopoly with very high barriers, and calls Micron the best of the three, with good governance and management. He also says AI builders have to pass through toll bridges like TSMC, ASML and Micron, but he has no new position because they are outside his circle of competence or too expensive."
+   "text": "Owned from about 2017 to 2023 alongside Li Lu, who manages some of Charlie Munger's money. He sold after roughly a double (a low-teens annual return) when the three-player memory oligopoly of Samsung, SK Hynix and Micron turned into a price war, and he says he does not regret that decision. But he still likes the business, a protected oligopoly with very high barriers, and calls Micron the best of the three, with good governance and management. He also says AI builders have to pass through toll bridges like TSMC, ASML and Micron, but he has no new position because they are outside his circle of competence or too expensive.",
+   "held": "Former holding",
+   "paid": "Owned 2017–2023 (his biggest position at one point); he sold at about a double.",
+   "value": "His thesis was industry size: memory revenue of about $150 billion rising to about $300 billion, with Micron at $75–100 billion of revenue and $20–30 billion of cash flow. He says he does not regret the sale.",
+   "refs": [
+    {
+     "date": "2019-11-07",
+     "title": "Session at the Boston College (Carroll School of Management)",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463e42f38bfb12c942c56c_mohnish_pabrai_lecture_at_boston_college__carroll_school_of_mgmt__v2.pdf"
+    },
+    {
+     "date": "2022-11-08",
+     "title": "QA Session with students at the William  Mary College",
+     "n": 21
+    },
+    {
+     "date": "2026-08-19",
+     "title": "Interview with Knowledge Inside podcast, Episode 1",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6ac3f477dc28413ffe31abd4_20260930%20Mohnish%20Pabrai%27s%20Interview%20with%20Knowledge%20Inside%20on%20August%2019%2C%202026%20-%20Episode%201.pdf"
+    },
+    {
+     "date": "2026-08-25",
+     "title": "Session with Copenhagen Business School Investment Club",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6aa12b39b075dd148c1d96e7_20260903%20Mohnish%20Pabrai%27s%20Session%20with%20Copenhagen%20Business%20School%20on%20August%2025%2C%202026.pdf"
+    }
+   ],
+   "docs": 17
+  },
+  {
+   "name": "Microsoft",
+   "links": [],
+   "held": "Not held",
+   "status": "Never owned; valued in 2000–03",
+   "when": "Dec 2000 – Jan 2003",
+   "paid": "Never bought. He said to buy under $13 a share (Jul 2001).",
+   "value": "Dec 2000 intrinsic value: $23 a share (market cap $235 billion at about $70). To earn 20% a year to 2005 the market cap would need to exceed $600 billion. In 2003 he called Microsoft \"fragile\" because 68% of revenue and 107% of operating profit came from Windows and Office.",
+   "text": "Microsoft is the example in his intrinsic-value articles: a great business bought at too high a price is not an investment. He also says Bill Gates wishes he had kept his Microsoft stock.",
+   "refs": [
+    {
+     "date": "2000-12-31",
+     "title": "The Intrinsic Value of Microsoft, Intel, and Cisco (Ch. 26, Mosaic)",
+     "n": 40,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a5608143b4831a63a107ea6_the_intrinsic_value_of_microsoft_intel_and_cisco.pdf"
+    },
+    {
+     "date": "2001-07-01",
+     "title": "Intrinsic Value (Ch. 25, Mosaic)",
+     "n": 27,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a560845f58a1589b671c008_intrinsic_value.pdf"
+    },
+    {
+     "date": "2024-11-15",
+     "title": "Guest Lecture at Microsoft",
+     "n": 39,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9629fa5d6e03f544f9ce_20250122_mohnish_pabrais_guest_lecture_with_microsoft_on_november_15_2024.pdf"
+    },
+    {
+     "date": "2025-05-02",
+     "title": "Sessions at UNO (May 2, 2025) and Columbia Business School (March 25, 2025)",
+     "n": 33,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b973f9b86b5bc60be0964_20250611_mohnish_pabrais_sessions_at_uno_on_may_2_2025_and_CBS_on_march_25_2025_v2.pdf"
+    }
+   ],
+   "docs": 77
   },
   {
    "name": "Motherson Sumi",
    "links": [],
    "status": "Admired",
    "when": "2019",
-   "text": "Cited alongside Mastercard and Moutai as a business with a real moat, and he speaks warmly of its CEO."
+   "text": "Cited alongside Mastercard and Moutai as a business with a real moat, and he speaks warmly of its CEO.",
+   "held": "Not stated",
+   "value": "In May 2019 he noted a $6.6 billion market value and trailing P/E of 27, and 30% a year since its IPO. He admires the CEO Chaand, who forecasts revenue years ahead.",
+   "refs": [
+    {
+     "date": "2018-10-24",
+     "title": "Keynote Speech at Annual Morningstar India Conference",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463da1907d1a90a2eda18d_mohnish_pabrai_at_annual_morningstar_india_conference_on_oct_24_2018_v2.pdf"
+    },
+    {
+     "date": "2019-05-01",
+     "title": "QA Session at the Peking University Guanghua School of Management",
+     "n": 43
+    },
+    {
+     "date": "2019-11-07",
+     "title": "Session at the Boston College (Carroll School of Management)",
+     "n": 6,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463e42f38bfb12c942c56c_mohnish_pabrai_lecture_at_boston_college__carroll_school_of_mgmt__v2.pdf"
+    },
+    {
+     "date": "2023-05-10",
+     "title": "QA session with the Finance Club of IIT Patna",
+     "n": 2
+    }
+   ],
+   "docs": 4
   },
   {
    "name": "Naspers / Prosus (Tencent)",
@@ -1043,9 +2294,107 @@
      "sym": "TCEHY"
     }
    ],
-   "status": "Holding (via Prosus), admired",
+   "status": "Holding via Prosus (as of 2023)",
    "when": "2021, 2023",
-   "text": "Admires Naspers' roughly $32 million stake in Tencent in 2001 and Koos Bekker's decision to hold it. As of 2023 he says the Pabrai Funds own Prosus, which is effectively Tencent, and have only a tiny amount of Alibaba left, which he calls a mistake. He calls Tencent \"very remarkable\" but notes it is now a mega-cap with uncertainty over the Chinese government. In 2021 he said Tencent at about $700 billion was deeply undervalued."
+   "text": "Admires Naspers' roughly $32 million stake in Tencent in 2001 and Koos Bekker's decision to hold it. As of 2023 he says the Pabrai Funds own Prosus, which is effectively Tencent, and have only a tiny amount of Alibaba left, which he calls a mistake. He calls Tencent \"very remarkable\" but notes it is now a mega-cap with uncertainty over the Chinese government. In 2021 he said Tencent at about $700 billion was deeply undervalued.",
+   "held": "Current holding",
+   "paid": "Naspers paid about $32 million for its Tencent stake in 2001. Pabrai Funds' cost not stated.",
+   "value": "In 2021 he said Tencent at about $700 billion was deeply undervalued, and he liked buying it through Prosus at a holding-company discount. By 2023 he called it a mega-cap with government risk.",
+   "refs": [
+    {
+     "date": "2021-05-12",
+     "title": "QA Session with the Kolkata Value Hunters Club",
+     "n": 21
+    },
+    {
+     "date": "2021-10-14",
+     "title": "Session at the Boston College",
+     "n": 62,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4641bb591535098c9f1a98_mohnish_pabrai%E2%80%99s_lecture_at_boston_college_on_october_14_2021.pdf"
+    },
+    {
+     "date": "2022-10-27",
+     "title": "Session at the Boston College (Carroll School of Management) and HBS",
+     "n": 38,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4797f9e754e4499d3bbd9b_mohnish_pabrais_q_a_session_with_students_at_the_boston_college_on_oct_27_2022_v2.pdf"
+    },
+    {
+     "date": "2023-05-05",
+     "title": "Presentation and Q&A at the University of Nebraska, Omaha",
+     "n": 29,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e9f03549021968134ac_mohnish_pabrais_presentation_and_q_a_at_the_university_of_omaha_on_may_5_2023.pdf"
+    }
+   ],
+   "docs": 19
+  },
+  {
+   "name": "Netflix",
+   "links": [],
+   "held": "Not held",
+   "status": "Unconvinced",
+   "when": "2015",
+   "value": "At about 240x earnings in 2015, with 99% of its content owned by others; he said Micron was worth more.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2015-12-03",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 11,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463bd6e15d43ce4825ef4b_20230118_mohnish_pabrais_presentation_at_the_boston_college_carroll_school_of_mgmt_on_dec_3_2015.pdf"
+    },
+    {
+     "date": "2015-12-22",
+     "title": "Talk and QA at the MDI Gurgaon India",
+     "n": 16
+    },
+    {
+     "date": "2021-02-09",
+     "title": "QA with students of the Babson College Fund",
+     "n": 3
+    },
+    {
+     "date": "2021-10-14",
+     "title": "Session at the Boston College",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4641bb591535098c9f1a98_mohnish_pabrai%E2%80%99s_lecture_at_boston_college_on_october_14_2021.pdf"
+    }
+   ],
+   "docs": 13
+  },
+  {
+   "name": "Nvidia",
+   "links": [],
+   "held": "Not held",
+   "status": "Likes the business, wary of price",
+   "when": "2026",
+   "value": "Among the \"pickaxes\" he thinks will do well in an AI gold rush, with TSMC and the memory makers, but he says $5 trillion is hard to underwrite and outside his circle.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2023-06-14",
+     "title": "QA with members of the Finance and Investment Cell at SRCC Delhi",
+     "n": 13
+    },
+    {
+     "date": "2024-07-09",
+     "title": "Session with YPO Delhi",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b94a3d3823e4b881622b1_20240802_mohnish_pabrais_session_with_ypo_delhi_chapter_on_july_9_2024.pdf"
+    },
+    {
+     "date": "2024-11-15",
+     "title": "Guest Lecture at Microsoft",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9629fa5d6e03f544f9ce_20250122_mohnish_pabrais_guest_lecture_with_microsoft_on_november_15_2024.pdf"
+    },
+    {
+     "date": "2025-02-15",
+     "title": "Interview at The Money Mindset with Sonia Shenoy",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b966f6ff4f2bb45903d3a_20250421_mohnish_pabrais_interview_at_the_money_mindset_on_february_15_2025.pdf"
+    }
+   ],
+   "docs": 21
   },
   {
    "name": "Progressive",
@@ -1057,14 +2406,121 @@
    ],
    "status": "Former holding (a regret)",
    "when": "Apr–May 2026",
-   "text": "He invested about 25 years ago and says he should have left it alone. Named with Ferrari and Goldman Sachs as great businesses he sold and later regretted."
+   "text": "He invested about 25 years ago and says he should have left it alone. Named with Ferrari and Goldman Sachs as great businesses he sold and later regretted.",
+   "held": "Former holding",
+   "paid": "Invested about 2001; price not stated.",
+   "value": "No price given. He says he should have left it alone.",
+   "refs": [
+    {
+     "date": "2021-11-18",
+     "title": "QA Session with students at the University of Georgia",
+     "n": 3
+    },
+    {
+     "date": "2026-04-21",
+     "title": "Mental Models at Heilbrunn Center for Graham and Dodd Investing",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99597e7e01d646f4d746_20260528_mohnish_pabrais_session_at_heilbrunn_center_on_april_21_2026_v3.pdf"
+    },
+    {
+     "date": "2026-05-01",
+     "title": "Mental Models for Exceptional Capital Allocation at The UNO",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b991bd3823e4b88190b51_20260525_mohnish_pabrais_session_with_university_of_nebraska_omaha_on_may_1_2026_v3.pdf"
+    }
+   ],
+   "docs": 3
+  },
+  {
+   "name": "Radiologix",
+   "links": [],
+   "held": "Not held",
+   "status": "Cited in 2001",
+   "when": "Nov 2001",
+   "paid": "Not stated.",
+   "value": "On Sep 10, 2001 the stock was $6.20 (market cap $121 million) and fell to $5.25 on Sep 24 even though lower rates raised earnings; he saw no logic in the decline.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2001-11-01",
+     "title": "When Mr. Market Gets Depressed, Back Up the Truck (Ch. 21, Mosaic)",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a560976f7949c164ae38642_when_mr.market_gets_depressedback_up_the_truck.pdf"
+    }
+   ],
+   "docs": 1
   },
   {
    "name": "Rain Industries",
    "links": [],
-   "status": "Former holding",
+   "status": "Holding (as of 2022)",
    "when": "2019",
-   "text": "His example of a \"hidden moat\": a business nobody follows, run by a founder who built it from almost no capital and bought two large businesses with high-yield debt. He bought 9.99% for about $20 million at a future P/E of about one. Sits alongside Moutai and Motherson Sumi as moats he likes."
+   "text": "His example of a \"hidden moat\": a business nobody follows, run by a founder who built it from almost no capital and bought two large businesses with high-yield debt. He bought 9.99% for about $20 million at a future P/E of about one. Sits alongside Moutai and Motherson Sumi as moats he likes.",
+   "held": "Current holding",
+   "paid": "9.99% for about $20 million, about 35 rupees a share, at a market cap near $170–200 million against $2 billion of revenue (0.1x sales).",
+   "value": "A future P/E of 1. His thesis: in one year cash flow would reach $200 million. That happened in 2018 and the market cap went to about $2 billion; the stock was over 400 rupees by 2021.",
+   "refs": [
+    {
+     "date": "2018-10-24",
+     "title": "Keynote Speech at Annual Morningstar India Conference",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463da1907d1a90a2eda18d_mohnish_pabrai_at_annual_morningstar_india_conference_on_oct_24_2018_v2.pdf"
+    },
+    {
+     "date": "2019-05-01",
+     "title": "QA Session at the Peking University Guanghua School of Management",
+     "n": 37
+    },
+    {
+     "date": "2021-10-14",
+     "title": "Session at the Boston College",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4641bb591535098c9f1a98_mohnish_pabrai%E2%80%99s_lecture_at_boston_college_on_october_14_2021.pdf"
+    },
+    {
+     "date": "2022-06-16",
+     "title": "Session at the Narsee Monjee Institute of Management Studies, Mumbai",
+     "n": 10,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4795dc022a55787cc057d8_mohnish_pabrai_lecture_on_approaches_to_value_investing_at_narsee_monjee_on_june_16_2022.pdf"
+    }
+   ],
+   "docs": 15
+  },
+  {
+   "name": "Restaurant Brands, Domino's and Yum",
+   "links": [],
+   "held": "Not held",
+   "status": "Not held",
+   "when": "2016",
+   "value": "He lists them as great-economics businesses that need solid management.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2016-10-14",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c71291fdab4e4d9b2fe_mohnishs_lecture_at_peking_university__guanghua_school_of_mgmt__oct_14__2016.pdf"
+    },
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2020-10-08",
+     "title": "Session at the Boston College",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463f9e39cc914db687ecd7_mohnish_pabrai%E2%80%99s_lecture_at_the_boston_college__carroll_school_of_management__v2.pdf"
+    },
+    {
+     "date": "2024-11-15",
+     "title": "Guest Lecture at Microsoft",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9629fa5d6e03f544f9ce_20250122_mohnish_pabrais_guest_lecture_with_microsoft_on_november_15_2024.pdf"
+    }
+   ],
+   "docs": 5
   },
   {
    "name": "Reysas",
@@ -1076,14 +2532,145 @@
    ],
    "status": "Largest holding",
    "when": "Mar–Oct 2026",
-   "text": "His signature investment: a Turkish warehouse and logistics real estate company, bought from 2019 at under 3% of liquidation value. About $8 million bought a third of it when the market cap was $15–20 million against roughly $800 million in asset value. It is 99% leased on inflation-indexed leases to tenants like Amazon, IKEA and Toyota, and run by a father-and-son team he plans to keep as partners for 30–40 years. The market value is now about $1.5–1.8 billion, his 41–42.5% stake is $500–550 million of the roughly $1.4 billion he manages, and the stock is up 100x or more in dollars even as the lira lost over 90% of its value. He says he intends to hold it forever."
+   "text": "His signature investment: a Turkish warehouse and logistics real estate company, bought from 2019 at under 3% of liquidation value. About $8 million bought a third of it when the market cap was $15–20 million against roughly $800 million in asset value. It is 99% leased on inflation-indexed leases to tenants like Amazon, IKEA and Toyota, and run by a father-and-son team he plans to keep as partners for 30–40 years. The market value is now about $1.5–1.8 billion, his 41–42.5% stake is $500–550 million of the roughly $1.4 billion he manages, and the stock is up 100x or more in dollars even as the lira lost over 90% of its value. He says he intends to hold it forever.",
+   "held": "Current holding",
+   "paid": "Bought from 2019 at a $15–20 million market cap; about $8 million bought a third. Now owns about 40%.",
+   "value": "Assets worth about $800 million to $1 billion, with $200 million of debt. Value has gone from $800 million to $3 billion in seven years, and the market cap is now about $1.5 billion.",
+   "refs": [
+    {
+     "date": "2022-04-04",
+     "title": "QA at Harvard Business School Investment Conference",
+     "n": 13
+    },
+    {
+     "date": "2023-02-09",
+     "title": "QA Session at the SumZero Top Stocks Investor Summit",
+     "n": 13
+    },
+    {
+     "date": "2023-10-10",
+     "title": "Conversation at Schroders, The Value Perspective podcast",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b91de924a815a0b05a057_20231206_mohnish_pabrais_conversation_at_schroders_the_value_perspective_podcast_on_oct_10_2023.pdf"
+    },
+    {
+     "date": "2026-08-25",
+     "title": "Session with Copenhagen Business School Investment Club",
+     "n": 21,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6aa12b39b075dd148c1d96e7_20260903%20Mohnish%20Pabrai%27s%20Session%20with%20Copenhagen%20Business%20School%20on%20August%2025%2C%202026.pdf"
+    }
+   ],
+   "docs": 38
   },
   {
    "name": "Satyam Computers",
    "links": [],
    "status": "Early investment, sold",
    "when": "1994",
-   "text": "One of his earliest investments, in the Indian IT firm Satyam, bought at about 45 rupees. The shares later traded around 7,000 rupees, which he uses to show how much a good business can compound."
+   "text": "One of his earliest investments, in the Indian IT firm Satyam, bought at about 45 rupees. The shares later traded around 7,000 rupees, which he uses to show how much a good business can compound.",
+   "held": "Former holding",
+   "paid": "45 rupees a share in 1995; $10,000 invested.",
+   "value": "He says its market cap was below the value of its Hyderabad real estate, with earnings growing 40–80% a year. He sold near the top (within about 10%) at about 7,000 rupees, turning $10,000 into about $1.3–1.5 million.",
+   "refs": [
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 14,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2022-06-01",
+     "title": "FINSEC Dialog Conversation with Mohnish Pabrai",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4795b42a4d5cf1031c558a_finsec_dialog_conversation_with_mohnish_pabrai.pdf"
+    },
+    {
+     "date": "2023-04-11",
+     "title": "Interview at the mint-Equitymaster Investor Hour",
+     "n": 14,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e3719c4c5fe0f493cab_mohnish_pabrais_interview_at_mint-equitymaster_investor_hour_on_april_11_2023.pdf"
+    },
+    {
+     "date": "2025-04-22",
+     "title": "Session with Ashoka Investment Club",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b96e79b86b5bc60bdd825_20250514_mohnish_pabrais_session_with_ashoka_investment_club_on_april_22_2025_v2.pdf"
+    }
+   ],
+   "docs": 12
+  },
+  {
+   "name": "See's Candies",
+   "links": [],
+   "held": "Not held",
+   "status": "Buffett's purchase",
+   "when": "2024",
+   "paid": "Buffett paid $25 million, three times book value (1972).",
+   "value": "He says Buffett could have paid $200 million and it would still have been a good deal. It enabled the later Coke purchase.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2016-05-24",
+     "title": "Session at the University of California, Irvine (UCI)",
+     "n": 40,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c2621f1a58e7cb7e10e_mohnish_pabrai%E2%80%99s_lecture_at_the_university_of_california__irvine__uci__on_may_24__2016_v2.pdf"
+    },
+    {
+     "date": "2024-03-12",
+     "title": "Session with YPO's Mosaic Chapter",
+     "n": 19,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b93b7d6c7f92c88c96c1c_20240409_mohnish_pabrais_session_with_ypo_united_mosaic_on_march_20_2024_v2.pdf"
+    },
+    {
+     "date": "2024-04-04",
+     "title": "Interview at the My First Million Podcast",
+     "n": 21,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b94197e7e01d646f11696_20240522_mohnish_pabrais_interview_at_my_first_million_podcast_on_april_4_2024.pdf"
+    },
+    {
+     "date": "2024-05-03",
+     "title": "Session at The University of Nebraska, Omaha",
+     "n": 21,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b943d0dcb58f8ae79b264_20240620_mohnish_pabrais_session_at_the_university_of_nebraska_omaha_on_may_3_2024_v2.pdf"
+    }
+   ],
+   "docs": 26
+  },
+  {
+   "name": "Seritage Growth Properties",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding",
+   "when": "2016–2022",
+   "paid": "Held since 2016. Large purchase in Q2 2020 at about $6–9 a share after COVID, against $30–40 before. Owned about one-eighth of the company.",
+   "value": "He joked that he must like the movie. By April 2022 he had exited over two-thirds of the position.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2020-12-03",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463feed1e5f2f75a57d2fb_mohnish_pabrai_q_a_at_peking_university__guanghua_school_of_mgmt__on_dec_3_2020_v2.pdf"
+    },
+    {
+     "date": "2021-03-04",
+     "title": "Session at Georgetown University",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a46406e95afd154764c3110_mohnish_pabrais_qa_session_at_st_georgetown_univ_march_4_2021.pdf"
+    },
+    {
+     "date": "2022-04-04",
+     "title": "QA at Harvard Business School Investment Conference",
+     "n": 4
+    },
+    {
+     "date": "2023-05-05",
+     "title": "Presentation and Q&A at the University of Nebraska, Omaha",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e9f03549021968134ac_mohnish_pabrais_presentation_and_q_a_at_the_university_of_omaha_on_may_5_2023.pdf"
+    }
+   ],
+   "docs": 7
   },
   {
    "name": "SK Hynix and Samsung",
@@ -1099,7 +2686,73 @@
    ],
    "status": "Admired (memory oligopoly)",
    "when": "Jun–Oct 2026",
-   "text": "He says he used to own SK Hynix and sold it against his own rule, and that the memory business is protected: three players, high barriers to a fourth, and long-term take-or-pay contracts with customers like Apple that lock in revenue regardless of the AI cycle. On the picks, he prefers Micron to SK Hynix, and says Samsung is not a pure play. He does not currently invest in Korea and cautions that individual investors should stay in their circle of competence. He calls the memory makers \"pickaxe\" sellers in an AI gold rush."
+   "text": "He says he used to own SK Hynix and sold it against his own rule, and that the memory business is protected: three players, high barriers to a fourth, and long-term take-or-pay contracts with customers like Apple that lock in revenue regardless of the AI cycle. On the picks, he prefers Micron to SK Hynix, and says Samsung is not a pure play. He does not currently invest in Korea and cautions that individual investors should stay in their circle of competence. He calls the memory makers \"pickaxe\" sellers in an AI gold rush.",
+   "held": "Former holding",
+   "paid": "Not stated.",
+   "value": "He prefers Micron to SK Hynix. Samsung is not a pure play. He sold SK Hynix against his own rule.",
+   "refs": [
+    {
+     "date": "2022-11-08",
+     "title": "QA Session with students at the William  Mary College",
+     "n": 9
+    },
+    {
+     "date": "2026-06-08",
+     "title": "Interview with Knowledge Inside podcast",
+     "n": 15,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99f8ab930171ce01e0a7_20260626_mohnish_pabrais_interview_with_knowledge_inside_on_june_8_2026.pdf"
+    },
+    {
+     "date": "2026-08-19",
+     "title": "Interview with Knowledge Inside podcast, Episode 1",
+     "n": 22,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6ac3f477dc28413ffe31abd4_20260930%20Mohnish%20Pabrai%27s%20Interview%20with%20Knowledge%20Inside%20on%20August%2019%2C%202026%20-%20Episode%201.pdf"
+    },
+    {
+     "date": "2026-08-25",
+     "title": "Session with Copenhagen Business School Investment Club",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6aa12b39b075dd148c1d96e7_20260903%20Mohnish%20Pabrai%27s%20Session%20with%20Copenhagen%20Business%20School%20on%20August%2025%2C%202026.pdf"
+    }
+   ],
+   "docs": 13
+  },
+  {
+   "name": "Sky Pack Courier",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding",
+   "when": "1995",
+   "paid": "About $3,000.",
+   "value": "The only dud of his four Indian stocks: lost 90% and then went to zero.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2022-06-01",
+     "title": "FINSEC Dialog Conversation with Mohnish Pabrai",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4795b42a4d5cf1031c558a_finsec_dialog_conversation_with_mohnish_pabrai.pdf"
+    },
+    {
+     "date": "2022-06-16",
+     "title": "Session at the Narsee Monjee Institute of Management Studies, Mumbai",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4795dc022a55787cc057d8_mohnish_pabrai_lecture_on_approaches_to_value_investing_at_narsee_monjee_on_june_16_2022.pdf"
+    },
+    {
+     "date": "2023-04-11",
+     "title": "Interview at the mint-Equitymaster Investor Hour",
+     "n": 6,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e3719c4c5fe0f493cab_mohnish_pabrais_interview_at_mint-equitymaster_investor_hour_on_april_11_2023.pdf"
+    },
+    {
+     "date": "2025-04-22",
+     "title": "Session with Ashoka Investment Club",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b96e79b86b5bc60bdd825_20250514_mohnish_pabrais_session_with_ashoka_investment_club_on_april_22_2025_v2.pdf"
+    }
+   ],
+   "docs": 4
   },
   {
    "name": "Starbucks",
@@ -1111,14 +2764,91 @@
    ],
    "status": "Admired (not owned)",
    "when": "Various",
-   "text": "Used as an example of a \"spawner\", a business that keeps creating new growth. He also uses it in a spending lesson about not buying things you don't need."
+   "text": "Used as an example of a \"spawner\", a business that keeps creating new growth. He also uses it in a spending lesson about not buying things you don't need.",
+   "held": "Not held",
+   "value": "No number given.",
+   "refs": [
+    {
+     "date": "2017-12-22",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463d0df4b348cccbd2a46d_mohnish_pabrai_lecture_at_peking_university__guanghua_school_of_mgmt__on_dec_22_2017_v2.pdf"
+    },
+    {
+     "date": "2020-10-08",
+     "title": "Session at the Boston College",
+     "n": 9,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463f9e39cc914db687ecd7_mohnish_pabrai%E2%80%99s_lecture_at_the_boston_college__carroll_school_of_management__v2.pdf"
+    },
+    {
+     "date": "2022-01-05",
+     "title": "Value Investing Masterclass with NUS MBA students at NUS Business School",
+     "n": 6,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a47952cf446d31309b9896d_value_investing_masterclass_with_nus_mba_students_at_nus_business_school_on_january_19_2022.pdf"
+    },
+    {
+     "date": "2024-05-03",
+     "title": "Session at The University of Nebraska, Omaha",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b943d0dcb58f8ae79b264_20240620_mohnish_pabrais_session_at_the_university_of_nebraska_omaha_on_may_3_2024_v2.pdf"
+    }
+   ],
+   "docs": 21
   },
   {
    "name": "Stewart Enterprises",
    "links": [],
    "status": "Former holding",
-   "when": "Early career",
-   "text": "An early funeral-services investment, bought at a P/E of about two, which he uses as a classic example of cheap, low-risk value."
+   "when": "Sep 2001 – 2003",
+   "text": "An early funeral-services investment, bought at a P/E of about two, which he uses as a classic example of cheap, low-risk value.",
+   "held": "Former holding",
+   "paid": "Early 2000s, at a P/E near 2, when the market cap was about $200 million.",
+   "value": "It produced about $100 million of cash flow a year on $1 billion of debt, so he expected to get his money back in two years. In Sep 2001 it closed at $5.85, down from $7.15. After he bought, it sold its European business for about $500 million and paid down debt.",
+   "refs": [
+    {
+     "date": "2001-11-01",
+     "title": "When Mr. Market Gets Depressed, Back Up the Truck (Ch. 21, Mosaic)",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a560976f7949c164ae38642_when_mr.market_gets_depressedback_up_the_truck.pdf"
+    },
+    {
+     "date": "2002-02-01",
+     "title": "Risk vs. Uncertainty in Investing: How to profit from Wall Street's inability to distinguish between them! (Ch. 19, Mosaic)",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a5609ed27a3686708fcb178_risk_vs._uncertainity_in_investing.pdf"
+    },
+    {
+     "date": "2003-03-25",
+     "title": "The Sure Bet of Corporate Morticians (Ch. 5, Mosaic)",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a560ce3c5b58232ba72d601_the_sure_bet_of_corporate_morticans.pdf"
+    },
+    {
+     "date": "2017-11-30",
+     "title": "Session at the Boston College",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463ce73fb8a3fc1fed3afc_mohnish_pabrai%E2%80%99s_lecture_at_the_boston_college__carroll_school_of_management__on_nov_30_2017_v2.pdf"
+    }
+   ],
+   "docs": 7
+  },
+  {
+   "name": "Sunteck Realty",
+   "links": [],
+   "held": "Current holding",
+   "status": "Holding (as of 2019)",
+   "when": "May 2019",
+   "paid": "9.999% stake, first bought after the 2016 demonetization.",
+   "value": "Market cap close to $1 billion in May 2019, trailing P/E high 30s, up about 400% from first purchase. He and Guy Spier bet it against Mastercard from Oct 2018; by May 2019 Sunteck was up 38% and Mastercard 25%.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2019-05-01",
+     "title": "QA Session at the Peking University Guanghua School of Management",
+     "n": 25
+    }
+   ],
+   "docs": 1
   },
   {
    "name": "TAV Airports",
@@ -1130,7 +2860,35 @@
    ],
    "status": "A Turkish bet he cites",
    "when": "May 2026",
-   "text": "Cited as a Turkish idea fitting his models: an airport operator with revenue in euros listed in Istanbul and trading at just 3–4x earnings, where an Indian airport operator trades at 50–70x. He calls airport operators phenomenal natural monopolies. He lists airports among his bets, alongside coal, warehouses and Constellation."
+   "text": "Cited as a Turkish idea fitting his models: an airport operator with revenue in euros listed in Istanbul and trading at just 3–4x earnings, where an Indian airport operator trades at 50–70x. He calls airport operators phenomenal natural monopolies. He lists airports among his bets, alongside coal, warehouses and Constellation.",
+   "held": "Not stated",
+   "value": "Trading at 3–4x earnings with euro revenue, against 50–70x for an Indian airport operator.",
+   "refs": [
+    {
+     "date": "2023-02-09",
+     "title": "QA Session at the SumZero Top Stocks Investor Summit",
+     "n": 5
+    },
+    {
+     "date": "2023-12-25",
+     "title": "Presentation and Q&A at FLAME University",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b92c7f49a4628602f90a1_20240212_mohnish_pabrais_presentation_and_q_a_at_the_flame_university_on_december_25_2023.pdf"
+    },
+    {
+     "date": "2024-02-08",
+     "title": "Session at the SumZero Virtual Investor Summit 2024",
+     "n": 17,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9372924a815a0b068a32_20240308_mohnish_pabrais_session_at_the_sumzero_virtual_investor_summit_2024_on_feb_8_2024_v2.pdf"
+    },
+    {
+     "date": "2024-06-12",
+     "title": "Session with Rotary Bangalore DownTown",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b945dc00560f70f903919_20240709_mohnish_pabrais_session_with_rotary_bangalore_downtown_on_june_19_2024_v3.pdf"
+    }
+   ],
+   "docs": 9
   },
   {
    "name": "Teck Resources (Teck Cominco)",
@@ -1141,15 +2899,191 @@
     }
    ],
    "status": "Former holding",
-   "when": "2008, 2016",
-   "text": "Bought in 2016 near the commodity collapse and later sold at about 5x. He has also described an earlier 2008-era trade he sold after a 5x gain that would have gone 10x."
+   "when": "2008–09",
+   "text": "Bought in the financial-crisis commodity collapse, as one of several 2% bets, none of which lost money. He sold at about 7x and says it went on to about 10x.",
+   "held": "Former holding",
+   "paid": "Under $5 a share, a 2% position in a basket of commodity names in the financial crisis.",
+   "value": "A Chinese strategic investor came in two months later. It went to $30–35 within a year, a 7x, and he sold. It later reached $50–55.",
+   "refs": [
+    {
+     "date": "2013-11-19",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463aa7af31597e8fcb58b2_mohnish_pabrais_presentation_and_q_a_at_the_boston_college_v2.pdf"
+    },
+    {
+     "date": "2016-10-14",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c71291fdab4e4d9b2fe_mohnishs_lecture_at_peking_university__guanghua_school_of_mgmt__oct_14__2016.pdf"
+    },
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 10,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    },
+    {
+     "date": "2018-10-12",
+     "title": "The Ten Commandments of Investment Management",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463d7a18ff44f9cde0641c_the_ten_commandments_of_investment_management_v2.pdf"
+    }
+   ],
+   "docs": 6
+  },
+  {
+   "name": "Teledyne",
+   "links": [],
+   "held": "Not held",
+   "status": "Admired (Henry Singleton)",
+   "when": "2022–26",
+   "value": "Henry Singleton bought back 90% of shares in 12 years, returning 40x against Apple's 6x.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2020-12-03",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463feed1e5f2f75a57d2fb_mohnish_pabrai_q_a_at_peking_university__guanghua_school_of_mgmt__on_dec_3_2020_v2.pdf"
+    },
+    {
+     "date": "2022-10-27",
+     "title": "Session at the Boston College (Carroll School of Management) and HBS",
+     "n": 13,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4797f9e754e4499d3bbd9b_mohnish_pabrais_q_a_session_with_students_at_the_boston_college_on_oct_27_2022_v2.pdf"
+    }
+   ],
+   "docs": 2
+  },
+  {
+   "name": "Tellabs and Hewlett-Packard",
+   "links": [],
+   "held": "Not held",
+   "status": "Discussed",
+   "when": "2002–2020",
+   "value": "He worked at Tellabs 1986–91. He opposed HP's Compaq merger in 2002.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2002-02-01",
+     "title": "Risk vs. Uncertainty in Investing: How to profit from Wall Street's inability to distinguish between them! (Ch. 19, Mosaic)",
+     "n": 10,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a5609ed27a3686708fcb178_risk_vs._uncertainity_in_investing.pdf"
+    },
+    {
+     "date": "2002-05-01",
+     "title": "The Demise of a Prized American Treasure (Ch. 16, Mosaic)",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a560a843b4831a63a1221e7_the_demise_of_a_prized_american_treasure.pdf"
+    },
+    {
+     "date": "2020-04-07",
+     "title": "QA Session with Francis Chou at Harvard",
+     "n": 3
+    },
+    {
+     "date": "2024-03-12",
+     "title": "Session with YPO's Mosaic Chapter",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b93b7d6c7f92c88c96c1c_20240409_mohnish_pabrais_session_with_ypo_united_mosaic_on_march_20_2024_v2.pdf"
+    }
+   ],
+   "docs": 6
+  },
+  {
+   "name": "Tesla",
+   "links": [],
+   "held": "Not held",
+   "status": "Unconvinced",
+   "when": "2015–2020",
+   "value": "In 2015 he said Tesla did not make money and, if it did, would trade over 100x earnings; he said GM was cheaper. In 2020 he called Elon Musk \"on a different planet\" as a leader.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2015-12-03",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 9,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463bd6e15d43ce4825ef4b_20230118_mohnish_pabrais_presentation_at_the_boston_college_carroll_school_of_mgmt_on_dec_3_2015.pdf"
+    },
+    {
+     "date": "2015-12-22",
+     "title": "Talk and QA at the MDI Gurgaon India",
+     "n": 9
+    },
+    {
+     "date": "2017-12-22",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463d0df4b348cccbd2a46d_mohnish_pabrai_lecture_at_peking_university__guanghua_school_of_mgmt__on_dec_22_2017_v2.pdf"
+    },
+    {
+     "date": "2025-06-10",
+     "title": "Session with SumZero",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b97667e7e01d646f392b2_20250630_mohnish_pabrais_session_with_sumzero_on_june_10_2025_final.pdf"
+    }
+   ],
+   "docs": 22
+  },
+  {
+   "name": "Tesoro",
+   "links": [],
+   "held": "Former holding",
+   "status": "Former holding (a regret)",
+   "when": "2002–2016",
+   "paid": "Around $7.50 a share (market cap about $480 million), fell to $1.33 within months (market cap $85 million).",
+   "value": "He estimated the business was worth over $1 billion. He sold at $15 for a double in under three years. It then went up about 40x from his purchase price and about 200x from the low.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2016-10-14",
+     "title": "Session at the Peking University (Guanghua School of Management)",
+     "n": 10,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c71291fdab4e4d9b2fe_mohnishs_lecture_at_peking_university__guanghua_school_of_mgmt__oct_14__2016.pdf"
+    },
+    {
+     "date": "2016-11-03",
+     "title": "Session at the Boston College",
+     "n": 17,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c9744d9a747d9a5f7fc_mohnish_pabrai%E2%80%99s_lecture_at_boston_college__carroll_school_of_mgmt__on_nov_3_2016_v2.pdf"
+    }
+   ],
+   "docs": 2
   },
   {
    "name": "Titan Company",
    "links": [],
    "status": "Admired (not owned)",
    "when": "Various",
-   "text": "Admires the long compounding of Titan Industries and Rakesh Jhunjhunwala's role in it."
+   "text": "Admires the long compounding of Titan Industries and Rakesh Jhunjhunwala's role in it.",
+   "held": "Not stated",
+   "value": "No number given.",
+   "refs": [
+    {
+     "date": "2022-08-17",
+     "title": "QA with CFA Society of Mexico",
+     "n": 15
+    },
+    {
+     "date": "2022-08-30",
+     "title": "QA session with the Asian Institute of Technology Bangkok",
+     "n": 6
+    },
+    {
+     "date": "2023-05-05",
+     "title": "Presentation and Q&A at the University of Nebraska, Omaha",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e9f03549021968134ac_mohnish_pabrais_presentation_and_q_a_at_the_university_of_omaha_on_may_5_2023.pdf"
+    },
+    {
+     "date": "2024-07-09",
+     "title": "Session with YPO Delhi",
+     "n": 7,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b94a3d3823e4b881622b1_20240802_mohnish_pabrais_session_with_ypo_delhi_chapter_on_july_9_2024.pdf"
+    }
+   ],
+   "docs": 15
   },
   {
    "name": "Transocean and Valaris",
@@ -1165,14 +3099,110 @@
    ],
    "status": "Merger arbitrage",
    "when": "Apr 2026",
-   "text": "He says he owned Transocean and uses its acquisition of Valaris as an example of the \"heads I win, tails I don't lose much\" arbitrage, where buying both and waiting for the deal to close makes some money with little downside. He calls these small bets games to play while waiting for a real opportunity."
+   "text": "He says he owned Transocean and uses its acquisition of Valaris as an example of the \"heads I win, tails I don't lose much\" arbitrage, where buying both and waiting for the deal to close makes some money with little downside. He calls these small bets games to play while waiting for a real opportunity.",
+   "held": "Former holding",
+   "paid": "Not stated.",
+   "value": "A merger-arbitrage idea: buy both and wait for the deal to close.",
+   "refs": [
+    {
+     "date": "2025-06-10",
+     "title": "Session with SumZero",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b97667e7e01d646f392b2_20250630_mohnish_pabrais_session_with_sumzero_on_june_10_2025_final.pdf"
+    },
+    {
+     "date": "2026-04-21",
+     "title": "Mental Models at Heilbrunn Center for Graham and Dodd Investing",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99597e7e01d646f4d746_20260528_mohnish_pabrais_session_at_heilbrunn_center_on_april_21_2026_v3.pdf"
+    }
+   ],
+   "docs": 2
   },
   {
    "name": "Turkish \"Costco\" (name not given)",
    "links": [],
    "status": "Holding (30%+)",
    "when": "Aug 2026",
-   "text": "A tiny Turkish warehouse-club retailer he describes as like a venture investment. It had two stores that were mobbed with customers, and $70 million of surplus real estate against a $70 million market cap, so the business was free. He met the owner, visited both stores and bought, and now owns over 30%."
+   "text": "A tiny Turkish warehouse-club retailer he describes as like a venture investment. It had two stores that were mobbed with customers, and $70 million of surplus real estate against a $70 million market cap, so the business was free. He met the owner, visited both stores and bought, and now owns over 30%.",
+   "held": "Current holding",
+   "paid": "Bought at a $70 million market cap against $70 million of surplus real estate, so \"the business was free\".",
+   "value": "He now owns over 30%.",
+   "refs": [
+    {
+     "date": "2026-04-21",
+     "title": "Mental Models at Heilbrunn Center for Graham and Dodd Investing",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99597e7e01d646f4d746_20260528_mohnish_pabrais_session_at_heilbrunn_center_on_april_21_2026_v3.pdf"
+    },
+    {
+     "date": "2026-08-25",
+     "title": "Session with Copenhagen Business School Investment Club",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6aa12b39b075dd148c1d96e7_20260903%20Mohnish%20Pabrai%27s%20Session%20with%20Copenhagen%20Business%20School%20on%20August%2025%2C%202026.pdf"
+    }
+   ],
+   "docs": 2
+  },
+  {
+   "name": "Valiant Pharmaceuticals",
+   "links": [],
+   "held": "Not held",
+   "status": "Passed",
+   "when": "2015–2023",
+   "paid": "Never bought.",
+   "value": "He did not clone the hedge funds that crowded into Valiant, saying he runs ideas through his own filters.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2015-12-03",
+     "title": "Presentation and Q&A Session at the Boston College, Carroll School of Management",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463bd6e15d43ce4825ef4b_20230118_mohnish_pabrais_presentation_at_the_boston_college_carroll_school_of_mgmt_on_dec_3_2015.pdf"
+    },
+    {
+     "date": "2016-05-24",
+     "title": "Session at the University of California, Irvine (UCI)",
+     "n": 4,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463c2621f1a58e7cb7e10e_mohnish_pabrai%E2%80%99s_lecture_at_the_university_of_california__irvine__uci__on_may_24__2016_v2.pdf"
+    },
+    {
+     "date": "2023-11-21",
+     "title": "QA at Oxford University Oxford Alpha Fund",
+     "n": 5
+    }
+   ],
+   "docs": 3
+  },
+  {
+   "name": "Varun Beverages (Pepsi India bottler)",
+   "links": [],
+   "held": "Not held",
+   "status": "Used as a comparison",
+   "when": "2023",
+   "value": "He contrasts Varun, a Pepsi bottler in India, with the Turkish Coke bottler.",
+   "text": "",
+   "refs": [
+    {
+     "date": "2023-04-11",
+     "title": "Interview at the mint-Equitymaster Investor Hour",
+     "n": 6,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a479e3719c4c5fe0f493cab_mohnish_pabrais_interview_at_mint-equitymaster_investor_hour_on_april_11_2023.pdf"
+    },
+    {
+     "date": "2023-12-25",
+     "title": "Presentation and Q&A at FLAME University",
+     "n": 14,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b92c7f49a4628602f90a1_20240212_mohnish_pabrais_presentation_and_q_a_at_the_flame_university_on_december_25_2023.pdf"
+    },
+    {
+     "date": "2024-07-09",
+     "title": "Session with YPO Delhi",
+     "n": 8,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b94a3d3823e4b881622b1_20240802_mohnish_pabrais_session_with_ypo_delhi_chapter_on_july_9_2024.pdf"
+    }
+   ],
+   "docs": 3
   },
   {
    "name": "Visa and Mastercard",
@@ -1188,7 +3218,36 @@
    ],
    "status": "Admired (moat business)",
    "when": "Jul–Aug 2026",
-   "text": "Listed with Costco, Coke and AmEx as businesses with moats you do not sell unless the valuation becomes extreme. He notes Mastercard \"became the standard.\" He says these companies, along with Moody's and FICO, did not start with moats and their founders did not expect them to last as long as they did."
+   "text": "Listed with Costco, Coke and AmEx as businesses with moats you do not sell unless the valuation becomes extreme. He notes Mastercard \"became the standard.\" He says these companies, along with Moody's and FICO, did not start with moats and their founders did not expect them to last as long as they did.",
+   "held": "Not held",
+   "paid": "Mastercard IPO 2006 at about $4.23 (split-adjusted); Guy Spier bought around $20 in 2010.",
+   "value": "In 2018–19 he said Mastercard at about 42–55x trailing earnings, and a $261 billion market cap, could not deliver a 25% return from there. In Oct 2018 he and Guy made a bet: Mastercard against his Sunteck.",
+   "refs": [
+    {
+     "date": "2018-10-12",
+     "title": "The Ten Commandments of Investment Management",
+     "n": 6,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463d7a18ff44f9cde0641c_the_ten_commandments_of_investment_management_v2.pdf"
+    },
+    {
+     "date": "2019-05-01",
+     "title": "QA Session at the Peking University Guanghua School of Management",
+     "n": 39
+    },
+    {
+     "date": "2021-08-02",
+     "title": "Value Investing Speaker Series at the Brown University",
+     "n": 12,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4641893dd16457f95f3f9b_q_a_with_mohnish_pabrai_at_the_brown_university_value_investing_speaker_series.pdf"
+    },
+    {
+     "date": "2026-08-19",
+     "title": "Interview with Knowledge Inside podcast, Episode 1",
+     "n": 13,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6ac3f477dc28413ffe31abd4_20260930%20Mohnish%20Pabrai%27s%20Interview%20with%20Knowledge%20Inside%20on%20August%2019%2C%202026%20-%20Episode%201.pdf"
+    }
+   ],
+   "docs": 31
   },
   {
    "name": "Walmart",
@@ -1200,7 +3259,36 @@
    ],
    "status": "Admired",
    "when": "Mar–Aug 2026",
-   "text": "His favorite example of letting a great business run. If you had held 2% of the \"Nifty 50\" and 49 of the 50 went to zero except Walmart, he says you would still beat the S&P 500. The Walton family still owns about 46% 54 years after the IPO and is far from diversified, which he cites as proof that concentration works. He also recounts how Sam Walton copied Price Club, which turned into Sam's Club, as his model of the shameless cloner. He recommends family-controlled public companies in general."
+   "text": "His favorite example of letting a great business run. If you had held 2% of the \"Nifty 50\" and 49 of the 50 went to zero except Walmart, he says you would still beat the S&P 500. The Walton family still owns about 46% 54 years after the IPO and is far from diversified, which he cites as proof that concentration works. He also recounts how Sam Walton copied Price Club, which turned into Sam's Club, as his model of the shameless cloner. He recommends family-controlled public companies in general.",
+   "held": "Not held",
+   "paid": "Hypothetical only.",
+   "value": "In 2002 he noted $10,000 in 1974 grew to $3.64 million by 1997 (364x) and predicted a far smaller return from there, as to go up just 30x it would need about $6 trillion in annual revenue. Since then he treats it as the example of holding a winner forever.",
+   "refs": [
+    {
+     "date": "2021-02-09",
+     "title": "QA with students of the Babson College Fund",
+     "n": 13
+    },
+    {
+     "date": "2025-02-25",
+     "title": "Interview at the Capital Compounders Show",
+     "n": 20,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b964ff46c40af53e00077_20250314_mohnish_pabrais_interview_at_the_capital_compounders_show_on_february_25_2025.pdf"
+    },
+    {
+     "date": "2025-05-02",
+     "title": "Sessions at UNO (May 2, 2025) and Columbia Business School (March 25, 2025)",
+     "n": 18,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b973f9b86b5bc60be0964_20250611_mohnish_pabrais_sessions_at_uno_on_may_2_2025_and_CBS_on_march_25_2025_v2.pdf"
+    },
+    {
+     "date": "2026-08-25",
+     "title": "Session with Copenhagen Business School Investment Club",
+     "n": 21,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6aa12b39b075dd148c1d96e7_20260903%20Mohnish%20Pabrai%27s%20Session%20with%20Copenhagen%20Business%20School%20on%20August%2025%2C%202026.pdf"
+    }
+   ],
+   "docs": 59
   },
   {
    "name": "Warrior Met Coal",
@@ -1212,8 +3300,63 @@
    ],
    "status": "Current holding",
    "when": "Mar 2026",
-   "text": "The other half of his metallurgical coal bet, bought when he switched from CONSOL to \"Alpha and Warrior.\" He holds coal as one of several favorable-but-not-certain bets, along with airports, warehouses and Constellation, and says he only needs about half of them to work."
+   "text": "The other half of his metallurgical coal bet, bought when he switched from CONSOL to \"Alpha and Warrior.\" He holds coal as one of several favorable-but-not-certain bets, along with airports, warehouses and Constellation, and says he only needs about half of them to work.",
+   "held": "Current holding",
+   "paid": "Not stated per share.",
+   "value": "Same replacement-cost argument as Alpha (SumZero, Jun 2025): assets worth $10–20 billion, available for about $2 billion. He praises its longwall mining and river-barge logistics, with very high-quality met coal at very low cost.",
+   "refs": [
+    {
+     "date": "2025-06-10",
+     "title": "Session with SumZero",
+     "n": 9,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b97667e7e01d646f392b2_20250630_mohnish_pabrais_session_with_sumzero_on_june_10_2025_final.pdf"
+    },
+    {
+     "date": "2026-03-23",
+     "title": "Interview with The Investor's Podcast",
+     "n": 1,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99a459907c751a93ecf7_20260603_mohnish_pabrais_interview_with_the_investors_podcast_on_march_23_2026_v2.pdf"
+    }
+   ],
+   "docs": 2
+  },
+  {
+   "name": "Western Insurance",
+   "links": [],
+   "held": "Not held",
+   "status": "Buffett anecdote",
+   "when": "2025–26",
+   "paid": "Stock at $15.",
+   "value": "Earnings of $25 a share and book value of $80: the kind of anomaly that \"hits you with a two by four\".",
+   "text": "",
+   "refs": [
+    {
+     "date": "2017-06-07",
+     "title": "Session at the University of California, Irvine (UCI)",
+     "n": 5,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463cbf6683e43206605689_mohnish_pabrai%E2%80%99s_lecture_at_the_university_of_california__irvine__uci__on_june_7__2017_v2.pdf"
+    },
+    {
+     "date": "2025-03-27",
+     "title": "Talk with the My First Million podcast",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b96c49160988294e59cbc_20250507_mohnish_pabrais_talk_at_my_first_million_podcast_on_march_27_2025.pdf"
+    },
+    {
+     "date": "2026-04-21",
+     "title": "Mental Models at Heilbrunn Center for Graham and Dodd Investing",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99597e7e01d646f4d746_20260528_mohnish_pabrais_session_at_heilbrunn_center_on_april_21_2026_v3.pdf"
+    },
+    {
+     "date": "2026-05-01",
+     "title": "Mental Models for Exceptional Capital Allocation at The UNO",
+     "n": 2,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b991bd3823e4b88190b51_20260525_mohnish_pabrais_session_with_university_of_nebraska_omaha_on_may_1_2026_v3.pdf"
+    }
+   ],
+   "docs": 5
   }
  ],
- "stocksBasis": "Compiled from all 131 transcripts and 30 articles in the archive, 2000 to 2026. Names are included where he speaks of the business favorably, whether he owns it or not. Companies he discusses only to criticize (Nvidia and TSMC at current prices, Kodak, Valiant, Tesla) are left out, as are failed investments."
+ "stocksBasis": "Compiled from all 155 documents in the archive (131 transcripts and 24 articles posted as PDFs, 2000–2026). Each entry says whether he held the stock, what he paid, how he valued it, and where he discussed it (date and title; linked to the PDF where available). Prices are in his own words and are as he remembered them in talks, so treat them as approximate."
 }
