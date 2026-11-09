@@ -114,9 +114,6 @@
           <option value="letters">a letters page</option><option value="posts">a blog or site</option><option value="podcast">a podcast feed</option>
         </select>
       </label>
-      <label class="text-xs text-slate-400">Photo address (optional)
-        <input id="gPhoto" type="url" placeholder="https://…/photo.jpg" class="block mt-1 w-64 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
-      </label>
       <button class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Add</button>
       <p class="text-xs text-slate-500 basis-full">The CIK is the manager's number on sec.gov: search their firm name on EDGAR (sec.gov/edgar/searchedgar/companysearch) and copy the number after "CIK". Leave it blank for investors who don't file a 13F. The page or feed can be a letters page, a blog, or a podcast feed; pages without dates flag new links since your last visit.</p>
     </form>
@@ -997,8 +994,6 @@ function renderGurus() {
     title.appendChild(el('h3', 'text-xl font-medium text-white', g.name));
     const chips = el('div', 'flex flex-wrap gap-x-3 text-xs mt-0.5');
     (g.links || []).forEach(l => { const a = el('a', 'text-sky-400 hover:text-sky-300', l.label); a.href = l.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; chips.appendChild(a); });
-    const ph = el('button', 'text-slate-500 hover:text-slate-300', g.photo ? 'Change photo' : 'Add photo'); ph.type = 'button';
-    chips.appendChild(ph);
     title.appendChild(chips);
     head.appendChild(title);
     const rm = el('button', 'self-start text-xs text-slate-500 hover:text-red-400', 'Remove'); rm.type = 'button';
@@ -1006,12 +1001,6 @@ function renderGurus() {
     head.appendChild(rm);
     card.appendChild(head);
 
-    const pf = el('form', 'flex gap-2 mb-4'); pf.hidden = true;
-    pf.innerHTML = '<input type="url" placeholder="Address of a photo (https://…)" class="flex-1 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600"><button class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Save</button>';
-    pf.firstChild.value = g.photo || '';
-    ph.addEventListener('click', () => { pf.hidden = !pf.hidden; if (!pf.hidden) pf.firstChild.focus(); });
-    pf.addEventListener('submit', e => { e.preventDefault(); const v = pf.firstChild.value.trim(); g.photo = /^(https:\/\/|photos\/)/i.test(v) ? v : ''; saveGurus(); renderGurus(); });
-    card.appendChild(pf);
 
     const cols = el('div', 'grid lg:grid-cols-3 gap-6');
 
@@ -1140,10 +1129,10 @@ $('guruForm').addEventListener('submit', e => {
   e.preventDefault();
   const name = $('gName').value.trim().replace(/\s+/g, ' '), code = $('gCode').value.trim(), src = $('gSrc').value.trim();
   if (!name || guruList.some(g => g.name.toLowerCase() === name.toLowerCase())) return;
-  const g = {name, cik: code.replace(/\D/g, ''), search: true, links: [], sources: [], photo: /^https:\/\//i.test($('gPhoto').value.trim()) ? $('gPhoto').value.trim() : ''};
+  const g = {name, cik: code.replace(/\D/g, ''), search: true, links: [], sources: []};
   if (/^https:\/\//i.test(src)) { g.sources.push({kind: $('gKind').value, label: src.replace(/^https:\/\/(www\.)?/i, '').replace(/\/$/, '').slice(0, 40), url: src}); g.links.push({label: 'Website', url: src}); }
   guruList.push(g); saveGurus();
-  $('gName').value = ''; $('gCode').value = ''; $('gSrc').value = ''; $('gPhoto').value = '';
+  $('gName').value = ''; $('gCode').value = ''; $('gSrc').value = '';
   renderGurus();
   loadGuru(g).then(renderGurus);
 });
