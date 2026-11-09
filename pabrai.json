@@ -2016,6 +2016,41 @@
    "docs": 23
   },
   {
+   "name": "Gimat (Turkey's \"Costco\")",
+   "links": [
+    {
+     "label": "Gimat",
+     "sym": "GMTAS.IS"
+    }
+   ],
+   "held": "Current holding",
+   "status": "Current holding (over 30%)",
+   "when": "Apr–Aug 2026",
+   "paid": "He met the owner, visited both stores and bought when the market cap was about $70 million against about $70 million of surplus real estate, so \"the business was free\". The funds now own over 30%. The date of purchase and price per share are not stated.",
+   "value": "His daughter Monsoon Pabrai pitched it at Best Ideas 2026 (MOI Global, Mar 20, 2026) at a market cap of about $156 million against an intrinsic value of about $175 million, from about $11 million of profit after tax at 10x plus $50 million of projected office sales and rental property valued at a 6.5% yield. Her framing was \"heads I win, tails I don't lose too much\".",
+   "text": "An Ankara wholesaler and hypermarket (GMTAS, Borsa Istanbul) that grew out of a cooperative of more than 1,000 wholesalers. It has two stores that are mobbed with customers, with no parking; the flagship does about $1,200 of sales per square foot at gross margins above 20%. It sells in bulk at low margins and owns its real estate, which hedges Turkish inflation. About 99% of the shares are free float, and the general manager holds proxies for over 25% of the wholesalers. Net margins are thin at 1–2%. He calls it almost a venture investment with few \"tread marks\", and in April 2026 said 70% of his portfolio was in three Turkish stocks. It is also a top-five holding of the Wagons ETF (5.8% at Oct 31, 2026).",
+   "refs": [
+    {
+     "date": "2026-04-21",
+     "title": "Mental Models at Heilbrunn Center for Graham and Dodd Investing",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99597e7e01d646f4d746_20260528_mohnish_pabrais_session_at_heilbrunn_center_on_april_21_2026_v3.pdf"
+    },
+    {
+     "date": "2026-08-25",
+     "title": "Session with Copenhagen Business School Investment Club",
+     "n": 3,
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6aa12b39b075dd148c1d96e7_20260903%20Mohnish%20Pabrai%27s%20Session%20with%20Copenhagen%20Business%20School%20on%20August%2025%2C%202026.pdf"
+    },
+    {
+     "date": "2026-03-20",
+     "title": "Monsoon Pabrai, Gimat: The Turkish Costco with a Decades-Long Runway (MOI Global, via Latticework)",
+     "url": "https://www.latticework.com/p/gimat-the-turkish-costco-with-a-decades"
+    }
+   ],
+   "docs": 2
+  },
+  {
    "name": "Goldman Sachs",
    "links": [
     {
@@ -3695,31 +3730,6 @@
    "docs": 2
   },
   {
-   "name": "Turkish \"Costco\" (name not given)",
-   "links": [],
-   "status": "Holding (30%+)",
-   "when": "Aug 2026",
-   "text": "A tiny Turkish warehouse-club retailer he describes as like a venture investment. It had two stores that were mobbed with customers, and $70 million of surplus real estate against a $70 million market cap, so the business was free. He met the owner, visited both stores and bought, and now owns over 30%.",
-   "held": "Current holding",
-   "paid": "Bought at a $70 million market cap against $70 million of surplus real estate, so \"the business was free\".",
-   "value": "He now owns over 30%.",
-   "refs": [
-    {
-     "date": "2026-04-21",
-     "title": "Mental Models at Heilbrunn Center for Graham and Dodd Investing",
-     "n": 1,
-     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99597e7e01d646f4d746_20260528_mohnish_pabrais_session_at_heilbrunn_center_on_april_21_2026_v3.pdf"
-    },
-    {
-     "date": "2026-08-25",
-     "title": "Session with Copenhagen Business School Investment Club",
-     "n": 2,
-     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6aa12b39b075dd148c1d96e7_20260903%20Mohnish%20Pabrai%27s%20Session%20with%20Copenhagen%20Business%20School%20on%20August%2025%2C%202026.pdf"
-    }
-   ],
-   "docs": 2
-  },
-  {
    "name": "Valiant Pharmaceuticals",
    "links": [],
    "held": "Not held",
@@ -3941,7 +3951,7 @@
    "started": "July 1999",
    "summary": "The original funds. Pabrai started them in July 1999 with $1 million from eight friends, plus $100,000 of his own, and copied the Buffett partnerships of the 1950s and 60s: no management fee, a 6% annual hurdle with one-fourth of gains above it going to him, redemptions once a year, and no public disclosure of holdings. He runs a handful of concentrated bets and says the structure gives him long-term investors. It is a family of partnerships, including an offshore fund, and minimums are in the millions.",
    "size": "About $1.4 billion in total across the private funds and the ETF (Oct 31, 2026). Subtracting the ETF's $313 million implies roughly $1.1 billion in the private funds, though he does not break this out.",
-   "holdings": "The funds do not publish holdings. From his 2026 talks, the main positions are Reysas, the Turkish warehouse company, where the funds own about 41% and which was 40% of the offshore fund in 2023; a Turkish warehouse-club retailer (over 30% owned); Constellation Software; the coal companies Alpha Metallurgical and Warrior Met Coal; the offshore drillers Transocean and Valaris; TAV Airports; and Kaspi.kz. See the stock list below for prices and his reasoning.",
+   "holdings": "The funds do not publish holdings. From his 2026 talks, the main positions are Reysas, the Turkish warehouse company, where the funds own about 41% and which was 40% of the offshore fund in 2023; Gimat, the Turkish \"Costco\" (over 30% owned); Constellation Software; the coal companies Alpha Metallurgical and Warrior Met Coal; the offshore drillers Transocean and Valaris; TAV Airports; and Kaspi.kz. See the stock list below for prices and his reasoning.",
    "performance": [
     "About 12.9% a year after fees from July 1, 1999 through September 30, 2024, against 7.8% for the S&P 500 with dividends (Forbes, Nov 2024).",
     "$100,000 at inception grew to $1.83 million by December 2023, a gain of over 12% a year against about 7% for the S&P 500 (University of Nebraska Omaha introduction, May 2024).",
