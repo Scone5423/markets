@@ -809,5 +809,307 @@
 "title": "The Intrinsic Value of Microsoft, Intel, and Cisco (Ch. 26, Mosaic)",
 "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a5608143b4831a63a107ea6_the_intrinsic_value_of_microsoft_intel_and_cisco.pdf"
 }
-]
+],
+"stocks": [
+{
+"name": "Adobe",
+"links": [
+{
+"label": "Adobe",
+"sym": "ADBE"
+}
+],
+"status": "Favorable view (not owned)",
+"when": "Jul 2026, May 2026",
+"text": "Used as his example of the market getting software wrong. After AI fears knocked the stock down (36% in a year, 63% from its 2024 high, per the interviewer), he argues that being able to write code quickly does not put Adobe or Photoshop out of business, because software is far more than coding. In his view the advantage goes to incumbents, who can use AI to cut costs. He says the market \"has gotten it wrong\" on vertical software, and he treats the selloff in hated, unloved software names as a place to look."
+},
+{
+"name": "Alpha Metallurgical Resources",
+"links": [
+{
+"label": "Alpha Metallurgical Resources",
+"sym": "AMR"
+}
+],
+"status": "Current holding",
+"when": "Mar–May 2026",
+"text": "One of his coal bets. He moved from thermal coal (CONSOL) to metallurgical coal, which he found even more favorable, and now holds Alpha and Warrior. He holds Alpha up as his example of an \"uber-cannibal\": it bought back 32% of its shares in four years, more than Apple (11%) or Microsoft (10%), by putting its spare cash into the stock. He is open that the coal bets can fail, with low-probability things that could go wrong, but calls them favorable bets, part of a group where he does not need every one to work."
+},
+{
+"name": "Alphabet and Amazon",
+"links": [
+{
+"label": "Alphabet",
+"sym": "GOOGL"
+},
+{
+"label": "Amazon",
+"sym": "AMZN"
+}
+],
+"status": "Admired",
+"when": "Apr–May 2026",
+"text": "Named as great \"spawners,\" companies that create new businesses, one of his models for finding compounders. He also tells how Nick Sleep's fund let Amazon grow to roughly 80% of the portfolio and still came out ahead of nearly everyone, as an illustration of letting a winner run. He doesn't say he owns either."
+},
+{
+"name": "American Express",
+"links": [
+{
+"label": "American Express",
+"sym": "AXP"
+}
+],
+"status": "Admired (moat business)",
+"when": "May–Aug 2026",
+"text": "Included among the businesses with a moat that he would not sell \"unless egregiously overpriced,\" a bar he says AmEx does not currently meet. He retells Buffett's 1964 bet, putting 40% of his fund into the company after the salad-oil scandal knocked the stock down, because the core moat, trust in the card, was intact."
+},
+{
+"name": "Berkshire Hathaway",
+"links": [
+{
+"label": "Berkshire Hathaway",
+"sym": "BRK-B"
+}
+],
+"status": "Recommended to beginners",
+"when": "Aug 2026",
+"text": "His advice for a retail investor just starting: buy Berkshire Hathaway, \"100% of the portfolio,\" while you are still in kindergarten and learning the alphabet of investing. Only after that does he suggest moving to businesses whose products you personally use. He also notes Coca-Cola is Berkshire's longest-held stock, bought in 1988."
+},
+{
+"name": "Coca-Cola",
+"links": [
+{
+"label": "Coca-Cola",
+"sym": "KO"
+}
+],
+"status": "Admired (moat business)",
+"when": "Apr–Aug 2026",
+"text": "A prime example of a brand moat: he lists it with Costco, Visa, Mastercard and AmEx as businesses you hold unless they become egregiously overpriced, which he says they are not now. He cites it as Berkshire's longest-held stock (since 1988, 38 years) and a model for the buy-and-hold discipline he wants investors to adopt earlier in life. He also contrasts a Coke bottler in Turkey with a Pepsi bottler in India, the same business trading at very different prices."
+},
+{
+"name": "CONSOL Energy",
+"links": [
+{
+"label": "CONSOL Energy",
+"sym": null
+}
+],
+"status": "Former holding",
+"when": "Mar–May 2026",
+"text": "His entry into coal. He found it after a post on X noted that David Einhorn's CONSOL bet looked like his own 2003–04 IPSCO trade: the company forward-sold its coal inside a price band, so future cash flows were visible and the risk-reward was favorable. He later switched the thermal-coal bet to metallurgical coal (Alpha and Warrior), which he found even more attractive."
+},
+{
+"name": "Constellation Software",
+"links": [
+{
+"label": "Constellation Software",
+"sym": "CSU.TO"
+}
+],
+"status": "Current holding",
+"when": "Mar–Aug 2026",
+"text": "A major position in his Wagons fund and the stock he talks about most. He calls it a rare company, and says that in many ways it is superior to Berkshire: it buys only one kind of business, small vertical software companies, through a delegated model where deal teams can close purchases up to $20 million without approval. He describes a machine reinvesting at about 25% and growing cash flow 20–25% a year, with founder Mark Leonard's culture passed down to the units. It compounded around 35% a year for about 15 years. He says AI fears took the stock \"out back and shot\" and that the market is wrong that cloners can replace this software, and that is when he got interested. He criticizes fund managers who trim it at 10% of the portfolio."
+},
+{
+"name": "Costco",
+"links": [
+{
+"label": "Costco",
+"sym": "COST"
+}
+],
+"status": "Admired (moat business)",
+"when": "Mar–Jul 2026",
+"text": "One of the companies he is most fanatical about, citing the trust it earns from customers, employees (paid well above Walmart, with a CEO who started as a forklift operator) and vendors. On price he says Costco has traded around 50x trailing earnings and has never been \"egregiously overpriced,\" so he would not sell it. He cites it as one of several names to hold long term."
+},
+{
+"name": "Ferrari",
+"links": [
+{
+"label": "Ferrari",
+"sym": "RACE"
+}
+],
+"status": "Former holding (a regret)",
+"when": "Apr–Aug 2026",
+"text": "His fund once owned nearly 1% of the company, bought for about $6–10 million, an effective market value of under $1 billion at the time. He says it should never have been sold: a moat that everyone can see, models sold out within ten minutes, and around 80% margins on cars that sell for millions. He calls selling it an example of interrupting compounding unnecessarily."
+},
+{
+"name": "Frontline",
+"links": [
+{
+"label": "Frontline",
+"sym": "FRO"
+}
+],
+"status": "Former holding (a regret)",
+"when": "Mar 2026",
+"text": "His 2002 tanker investment, bought with little downside. He doubled his money, sold, and watched it rise about 200x. On a visit to its Oslo headquarters he realized he had once owned 2% of the whole thing. It is his standing cautionary tale about selling a great business too early, and he sees similarities to the metallurgical coal thesis."
+},
+{
+"name": "Goldman Sachs",
+"links": [
+{
+"label": "Goldman Sachs",
+"sym": "GS"
+}
+],
+"status": "Former holding (a regret)",
+"when": "Apr–May 2026",
+"text": "He bought it during the financial crisis at about $65 a share, half of what Buffett paid ($130), then sold. He lists it with Ferrari and Progressive as part of the pie he dropped on the way back from the counter, a position that should have been kept."
+},
+{
+"name": "IPSCO",
+"links": [
+{
+"label": "IPSCO",
+"sym": null
+}
+],
+"status": "Former holding (his template)",
+"when": "Mar–May 2026",
+"text": "The Canadian steel company he bought in 2003–04 with about $15 a share in cash, a $40 stock price and guidance for $15 a year in free cash flow for two years, which made the plant and inventory effectively free. He put about 10% of the fund into it and sold after a Swedish buyer offered $160 and the stock hit $155. He treats it as the model for a no-downside bet and a reference point for later ideas like CONSOL."
+},
+{
+"name": "Kaspi.kz",
+"links": [
+{
+"label": "Kaspi.kz",
+"sym": "KSPI"
+}
+],
+"status": "Current holding (newer)",
+"when": "Jul–Aug 2026",
+"text": "One of his most recent investments: a Nasdaq-listed Kazakh \"super app\" he compares to WeChat, with about 15 million users out of roughly 20 million people and around $2 billion a year in cash flow. A rockstar CEO who owns about 40–43% turned a failing bank into a fintech, and is now copying the playbook in Turkey. He says he isn't paying much for a tech business with a simple thesis, and that there is a \"moonshot\" element, with the outcome unknown but the manager's record exceptional. He tells students to read the Harvard Business School case studies on its founder."
+},
+{
+"name": "Micron",
+"links": [
+{
+"label": "Micron",
+"sym": "MU"
+}
+],
+"status": "Former holding",
+"when": "Mar–Oct 2026",
+"text": "Owned from about 2017 to 2023 alongside Li Lu, who manages some of Charlie Munger's money. He sold after roughly a double (a low-teens annual return) when the three-player memory oligopoly of Samsung, SK Hynix and Micron turned into a price war, and he says he does not regret that decision. But he still likes the business, a protected oligopoly with very high barriers, and calls Micron the best of the three, with good governance and management. He also says AI builders have to pass through toll bridges like TSMC, ASML and Micron, but he has no new position because they are outside his circle of competence or too expensive."
+},
+{
+"name": "Progressive",
+"links": [
+{
+"label": "Progressive",
+"sym": "PGR"
+}
+],
+"status": "Former holding (a regret)",
+"when": "Apr–May 2026",
+"text": "He invested about 25 years ago and says he should have left it alone. Named with Ferrari and Goldman Sachs as great businesses he sold and later regretted."
+},
+{
+"name": "Reysas",
+"links": [
+{
+"label": "Reysas",
+"sym": "RYSAS.IS"
+}
+],
+"status": "Largest holding",
+"when": "Mar–Oct 2026",
+"text": "His signature investment: a Turkish warehouse and logistics real estate company, bought from 2019 at under 3% of liquidation value. About $8 million bought a third of it when the market cap was $15–20 million against roughly $800 million in asset value. It is 99% leased on inflation-indexed leases to tenants like Amazon, IKEA and Toyota, and run by a father-and-son team he plans to keep as partners for 30–40 years. The market value is now about $1.5–1.8 billion, his 41–42.5% stake is $500–550 million of the roughly $1.4 billion he manages, and the stock is up 100x or more in dollars even as the lira lost over 90% of its value. He says he intends to hold it forever."
+},
+{
+"name": "SK Hynix and Samsung",
+"links": [
+{
+"label": "SK Hynix",
+"sym": "000660.KS"
+},
+{
+"label": "Samsung",
+"sym": "005930.KS"
+}
+],
+"status": "Admired (memory oligopoly)",
+"when": "Jun–Oct 2026",
+"text": "He says he used to own SK Hynix and sold it against his own rule, and that the memory business is protected: three players, high barriers to a fourth, and long-term take-or-pay contracts with customers like Apple that lock in revenue regardless of the AI cycle. On the picks, he prefers Micron to SK Hynix, and says Samsung is not a pure play. He does not currently invest in Korea and cautions that individual investors should stay in their circle of competence. He calls the memory makers \"pickaxe\" sellers in an AI gold rush."
+},
+{
+"name": "TAV Airports",
+"links": [
+{
+"label": "TAV Airports",
+"sym": "TAVHL.IS"
+}
+],
+"status": "A Turkish bet he cites",
+"when": "May 2026",
+"text": "Cited as a Turkish idea fitting his models: an airport operator with revenue in euros listed in Istanbul and trading at just 3–4x earnings, where an Indian airport operator trades at 50–70x. He calls airport operators phenomenal natural monopolies. He lists airports among his bets, alongside coal, warehouses and Constellation."
+},
+{
+"name": "Transocean and Valaris",
+"links": [
+{
+"label": "Transocean",
+"sym": "RIG"
+},
+{
+"label": "Valaris",
+"sym": "VAL"
+}
+],
+"status": "Merger arbitrage",
+"when": "Apr 2026",
+"text": "He says he owned Transocean and uses its acquisition of Valaris as an example of the \"heads I win, tails I don't lose much\" arbitrage, where buying both and waiting for the deal to close makes some money with little downside. He calls these small bets games to play while waiting for a real opportunity."
+},
+{
+"name": "Turkish \"Costco\" (name not given)",
+"links": [],
+"status": "Holding (30%+)",
+"when": "Aug 2026",
+"text": "A tiny Turkish warehouse-club retailer he describes as like a venture investment. It had two stores that were mobbed with customers, and $70 million of surplus real estate against a $70 million market cap, so the business was free. He met the owner, visited both stores and bought, and now owns over 30%."
+},
+{
+"name": "Visa and Mastercard",
+"links": [
+{
+"label": "Visa",
+"sym": "V"
+},
+{
+"label": "Mastercard",
+"sym": "MA"
+}
+],
+"status": "Admired (moat business)",
+"when": "Jul–Aug 2026",
+"text": "Listed with Costco, Coke and AmEx as businesses with moats you do not sell unless the valuation becomes extreme. He notes Mastercard \"became the standard.\" He says these companies, along with Moody's and FICO, did not start with moats and their founders did not expect them to last as long as they did."
+},
+{
+"name": "Walmart",
+"links": [
+{
+"label": "Walmart",
+"sym": "WMT"
+}
+],
+"status": "Admired",
+"when": "Mar–Aug 2026",
+"text": "His favorite example of letting a great business run. If you had held 2% of the \"Nifty 50\" and 49 of the 50 went to zero except Walmart, he says you would still beat the S&P 500. The Walton family still owns about 46% 54 years after the IPO and is far from diversified, which he cites as proof that concentration works. He also recounts how Sam Walton copied Price Club, which turned into Sam's Club, as his model of the shameless cloner. He recommends family-controlled public companies in general."
+},
+{
+"name": "Warrior Met Coal",
+"links": [
+{
+"label": "Warrior Met Coal",
+"sym": "HCC"
+}
+],
+"status": "Current holding",
+"when": "Mar 2026",
+"text": "The other half of his metallurgical coal bet, bought when he switched from CONSOL to \"Alpha and Warrior.\" He holds coal as one of several favorable-but-not-certain bets, along with airports, warehouses and Constellation, and says he only needs about half of them to work."
+}
+],
+"stocksBasis": "Compiled from the 14 transcripts posted December 2025 through October 2026. Older transcripts and articles will be added as they are read. Companies he discusses only to criticize them (Nvidia and TSMC at current prices, Kodak, Amorepacific's thin moat) are left out."
 }

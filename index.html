@@ -115,7 +115,7 @@
   <section id="view-pabrai" hidden>
     <div class="mb-6">
       <h2 class="text-3xl font-semibold text-white">Mohnish Pabrai</h2>
-      <p class="text-sm text-slate-400 mt-1">Every talk transcript and article published on <a class="underline hover:text-white" href="https://www.chaiwithpabrai.com/" target="_blank" rel="noopener">Chai with Pabrai</a>, searchable, with links to the PDFs. Stock-by-stock summaries are coming next.</p>
+      <p class="text-sm text-slate-400 mt-1">Every talk transcript and article published on <a class="underline hover:text-white" href="https://www.chaiwithpabrai.com/" target="_blank" rel="noopener">Chai with Pabrai</a>, the stocks he speaks of favorably, plus a searchable list of every transcript and article with links to the PDFs.</p>
     </div>
     <figure class="relative mb-6 rounded-lg border border-slate-800 bg-gradient-to-br from-[#151b22] to-[#101820] px-6 py-6 sm:px-10 overflow-hidden">
       <span aria-hidden="true" class="absolute -top-4 left-3 text-8xl leading-none text-emerald-400/20 select-none" style="font-family: Georgia, 'Times New Roman', serif">&ldquo;</span>
@@ -1381,6 +1381,33 @@ async function pabraiShow() {
 function renderPabrai() {
   const box = $('pabraiBody'); box.innerHTML = '';
   if (!pabraiData) { box.appendChild(el('p', 'text-sm text-slate-400', 'The Pabrai index could not be loaded. Try refreshing in a minute.')); return; }
+  if (Array.isArray(pabraiData.stocks) && pabraiData.stocks.length) {
+    box.appendChild(el('h3', 'text-lg font-medium text-white mb-1', 'Stocks he speaks of favorably'));
+    if (pabraiData.stocksBasis) box.appendChild(el('p', 'text-xs text-slate-500 mb-4', pabraiData.stocksBasis));
+    const list = el('div', 'space-y-3 mb-10');
+    pabraiData.stocks.forEach(s => {
+      const card = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-4');
+      const head = el('div', 'flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-1');
+      const h4 = el('h4', 'font-medium text-white');
+      if (s.links && s.links.some(l => l.sym)) {
+        s.links.forEach((l, i) => {
+          if (i) h4.appendChild(document.createTextNode(' / '));
+          if (l.sym) {
+            const a = el('a', 'hover:text-sky-300 underline decoration-slate-600 underline-offset-4 hover:decoration-sky-400', l.label);
+            a.href = '#charts/' + encodeURIComponent(l.sym); a.title = 'Open the ' + l.sym + ' chart'; h4.appendChild(a);
+          } else h4.appendChild(document.createTextNode(l.label));
+        });
+      } else h4.textContent = s.name;
+      head.appendChild(h4);
+      head.appendChild(el('span', 'text-[11px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300', s.status));
+      head.appendChild(el('span', 'text-xs text-slate-500 ml-auto', s.when));
+      card.appendChild(head);
+      card.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed', s.text));
+      list.appendChild(card);
+    });
+    box.appendChild(list);
+    box.appendChild(el('h3', 'text-lg font-medium text-white mb-3', 'All transcripts and articles'));
+  }
   const bar = el('div', 'flex flex-wrap items-center gap-2 mb-4');
   [['transcripts', 'Transcripts'], ['articles', 'Articles']].forEach(([k, label]) => {
     const n = pabraiData[k].length;
