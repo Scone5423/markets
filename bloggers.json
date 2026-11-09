@@ -6,7 +6,7 @@
    "author": "Aswath Damodaran",
    "url": "https://aswathdamodaran.blogspot.com/",
    "totalPosts": 686,
-   "postsRead": 64,
+   "postsRead": 73,
    "posts": [
     {
      "date": "2026-11-09",
@@ -327,6 +327,51 @@
      "date": "2023-02-02",
      "title": "Disagreements and First Principles: The Pushback on my Tesla Valuation",
      "url": "https://aswathdamodaran.blogspot.com/2023/02/disagreements-and-first-principles.html"
+    },
+    {
+     "date": "2022-02-12",
+     "title": "Back to Earth or Temporary Setback? Revisiting the FANGAM Stocks",
+     "url": "https://aswathdamodaran.blogspot.com/2022/02/back-to-earth-or-temporary-setback.html"
+    },
+    {
+     "date": "2021-11-09",
+     "title": "Tesla's Trillion Dollar Moment: A Valuation Revisit!",
+     "url": "https://aswathdamodaran.blogspot.com/2021/11/teslas-trillion-dollar-moment-valuation.html"
+    },
+    {
+     "date": "2021-08-02",
+     "title": "A DIY (Do-It-Yourself) Valuation of Zomato",
+     "url": "https://aswathdamodaran.blogspot.com/2021/08/a-diy-do-it-yourse-valuation-of-zomato.html"
+    },
+    {
+     "date": "2020-12-02",
+     "title": "The Sharing Economy come home: The IPO of Airbnb!",
+     "url": "https://aswathdamodaran.blogspot.com/2020/12/the-sharing-economy-come-home-ipo-of.html"
+    },
+    {
+     "date": "2019-06-03",
+     "title": "Tesla's Travails: Curfew for a Corporate Teenager?",
+     "url": "https://aswathdamodaran.blogspot.com/2019/06/teslas-travails-curfew-for-corporate.html"
+    },
+    {
+     "date": "2019-04-15",
+     "title": "Uber's Coming out Party: Personal Mobility Pioneer or Car Service on Steroids?",
+     "url": "https://aswathdamodaran.blogspot.com/2019/04/ubers-coming-out-party-personal.html"
+    },
+    {
+     "date": "2018-12-03",
+     "title": "Investing Whiplash: Looking for Closure with Apple and Amazon!",
+     "url": "https://aswathdamodaran.blogspot.com/2018/12/investing-whiplash-looking-for-closure.html"
+    },
+    {
+     "date": "2018-09-19",
+     "title": "Apple and Amazon at a Trillion $: Looking Back and Looking Forward!",
+     "url": "https://aswathdamodaran.blogspot.com/2018/09/apple-and-amazon-at-trillion-looking.html"
+    },
+    {
+     "date": "2018-04-16",
+     "title": "Netflix: The Future of Entertainment or House of Cards?",
+     "url": "https://aswathdamodaran.blogspot.com/2018/04/netflix-future-of-entertainment-or.html"
     }
    ],
    "recent": [
@@ -357,6 +402,132 @@
     }
    ],
    "stocks": [
+    {
+     "s": "AMZN",
+     "name": "Amazon",
+     "notes": [
+      {
+       "date": "2026-11-09",
+       "title": "The AI Trade Deconstructed: AI Builders, AI Suppliers and AI Product firms!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-ai-trade-deconstructed-ai-builders.html",
+       "text": "Hyperscaler and AI builder with a stake in Anthropic; legacy and cloud businesses buffer the AI spending."
+      },
+      {
+       "date": "2026-11-03",
+       "title": "The Anthropic Feedback Loop: The Cost of Capital Delusion and Diversion!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-anthropic-feedback-loop-cost-of.html",
+       "text": "Named with Walmart as operating at very large scale (revenue near a trillion dollars) at the expense of margins; Anthropic would join that group if it hits its revenue target."
+      },
+      {
+       "date": "2026-10-08",
+       "title": "Stock Prices, Earnings and Cashflows: The AI Effect plays through!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/10/stock-prices-earnings-and-cashflows-ai.html",
+       "text": "Hyperscaler spending on AI capex and also a supplier through cloud data storage. He holds it."
+      },
+      {
+       "date": "2026-09-02",
+       "title": "The Scaling and Profitability Trade off: Venture Capital's Weakest Link!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/09/the-scaling-and-profitability-trade-off.html",
+       "text": "A \"Field of Dreams\" model where scaling came before profits; credits Bezos for consistency."
+      },
+      {
+       "date": "2026-08-20",
+       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
+       "text": "One of the six hyperscalers in the capex chart; the most successful online retailer, though brick-and-mortar retailers were hurt."
+      },
+      {
+       "date": "2026-05-06",
+       "title": "An Ode to Restraint: Lessons from the Tim Cook Legacy",
+       "url": "https://aswathdamodaran.blogspot.com/2026/05/an-ode-to-restraint-lessons-from-tim.html",
+       "text": "Bezos left in 2021 and Andy Jassy succeeded him; Jassy is betting on AI as a growth driver."
+      },
+      {
+       "date": "2026-04-23",
+       "title": "To a Trillion(s) Dollars and beyond: A SpaceX IPO Odyssey!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/04/to-trillion-dollars-and-beyond-spacex.html",
+       "text": "Its acquisition of Globalstar brings a potential satellite-internet competitor, but Globalstar has far fewer satellites than Starlink."
+      },
+      {
+       "date": "2026-03-04",
+       "title": "AI Scenarios: From Doomsday Destruction to Do-Nothing Bots!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/03/ai-scenarios-from-economic-doomsday-to.html",
+       "text": "Cited with Meta for negative market reactions to new AI investments."
+      },
+      {
+       "date": "2026-02-20",
+       "title": "Data Update 7 for 2026: Debt and Taxes",
+       "url": "https://aswathdamodaran.blogspot.com/2026/02/data-update-7-for-2026-debt-and-taxes.html",
+       "text": "Included in the big tech AI capex comparison (2015-2025)."
+      },
+      {
+       "date": "2026-01-23",
+       "title": "Data Update 2 for 2026: Equities get tested, and pass again!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/01/data-update-2-for-2026-equities-get.html",
+       "text": "Single-digit market cap gain in 2025."
+      },
+      {
+       "date": "2025-12-03",
+       "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
+       "text": "Breakeven revenue exceeds $1 trillion by year 5; already more than a third of the way there."
+      },
+      {
+       "date": "2025-08-05",
+       "title": "The Imitation Game: Defending against AI's Dark Side!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/08/the-imitation-game-defending-against.html",
+       "text": "Named among stocks he values and acts on."
+      },
+      {
+       "date": "2025-03-15",
+       "title": "Investing Politics: Globalization Backlash and Government Disruption!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/03/investing-politics-globalization.html",
+       "text": "Cited as a disruptor that attacked retail; its health care efforts with Google have largely left the system intact."
+      },
+      {
+       "date": "2025-01-31",
+       "title": "DeepSeek crashes the AI Party: Story Break, Change or Shift?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/01/deepseek-crashes-ai-party-story-break.html",
+       "text": "AWS is a cloud beneficiary; part of the Mag Seven."
+      },
+      {
+       "date": "2024-10-18",
+       "title": "Breaking up Big Tech: Cui Bono?",
+       "url": "https://aswathdamodaran.blogspot.com/2024/10/breaking-up-big-tech-cui-bono.html",
+       "text": "Prime costs $139 a year and it has spent tens of billions a year for a decade subsidizing shipping; side ventures in logistics, entertainment and health care have mostly drained cash, with AWS the exception."
+      },
+      {
+       "date": "2024-02-08",
+       "title": "The Seven Samurai: How Big Tech Rescued the Market in 2023!",
+       "url": "https://aswathdamodaran.blogspot.com/2024/02/the-seven-samurai-how-big-tech-rescued.html",
+       "text": "Value $155.72 vs price $169.15, about 8.62% overvalued (revenue CAGR 12%, target margin 14%, cost of capital 8.60%, IRR 7.85%). Within striking distance of value."
+      },
+      {
+       "date": "2023-02-02",
+       "title": "Disagreements and First Principles: The Pushback on my Tesla Valuation",
+       "url": "https://aswathdamodaran.blogspot.com/2023/02/disagreements-and-first-principles.html",
+       "text": "One of two companies with double-digit revenue growth over a decade, with operating margins in the low single digits."
+      },
+      {
+       "date": "2022-02-12",
+       "title": "Back to Earth or Temporary Setback? Revisiting the FANGAM Stocks",
+       "url": "https://aswathdamodaran.blogspot.com/2022/02/back-to-earth-or-temporary-setback.html",
+       "text": "Sep 2020: modestly overvalued. Feb 2022: margins have climbed for five years and the company is solidifying its profit pathway; shares fell since Aug 2020. Buying (adding back); he has bought and sold the stock four times in twenty years."
+      },
+      {
+       "date": "2018-12-03",
+       "title": "Investing Whiplash: Looking for Closure with Apple and Amazon!",
+       "url": "https://aswathdamodaran.blogspot.com/2018/12/investing-whiplash-looking-for-closure.html",
+       "text": "Value $1,255 in September, $1,212 in November; price about $1,950 in September, low of $1,420 on Nov 20, almost $1,700 at the post. Overvalued by 55.38% in September, 39.44% by Nov 30. Shorted at about $1,950, the first short on the stock in 22 years; his $1,412 cover limit was not reached, so the short stays open and profitable. Expected catalysts: government action and regulatory pushback."
+      },
+      {
+       "date": "2018-09-19",
+       "title": "Apple and Amazon at a Trillion $: Looking Back and Looking Forward!",
+       "url": "https://aswathdamodaran.blogspot.com/2018/09/apple-and-amazon-at-trillion-looking.html",
+       "text": "Value $1,255 vs price $1,944: overvalued by almost 35%. A \"Disruptive Platform\" he admits he has consistently underestimated. Assumes 15% revenue growth to about $626 billion in 2027 and operating margin rising to 12.5% (about $78 billion). Implied joining the short sellers."
+      }
+     ]
+    },
     {
      "s": "^GSPC",
      "name": "S&P 500 index",
@@ -594,66 +765,48 @@
        "title": "The Seven Samurai: How Big Tech Rescued the Market in 2023!",
        "url": "https://aswathdamodaran.blogspot.com/2024/02/the-seven-samurai-how-big-tech-rescued.html",
        "text": "Value $445.10 vs price $456.08, about 2.47% overvalued (revenue CAGR 12%, target margin 40%, cost of capital 8.83%, IRR 8.53%). Close to fairly valued."
+      },
+      {
+       "date": "2022-02-12",
+       "title": "Back to Earth or Temporary Setback? Revisiting the FANGAM Stocks",
+       "url": "https://aswathdamodaran.blogspot.com/2022/02/back-to-earth-or-temporary-setback.html",
+       "text": "Sep 2020: the most undervalued of the six FANGAM stocks. Feb 2022: still the most undervalued but it has \"lost its story script,\" so price recovery may be slow; users fell last quarter, partly because of Apple's privacy changes. He sold on the name change and will buy back at current prices because of cheapness."
       }
      ]
     },
     {
-     "s": "AMZN",
-     "name": "Amazon",
+     "s": "AAPL",
+     "name": "Apple",
      "notes": [
       {
-       "date": "2026-11-09",
-       "title": "The AI Trade Deconstructed: AI Builders, AI Suppliers and AI Product firms!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-ai-trade-deconstructed-ai-builders.html",
-       "text": "Hyperscaler and AI builder with a stake in Anthropic; legacy and cloud businesses buffer the AI spending."
-      },
-      {
-       "date": "2026-11-03",
-       "title": "The Anthropic Feedback Loop: The Cost of Capital Delusion and Diversion!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-anthropic-feedback-loop-cost-of.html",
-       "text": "Named with Walmart as operating at very large scale (revenue near a trillion dollars) at the expense of margins; Anthropic would join that group if it hits its revenue target."
-      },
-      {
-       "date": "2026-10-08",
-       "title": "Stock Prices, Earnings and Cashflows: The AI Effect plays through!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/10/stock-prices-earnings-and-cashflows-ai.html",
-       "text": "Hyperscaler spending on AI capex and also a supplier through cloud data storage. He holds it."
+       "date": "2026-10-22",
+       "title": "From Eyeballs to Annual Run Rates (ARR): Buzzy Pricing Metrics and the Anthropic Trade!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/10/from-eyeballs-to-annual-run-rates-arr.html",
+       "text": "In the Mag Seven comparison; a weak peer for Anthropic given a different business model and life-cycle stage."
       },
       {
        "date": "2026-09-02",
        "title": "The Scaling and Profitability Trade off: Venture Capital's Weakest Link!",
        "url": "https://aswathdamodaran.blogspot.com/2026/09/the-scaling-and-profitability-trade-off.html",
-       "text": "A \"Field of Dreams\" model where scaling came before profits; credits Bezos for consistency."
+       "text": "With Samsung, an example of smartphone makers benefiting from a growing market in 2010."
       },
       {
        "date": "2026-08-20",
        "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
        "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
-       "text": "One of the six hyperscalers in the capex chart; the most successful online retailer, though brick-and-mortar retailers were hurt."
+       "text": "Smartphone maker that benefits from upgrade cycles but not from the businesses that run on its phones."
+      },
+      {
+       "date": "2026-07-29",
+       "title": "Information Timing and Release: The Gaming of Guidance!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/07/information-timing-and-release-gaming.html",
+       "text": "Used as an example of earnings consensus and revisions for the September 2026 report."
       },
       {
        "date": "2026-05-06",
        "title": "An Ode to Restraint: Lessons from the Tim Cook Legacy",
        "url": "https://aswathdamodaran.blogspot.com/2026/05/an-ode-to-restraint-lessons-from-tim.html",
-       "text": "Bezos left in 2021 and Andy Jassy succeeded him; Jassy is betting on AI as a growth driver."
-      },
-      {
-       "date": "2026-04-23",
-       "title": "To a Trillion(s) Dollars and beyond: A SpaceX IPO Odyssey!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/04/to-trillion-dollars-and-beyond-spacex.html",
-       "text": "Its acquisition of Globalstar brings a potential satellite-internet competitor, but Globalstar has far fewer satellites than Starlink."
-      },
-      {
-       "date": "2026-03-04",
-       "title": "AI Scenarios: From Doomsday Destruction to Do-Nothing Bots!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/03/ai-scenarios-from-economic-doomsday-to.html",
-       "text": "Cited with Meta for negative market reactions to new AI investments."
-      },
-      {
-       "date": "2026-02-20",
-       "title": "Data Update 7 for 2026: Debt and Taxes",
-       "url": "https://aswathdamodaran.blogspot.com/2026/02/data-update-7-for-2026-debt-and-taxes.html",
-       "text": "Included in the big tech AI capex comparison (2015-2025)."
+       "text": "Market cap rose from $1.68 billion at the start of Jobs's tenure to over $4 trillion at end-2025; Cook added $3.64 trillion. Jobs-era price appreciation 47.19% a year compounded (1997-2011). Revenue grew 23.67% a year under Jobs and 8.52% (2012-2025) under Cook, with nearly $800 billion of buybacks, dividends since 2012 and a $17 billion debt issue in 2013; net debt always negative. Its share of Mag Seven capex fell from 8.04% to 3.02%. He calls it a mature, cash-returning, cautious business and says he has been a shareholder through much of both tenures."
       },
       {
        "date": "2026-01-23",
@@ -665,43 +818,187 @@
        "date": "2025-12-03",
        "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
        "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
-       "text": "Breakeven revenue exceeds $1 trillion by year 5; already more than a third of the way there."
+       "text": "Market cap went from $1 trillion to $3 trillion between 2018 and 2022, revenue up 72%, net profit almost doubled; revenue and net income about four times Nvidia's. Buying in 2018, 2020 or 2022 produced winning returns over one to two years. Breakeven revenue exceeds $1 trillion by year 5; already more than a third of the way."
       },
       {
-       "date": "2025-08-05",
-       "title": "The Imitation Game: Defending against AI's Dark Side!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/08/the-imitation-game-defending-against.html",
-       "text": "Named among stocks he values and acts on."
+       "date": "2025-04-20",
+       "title": "Buy the Dip: The Draw and Dangers of Contrarian Investing!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/04/buy-dip-draw-and-dangers-of-contrarian.html",
+       "text": "Had a price slump in 2017 despite being a great company."
       },
       {
        "date": "2025-03-15",
        "title": "Investing Politics: Globalization Backlash and Government Disruption!",
        "url": "https://aswathdamodaran.blogspot.com/2025/03/investing-politics-globalization.html",
-       "text": "Cited as a disruptor that attacked retail; its health care efforts with Google have largely left the system intact."
+       "text": "Cited as a disruptor in music through iTunes."
       },
       {
        "date": "2025-01-31",
        "title": "DeepSeek crashes the AI Party: Story Break, Change or Shift?",
        "url": "https://aswathdamodaran.blogspot.com/2025/01/deepseek-crashes-ai-party-story-break.html",
-       "text": "AWS is a cloud beneficiary; part of the Mag Seven."
+       "text": "Part of the Mag Seven; its cautious approach to AI cited as a model for others."
       },
       {
        "date": "2024-10-18",
        "title": "Breaking up Big Tech: Cui Bono?",
        "url": "https://aswathdamodaran.blogspot.com/2024/10/breaking-up-big-tech-cui-bono.html",
-       "text": "Prime costs $139 a year and it has spent tens of billions a year for a decade subsidizing shipping; side ventures in logistics, entertainment and health care have mostly drained cash, with AWS the exception."
+       "text": "Charges a 30% fee on third-party apps, drawing Epic Games litigation; Services are highly profitable but tied to the iPhone franchise."
+      },
+      {
+       "date": "2024-10-01",
+       "title": "Just do it! Brand Name Lessons from Nike'sTroubles!",
+       "url": "https://aswathdamodaran.blogspot.com/2024/10/just-do-it-brand-name-lessons-from.html",
+       "text": "A company where brand, operating system, design and app ecosystem combine, making brand value hard to isolate."
+      },
+      {
+       "date": "2024-08-19",
+       "title": "The Corporate Life Cycle: Managing, Valuation and Investing Implications!",
+       "url": "https://aswathdamodaran.blogspot.com/2024/08/the-corporate-life-cycle-corporate.html",
+       "text": "Reincarnation case study (2000), a rare mature-company revival."
       },
       {
        "date": "2024-02-08",
        "title": "The Seven Samurai: How Big Tech Rescued the Market in 2023!",
        "url": "https://aswathdamodaran.blogspot.com/2024/02/the-seven-samurai-how-big-tech-rescued.html",
-       "text": "Value $155.72 vs price $169.15, about 8.62% overvalued (revenue CAGR 12%, target margin 14%, cost of capital 8.60%, IRR 7.85%). Within striking distance of value."
+       "text": "Value $176.79 vs price $188.00, about 6.34% overvalued (revenue CAGR 7.5%, target margin 36%, cost of capital 8.64%, IRR 7.89%). Within striking distance of value."
       },
       {
        "date": "2023-02-02",
        "title": "Disagreements and First Principles: The Pushback on my Tesla Valuation",
        "url": "https://aswathdamodaran.blogspot.com/2023/02/disagreements-and-first-principles.html",
-       "text": "One of two companies with double-digit revenue growth over a decade, with operating margins in the low single digits."
+       "text": "The only firm on a list of large-revenue companies that earns double-digit margins apart from oil companies."
+      },
+      {
+       "date": "2022-02-12",
+       "title": "Back to Earth or Temporary Setback? Revisiting the FANGAM Stocks",
+       "url": "https://aswathdamodaran.blogspot.com/2022/02/back-to-earth-or-temporary-setback.html",
+       "text": "Sep 2020 view: significantly overvalued, so he sold. Feb 2022: positioned itself as a privacy protector and hurt rivals such as Facebook; new iPhones well received. Does not own it now and will buy after a price dip."
+      },
+      {
+       "date": "2018-12-03",
+       "title": "Investing Whiplash: Looking for Closure with Apple and Amazon!",
+       "url": "https://aswathdamodaran.blogspot.com/2018/12/investing-whiplash-looking-for-closure.html",
+       "text": "Value about $200 in September, $197 in November (after updating the ERP to 5.68% and the 10-year at 3.01%); price $220 in September and $179 on Nov 30: from 9.54% overvalued to 9.14% undervalued. Sold short at a $230 limit (filled Oct 3), covered at $205 on Nov 5 for a profit, and bought at $175. Rule: buy at the 40th percentile of the value distribution and sell at the 60th."
+      },
+      {
+       "date": "2018-09-19",
+       "title": "Apple and Amazon at a Trillion $: Looking Back and Looking Forward!",
+       "url": "https://aswathdamodaran.blogspot.com/2018/09/apple-and-amazon-at-trillion-looking.html",
+       "text": "Value $200 vs price $219 (Sept 18, 2018): overvalued by about 9%. \"Predominately a smart phone company\" with about 62% of revenue from the iPhone, a maturing and competitive business; operating margin falls from 30% to about 25% over five years. 2014-2018: returned $277 billion ($61 billion dividends, $216 billion buybacks) vs $242 billion of free cash flow to equity. Leaned toward selling."
+      }
+     ]
+    },
+    {
+     "s": "TSLA",
+     "name": "Tesla",
+     "notes": [
+      {
+       "date": "2026-10-22",
+       "title": "From Eyeballs to Annual Run Rates (ARR): Buzzy Pricing Metrics and the Anthropic Trade!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/10/from-eyeballs-to-annual-run-rates-arr.html",
+       "text": "A weak peer for Anthropic because its business model and life-cycle stage differ sharply."
+      },
+      {
+       "date": "2026-10-08",
+       "title": "Stock Prices, Earnings and Cashflows: The AI Effect plays through!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/10/stock-prices-earnings-and-cashflows-ai.html",
+       "text": "The Magnificent Seven stock he does not hold."
+      },
+      {
+       "date": "2026-08-20",
+       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
+       "text": "Joined the Mag Seven group, replacing Netflix."
+      },
+      {
+       "date": "2026-06-18",
+       "title": "SpaceX, OpenAI and Anthropic: The S&P 500 Inclusion Question and Investment Consequences!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/06/indexology-index-mechanics-and.html",
+       "text": "Replaced Apartment Investment and Management in the S&P 500 on Dec 18, 2020, then \"massively underperformed\" AIV."
+      },
+      {
+       "date": "2026-06-04",
+       "title": "Revisiting the SpaceX Valuation: A Post-Prospectus Update!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/06/a-weeks-ago-i-assessed-value-of-spacex.html",
+       "text": "Mentioned as Musk's track record, which some investors cite for confidence in SpaceX."
+      },
+      {
+       "date": "2026-05-06",
+       "title": "An Ode to Restraint: Lessons from the Tim Cook Legacy",
+       "url": "https://aswathdamodaran.blogspot.com/2026/05/an-ode-to-restraint-lessons-from-tim.html",
+       "text": "Cited as a potential Apple acquisition target a decade ago. Musk's stewardship veers between genius and eccentricity, though shareholders have largely benefited."
+      },
+      {
+       "date": "2026-04-23",
+       "title": "To a Trillion(s) Dollars and beyond: A SpaceX IPO Odyssey!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/04/to-trillion-dollars-and-beyond-spacex.html",
+       "text": "He bought it in 2019 after a price drop and calls it his \"corporate teenager.\" Used as a cautionary comparison for Musk-led companies; short sellers have been burned for two decades."
+      },
+      {
+       "date": "2025-12-03",
+       "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
+       "text": "Net margin 5.31%, so breakeven revenue exceeds $2.2 trillion, needing 86.4% revenue growth over five years, the steepest among the twelve largest companies. \"Possible\" but pushing the limits, with \"a long, long way to go\"; higher margins from robotics and automated driving could bring it into plausible territory."
+      },
+      {
+       "date": "2025-05-03",
+       "title": "The Greed & Fear Tango: The Markets in April 2025!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/05/the-greed-fear-tango-markets-in-april.html",
+       "text": "Fully exited."
+      },
+      {
+       "date": "2025-04-20",
+       "title": "Buy the Dip: The Draw and Dangers of Contrarian Investing!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/04/buy-dip-draw-and-dangers-of-contrarian.html",
+       "text": "Fell below value several times in the last decade."
+      },
+      {
+       "date": "2025-04-07",
+       "title": "Anatomy of a Market Crisis: Tariffs, Markets and the Economy!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/04/anatomy-of-market-crisis-tariffs-rock.html",
+       "text": "Sold his position in the tariff selloff."
+      },
+      {
+       "date": "2025-03-15",
+       "title": "Investing Politics: Globalization Backlash and Government Disruption!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/03/investing-politics-globalization.html",
+       "text": "Values it at about $150 a share, roughly $30 below his January 2024 estimate of $182 and about $70 below the then-current price. The stock has given up most of its 2024 post-election gains, largely because of Musk's political connections. He expects a split EV market: a lower-priced segment led by BYD and a premium segment where Tesla holds its own, especially in the US. Cites doubts about \"EVs are inevitable,\" BYD's competition and political backlash in Europe and the US. He bought it for his portfolio when it fell to $170."
+      },
+      {
+       "date": "2025-01-31",
+       "title": "DeepSeek crashes the AI Party: Story Break, Change or Shift?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/01/deepseek-crashes-ai-party-story-break.html",
+       "text": "Part of the Mag Seven; added close to $1 trillion of value in 2023-2024."
+      },
+      {
+       "date": "2024-02-08",
+       "title": "The Seven Samurai: How Big Tech Rescued the Market in 2023!",
+       "url": "https://aswathdamodaran.blogspot.com/2024/02/the-seven-samurai-how-big-tech-rescued.html",
+       "text": "Valued as the sum of its businesses: value $183.75 vs price $185.07, about 0.72% overvalued (revenue CAGR 31.1%, target margin 13.07%, cost of capital 9.17%, IRR 9.16%). Close to fairly valued. He bought it the week before the post."
+      },
+      {
+       "date": "2023-11-01",
+       "title": "Tesla in November 2023 : Story twists and turns, with value consequences!",
+       "url": "https://aswathdamodaran.blogspot.com/2023/11/tesla-story-turns-and-twists.html",
+       "text": "Value about $180 a share from a business-by-business breakdown (auto, energy, software, robotaxi); his January 2023 median was $153. Price below $200 (he cites $197): overvalued \"at least based on my story.\" Trailing revenue $95.9 billion, operating income $10.7 billion (11.18% margin); auto gross margin 17.42% in Q3; energy 6.2% of revenue; Model 3 cut by $1,250 to about $39,000; FSD priced at $12,000 and still in beta; Cybertruck reservations over two million but he expects sales to fall short. History: bought at $180 in 2019 (market cap $32 billion) and sold too early at $150 billion in 2020; no Tesla in his portfolio in 2023; has a limit buy at $180 that may never fill."
+      },
+      {
+       "date": "2023-02-02",
+       "title": "Disagreements and First Principles: The Pushback on my Tesla Valuation",
+       "url": "https://aswathdamodaran.blogspot.com/2023/02/disagreements-and-first-principles.html",
+       "text": "Value about $130 a share, \"overvalued, albeit only mildly.\" Assumes revenue growth of 24% for five years (down from 35% in his Nov 2021 valuation), fading to 3.47% by 2032, revenue about $412 billion in 2032 with a growth wall near $400 billion; operating margin about 16% (17.93% in 2022); cost of capital 10.15% falling to 9%. $97 (December 2022) is a price at which he sees a good investment. Bought in 2019 and sold after about seven months. Skeptical of its autonomous-driving business because ride-sharing companies have struggled to make money."
+      },
+      {
+       "date": "2021-11-09",
+       "title": "Tesla's Trillion Dollar Moment: A Valuation Revisit!",
+       "url": "https://aswathdamodaran.blogspot.com/2021/11/teslas-trillion-dollar-moment-valuation.html",
+       "text": "Value per share $571 in his most upbeat scenario, less than half the market price: overvalued, and he would not invest; sold his shares in January 2020 and does not short because \"momentum beats fundamentals\" in the short term. Assumes revenue about $414 billion by 2032 (roughly ten million cars plus ancillary), a 16% operating margin, sales-to-capital 4.00, cost of capital 6% (risk-free 1.56%, ERP 4.62%), no failure risk; equity value about $692 billion ($640 billion for common). He admits he has repeatedly underestimated Tesla's value and calls it a \"trade,\" not an \"investment.\" Market cap rose from $2.8 billion (Aug 2010) to over $1 trillion."
+      },
+      {
+       "date": "2019-06-03",
+       "title": "Tesla's Travails: Curfew for a Corporate Teenager?",
+       "url": "https://aswathdamodaran.blogspot.com/2019/06/teslas-travails-curfew-for-corporate.html",
+       "text": "Value about $190 (simulation median $180; 10th percentile $52, 90th $380), after a price fall of almost 50% from about $360 in June 2018: close to fairly valued, slightly undervalued. Assumes $100 billion of revenue in 2028 and 10% pre-tax margins by 2023; failure risk raised from 5% to 20%; debt close to $14 billion. A \"corporate teenager\" with high potential. Bought: limit buy at $180, which executed. Shorting Uber and Lyft would pay more than buying Tesla, because autonomous cars will not roll out smoothly or soon. Calls the SolarCity acquisition an \"unforced error.\""
       }
      ]
     },
@@ -804,6 +1101,12 @@
        "title": "The Seven Samurai: How Big Tech Rescued the Market in 2023!",
        "url": "https://aswathdamodaran.blogspot.com/2024/02/the-seven-samurai-how-big-tech-rescued.html",
        "text": "Value $138.14 vs price $145.00, about 4.97% overvalued (revenue CAGR 8%, target operating margin 30%, cost of capital 8.84%, IRR 8.41%). Overvalued but close to value."
+      },
+      {
+       "date": "2022-02-12",
+       "title": "Back to Earth or Temporary Setback? Revisiting the FANGAM Stocks",
+       "url": "https://aswathdamodaran.blogspot.com/2022/02/back-to-earth-or-temporary-setback.html",
+       "text": "Sep 2020: close to fairly valued. Feb 2022: a surprise, delivering high growth and increased margins, but \"other bets\" remain cash-draining. Never held; will not buy at the current price."
       }
      ]
     },
@@ -910,204 +1213,6 @@
      ]
     },
     {
-     "s": "TSLA",
-     "name": "Tesla",
-     "notes": [
-      {
-       "date": "2026-10-22",
-       "title": "From Eyeballs to Annual Run Rates (ARR): Buzzy Pricing Metrics and the Anthropic Trade!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/10/from-eyeballs-to-annual-run-rates-arr.html",
-       "text": "A weak peer for Anthropic because its business model and life-cycle stage differ sharply."
-      },
-      {
-       "date": "2026-10-08",
-       "title": "Stock Prices, Earnings and Cashflows: The AI Effect plays through!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/10/stock-prices-earnings-and-cashflows-ai.html",
-       "text": "The Magnificent Seven stock he does not hold."
-      },
-      {
-       "date": "2026-08-20",
-       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
-       "text": "Joined the Mag Seven group, replacing Netflix."
-      },
-      {
-       "date": "2026-06-18",
-       "title": "SpaceX, OpenAI and Anthropic: The S&P 500 Inclusion Question and Investment Consequences!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/06/indexology-index-mechanics-and.html",
-       "text": "Replaced Apartment Investment and Management in the S&P 500 on Dec 18, 2020, then \"massively underperformed\" AIV."
-      },
-      {
-       "date": "2026-06-04",
-       "title": "Revisiting the SpaceX Valuation: A Post-Prospectus Update!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/06/a-weeks-ago-i-assessed-value-of-spacex.html",
-       "text": "Mentioned as Musk's track record, which some investors cite for confidence in SpaceX."
-      },
-      {
-       "date": "2026-05-06",
-       "title": "An Ode to Restraint: Lessons from the Tim Cook Legacy",
-       "url": "https://aswathdamodaran.blogspot.com/2026/05/an-ode-to-restraint-lessons-from-tim.html",
-       "text": "Cited as a potential Apple acquisition target a decade ago. Musk's stewardship veers between genius and eccentricity, though shareholders have largely benefited."
-      },
-      {
-       "date": "2026-04-23",
-       "title": "To a Trillion(s) Dollars and beyond: A SpaceX IPO Odyssey!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/04/to-trillion-dollars-and-beyond-spacex.html",
-       "text": "He bought it in 2019 after a price drop and calls it his \"corporate teenager.\" Used as a cautionary comparison for Musk-led companies; short sellers have been burned for two decades."
-      },
-      {
-       "date": "2025-12-03",
-       "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
-       "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
-       "text": "Net margin 5.31%, so breakeven revenue exceeds $2.2 trillion, needing 86.4% revenue growth over five years, the steepest among the twelve largest companies. \"Possible\" but pushing the limits, with \"a long, long way to go\"; higher margins from robotics and automated driving could bring it into plausible territory."
-      },
-      {
-       "date": "2025-05-03",
-       "title": "The Greed & Fear Tango: The Markets in April 2025!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/05/the-greed-fear-tango-markets-in-april.html",
-       "text": "Fully exited."
-      },
-      {
-       "date": "2025-04-20",
-       "title": "Buy the Dip: The Draw and Dangers of Contrarian Investing!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/04/buy-dip-draw-and-dangers-of-contrarian.html",
-       "text": "Fell below value several times in the last decade."
-      },
-      {
-       "date": "2025-04-07",
-       "title": "Anatomy of a Market Crisis: Tariffs, Markets and the Economy!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/04/anatomy-of-market-crisis-tariffs-rock.html",
-       "text": "Sold his position in the tariff selloff."
-      },
-      {
-       "date": "2025-03-15",
-       "title": "Investing Politics: Globalization Backlash and Government Disruption!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/03/investing-politics-globalization.html",
-       "text": "Values it at about $150 a share, roughly $30 below his January 2024 estimate of $182 and about $70 below the then-current price. The stock has given up most of its 2024 post-election gains, largely because of Musk's political connections. He expects a split EV market: a lower-priced segment led by BYD and a premium segment where Tesla holds its own, especially in the US. Cites doubts about \"EVs are inevitable,\" BYD's competition and political backlash in Europe and the US. He bought it for his portfolio when it fell to $170."
-      },
-      {
-       "date": "2025-01-31",
-       "title": "DeepSeek crashes the AI Party: Story Break, Change or Shift?",
-       "url": "https://aswathdamodaran.blogspot.com/2025/01/deepseek-crashes-ai-party-story-break.html",
-       "text": "Part of the Mag Seven; added close to $1 trillion of value in 2023-2024."
-      },
-      {
-       "date": "2024-02-08",
-       "title": "The Seven Samurai: How Big Tech Rescued the Market in 2023!",
-       "url": "https://aswathdamodaran.blogspot.com/2024/02/the-seven-samurai-how-big-tech-rescued.html",
-       "text": "Valued as the sum of its businesses: value $183.75 vs price $185.07, about 0.72% overvalued (revenue CAGR 31.1%, target margin 13.07%, cost of capital 9.17%, IRR 9.16%). Close to fairly valued. He bought it the week before the post."
-      },
-      {
-       "date": "2023-11-01",
-       "title": "Tesla in November 2023 : Story twists and turns, with value consequences!",
-       "url": "https://aswathdamodaran.blogspot.com/2023/11/tesla-story-turns-and-twists.html",
-       "text": "Value about $180 a share from a business-by-business breakdown (auto, energy, software, robotaxi); his January 2023 median was $153. Price below $200 (he cites $197): overvalued \"at least based on my story.\" Trailing revenue $95.9 billion, operating income $10.7 billion (11.18% margin); auto gross margin 17.42% in Q3; energy 6.2% of revenue; Model 3 cut by $1,250 to about $39,000; FSD priced at $12,000 and still in beta; Cybertruck reservations over two million but he expects sales to fall short. History: bought at $180 in 2019 (market cap $32 billion) and sold too early at $150 billion in 2020; no Tesla in his portfolio in 2023; has a limit buy at $180 that may never fill."
-      },
-      {
-       "date": "2023-02-02",
-       "title": "Disagreements and First Principles: The Pushback on my Tesla Valuation",
-       "url": "https://aswathdamodaran.blogspot.com/2023/02/disagreements-and-first-principles.html",
-       "text": "Value about $130 a share, \"overvalued, albeit only mildly.\" Assumes revenue growth of 24% for five years (down from 35% in his Nov 2021 valuation), fading to 3.47% by 2032, revenue about $412 billion in 2032 with a growth wall near $400 billion; operating margin about 16% (17.93% in 2022); cost of capital 10.15% falling to 9%. $97 (December 2022) is a price at which he sees a good investment. Bought in 2019 and sold after about seven months. Skeptical of its autonomous-driving business because ride-sharing companies have struggled to make money."
-      }
-     ]
-    },
-    {
-     "s": "AAPL",
-     "name": "Apple",
-     "notes": [
-      {
-       "date": "2026-10-22",
-       "title": "From Eyeballs to Annual Run Rates (ARR): Buzzy Pricing Metrics and the Anthropic Trade!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/10/from-eyeballs-to-annual-run-rates-arr.html",
-       "text": "In the Mag Seven comparison; a weak peer for Anthropic given a different business model and life-cycle stage."
-      },
-      {
-       "date": "2026-09-02",
-       "title": "The Scaling and Profitability Trade off: Venture Capital's Weakest Link!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/09/the-scaling-and-profitability-trade-off.html",
-       "text": "With Samsung, an example of smartphone makers benefiting from a growing market in 2010."
-      },
-      {
-       "date": "2026-08-20",
-       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
-       "text": "Smartphone maker that benefits from upgrade cycles but not from the businesses that run on its phones."
-      },
-      {
-       "date": "2026-07-29",
-       "title": "Information Timing and Release: The Gaming of Guidance!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/07/information-timing-and-release-gaming.html",
-       "text": "Used as an example of earnings consensus and revisions for the September 2026 report."
-      },
-      {
-       "date": "2026-05-06",
-       "title": "An Ode to Restraint: Lessons from the Tim Cook Legacy",
-       "url": "https://aswathdamodaran.blogspot.com/2026/05/an-ode-to-restraint-lessons-from-tim.html",
-       "text": "Market cap rose from $1.68 billion at the start of Jobs's tenure to over $4 trillion at end-2025; Cook added $3.64 trillion. Jobs-era price appreciation 47.19% a year compounded (1997-2011). Revenue grew 23.67% a year under Jobs and 8.52% (2012-2025) under Cook, with nearly $800 billion of buybacks, dividends since 2012 and a $17 billion debt issue in 2013; net debt always negative. Its share of Mag Seven capex fell from 8.04% to 3.02%. He calls it a mature, cash-returning, cautious business and says he has been a shareholder through much of both tenures."
-      },
-      {
-       "date": "2026-01-23",
-       "title": "Data Update 2 for 2026: Equities get tested, and pass again!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/01/data-update-2-for-2026-equities-get.html",
-       "text": "Single-digit market cap gain in 2025."
-      },
-      {
-       "date": "2025-12-03",
-       "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
-       "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
-       "text": "Market cap went from $1 trillion to $3 trillion between 2018 and 2022, revenue up 72%, net profit almost doubled; revenue and net income about four times Nvidia's. Buying in 2018, 2020 or 2022 produced winning returns over one to two years. Breakeven revenue exceeds $1 trillion by year 5; already more than a third of the way."
-      },
-      {
-       "date": "2025-04-20",
-       "title": "Buy the Dip: The Draw and Dangers of Contrarian Investing!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/04/buy-dip-draw-and-dangers-of-contrarian.html",
-       "text": "Had a price slump in 2017 despite being a great company."
-      },
-      {
-       "date": "2025-03-15",
-       "title": "Investing Politics: Globalization Backlash and Government Disruption!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/03/investing-politics-globalization.html",
-       "text": "Cited as a disruptor in music through iTunes."
-      },
-      {
-       "date": "2025-01-31",
-       "title": "DeepSeek crashes the AI Party: Story Break, Change or Shift?",
-       "url": "https://aswathdamodaran.blogspot.com/2025/01/deepseek-crashes-ai-party-story-break.html",
-       "text": "Part of the Mag Seven; its cautious approach to AI cited as a model for others."
-      },
-      {
-       "date": "2024-10-18",
-       "title": "Breaking up Big Tech: Cui Bono?",
-       "url": "https://aswathdamodaran.blogspot.com/2024/10/breaking-up-big-tech-cui-bono.html",
-       "text": "Charges a 30% fee on third-party apps, drawing Epic Games litigation; Services are highly profitable but tied to the iPhone franchise."
-      },
-      {
-       "date": "2024-10-01",
-       "title": "Just do it! Brand Name Lessons from Nike'sTroubles!",
-       "url": "https://aswathdamodaran.blogspot.com/2024/10/just-do-it-brand-name-lessons-from.html",
-       "text": "A company where brand, operating system, design and app ecosystem combine, making brand value hard to isolate."
-      },
-      {
-       "date": "2024-08-19",
-       "title": "The Corporate Life Cycle: Managing, Valuation and Investing Implications!",
-       "url": "https://aswathdamodaran.blogspot.com/2024/08/the-corporate-life-cycle-corporate.html",
-       "text": "Reincarnation case study (2000), a rare mature-company revival."
-      },
-      {
-       "date": "2024-02-08",
-       "title": "The Seven Samurai: How Big Tech Rescued the Market in 2023!",
-       "url": "https://aswathdamodaran.blogspot.com/2024/02/the-seven-samurai-how-big-tech-rescued.html",
-       "text": "Value $176.79 vs price $188.00, about 6.34% overvalued (revenue CAGR 7.5%, target margin 36%, cost of capital 8.64%, IRR 7.89%). Within striking distance of value."
-      },
-      {
-       "date": "2023-02-02",
-       "title": "Disagreements and First Principles: The Pushback on my Tesla Valuation",
-       "url": "https://aswathdamodaran.blogspot.com/2023/02/disagreements-and-first-principles.html",
-       "text": "The only firm on a list of large-revenue companies that earns double-digit margins apart from oil companies."
-      }
-     ]
-    },
-    {
      "s": "MSFT",
      "name": "Microsoft",
      "notes": [
@@ -1182,6 +1287,12 @@
        "title": "AI's Winners, Losers and Wannabes: An NVIDIA Valuation, with the AI Boost!",
        "url": "https://aswathdamodaran.blogspot.com/2023/06/ais-winners-losers-and-wannabes-nvidia.html",
        "text": "He holds it (bought in 2014) and credits it with Nvidia for helping his portfolio this year as an AI beneficiary; warns that winners can change over a decade."
+      },
+      {
+       "date": "2022-02-12",
+       "title": "Back to Earth or Temporary Setback? Revisiting the FANGAM Stocks",
+       "url": "https://aswathdamodaran.blogspot.com/2022/02/back-to-earth-or-temporary-setback.html",
+       "text": "Sep 2020: overvalued. Feb 2022: \"mildly over valued,\" market cap about $2.2 trillion; the $68.7 billion all-cash Activision Blizzard deal is small relative to its market cap. Hold."
       }
      ]
     },
@@ -1248,6 +1359,60 @@
        "title": "Data Update 4 for 2025: Interest Rates, Inflation and Central Banks!",
        "url": "https://aswathdamodaran.blogspot.com/2025/01/data-update-4-for-2025-interest-rates.html",
        "text": "Rose from 3.88% to 4.58% in 2024 (return -1.64%, real -4.27% after 2.75% inflation). Uses 4.58% as the riskfree rate in his S&P 500 valuation. The Fed cut three times in 2024 yet market rates rose after each cut."
+      }
+     ]
+    },
+    {
+     "s": "NFLX",
+     "name": "Netflix",
+     "notes": [
+      {
+       "date": "2026-11-03",
+       "title": "The Anthropic Feedback Loop: The Cost of Capital Delusion and Diversion!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-anthropic-feedback-loop-cost-of.html",
+       "text": "Used as an analogy: he struggles to value its content commitments, especially in the early years of leased content. No valuation."
+      },
+      {
+       "date": "2026-08-20",
+       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
+       "text": "Former FANGAM member displaced in the Mag Seven by Tesla; streaming success that made the wider entertainment business less profitable."
+      },
+      {
+       "date": "2026-05-06",
+       "title": "An Ode to Restraint: Lessons from the Tim Cook Legacy",
+       "url": "https://aswathdamodaran.blogspot.com/2026/05/an-ode-to-restraint-lessons-from-tim.html",
+       "text": "Cited as a potential Apple acquisition target a decade ago; its content-heavy culture would have clashed with Apple's."
+      },
+      {
+       "date": "2025-02-12",
+       "title": "Data Update 7 for 2025: The End Game in Business!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/02/data-update-7-for-2025-end-game-in.html",
+       "text": "Example of low-cost unit economics: adding a subscriber costs little."
+      },
+      {
+       "date": "2024-10-18",
+       "title": "Breaking up Big Tech: Cui Bono?",
+       "url": "https://aswathdamodaran.blogspot.com/2024/10/breaking-up-big-tech-cui-bono.html",
+       "text": "Disrupted entertainment without a clearly viable model; he expects consolidation into three or four streaming services."
+      },
+      {
+       "date": "2024-02-08",
+       "title": "The Seven Samurai: How Big Tech Rescued the Market in 2023!",
+       "url": "https://aswathdamodaran.blogspot.com/2024/02/the-seven-samurai-how-big-tech-rescued.html",
+       "text": "Former FANG member and a subscription service that raised prices. No valuation."
+      },
+      {
+       "date": "2022-02-12",
+       "title": "Back to Earth or Temporary Setback? Revisiting the FANGAM Stocks",
+       "url": "https://aswathdamodaran.blogspot.com/2022/02/back-to-earth-or-temporary-setback.html",
+       "text": "Sep 2020: close to fairly valued. Feb 2022: the most overvalued in the group even after a drop of more than 20% in market cap; content costs $17.7 billion in 2021 vs Disney's more than $25 billion; subscriber growth slowing. He does not buy: \"I just don't like Netflix.\""
+      },
+      {
+       "date": "2018-04-16",
+       "title": "Netflix: The Future of Entertainment or House of Cards?",
+       "url": "https://aswathdamodaran.blogspot.com/2018/04/netflix-future-of-entertainment-or.html",
+       "text": "Value per share $172.82 vs price $275 (April 14, 2018): overvalued; sell or at least do not buy (\"subscriber, not investor\") until content-cost discipline appears. Subscriber-based valuation: 117.6 million existing subscribers worth $508.89 each ($59.8 billion), renewal rate 92.5% over 15 years, cost of capital 7.95% (8.5% for new); new subscribers worth $397.88 each after $111.01 acquisition cost ($137.3 billion), growth 15% (years 1-5), 10% (6-10), 1% after; corporate cost drag $111.3 billion; debt $6.5 billion. Capping content costs at 2017 levels would imply about $216 a share."
       }
      ]
     },
@@ -1438,48 +1603,6 @@
      ]
     },
     {
-     "s": "NFLX",
-     "name": "Netflix",
-     "notes": [
-      {
-       "date": "2026-11-03",
-       "title": "The Anthropic Feedback Loop: The Cost of Capital Delusion and Diversion!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-anthropic-feedback-loop-cost-of.html",
-       "text": "Used as an analogy: he struggles to value its content commitments, especially in the early years of leased content. No valuation."
-      },
-      {
-       "date": "2026-08-20",
-       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
-       "text": "Former FANGAM member displaced in the Mag Seven by Tesla; streaming success that made the wider entertainment business less profitable."
-      },
-      {
-       "date": "2026-05-06",
-       "title": "An Ode to Restraint: Lessons from the Tim Cook Legacy",
-       "url": "https://aswathdamodaran.blogspot.com/2026/05/an-ode-to-restraint-lessons-from-tim.html",
-       "text": "Cited as a potential Apple acquisition target a decade ago; its content-heavy culture would have clashed with Apple's."
-      },
-      {
-       "date": "2025-02-12",
-       "title": "Data Update 7 for 2025: The End Game in Business!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/02/data-update-7-for-2025-end-game-in.html",
-       "text": "Example of low-cost unit economics: adding a subscriber costs little."
-      },
-      {
-       "date": "2024-10-18",
-       "title": "Breaking up Big Tech: Cui Bono?",
-       "url": "https://aswathdamodaran.blogspot.com/2024/10/breaking-up-big-tech-cui-bono.html",
-       "text": "Disrupted entertainment without a clearly viable model; he expects consolidation into three or four streaming services."
-      },
-      {
-       "date": "2024-02-08",
-       "title": "The Seven Samurai: How Big Tech Rescued the Market in 2023!",
-       "url": "https://aswathdamodaran.blogspot.com/2024/02/the-seven-samurai-how-big-tech-rescued.html",
-       "text": "Former FANG member and a subscription service that raised prices. No valuation."
-      }
-     ]
-    },
-    {
      "s": "PLTR",
      "name": "Palantir",
      "notes": [
@@ -1554,6 +1677,42 @@
        "title": "AI's Winners, Losers and Wannabes: An NVIDIA Valuation, with the AI Boost!",
        "url": "https://aswathdamodaran.blogspot.com/2023/06/ais-winners-losers-and-wannabes-nvidia.html",
        "text": "Moved to the top of the semiconductor revenue list in 2022; Nvidia outsources almost all chip production to it, a supply-chain risk tied to China-Taiwan tensions."
+      }
+     ]
+    },
+    {
+     "s": "UBER",
+     "name": "Uber",
+     "notes": [
+      {
+       "date": "2026-09-02",
+       "title": "The Scaling and Profitability Trade off: Venture Capital's Weakest Link!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/09/the-scaling-and-profitability-trade-off.html",
+       "text": "From his 2019 work: describing Uber as logistics rather than a car service could roughly triple its market. Also an example of low capital intensity in early scaling."
+      },
+      {
+       "date": "2026-08-20",
+       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
+       "text": "Cited with Airbnb and DoorDash as a smartphone-enabled intermediary that changed its industry."
+      },
+      {
+       "date": "2026-06-04",
+       "title": "Revisiting the SpaceX Valuation: A Post-Prospectus Update!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/06/a-weeks-ago-i-assessed-value-of-spacex.html",
+       "text": "Cites its 2019 prospectus market size of $5.7 trillion as inflated; it lost more than 50% of its market cap in the year after its IPO, moving from overvalued to undervalued."
+      },
+      {
+       "date": "2021-08-02",
+       "title": "A DIY (Do-It-Yourself) Valuation of Zomato",
+       "url": "https://aswathdamodaran.blogspot.com/2021/08/a-diy-do-it-yourse-valuation-of-zomato.html",
+       "text": "Bill Gurley's critique of his narrow market definition changed his Uber valuation."
+      },
+      {
+       "date": "2019-04-15",
+       "title": "Uber's Coming out Party: Personal Mobility Pioneer or Car Service on Steroids?",
+       "url": "https://aswathdamodaran.blogspot.com/2019/04/ubers-coming-out-party-personal.html",
+       "text": "Pre-IPO: about $54 a share top-down and about $51 rider-based, later updated to roughly $31-33 and $30 on a 1.8-2 billion share count. Top-down: $44.4 billion operating assets, $55.3 billion with stakes, about $61.7 billion equity; rider-based about $58.6 billion; pricing approach $47-124 billion. Rumored value $100 billion with about $10 billion raised. \"Poised on a knife's edge\": a personal-mobility business still unprofitable (prospectus: \"may not achieve profitability\"), valuation could exceed $100 billion if usage rises significantly. 91 million monthly riders, 5.2 billion rides; Uber Eats grew from 2.68% to 13.12% of net revenue; holds 20% of Didi, 23.2% of Grab and 38% of Yandex Taxi."
       }
      ]
     },
@@ -1738,6 +1897,30 @@
      ]
     },
     {
+     "s": "ABNB",
+     "name": "Airbnb",
+     "notes": [
+      {
+       "date": "2026-08-20",
+       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
+       "text": "Smartphone-enabled intermediary that changed its industry."
+      },
+      {
+       "date": "2026-06-04",
+       "title": "Revisiting the SpaceX Valuation: A Post-Prospectus Update!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/06/a-weeks-ago-i-assessed-value-of-spacex.html",
+       "text": "Cites its 2020 prospectus market size of $3.4 trillion as another example of inflated market sizing."
+      },
+      {
+       "date": "2020-12-02",
+       "title": "The Sharing Economy come home: The IPO of Airbnb!",
+       "url": "https://aswathdamodaran.blogspot.com/2020/12/the-sharing-economy-come-home-ipo-of.html",
+       "text": "Pre-IPO (prospectus filed Nov 16, 2020): equity value about $36 billion including $3 billion of IPO proceeds, about $54 a share. Below $28 billion a \"bargain,\" $28-33 billion a \"solid buy,\" $33-38 billion fair value, $38-44 billion \"too richly priced,\" above $44 billion overvalued. Assumes a 2021 operating margin of -10%, gross bookings compounding 25% from 2022 to 2025 to above $150 billion by 2031, revenue 14% of bookings, margin 25% by 2031, cost of capital 6.5% rising to 7.23%, 10% failure risk. A $60 billion market cap implies about $200 billion of 2031 bookings at a 35% margin. 2020 nine-month bookings fell 39% and losses nearly tripled. Skeptical of the governance structure and the ESG framing."
+      }
+     ]
+    },
+    {
      "s": "KO",
      "name": "Coca-Cola",
      "notes": [
@@ -1858,30 +2041,6 @@
      ]
     },
     {
-     "s": "UBER",
-     "name": "Uber",
-     "notes": [
-      {
-       "date": "2026-09-02",
-       "title": "The Scaling and Profitability Trade off: Venture Capital's Weakest Link!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/09/the-scaling-and-profitability-trade-off.html",
-       "text": "From his 2019 work: describing Uber as logistics rather than a car service could roughly triple its market. Also an example of low capital intensity in early scaling."
-      },
-      {
-       "date": "2026-08-20",
-       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
-       "text": "Cited with Airbnb and DoorDash as a smartphone-enabled intermediary that changed its industry."
-      },
-      {
-       "date": "2026-06-04",
-       "title": "Revisiting the SpaceX Valuation: A Post-Prospectus Update!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/06/a-weeks-ago-i-assessed-value-of-spacex.html",
-       "text": "Cites its 2019 prospectus market size of $5.7 trillion as inflated; it lost more than 50% of its market cap in the year after its IPO, moving from overvalued to undervalued."
-      }
-     ]
-    },
-    {
      "s": "WMT",
      "name": "Walmart",
      "notes": [
@@ -1902,24 +2061,6 @@
        "title": "SpaceX, OpenAI and Anthropic: The S&P 500 Inclusion Question and Investment Consequences!",
        "url": "https://aswathdamodaran.blogspot.com/2026/06/indexology-index-mechanics-and.html",
        "text": "Family-controlled holdings are treated as non-traded, lowering its index weight."
-      }
-     ]
-    },
-    {
-     "s": "ABNB",
-     "name": "Airbnb",
-     "notes": [
-      {
-       "date": "2026-08-20",
-       "title": "AI's Bar Mitzvah Moment: From Hype & Hope to Business Questions!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/08/ais-bar-mitzvah-moment-from-hype-hope.html",
-       "text": "Smartphone-enabled intermediary that changed its industry."
-      },
-      {
-       "date": "2026-06-04",
-       "title": "Revisiting the SpaceX Valuation: A Post-Prospectus Update!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/06/a-weeks-ago-i-assessed-value-of-spacex.html",
-       "text": "Cites its 2020 prospectus market size of $3.4 trillion as another example of inflated market sizing."
       }
      ]
     },
@@ -2134,6 +2275,18 @@
      ]
     },
     {
+     "s": "ATVI",
+     "name": "Activision Blizzard",
+     "notes": [
+      {
+       "date": "2022-02-12",
+       "title": "Back to Earth or Temporary Setback? Revisiting the FANGAM Stocks",
+       "url": "https://aswathdamodaran.blogspot.com/2022/02/back-to-earth-or-temporary-setback.html",
+       "text": "Target of Microsoft's $68.7 billion all-cash acquisition; the stock had been marked down on internal troubles, reducing the premium paid."
+      }
+     ]
+    },
+    {
      "s": "ADANIENT.NS",
      "name": "Adani Enterprises",
      "notes": [
@@ -2238,6 +2391,18 @@
        "title": "To a Trillion(s) Dollars and beyond: A SpaceX IPO Odyssey!",
        "url": "https://aswathdamodaran.blogspot.com/2026/04/to-trillion-dollars-and-beyond-spacex.html",
        "text": "Not a valid peer for SpaceX: low growth and lower margins."
+      }
+     ]
+    },
+    {
+     "s": "BKNG",
+     "name": "Booking Holdings",
+     "notes": [
+      {
+       "date": "2020-12-02",
+       "title": "The Sharing Economy come home: The IPO of Airbnb!",
+       "url": "https://aswathdamodaran.blogspot.com/2020/12/the-sharing-economy-come-home-ipo-of.html",
+       "text": "Operating margin 35.48% in 2019; used as the high-end comparable for Airbnb (pricing off Booking.com would give a much higher value)."
       }
      ]
     },
@@ -2362,6 +2527,18 @@
      ]
     },
     {
+     "s": "EXPE",
+     "name": "Expedia",
+     "notes": [
+      {
+       "date": "2020-12-02",
+       "title": "The Sharing Economy come home: The IPO of Airbnb!",
+       "url": "https://aswathdamodaran.blogspot.com/2020/12/the-sharing-economy-come-home-ipo-of.html",
+       "text": "About 47% of revenue from its merchant business, linked to lower margins; the low-end comparable for Airbnb."
+      }
+     ]
+    },
+    {
      "s": "XOM",
      "name": "Exxon Mobil",
      "notes": [
@@ -2394,6 +2571,18 @@
        "title": "To a Trillion(s) Dollars and beyond: A SpaceX IPO Odyssey!",
        "url": "https://aswathdamodaran.blogspot.com/2026/04/to-trillion-dollars-and-beyond-spacex.html",
        "text": "Limited competitive threat to Starlink: a fraction of the satellites."
+      }
+     ]
+    },
+    {
+     "s": "HTZ",
+     "name": "Hertz",
+     "notes": [
+      {
+       "date": "2021-11-09",
+       "title": "Tesla's Trillion Dollar Moment: A Valuation Revisit!",
+       "url": "https://aswathdamodaran.blogspot.com/2021/11/teslas-trillion-dollar-moment-valuation.html",
+       "text": "Reported as considering an order of 100,000 Tesla cars. He says the direct value effect is tiny, though Tesla's market cap jumped about $100 billion on the news."
       }
      ]
     },
@@ -2454,6 +2643,30 @@
        "title": "Just do it! Brand Name Lessons from Nike'sTroubles!",
        "url": "https://aswathdamodaran.blogspot.com/2024/10/just-do-it-brand-name-lessons-from.html",
        "text": "Valued in 2015 when Buffett and 3G bought it, as undervalued; he wondered whether an aging customer base explained the decline and concludes it will not regain its former glory."
+      }
+     ]
+    },
+    {
+     "s": "LYFT",
+     "name": "Lyft",
+     "notes": [
+      {
+       "date": "2019-04-15",
+       "title": "Uber's Coming out Party: Personal Mobility Pioneer or Car Service on Steroids?",
+       "url": "https://aswathdamodaran.blogspot.com/2019/04/ubers-coming-out-party-personal.html",
+       "text": "Public since March 29, 2019; shares hit a new low on April 10. Top-down value $13.9 billion for operating assets ($16.4 billion with IPO proceeds), about 18.6 million active quarterly riders; used as a benchmark for Uber."
+      }
+     ]
+    },
+    {
+     "s": "MAR",
+     "name": "Marriott",
+     "notes": [
+      {
+       "date": "2020-12-02",
+       "title": "The Sharing Economy come home: The IPO of Airbnb!",
+       "url": "https://aswathdamodaran.blogspot.com/2020/12/the-sharing-economy-come-home-ipo-of.html",
+       "text": "Largest of the 25 largest hotel companies, 2019 revenue about $21 billion, capital-light model; hotels are the disrupted sector."
       }
      ]
     },
@@ -2550,6 +2763,18 @@
        "title": "Catastrophic Risk: Investing and Business Implications",
        "url": "https://aswathdamodaran.blogspot.com/2024/02/catastrophic-risk-investing-and.html",
        "text": "Stock price roughly halved after California wildfires as investors worried about its role in starting them; cited in a post on catastrophic risk."
+      }
+     ]
+    },
+    {
+     "s": "RIVN",
+     "name": "Rivian",
+     "notes": [
+      {
+       "date": "2021-11-09",
+       "title": "Tesla's Trillion Dollar Moment: A Valuation Revisit!",
+       "url": "https://aswathdamodaran.blogspot.com/2021/11/teslas-trillion-dollar-moment-valuation.html",
+       "text": "Named only as a potential new EV competitor."
       }
      ]
     },
@@ -2780,9 +3005,21 @@
        "text": "Rose from start-up to tens of billions of dollars quickly, brief reign, nearly as fast a collapse."
       }
      ]
+    },
+    {
+     "s": "ZOMATO.NS",
+     "name": "Zomato",
+     "notes": [
+      {
+       "date": "2021-08-02",
+       "title": "A DIY (Do-It-Yourself) Valuation of Zomato",
+       "url": "https://aswathdamodaran.blogspot.com/2021/08/a-diy-do-it-yourse-valuation-of-zomato.html",
+       "text": "Base-case value about ₹43 a share (up from ₹41 after a 25% tax rate) vs a ₹140 price on Aug 2, 2021, roughly three times his estimate: a good company but a poor investment. Assumes a ten-year market of about ₹2,000 billion (₹1,125 billion pessimistic), 40% share, a 22% slice of gross order value, a 35% pre-tax operating margin by year 7, 10% failure probability, cost of capital 10.25% falling to 8.97%. Most plausible stories give ₹30-60; the most upbeat plausible one gives ₹150."
+      }
+     ]
     }
    ],
-   "coverage": "64 of 686 posts read so far: most of 2025 and 2026, January to February 2024 and the company-specific posts from earlier years that I have found. The rest of the archive (back to 2008) is being added in stages."
+   "coverage": "73 of 686 posts read so far: most of 2025 and 2026, January to February 2024 and the company-specific posts from earlier years that I have found. The rest of the archive (back to 2008) is being added in stages."
   },
   {
    "name": "Base Hit Investing",
