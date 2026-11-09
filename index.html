@@ -1095,7 +1095,7 @@ function renderGurus() {
         const t2 = el('div', 'divide-y divide-slate-800/70');
         st.newHoldings.forEach(x => t2.appendChild(rowOf(x, el('span', 'num text-xs whitespace-nowrap text-slate-400', x.note + (x.pct !== null && x.pct !== undefined ? ' · ' + x.pct.toFixed(1) + '%' : '')))));
         ns.appendChild(t2);
-        const docs = st.documents.slice().sort((a, b) => (b.t === null) - (a.t === null) || (b.t || 0) - (a.t || 0));
+        const docs = st.documents.filter(x => x.t).sort((a, b) => b.t - a.t).slice(0, 10);
         docs.forEach(it => ds.appendChild(gLink(it, it.type, false)));
       }
       cols.appendChild(hs); cols.appendChild(ns); cols.appendChild(ds);
