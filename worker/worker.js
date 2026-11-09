@@ -391,6 +391,50 @@ async function getFiler(cik) {
   });
 }
 
+// ---- Insider filings (Forms 3/4/5) for people whose funds file no 13F ------------------
+async function getInsider(cik) {
+  return cached('i:' + cik, 6 * 3600000, async () => {
+    const id = String(parseInt(cik, 10)).padStart(10, '0');
+    const sub = await (await secGet('https://data.sec.gov/submissions/CIK' + id + '.json')).json();
+    const rec = (sub.filings || {}).recent || {};
+    const docs = [];
+    (rec.form || []).forEach((f, i) => { if (f === '4' || f === '5') docs.push({ acc: rec.accessionNumber[i], doc: rec.primaryDocument[i], filed: rec.filingDate[i] }); });
+    docs.sort((a, b) => b.filed.localeCompare(a.filed));
+    const xmls = await Promise.all(docs.slice(0, 14).map(async d => {
+      try {
+        const u = 'https://www.sec.gov/Archives/edgar/data/' + parseInt(cik, 10) + '/' + d.acc.replace(/-/g, '') + '/' + d.doc.replace(/^xsl[^/]*\//, '');
+        return { d, x: await (await secGet(u)).text() };
+      } catch (e) { return null; }
+    }));
+    const issuers = new Map();
+    for (const f of xmls.filter(Boolean)) {
+      const sym = ((f.x.match(/<issuerTradingSymbol>([^<]*)</i) || [])[1] || '').trim();
+      const name = textOf((f.x.match(/<issuerName>([^<]*)</i) || [])[1] || '');
+      if (!sym) continue;
+      const it = issuers.get(sym) || { symbol: sym, name, trades: [], position: null, asOf: null };
+      for (const m of f.x.matchAll(/<nonDerivativeTransaction>([\s\S]*?)<\/nonDerivativeTransaction>/gi)) {
+        const b = m[1], g = (t) => ((b.match(new RegExp('<' + t + '>\\s*(?:<value>)?([^<]*)', 'i')) || [])[1] || '').trim();
+        const sh = parseFloat(g('transactionShares')), px = parseFloat(g('transactionPricePerShare')), after = parseFloat(g('sharesOwnedFollowingTransaction'));
+        const date = g('transactionDate');
+        if (!isFinite(sh) || !date) continue;
+        it.trades.push({ date, act: g('transactionAcquiredDisposedCode') === 'D' ? 'Sell' : 'Buy', shares: sh, price: isFinite(px) ? px : null });
+        if (isFinite(after) && (!it.asOf || date > it.asOf || (date === it.asOf && after > it.position))) { it.position = after; it.asOf = date; }
+      }
+      issuers.set(sym, it);
+    }
+    const out = [];
+    for (const it of issuers.values()) {
+      const seen = new Set();
+      it.trades = it.trades.filter(t => { const k = t.date + t.act + t.shares; if (seen.has(k)) return false; seen.add(k); return true; })
+        .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 8);
+      const px = await fetchChart(it.symbol).then(m => num(m.regularMarketPrice)).catch(() => null);
+      out.push({ ...it, price: px, value: px && it.position ? px * it.position : null });
+    }
+    if (!out.length) throw new Error('no insider transactions found');
+    return { source: 'SEC Forms 4/5', issuers: out };
+  });
+}
+
 const RANGES = ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'];
 const INTERVALS = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'];
 
@@ -564,6 +608,13 @@ export default {
       } catch (e) {
         return new Response(JSON.stringify({ error: String(e.message || e) }), { headers });
       }
+    }
+
+    if (url.searchParams.get('insider')) {
+      const cik = url.searchParams.get('insider');
+      if (!/^\d{1,10}$/.test(cik)) return new Response('{}', { status: 400, headers });
+      const d = await getInsider(cik).catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=3600' } });
     }
 
     if (url.searchParams.get('filer')) {
