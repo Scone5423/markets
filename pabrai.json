@@ -3933,5 +3933,191 @@
    "docs": 5
   }
  ],
- "stocksBasis": "Compiled from all 155 documents in the archive (131 transcripts and 24 articles posted as PDFs, 2000–2026). Each entry says whether he held the stock, what he paid, how he valued it, and where he discussed it (date and title; linked to the PDF where available). Prices are in his own words and are as he remembered them in talks, so treat them as approximate."
+ "stocksBasis": "Compiled from all 155 documents in the archive (131 transcripts and 24 articles posted as PDFs, 2000–2026). Each entry says whether he held the stock, what he paid, how he valued it, and where he discussed it (date and title; linked to the PDF where available). Prices are in his own words and are as he remembered them in talks, so treat them as approximate.",
+ "funds": [
+  {
+   "name": "Pabrai Investment Funds",
+   "kind": "Private partnerships (accredited investors)",
+   "started": "July 1999",
+   "summary": "The original funds. Pabrai started them in July 1999 with $1 million from eight friends, plus $100,000 of his own, and copied the Buffett partnerships of the 1950s and 60s: no management fee, a 6% annual hurdle with one-fourth of gains above it going to him, redemptions once a year, and no public disclosure of holdings. He runs a handful of concentrated bets and says the structure gives him long-term investors. It is a family of partnerships, including an offshore fund, and minimums are in the millions.",
+   "size": "About $1.4 billion in total across the private funds and the ETF (Oct 31, 2026). Subtracting the ETF's $313 million implies roughly $1.1 billion in the private funds, though he does not break this out.",
+   "holdings": "The funds do not publish holdings. From his 2026 talks, the main positions are Reysas, the Turkish warehouse company, where the funds own about 41% and which was 40% of the offshore fund in 2023; a Turkish warehouse-club retailer (over 30% owned); Constellation Software; the coal companies Alpha Metallurgical and Warrior Met Coal; the offshore drillers Transocean and Valaris; TAV Airports; and Kaspi.kz. See the stock list below for prices and his reasoning.",
+   "performance": [
+    "About 12.9% a year after fees from July 1, 1999 through September 30, 2024, against 7.8% for the S&P 500 with dividends (Forbes, Nov 2024).",
+    "$100,000 at inception grew to $1.83 million by December 2023, a gain of over 12% a year against about 7% for the S&P 500 (University of Nebraska Omaha introduction, May 2024).",
+    "Earlier checkpoints from event introductions: $889,000 at the end of 2015; about $1.4 million by March 2021 (13% a year).",
+    "The first year was up over 70%, when assets were about $2.5 million (Georgetown, Mar 2021).",
+    "I could not find published returns for 2025 or 2026. The private funds do not publish them, so recent performance of the private funds is not available here."
+   ],
+   "refs": [
+    {
+     "date": "2021-03-04",
+     "title": "Session at Georgetown University",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a46406e95afd154764c3110_mohnish_pabrais_qa_session_at_st_georgetown_univ_march_4_2021.pdf"
+    },
+    {
+     "date": "2017-11-30",
+     "title": "Session at the Boston College",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463ce73fb8a3fc1fed3afc_mohnish_pabrai%E2%80%99s_lecture_at_the_boston_college__carroll_school_of_management__on_nov_30_2017_v2.pdf"
+    },
+    {
+     "date": "2024-05-03",
+     "title": "Session at The University of Nebraska, Omaha",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b943d0dcb58f8ae79b264_20240620_mohnish_pabrais_session_at_the_university_of_nebraska_omaha_on_may_3_2024_v2.pdf"
+    },
+    {
+     "date": "2026-03-23",
+     "title": "Interview with The Investor's Podcast",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99a459907c751a93ecf7_20260603_mohnish_pabrais_interview_with_the_investors_podcast_on_march_23_2026_v2.pdf"
+    }
+   ],
+   "links": [
+    {
+     "label": "Forbes: The Unconventional Fund From An Investing Legend",
+     "url": "https://www.forbes.com/sites/investor-hub/2024/11/01/the-unconventional-fund-from-an-investing-legend-poised-to-outperform/"
+    },
+    {
+     "label": "Dhandho Funds: Mohnish Pabrai",
+     "url": "https://dhandhofunds.com/people/mohnish-pabrai"
+    }
+   ]
+  },
+  {
+   "name": "Pabrai Wagons ETF (NYSE Arca: WAGN)",
+   "kind": "Actively managed ETF, open to anyone",
+   "started": "Predecessor mutual fund began Sept 29, 2023; ETF trading began Feb 9, 2026",
+   "summary": "A long-only, concentrated, actively managed fund of small and mid-cap companies around the world, with Pabrai as sole portfolio manager. It began as the Pabrai Wagons Fund (a mutual fund) and was converted into an ETF in February 2026, keeping the same manager, strategy and track record (the institutional class). The name comes from \"circling the wagons\" around his highest-conviction ideas. The fee is a single 0.90%. He said he created it because the private funds' minimums are too high for most people who wanted to invest with him. The fund has no overlap with the S&P 500.",
+   "size": "Net assets $313.0 million, 20 holdings, weighted average market cap $6.3 billion, median $2.8 billion (Oct 31, 2026).",
+   "holdingsTable": {
+    "asOf": "Oct 31, 2026",
+    "rows": [
+     [
+      "Reysas REIT (Turkey)",
+      "14.9%"
+     ],
+     [
+      "Transocean",
+      "9.2%"
+     ],
+     [
+      "Warrior Met Coal",
+      "7.0%"
+     ],
+     [
+      "Edelweiss Financial Services (India)",
+      "5.9%"
+     ],
+     [
+      "Gimat (Turkey)",
+      "5.8%"
+     ],
+     [
+      "Valaris",
+      "5.6%"
+     ],
+     [
+      "Noble Corp",
+      "5.0%"
+     ],
+     [
+      "TAV Airports (Turkey)",
+      "4.8%"
+     ],
+     [
+      "Odfjell Drilling (Norway)",
+      "4.7%"
+     ],
+     [
+      "Constellation Software",
+      "4.5%"
+     ]
+    ],
+    "note": "Top ten are 67.4% of assets. By sector: energy 24.7%, real estate 14.9%, information technology 14.3%, financials 13.6%, industrials 12.3%, materials 11.4%, consumer staples 5.8%, consumer discretionary 2.9%. The fund describes about 82% of the portfolio as six themes: offshore oil services, Reysas, the Constellation Software family, Edelweiss, U.S. met coal and TAV. At March 31, 2026 it also held Alpha Metallurgical, Kaspi.kz, Topicus, Lumine, Danaos, Mongolian Mining, TAB Gida, Nuvama and Sygnity."
+   },
+   "performance": [
+    "As of Oct 31, 2026: up 30.14% year to date and 34.30% over one year (NAV), against 11.77% and 12.11% for the S&P 500. Since inception (Sept 29, 2023) it has returned 16.91% a year against 21.83% for the S&P 500.",
+    "As of Sept 30, 2026: up 21.70% year to date, 29.28% over one year, and 14.84% a year since inception, against 22.87% for the S&P 500. October added almost 7% after September fell 8%, so returns swing widely.",
+    "2024 was +10.91%. Through Dec 31, 2024 it was up 15.42% since inception, against 30.48% for the S&P 500. It was down 2.12% for 2025 through Sept 30.",
+    "In short, it has trailed the S&P 500 since inception but has led it sharply over the last year. Three years is a short record for a concentrated fund."
+   ],
+   "refs": [
+    {
+     "date": "2026-03-23",
+     "title": "Interview with The Investor's Podcast",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b99a459907c751a93ecf7_20260603_mohnish_pabrais_interview_with_the_investors_podcast_on_march_23_2026_v2.pdf"
+    },
+    {
+     "date": "2025-02-25",
+     "title": "Interview at the Capital Compounders Show",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b964ff46c40af53e00077_20250314_mohnish_pabrais_interview_at_the_capital_compounders_show_on_february_25_2025.pdf"
+    },
+    {
+     "date": "2024-02-08",
+     "title": "Session at the SumZero Virtual Investor Summit 2024",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a4b9372924a815a0b068a32_20240308_mohnish_pabrais_session_at_the_sumzero_virtual_investor_summit_2024_on_feb_8_2024_v2.pdf"
+    }
+   ],
+   "links": [
+    {
+     "label": "Pabrai Wagons ETF site",
+     "url": "https://www.wagonsetf.com/"
+    },
+    {
+     "label": "WAGN fact sheet (Oct 31, 2026)",
+     "url": "https://wagonsfund.b-cdn.net/Pabrai%20Wagons%20ETF%20Fact%20Sheet.pdf"
+    },
+    {
+     "label": "WAGN investor presentation",
+     "url": "https://wagonsfund.b-cdn.net/Pabrai%20Wagons%20ETF%20Investor%20Presentation.pdf"
+    },
+    {
+     "label": "Prospectus and information statement (Dec 29, 2025)",
+     "url": "https://wagonsfund.b-cdn.net/Combined%20Information%20Statement%20&%20Prospectus%20dated%20December%2029,%202025.pdf"
+    },
+    {
+     "label": "Holdings filing, Mar 31, 2026 (SEC)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000811030/000119312526247453/pabrai.htm"
+    }
+   ]
+  },
+  {
+   "name": "Dhandho Holdings",
+   "kind": "Insurance-focused holding company (not an investment fund)",
+   "started": "2014",
+   "summary": "Dhandho Holdings is not a stock fund like the other two. Pabrai set it up in 2014, separate from Pabrai Investment Funds, as a way to own private businesses and an insurer, copying Buffett's use of insurance float. He raised about $150 million and in July 2014 agreed to buy Stonetrust, a Louisiana workers' compensation insurer, for $35 million in cash, plus $30 million more in capital for the insurer, about $65 million in all. He soon concluded it was a mistake and that he did not want to run an insurer, and told his investors his goal was to return their capital. Stonetrust was sold to Wintaai Holdings, a subsidiary of Chou Associates, effective January 1, 2018; no price was published.",
+   "size": "Not published.",
+   "holdings": "No operating holdings that I could find after the Stonetrust sale. He is still described as the chairman and CEO of Dhandho Holdings in event introductions and the Wagons prospectus, but I found nothing on what it owns today.",
+   "performance": [
+    "No performance figures have been published. In 2020 he called the Stonetrust purchase a mistake and said the business was doing well under its new owner, Chou."
+   ],
+   "refs": [
+    {
+     "date": "2014-12-26",
+     "title": "Presentation and Q&A Session at MDI Gurgaon",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463b4a8a1cc7d7c60e089b_mohnish_pabrais_presentation_and_q_a_session_at_mdi_gurgaon_on_december_26_2014.pdf"
+    },
+    {
+     "date": "2020-04-07",
+     "title": "Q&A Session with Francis Chou at Harvard",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463e7391f91ae0b7bb6b5c_mohnish_pabrai%E2%80%99s_q_a_session_with_francis_chou_at_harvard_university_v2.pdf"
+    },
+    {
+     "date": "2017-06-07",
+     "title": "Session at the University of California, Irvine (UCI)",
+     "url": "https://cdn.prod.website-files.com/691db7fda7023478951386c6/6a463cbf6683e43206605689_mohnish_pabrai%E2%80%99s_lecture_at_the_university_of_california__irvine__uci__on_june_7__2017_v2.pdf"
+    }
+   ],
+   "links": [
+    {
+     "label": "Insurance Journal: Dhandho acquiring Stonetrust (2014)",
+     "url": "https://www.insurancejournal.com/news/southcentral/2014/07/31/336332.htm"
+    },
+    {
+     "label": "Insurance Journal: Wintaai acquires Stonetrust (2018)",
+     "url": "https://www.insurancejournal.com/news/southcentral/2018/01/08/476595.htm"
+    }
+   ]
+  }
+ ],
+ "fundsNote": "Pabrai's firm, Dhandho Funds LLC (doing business as Pabrai Wagons Advisors), is the ETF's adviser, and Dalal Street LLC is a related adviser. Together they manage about $1.4 billion (Oct 31, 2026). Past performance does not predict future results. This is a summary of public sources, not investment advice."
 }

@@ -35,7 +35,7 @@
     <a href="#charts" data-nav="charts" class="pb-3 text-sm">Charts</a>
     <a href="#gurus" data-nav="gurus" class="pb-3 text-sm">Gurus</a>
     <a href="#semper" data-nav="semper" class="pb-3 text-sm">Semper</a>
-    <a href="#pabrai" data-nav="pabrai" class="pb-3 text-sm">Pabrai</a>
+    <a href="#pabrai" data-nav="pabrai" class="pb-3 text-sm">Dhandho</a>
   </nav>
 
   <section id="view-home">
@@ -114,8 +114,8 @@
 
   <section id="view-pabrai" hidden>
     <div class="mb-6">
-      <h2 class="text-3xl font-semibold text-white">Mohnish Pabrai</h2>
-      <p class="text-sm text-slate-400 mt-1">Every talk transcript and article published on <a class="underline hover:text-white" href="https://www.chaiwithpabrai.com/" target="_blank" rel="noopener">Chai with Pabrai</a>, the stocks he discusses (what he paid, how he valued them and whether he held them), plus a searchable list of every transcript and article with links to the PDFs.</p>
+      <h2 class="text-3xl font-semibold text-white">Dhandho</h2>
+      <p class="text-sm text-slate-400 mt-1">Mohnish Pabrai's funds and the stocks he discusses, from every talk transcript and article published on <a class="underline hover:text-white" href="https://www.chaiwithpabrai.com/" target="_blank" rel="noopener">Chai with Pabrai</a> (what he paid, how he valued them and whether he held them), plus a searchable list of every transcript and article with links to the PDFs.</p>
     </div>
     <figure class="relative mb-6 rounded-lg border border-slate-800 bg-gradient-to-br from-[#151b22] to-[#101820] px-6 py-6 sm:px-10 overflow-hidden">
       <span aria-hidden="true" class="absolute -top-4 left-3 text-8xl leading-none text-emerald-400/20 select-none" style="font-family: Georgia, 'Times New Roman', serif">&ldquo;</span>
@@ -1381,6 +1381,50 @@ async function pabraiShow() {
 function renderPabrai() {
   const box = $('pabraiBody'); box.innerHTML = '';
   if (!pabraiData) { box.appendChild(el('p', 'text-sm text-slate-400', 'The Pabrai index could not be loaded. Try refreshing in a minute.')); return; }
+  if (Array.isArray(pabraiData.funds) && pabraiData.funds.length) {
+    box.appendChild(el('h3', 'text-lg font-medium text-white mb-1', 'The funds he runs'));
+    if (pabraiData.fundsNote) box.appendChild(el('p', 'text-xs text-slate-500 mb-4', pabraiData.fundsNote));
+    const fl = el('div', 'space-y-4 mb-10');
+    pabraiData.funds.forEach(f => {
+      const card = el('div', 'rounded-lg border border-emerald-900/50 bg-[#151b22] p-5');
+      const head = el('div', 'flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1');
+      head.appendChild(el('h4', 'text-base font-semibold text-white', f.name));
+      head.appendChild(el('span', 'text-[11px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300', f.kind));
+      card.appendChild(head);
+      card.appendChild(el('p', 'text-xs text-emerald-400/80 mb-3', 'Started: ' + f.started));
+      card.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', f.summary));
+      const row = (k, v) => { const r = el('div', 'flex flex-col sm:flex-row sm:gap-3 mb-2'); r.appendChild(el('div', 'text-xs uppercase tracking-wide text-emerald-400/80 sm:w-28 shrink-0 pt-0.5', k)); r.appendChild(v); card.appendChild(r); };
+      if (f.size) row('Size', el('div', 'text-sm text-slate-200 leading-relaxed', f.size));
+      if (f.holdings) row('Holdings', el('div', 'text-sm text-slate-200 leading-relaxed', f.holdings));
+      if (f.holdingsTable) {
+        const wrap = el('div', 'min-w-0 flex-1');
+        const t = el('table', 'text-sm w-full max-w-md');
+        f.holdingsTable.rows.forEach(r => { const tr = el('tr', 'border-b border-slate-800/60'); tr.appendChild(el('td', 'py-1 text-slate-200', r[0])); tr.appendChild(el('td', 'py-1 text-right num text-slate-300', r[1])); t.appendChild(tr); });
+        wrap.appendChild(el('div', 'text-xs text-slate-500 mb-1', 'Top ten, ' + f.holdingsTable.asOf));
+        wrap.appendChild(t);
+        wrap.appendChild(el('p', 'text-xs text-slate-500 mt-2 leading-relaxed', f.holdingsTable.note));
+        row('Holdings', wrap);
+      }
+      if (f.performance && f.performance.length) {
+        const ul = el('ul', 'text-sm text-slate-200 leading-relaxed space-y-1 list-disc pl-4');
+        f.performance.forEach(p => ul.appendChild(el('li', '', p)));
+        row('Performance', ul);
+      }
+      const src = el('p', 'text-xs text-slate-500 mt-3');
+      src.appendChild(document.createTextNode('Sources: '));
+      const items = [];
+      (f.links || []).forEach(l => items.push([l.label, l.url]));
+      (f.refs || []).forEach(r => items.push([r.date.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$2-$3-$1') + ', ' + r.title, r.url]));
+      items.forEach(([label, url], i) => {
+        if (i) src.appendChild(document.createTextNode(' · '));
+        const a = el('a', 'underline decoration-slate-600 underline-offset-2 hover:text-emerald-300', label);
+        a.href = url; a.target = '_blank'; a.rel = 'noopener'; src.appendChild(a);
+      });
+      card.appendChild(src);
+      fl.appendChild(card);
+    });
+    box.appendChild(fl);
+  }
   if (Array.isArray(pabraiData.stocks) && pabraiData.stocks.length) {
     box.appendChild(el('h3', 'text-lg font-medium text-white mb-1', 'Stocks he discusses'));
     if (pabraiData.stocksBasis) box.appendChild(el('p', 'text-xs text-slate-500 mb-3', pabraiData.stocksBasis));
@@ -1490,7 +1534,7 @@ function show() {
     a.className = 'pb-3 text-sm border-b-2 -mb-px ' + (on ? 'text-white border-sky-500' : 'text-slate-400 border-transparent hover:text-slate-200');
     on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   });
-  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Pabrai | Markets"}[v];
+  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Dhandho | Markets"}[v];
   if (v === 'charts') chartsRoute();
   if (v === "gurus") gurusShow();
   if (v === "semper") semperShow();
