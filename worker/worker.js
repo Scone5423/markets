@@ -413,6 +413,8 @@ export default {
         t('yahoo_session', async () => { const s = await getSession(); return 'ok crumb ' + s.crumb.length + ' chars'; }),
         t('yahoo_quote', async () => { const q = await fetchQuotes(['AAPL']); return Object.keys(q).length + ' quote(s)'; }),
         t('yahoo_screener', async () => (await screen('percentchange', 'DESC', 3)).length + ' rows'),
+        t('dataroma_holdings_SA', async () => { const r = await fetch('https://www.dataroma.com/m/holdings.php?m=SA', { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html' } }); const x = await r.text(); const p = parseDataroma(x); return 'HTTP ' + r.status + ', ' + x.length + ' bytes, period ' + p.period + ', ' + p.holdings.length + ' holdings parsed, first: ' + JSON.stringify(p.holdings[0] || null) + (p.holdings.length ? '' : ' | start: ' + textOf(x).slice(0, 150)); }),
+        t('dataroma_activity_SA', async () => { const r = await fetch('https://www.dataroma.com/m/m_activity.php?m=SA&typ=a', { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html' } }); const x = await r.text(); const p = parseNewBuys(x); return 'HTTP ' + r.status + ', ' + x.length + ' bytes, quarters ' + p.quarters.join('/') + ', new buys ' + p.buys.length; }),
         t('fred', async () => peek(await fetch('https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US', { headers: { 'User-Agent': UA } })))
       ]);
       return new Response(JSON.stringify(Object.fromEntries(res), null, 2), { headers });
