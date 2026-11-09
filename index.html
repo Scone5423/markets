@@ -115,7 +115,7 @@
 
   <section id="view-pabrai" hidden>
     <div class="mb-6">
-      <h2 class="text-3xl font-semibold text-white">Dhandho</h2>
+      <h2 id="pabraiTitle" class="text-3xl font-semibold text-white">Dhandho</h2>
     </div>
     <figure class="relative mb-6 rounded-lg border border-slate-800 bg-gradient-to-br from-[#151b22] to-[#101820] px-6 py-6 sm:px-10 overflow-hidden">
       <span aria-hidden="true" class="absolute -top-4 left-3 text-8xl leading-none text-emerald-400/20 select-none" style="font-family: Georgia, 'Times New Roman', serif">&ldquo;</span>
@@ -127,7 +127,7 @@
 
   <section id="view-semper" hidden>
     <div class="mb-6">
-      <h2 class="text-3xl font-semibold text-white">Semper Augustus</h2>
+      <h2 id="semperTitle" class="text-3xl font-semibold text-white">Semper Augustus</h2>
     </div>
     <div id="semperBody"><p class="text-sm text-slate-400">Loading…</p></div>
   </section>
@@ -1315,7 +1315,14 @@ async function semperShow() {
       semperData = await r.json();
     } catch (e) { semperData = null; }
   }
+  stampTitle('semperTitle', 'Semper Augustus', semperData);
   renderSemper();
+}
+function stampTitle(id, base, d) {
+  const h = $(id); if (!h) return;
+  const m = d && /^(\d{4})-(\d{2})-(\d{2})$/.exec(d.lastUpdate || '');
+  h.textContent = base;
+  if (m) h.appendChild(el('span', 'ml-3 text-sm font-normal text-slate-500', '(Last Update ' + (+m[2]) + '/' + (+m[3]) + '/' + m[1] + ')'));
 }
 const fmtPct = v => typeof v === 'number' ? (v >= 0 ? '+' : '') + v.toFixed(1) + '%' : '—';
 let semperUnit = 'b', semperPrices = null, semperPricesTried = false;
@@ -1496,6 +1503,7 @@ async function pabraiShow() {
       pabraiData = await r.json();
     } catch (e) { pabraiData = null; }
   }
+  stampTitle('pabraiTitle', 'Dhandho', pabraiData);
   renderPabrai();
 }
 function renderPabrai() {
