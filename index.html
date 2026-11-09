@@ -870,7 +870,7 @@ const DEFAULT_GURUS = [
     photo: 'https://cdn.prod.website-files.com/6913ba09c594c4cd77f9d47f/691c3c499915d5878e9e12f0_20251009-mp-profile-picture-vf_orig.jpg',
     links: [{label: 'Website', url: 'https://www.chaiwithpabrai.com/'}],
     sources: [{kind: 'posts', label: 'chaiwithpabrai.com', url: 'https://www.chaiwithpabrai.com/', match: '/blog/'}]},
-  {name: 'Christopher Bloomstran', code: 'SA', cik: '1115373', search: false, sync: true,
+  {name: 'Christopher Bloomstran', code: 'SA', cik: '1115373', search: false, sync: true, recent: true,
     photo: 'https://static.fmgsuite.com/media/images/f6b203fd-1365-4654-8cbb-a08a07a44185.jpg',
     links: [{label: 'Website', url: 'https://www.semperaugustus.com/'}],
     sources: [{kind: 'letters', label: 'Semper Augustus client letters', url: 'https://www.semperaugustus.com/clientletter'}]},
@@ -885,7 +885,7 @@ let guruList = null;
 try { const s = localStorage.getItem('gurus.v1'); guruList = s === null ? null : JSON.parse(s); } catch (e) {}
 if (!Array.isArray(guruList)) guruList = DEFAULT_GURUS.map(g => JSON.parse(JSON.stringify(g)));
 // Photos you gave me for investors already in a saved list.
-guruList.forEach(g => { const d = DEFAULT_GURUS.find(x => x.name === g.name); if (d && d.photo && !g.photo) g.photo = d.photo; if (d && d.cik && !g.cik) g.cik = d.cik; if (d && d.insider && !g.insider) g.insider = d.insider; if (d && d.cik === '' && g.cik === '1840586') g.cik = ''; if (d && d.sync) { g.search = d.search; g.sources = JSON.parse(JSON.stringify(d.sources)); } });
+guruList.forEach(g => { const d = DEFAULT_GURUS.find(x => x.name === g.name); if (d && d.photo && !g.photo) g.photo = d.photo; if (d && d.cik && !g.cik) g.cik = d.cik; if (d && d.insider && !g.insider) g.insider = d.insider; if (d && d.cik === '' && g.cik === '1840586') g.cik = ''; if (d && d.sync) { g.search = d.search; g.sources = JSON.parse(JSON.stringify(d.sources)); g.recent = !!d.recent; } });
 const saveGurus = () => { try { localStorage.setItem('gurus.v1', JSON.stringify(guruList)); } catch (e) {} };
 let gSeen = {};
 try { gSeen = JSON.parse(localStorage.getItem('gurus.seen')) || {}; } catch (e) {}
@@ -1091,6 +1091,16 @@ function renderGurus() {
     cols.appendChild(ns);
 
     // New media
+    if (g.recent) {
+      const mr = section('Letters', '· most recent');
+      const media = guruMedia(g, d);
+      const srcLoading = (g.sources || []).some((s, i) => !(d.src || [])[i]);
+      if (!media.length) mr.appendChild(note(srcLoading ? (d.err || 'Loading…') : ((d.src || []).find(r => r && r.error) ? "Couldn't load the letters page (" + d.src.find(r => r && r.error).error + ')' : 'No letters found.')));
+      media.slice(0, 6).forEach(m => mr.appendChild(gLink(m.it, m.from, false)));
+      cols.appendChild(mr);
+      card.appendChild(cols); box.appendChild(card);
+      return;
+    }
     const ms = section('New media', '· podcasts, articles, letters');
     const media = guruMedia(g, d);
     const loading = !d.news && g.search !== false || (g.sources || []).some((s, i) => !(d.src || [])[i]);
