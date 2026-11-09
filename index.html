@@ -103,8 +103,8 @@
       <label class="text-xs text-slate-400">Name
         <input id="gName" required maxlength="60" placeholder="Seth Klarman" class="block mt-1 w-56 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
       </label>
-      <label class="text-xs text-slate-400">Dataroma code
-        <input id="gCode" maxlength="20" placeholder="BAUPOST" class="block mt-1 w-36 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
+      <label class="text-xs text-slate-400">SEC CIK number (13F filers)
+        <input id="gCode" maxlength="10" inputmode="numeric" placeholder="1061768" class="block mt-1 w-36 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
       </label>
       <label class="text-xs text-slate-400">Page or feed to follow (optional)
         <input id="gSrc" type="url" placeholder="https://example.com/letters" class="block mt-1 w-72 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
@@ -118,7 +118,7 @@
         <input id="gPhoto" type="url" placeholder="https://…/photo.jpg" class="block mt-1 w-64 rounded bg-slate-900 border border-slate-700 px-3 py-1.5 text-sm text-white placeholder-slate-600">
       </label>
       <button class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Add</button>
-      <p class="text-xs text-slate-500 basis-full">The code is the end of the manager's Dataroma address (dataroma.com/m/holdings.php?m=<span class="text-slate-300">BAUPOST</span>). Leave it blank for investors who don't file a 13F. The page or feed can be a letters page, a blog, or a podcast feed; pages without dates flag new links since your last visit.</p>
+      <p class="text-xs text-slate-500 basis-full">The CIK is the manager's number on sec.gov: search their firm name on EDGAR (sec.gov/edgar/searchedgar/companysearch) and copy the number after "CIK". Leave it blank for investors who don't file a 13F. The page or feed can be a letters page, a blog, or a podcast feed; pages without dates flag new links since your last visit.</p>
     </form>
     <div id="guruNew" class="mb-6" hidden></div>
     <div id="guruCards" class="space-y-4"></div>
@@ -869,15 +869,15 @@ $('chForm').addEventListener('submit', e => {
 // ---- Gurus ----------------------------------------------------------------
 // kind: letters = page or feed of letters, posts = blog/site, podcast = podcast feed or page.
 const DEFAULT_GURUS = [
-  {name: 'Mohnish Pabrai', code: 'DS', search: false, sync: true,
+  {name: 'Mohnish Pabrai', code: 'DS', cik: '1549575', search: false, sync: true,
     photo: 'https://cdn.prod.website-files.com/6913ba09c594c4cd77f9d47f/691c3c499915d5878e9e12f0_20251009-mp-profile-picture-vf_orig.jpg',
     links: [{label: 'Website', url: 'https://www.chaiwithpabrai.com/'}],
     sources: [{kind: 'posts', label: 'chaiwithpabrai.com', url: 'https://www.chaiwithpabrai.com/', match: '/blog/'}]},
-  {name: 'Christopher Bloomstran', code: 'SA', search: true,
+  {name: 'Christopher Bloomstran', code: 'SA', cik: '1115373', search: true,
     photo: 'https://static.fmgsuite.com/media/images/f6b203fd-1365-4654-8cbb-a08a07a44185.jpg',
     links: [{label: 'Website', url: 'https://www.semperaugustus.com/'}],
     sources: [{kind: 'letters', label: 'Semper Augustus client letters', url: 'https://www.semperaugustus.com/clientletter'}]},
-  {name: 'Berkshire Hathaway', code: 'BRK', search: false, photo: 'photos/berkshire-hathaway.jpg', links: [],
+  {name: 'Berkshire Hathaway', code: 'BRK', cik: '1067983', search: false, photo: 'photos/berkshire-hathaway.jpg', links: [],
     sources: [{kind: 'letters', label: 'Shareholder letters', url: 'https://www.berkshirehathaway.com/letters/letters.html'}]},
   {name: 'Geoff Gannon', code: '', search: true, photo: 'photos/geoff-gannon.jpg',
     links: [{label: 'Website', url: 'https://focusedcompounding.com/'}, {label: 'X', url: 'https://x.com/FocusedCompound'}],
@@ -888,7 +888,7 @@ let guruList = null;
 try { const s = localStorage.getItem('gurus.v1'); guruList = s === null ? null : JSON.parse(s); } catch (e) {}
 if (!Array.isArray(guruList)) guruList = DEFAULT_GURUS.map(g => JSON.parse(JSON.stringify(g)));
 // Photos you gave me for investors already in a saved list.
-guruList.forEach(g => { const d = DEFAULT_GURUS.find(x => x.name === g.name); if (d && d.photo && !g.photo) g.photo = d.photo; if (d && d.sync) { g.search = d.search; g.sources = JSON.parse(JSON.stringify(d.sources)); } });
+guruList.forEach(g => { const d = DEFAULT_GURUS.find(x => x.name === g.name); if (d && d.photo && !g.photo) g.photo = d.photo; if (d && d.cik && !g.cik) g.cik = d.cik; if (d && d.sync) { g.search = d.search; g.sources = JSON.parse(JSON.stringify(d.sources)); } });
 const saveGurus = () => { try { localStorage.setItem('gurus.v1', JSON.stringify(guruList)); } catch (e) {} };
 let gSeen = {};
 try { gSeen = JSON.parse(localStorage.getItem('gurus.seen')) || {}; } catch (e) {}
@@ -917,7 +917,7 @@ async function loadGuru(g) {
   const d = gData[g.name] = gData[g.name] || {};
   if (!base) { d.err = 'Needs your Cloudflare Worker (add its address under Price sources).'; return; }
   const jobs = [];
-  if (g.code) jobs.push(getJSON(base + '/?guru=' + encodeURIComponent(g.code), 40000).then(x => { d.hold = x; }).catch(e => { d.hold = {error: e.message}; }));
+  if (g.cik) jobs.push(getJSON(base + '/?filer=' + encodeURIComponent(g.cik), 40000).then(x => { d.hold = x; }).catch(e => { d.hold = {error: e.message}; }));
   if (g.search !== false) jobs.push(getJSON(base + '/?gurunews=' + encodeURIComponent(g.name), 40000).then(x => { d.news = x; }).catch(e => { d.news = {error: e.message}; }));
   d.src = [];
   (g.sources || []).forEach((s, i) => {
@@ -1016,18 +1016,18 @@ function renderGurus() {
 
     // Top 10 holdings
     const hs = section('Top 10 holdings', d.hold && d.hold.period ? '· ' + d.hold.period : '');
-    if (!g.code) hs.appendChild(note('Not a 13F filer, so no holdings to show.'));
+    if (!g.cik) hs.appendChild(note('Not a 13F filer, so no holdings to show.'));
     else if (!d.hold) hs.appendChild(note(d.err || 'Loading…'));
     else if (d.hold.error) hs.appendChild(note("Couldn't load holdings (" + d.hold.error + ')'));
     else {
       const tbl = el('div', 'divide-y divide-slate-800/70');
       d.hold.holdings.slice(0, 10).forEach(x => {
         const row = el('a', 'flex items-baseline justify-between gap-3 py-1 px-1 rounded hover:bg-slate-800/50');
-        row.href = '#charts/' + encodeURIComponent(x.s.replace('.', '-'));
+        if (x.s) row.href = '#charts/' + encodeURIComponent(x.s.replace('.', '-'));
         const l = el('span', 'min-w-0 truncate');
-        l.appendChild(el('span', 'font-semibold text-white', x.s)); l.appendChild(document.createTextNode(' '));
-        l.appendChild(el('span', 'text-xs text-slate-500', x.n));
-        if (mine.has(x.s.replace('.', '-'))) l.appendChild(el('span', 'ml-1 text-[10px] text-sky-400', '●'));
+        l.appendChild(el('span', 'font-semibold text-white', x.s || x.n)); l.appendChild(document.createTextNode(' '));
+        if (x.s) l.appendChild(el('span', 'text-xs text-slate-500', x.n));
+        if (x.s && mine.has(x.s.replace('.', '-'))) l.appendChild(el('span', 'ml-1 text-[10px] text-sky-400', '●'));
         const r = el('span', 'num text-sm whitespace-nowrap');
         if (x.act) r.appendChild(el('span', 'mr-2 text-xs ' + (/^(add|buy|new)/i.test(x.act) ? 'text-emerald-400' : 'text-red-400'), x.act));
         r.appendChild(el('span', 'text-slate-300', x.pct.toFixed(1) + '%'));
@@ -1039,7 +1039,7 @@ function renderGurus() {
 
     // New holdings, last 6 months
     const ns = section('New holdings', '· last 6 months');
-    if (!g.code) ns.appendChild(note('Not a 13F filer.'));
+    if (!g.cik) ns.appendChild(note('Not a 13F filer.'));
     else if (!d.hold) ns.appendChild(note(d.err || 'Loading…'));
     else if (d.hold.error) ns.appendChild(note('Unavailable.'));
     else if (!d.hold.newBuys) ns.appendChild(note("Couldn't read the trade history."));
@@ -1048,11 +1048,11 @@ function renderGurus() {
       const tbl = el('div', 'divide-y divide-slate-800/70');
       d.hold.newBuys.buys.forEach(x => {
         const row = el('a', 'flex items-baseline justify-between gap-3 py-1 px-1 rounded hover:bg-slate-800/50');
-        row.href = '#charts/' + encodeURIComponent(x.s.replace('.', '-'));
+        if (x.s) row.href = '#charts/' + encodeURIComponent(x.s.replace('.', '-'));
         const l = el('span', 'min-w-0 truncate');
-        l.appendChild(el('span', 'font-semibold text-white', x.s)); l.appendChild(document.createTextNode(' '));
-        l.appendChild(el('span', 'text-xs text-slate-500', x.n));
-        if (mine.has(x.s.replace('.', '-'))) l.appendChild(el('span', 'ml-1 text-[10px] text-sky-400', '●'));
+        l.appendChild(el('span', 'font-semibold text-white', x.s || x.n)); l.appendChild(document.createTextNode(' '));
+        if (x.s) l.appendChild(el('span', 'text-xs text-slate-500', x.n));
+        if (x.s && mine.has(x.s.replace('.', '-'))) l.appendChild(el('span', 'ml-1 text-[10px] text-sky-400', '●'));
         const r = el('span', 'num text-xs whitespace-nowrap text-slate-400', x.q + (x.pct !== null ? ' · ' + x.pct.toFixed(1) + '%' : ''));
         row.appendChild(l); row.appendChild(r); tbl.appendChild(row);
       });
@@ -1099,7 +1099,7 @@ $('guruForm').addEventListener('submit', e => {
   e.preventDefault();
   const name = $('gName').value.trim().replace(/\s+/g, ' '), code = $('gCode').value.trim(), src = $('gSrc').value.trim();
   if (!name || guruList.some(g => g.name.toLowerCase() === name.toLowerCase())) return;
-  const g = {name, code: code.replace(/[^A-Za-z0-9_\-]/g, ''), search: true, links: [], sources: [], photo: /^https:\/\//i.test($('gPhoto').value.trim()) ? $('gPhoto').value.trim() : ''};
+  const g = {name, cik: code.replace(/\D/g, ''), search: true, links: [], sources: [], photo: /^https:\/\//i.test($('gPhoto').value.trim()) ? $('gPhoto').value.trim() : ''};
   if (/^https:\/\//i.test(src)) { g.sources.push({kind: $('gKind').value, label: src.replace(/^https:\/\/(www\.)?/i, '').replace(/\/$/, '').slice(0, 40), url: src}); g.links.push({label: 'Website', url: src}); }
   guruList.push(g); saveGurus();
   $('gName').value = ''; $('gCode').value = ''; $('gSrc').value = ''; $('gPhoto').value = '';

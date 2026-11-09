@@ -301,6 +301,96 @@ async function getSource(src, kind, match) {
   });
 }
 
+// ---- 13F holdings straight from the SEC (EDGAR) -----------------------------------
+// Dataroma blocks Cloudflare, so holdings come from each manager's own 13F filings.
+const SEC_UA = 'PersonalMarketsDashboard/1.0 (personal, non-commercial use)';
+const secGet = async url => {
+  const r = await fetch(url, { headers: { 'User-Agent': SEC_UA, Accept: 'application/json,text/xml,*/*' } });
+  if (!r.ok) throw new Error('SEC HTTP ' + r.status);
+  return r;
+};
+const quarterOf = d => { const m = /^(\d{4})-(\d{2})/.exec(d); return m ? 'Q' + Math.ceil(+m[2] / 3) + ' ' + m[1] : d; };
+
+async function infoTable(cik, acc) {
+  const dir = 'https://www.sec.gov/Archives/edgar/data/' + parseInt(cik, 10) + '/' + acc.replace(/-/g, '') + '/';
+  const idx = await (await secGet(dir + 'index.json')).json();
+  const files = ((idx.directory || {}).item || []).map(i => i.name);
+  const file = files.find(n => /infotable.*\.xml$/i.test(n)) || files.find(n => /\.xml$/i.test(n) && !/primary_doc/i.test(n));
+  if (!file) throw new Error('no holdings table in filing');
+  const xml = await (await secGet(dir + file)).text();
+  const pos = new Map();
+  for (const m of xml.matchAll(/<(?:\w+:)?infoTable>([\s\S]*?)<\/(?:\w+:)?infoTable>/gi)) {
+    const b = m[1], f = t => ((b.match(new RegExp('<(?:\\w+:)?' + t + '>([^<]*)<', 'i')) || [])[1] || '').trim();
+    if (f('putCall')) continue;                       // skip options
+    const cusip = f('cusip').toUpperCase(), value = parseFloat(f('value')), sh = parseFloat(f('sshPrnamt'));
+    if (!cusip || !isFinite(value)) continue;
+    const p = pos.get(cusip) || { cusip, n: textOf(f('nameOfIssuer')), value: 0, shares: 0 };
+    p.value += value; p.shares += isFinite(sh) ? sh : 0;
+    pos.set(cusip, p);
+  }
+  if (!pos.size) throw new Error('empty holdings table');
+  const total = [...pos.values()].reduce((a, p) => a + p.value, 0);
+  return { pos, total };
+}
+
+const tickerCache = new Map();
+async function tickersFor(cusips) {
+  const need = cusips.filter(c => !tickerCache.has(c));
+  for (let i = 0; i < need.length; i += 10) {
+    const batch = need.slice(i, i + 10);
+    try {
+      const r = await fetch('https://api.openfigi.com/v3/mapping', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(batch.map(c => ({ idType: 'ID_CUSIP', idValue: c, exchCode: 'US' })))
+      });
+      const j = await r.json();
+      batch.forEach((c, k) => {
+        const rows = (j[k] && j[k].data) || [];
+        const pick = rows.find(x => /common|depositary|reit|adr/i.test(x.securityType || '')) || rows[0];
+        tickerCache.set(c, pick && pick.ticker ? pick.ticker.replace('/', '-') : '');
+      });
+    } catch (e) { /* leave unmapped; the page shows the name without a chart link */ }
+  }
+  return Object.fromEntries(cusips.map(c => [c, tickerCache.get(c) || '']));
+}
+
+async function getFiler(cik) {
+  return cached('f:' + cik, 6 * 3600000, async () => {
+    const id = String(parseInt(cik, 10)).padStart(10, '0');
+    const sub = await (await secGet('https://data.sec.gov/submissions/CIK' + id + '.json')).json();
+    const rec = (sub.filings || {}).recent || {};
+    const filings = [];
+    (rec.form || []).forEach((f, i) => { if (f === '13F-HR') filings.push({ acc: rec.accessionNumber[i], report: rec.reportDate[i], filed: rec.filingDate[i] }); });
+    filings.sort((a, b) => b.report.localeCompare(a.report));
+    if (!filings.length) throw new Error('no 13F filings found');
+    const tables = await Promise.all(filings.slice(0, 3).map(f => infoTable(cik, f.acc).catch(() => null)));
+    const cur = tables[0];
+    if (!cur) throw new Error('could not read the latest 13F');
+    const prev = tables[1], old = tables[2] || tables[1];
+    const top = [...cur.pos.values()].sort((a, b) => b.value - a.value);
+    const newPos = old ? top.filter(p => !old.pos.has(p.cusip)) : [];
+    const syms = await tickersFor([...top.slice(0, 10), ...newPos].map(p => p.cusip));
+    const act = p => {
+      if (!prev) return '';
+      const q = prev.pos.get(p.cusip);
+      if (!q) return 'New';
+      const ch = (p.shares / q.shares - 1) * 100;
+      return Math.abs(ch) < 1 ? '' : (ch > 0 ? 'Add ' : 'Reduce ') + Math.abs(ch).toFixed(0) + '%';
+    };
+    return {
+      period: quarterOf(filings[0].report), date: filings[0].report, filed: filings[0].filed, source: 'SEC 13F',
+      holdings: top.slice(0, 10).map(p => ({ s: syms[p.cusip] || '', n: p.n, pct: p.value / cur.total * 100, act: act(p), shares: p.shares })),
+      newBuys: old ? {
+        quarters: [quarterOf(filings[0].report), quarterOf((filings[1] || filings[0]).report)],
+        buys: newPos.sort((a, b) => b.value - a.value).slice(0, 12).map(p => ({
+          s: syms[p.cusip] || '', n: p.n, pct: p.value / cur.total * 100,
+          q: quarterOf((prev && !prev.pos.has(p.cusip) ? filings[0] : filings[1] || filings[0]).report)
+        }))
+      } : null
+    };
+  });
+}
+
 const RANGES = ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'];
 const INTERVALS = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'];
 
@@ -413,8 +503,7 @@ export default {
         t('yahoo_session', async () => { const s = await getSession(); return 'ok crumb ' + s.crumb.length + ' chars'; }),
         t('yahoo_quote', async () => { const q = await fetchQuotes(['AAPL']); return Object.keys(q).length + ' quote(s)'; }),
         t('yahoo_screener', async () => (await screen('percentchange', 'DESC', 3)).length + ' rows'),
-        t('dataroma_holdings_SA', async () => { const r = await fetch('https://www.dataroma.com/m/holdings.php?m=SA', { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html' } }); const x = await r.text(); const p = parseDataroma(x); return 'HTTP ' + r.status + ', ' + x.length + ' bytes, period ' + p.period + ', ' + p.holdings.length + ' holdings parsed, first: ' + JSON.stringify(p.holdings[0] || null) + (p.holdings.length ? '' : ' | start: ' + textOf(x).slice(0, 150)); }),
-        t('dataroma_activity_SA', async () => { const r = await fetch('https://www.dataroma.com/m/m_activity.php?m=SA&typ=a', { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html' } }); const x = await r.text(); const p = parseNewBuys(x); return 'HTTP ' + r.status + ', ' + x.length + ' bytes, quarters ' + p.quarters.join('/') + ', new buys ' + p.buys.length; }),
+        t('sec_filer_SemperAugustus', async () => { const d = await getFiler('1115373'); return d.period + ', ' + d.holdings.length + ' holdings, top ' + JSON.stringify(d.holdings[0]) + ', new ' + (d.newBuys ? d.newBuys.buys.length : 'n/a'); }),
         t('fred', async () => peek(await fetch('https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US', { headers: { 'User-Agent': UA } })))
       ]);
       return new Response(JSON.stringify(Object.fromEntries(res), null, 2), { headers });
@@ -459,6 +548,13 @@ export default {
       }
       const d = await getSource(src, kind, match).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=1800' } });
+    }
+
+    if (url.searchParams.get('filer')) {
+      const cik = url.searchParams.get('filer');
+      if (!/^\d{1,10}$/.test(cik)) return new Response('{}', { status: 400, headers });
+      const d = await getFiler(cik).catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=3600' } });
     }
 
     if (url.searchParams.get('mortgage')) {
