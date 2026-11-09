@@ -43,7 +43,7 @@
       <h2 class="text-3xl font-semibold text-white">Market snapshot</h2>
       <p id="homeDate" class="text-sm text-slate-400 mt-1"></p>
     </div>
-    <div id="indices" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8"></div>
+    <div id="indices" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8"></div>
     <div class="grid lg:grid-cols-3 gap-4">
       <div class="rounded-lg border border-slate-800 bg-[#151b22] p-4">
         <h3 class="font-medium text-white">Below Target</h3>
@@ -409,7 +409,7 @@ const fallback = h => typeof h.p === 'number' ? {price: h.p, prev: h.p, cur: '',
 
 const INDEX = [
   {s: '^GSPC', n: 'S&P 500'}, {s: 'EFA', n: 'International stocks (MSCI EAFE fund)'},
-  {s: '^TNX', n: '10-year Treasury yield'}, {s: 'FZCXX', n: 'Fidelity Government money market (FZCXX)', mm: true}
+  {s: '^TNX', n: '10-year Treasury yield'}, {s: 'DGS2', n: '2-year Treasury yield', fred: true}, {s: 'FZCXX', n: 'Fidelity Government money market (FZCXX)', mm: true}
 ];
 
 // Average US 30-year mortgage rate: Freddie Mac weekly survey, published by FRED.
@@ -445,6 +445,30 @@ async function fetchMortgage() {
   }
 }
 
+// 2-year Treasury yield (daily, via FRED series DGS2).
+let twoYear = null;
+function parseFredDaily(txt) {
+  const rows = txt.trim().split(/\r?\n/).slice(1).map(l => l.split(',')).filter(r => r.length >= 2 && isFinite(parseFloat(r[1])));
+  if (rows.length < 2) throw new Error('no data');
+  const a = rows[rows.length - 1], b = rows[rows.length - 2];
+  const cut = new Date(a[0] + 'T00:00:00'); cut.setFullYear(cut.getFullYear() - 1);
+  const cs = cut.toISOString().slice(0, 10);
+  let y = null; for (let i = rows.length - 1; i >= 0; i--) if (rows[i][0] <= cs) { y = rows[i]; break; }
+  return {rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null};
+}
+async function fetchTwoYear() {
+  if (cfg.worker) {
+    try {
+      const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?fred=DGS2');
+      if (nz(d.rate) !== null) { twoYear = {rate: d.rate, prev: nz(d.prev) ?? d.rate, date: d.date, yago: nz(d.yago)}; return; }
+    } catch (e) {}
+  }
+  const url = 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2';
+  for (const mk of PROXIES) {
+    try { twoYear = parseFredDaily(await getText(mk(url))); return; } catch (e) {}
+  }
+}
+
 async function pool(items, n, fn) {
   const q = items.slice();
   await Promise.all(Array.from({length: n}, async () => { while (q.length) await fn(q.shift()); }));
@@ -452,10 +476,11 @@ async function pool(items, n, fn) {
 
 async function refresh() {
   const btn = $('refresh'); btn.disabled = true; lastErr = '';
-  const items = list.concat(INDEX.filter(i => !i.mm && !list.some(h => h.s === i.s)).map(i => ({s: i.s, n: i.n, p: null})));
+  const items = list.concat(INDEX.filter(i => !i.mm && !i.fred && !list.some(h => h.s === i.s)).map(i => ({s: i.s, n: i.n, p: null})));
   const syms = items.map(h => h.s), total = syms.length, got = new Set();
   let done = 0;
   const mp = fetchMortgage();
+  fetchTwoYear().then(renderIndices);
   const tick = () => $('updated').textContent = `Updating prices… ${done} of ${total}`;
   tick();
 
@@ -609,7 +634,7 @@ async function loadFundYield() {
 const yearly = {};
 async function loadYearly() {
   loadFundYield();
-  await Promise.all(INDEX.filter(ix => !ix.mm).map(async ix => {
+  await Promise.all(INDEX.filter(ix => !ix.mm && !ix.fred).map(async ix => {
     try {
       const d = await fetchChartData(ix.s, RANGES[3]);
       if (d.bars.length > 20) yearly[ix.s] = {base: d.bars[0].close, last: d.bars[d.bars.length - 1].close};
@@ -631,6 +656,18 @@ const bpText = v => (v >= 0 ? '+' : '') + v.toFixed(0) + ' bp';
 function renderIndices() {
   const box = $('indices'); box.innerHTML = '';
   INDEX.forEach(ix => {
+    if (ix.fred) {
+      const c = document.createElement('div');
+      c.className = 'rounded-lg border border-slate-800 bg-[#151b22] p-4';
+      c.innerHTML = '<div class="text-xs text-slate-400"></div><div class="num text-xl font-medium text-white mt-1"></div>';
+      c.children[0].textContent = ix.n;
+      c.children[1].textContent = twoYear ? twoYear.rate.toFixed(2) + '%' : '—';
+      const dd = twoYear ? (twoYear.rate - twoYear.prev) * 100 : null, yy = twoYear && twoYear.yago !== null ? (twoYear.rate - twoYear.yago) * 100 : null;
+      c.appendChild(statRow('Day', dd === null ? '—' : bpText(dd), dd === null ? '' : tone(dd)));
+      c.appendChild(statRow('Year', yy === null ? '—' : bpText(yy), yy === null ? '' : tone(yy)));
+      box.appendChild(c);
+      return;
+    }
     if (ix.mm) {
       const c = document.createElement('div');
       c.className = 'rounded-lg border border-slate-800 bg-[#151b22] p-4';

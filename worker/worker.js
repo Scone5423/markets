@@ -56,6 +56,20 @@ async function fetchMortgage() {
   return { rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null };
 }
 
+// Daily FRED series (e.g. DGS2, the 2-year Treasury yield): latest, previous day and a year ago.
+async function fetchFredDaily(id) {
+  const r = await fetch('https://fred.stlouisfed.org/graph/fredgraph.csv?id=' + id, { headers: { 'User-Agent': UA } });
+  if (!r.ok) throw new Error('FRED HTTP ' + r.status);
+  const rows = (await r.text()).trim().split(/\r?\n/).slice(1).map(l => l.split(','))
+    .filter(x => x.length >= 2 && isFinite(parseFloat(x[1])));
+  if (rows.length < 2) throw new Error('no data');
+  const a = rows[rows.length - 1], b = rows[rows.length - 2];
+  const cut = new Date(a[0] + 'T00:00:00Z'); cut.setUTCFullYear(cut.getUTCFullYear() - 1);
+  const cs = cut.toISOString().slice(0, 10);
+  let y = null; for (let i = rows.length - 1; i >= 0; i--) if (rows[i][0] <= cs) { y = rows[i]; break; }
+  return { rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null };
+}
+
 // Yield for a money market fund such as FZCXX. Tries Yahoo's own yield field first, then
 // annualizes the most recent monthly payout (payout x 12 / price).
 async function fetchFundYield(sym) {
@@ -662,6 +676,13 @@ export default {
       if (!/^\d{1,10}$/.test(cik)) return new Response('{}', { status: 400, headers });
       const d = await getFiler(cik).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=3600' } });
+    }
+
+    if (url.searchParams.get('fred')) {
+      const id = url.searchParams.get('fred');
+      if (id !== 'DGS2') return new Response('{}', { status: 400, headers });
+      const m = await fetchFredDaily(id).catch(() => ({}));
+      return new Response(JSON.stringify(m), { headers: { ...headers, 'cache-control': 'public, max-age=900' } });
     }
 
     if (url.searchParams.get('mortgage')) {
