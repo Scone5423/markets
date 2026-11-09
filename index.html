@@ -36,6 +36,7 @@
     <a href="#gurus" data-nav="gurus" class="pb-3 text-sm">Gurus</a>
     <a href="#semper" data-nav="semper" class="pb-3 text-sm">Semper</a>
     <a href="#pabrai" data-nav="pabrai" class="pb-3 text-sm">Dhandho</a>
+    <a href="#bloggers" data-nav="bloggers" class="pb-3 text-sm">Bloggers</a>
   </nav>
 
   <section id="view-home">
@@ -111,6 +112,13 @@
     <div id="guruRecent" class="mb-6"></div>
     <div id="guruNew" class="mb-6" hidden></div>
     <div id="guruCards" class="space-y-4"></div>
+  </section>
+
+  <section id="view-bloggers" hidden>
+    <div class="mb-6">
+      <h2 id="bloggersTitle" class="text-3xl font-semibold text-white">Bloggers</h2>
+    </div>
+    <div id="bloggersBody"></div>
   </section>
 
   <section id="view-pabrai" hidden>
@@ -1492,6 +1500,83 @@ function renderSemper() {
   if (semperData.footnote) box.appendChild(el('p', 'text-xs text-slate-600', semperData.footnote));
 }
 
+
+// ---- Bloggers (posts and stocks discussed, loaded from bloggers.json) -----------------------
+let bloggersData = null, bloggersTried = false, bloggersQ = '';
+async function bloggersShow() {
+  if (!bloggersTried) {
+    bloggersTried = true;
+    try {
+      const r = await fetch('bloggers.json?v=' + Date.now());
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      bloggersData = await r.json();
+    } catch (e) { bloggersData = null; }
+  }
+  stampTitle('bloggersTitle', 'Bloggers', bloggersData);
+  renderBloggers();
+}
+const bDate = d => d.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$2-$3-$1');
+function renderBloggers() {
+  const box = $('bloggersBody'); box.innerHTML = '';
+  if (!bloggersData) { box.appendChild(el('p', 'text-sm text-slate-400', 'The bloggers page could not be loaded. Try refreshing in a minute.')); return; }
+  const bar = el('div', 'flex flex-wrap items-center gap-2 mb-6');
+  const inp = el('input', 'w-full sm:w-72 bg-[#151b22] border border-slate-800 rounded px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-slate-600');
+  inp.type = 'search'; inp.placeholder = 'Search stocks across all blogs…'; inp.value = bloggersQ; inp.setAttribute('aria-label', 'Search stocks');
+  bar.appendChild(inp); box.appendChild(bar);
+  const lists = [];
+  bloggersData.blogs.forEach(b => {
+    const sec = el('section', 'mb-12');
+    const h = el('h3', 'text-2xl font-semibold text-white');
+    const a = el('a', 'hover:text-sky-300', b.name); a.href = b.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; h.appendChild(a);
+    sec.appendChild(h);
+    sec.appendChild(el('p', 'text-sm text-slate-400 mt-0.5', b.author));
+    if (b.coverage) sec.appendChild(el('p', 'text-xs text-slate-500 mt-1 mb-4', b.coverage));
+    sec.appendChild(el('div', 'text-xs font-medium text-slate-400 mb-1', 'Recent articles'));
+    const rl = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-3 mb-6');
+    b.recent.forEach(p => rl.appendChild(gLink({title: p.title, url: p.url, t: Date.parse(p.date + 'T12:00:00Z')}, p.access || '', false)));
+    sec.appendChild(rl);
+    const hd = el('div', 'flex items-baseline gap-3 mb-3');
+    hd.appendChild(el('div', 'text-xs font-medium text-slate-400', 'Stocks discussed'));
+    const cnt = el('span', 'text-xs text-slate-500 ml-auto'); hd.appendChild(cnt);
+    sec.appendChild(hd);
+    const list = el('div', 'space-y-3'); sec.appendChild(list);
+    lists.push({b, list, cnt});
+    box.appendChild(sec);
+  });
+  const draw = () => {
+    const q = bloggersQ.trim().toLowerCase();
+    lists.forEach(({b, list, cnt}) => {
+      list.innerHTML = ''; let n = 0;
+      b.stocks.forEach(s => {
+        if (q && !(s.name + ' ' + s.s + ' ' + s.notes.map(x => x.text).join(' ')).toLowerCase().includes(q)) return;
+        n++;
+        const card = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-4');
+        const head = el('div', 'flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-2');
+        const h4 = el('h4', 'font-medium text-white');
+        if (s.s) { const a = el('a', 'hover:text-sky-300 underline decoration-slate-600 underline-offset-4 hover:decoration-sky-400', s.name); a.href = '#charts/' + encodeURIComponent(s.s); a.title = 'Open the ' + s.s + ' chart'; h4.appendChild(a); }
+        else h4.textContent = s.name;
+        head.appendChild(h4);
+        if (s.s) head.appendChild(el('span', 'text-xs text-slate-500', s.s));
+        head.appendChild(el('span', 'text-xs text-slate-500 ml-auto', s.notes.length + (s.notes.length === 1 ? ' post' : ' posts')));
+        card.appendChild(head);
+        s.notes.forEach(nt => {
+          const row = el('div', 'mt-2');
+          const src = el('div', 'text-xs text-slate-500');
+          const a = el('a', 'underline decoration-slate-600 underline-offset-2 hover:text-sky-300', bDate(nt.date) + ', ' + nt.title); a.href = nt.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+          src.appendChild(a); row.appendChild(src);
+          row.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed', nt.text));
+          card.appendChild(row);
+        });
+        list.appendChild(card);
+      });
+      if (!n) list.appendChild(el('p', 'text-sm text-slate-500', 'No stocks match.'));
+      cnt.textContent = n + ' of ' + b.stocks.length;
+    });
+  };
+  inp.addEventListener('input', () => { bloggersQ = inp.value; draw(); });
+  draw();
+}
+
 // ---- Pabrai (index of transcripts and articles, loaded from pabrai.json) -----------------
 let pabraiData = null, pabraiTried = false, pabraiTab = 'transcripts', pabraiQ = '', pabraiSQ = '', pabraiSF = '';
 async function pabraiShow() {
@@ -1653,18 +1738,19 @@ function renderPabraiList() {
 
 function show() {
   const h = location.hash;
-  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : 'home';
-  ["home", "watchlist", "charts", "gurus", "semper", "pabrai"].forEach(n => { $('view-' + n).hidden = v !== n; });
+  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : h === "#bloggers" ? "bloggers" : 'home';
+  ["home", "watchlist", "charts", "gurus", "semper", "pabrai", "bloggers"].forEach(n => { $('view-' + n).hidden = v !== n; });
   document.querySelectorAll('[data-nav]').forEach(a => {
     const on = a.dataset.nav === v;
     a.className = 'pb-3 text-sm border-b-2 -mb-px ' + (on ? 'text-white border-sky-500' : 'text-slate-400 border-transparent hover:text-slate-200');
     on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   });
-  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Dhandho | Markets"}[v];
+  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Dhandho | Markets", bloggers: "Bloggers | Markets"}[v];
   if (v === 'charts') chartsRoute();
   if (v === "gurus") gurusShow();
   if (v === "semper") semperShow();
   if (v === "pabrai") pabraiShow();
+  if (v === "bloggers") bloggersShow();
 }
 window.addEventListener('hashchange', show);
 
