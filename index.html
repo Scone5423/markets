@@ -35,6 +35,7 @@
     <a href="#charts" data-nav="charts" class="pb-3 text-sm">Charts</a>
     <a href="#gurus" data-nav="gurus" class="pb-3 text-sm">Gurus</a>
     <a href="#semper" data-nav="semper" class="pb-3 text-sm">Semper</a>
+    <a href="#pabrai" data-nav="pabrai" class="pb-3 text-sm">Pabrai</a>
   </nav>
 
   <section id="view-home">
@@ -102,6 +103,14 @@
     </div>
     <div id="guruNew" class="mb-6" hidden></div>
     <div id="guruCards" class="space-y-4"></div>
+  </section>
+
+  <section id="view-pabrai" hidden>
+    <div class="mb-6">
+      <h2 class="text-3xl font-semibold text-white">Mohnish Pabrai</h2>
+      <p class="text-sm text-slate-400 mt-1">Every talk transcript and article published on <a class="underline hover:text-white" href="https://www.chaiwithpabrai.com/" target="_blank" rel="noopener">Chai with Pabrai</a>, searchable, with links to the PDFs. Stock-by-stock summaries are coming next.</p>
+    </div>
+    <div id="pabraiBody"><p class="text-sm text-slate-400">Loading…</p></div>
   </section>
 
   <section id="view-semper" hidden>
@@ -1327,19 +1336,68 @@ function renderSemper() {
   if (semperData.footnote) box.appendChild(el('p', 'text-xs text-slate-600', semperData.footnote));
 }
 
+// ---- Pabrai (index of transcripts and articles, loaded from pabrai.json) -----------------
+let pabraiData = null, pabraiTried = false, pabraiTab = 'transcripts', pabraiQ = '';
+async function pabraiShow() {
+  if (!pabraiTried) {
+    pabraiTried = true;
+    try {
+      const r = await fetch('pabrai.json?v=' + Date.now());
+      if (!r.ok) throw new Error('http ' + r.status);
+      pabraiData = await r.json();
+    } catch (e) { pabraiData = null; }
+  }
+  renderPabrai();
+}
+function renderPabrai() {
+  const box = $('pabraiBody'); box.innerHTML = '';
+  if (!pabraiData) { box.appendChild(el('p', 'text-sm text-slate-400', 'The Pabrai index could not be loaded. Try refreshing in a minute.')); return; }
+  const bar = el('div', 'flex flex-wrap items-center gap-2 mb-4');
+  [['transcripts', 'Transcripts'], ['articles', 'Articles']].forEach(([k, label]) => {
+    const n = pabraiData[k].length;
+    const b = el('button', 'text-sm px-3 py-1.5 rounded border ' + (pabraiTab === k ? 'bg-slate-700 text-white border-slate-600' : 'text-slate-400 border-slate-800 hover:text-slate-200 hover:bg-slate-800'), label + ' (' + n + ')');
+    b.type = 'button'; b.addEventListener('click', () => { pabraiTab = k; renderPabrai(); }); bar.appendChild(b);
+  });
+  const inp = el('input', 'ml-auto w-full sm:w-64 bg-[#151b22] border border-slate-800 rounded px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-slate-600');
+  inp.type = 'search'; inp.placeholder = 'Search titles…'; inp.value = pabraiQ; inp.setAttribute('aria-label', 'Search titles');
+  inp.addEventListener('input', () => { pabraiQ = inp.value; renderPabraiList(); });
+  bar.appendChild(inp); box.appendChild(bar);
+  box.appendChild(el('div', '')).id = 'pabraiList';
+  renderPabraiList();
+}
+function renderPabraiList() {
+  const host = $('pabraiList'); host.innerHTML = '';
+  const q = pabraiQ.trim().toLowerCase();
+  const rows = pabraiData[pabraiTab].filter(r => !q || r.title.toLowerCase().includes(q));
+  if (!rows.length) { host.appendChild(el('p', 'text-sm text-slate-500', 'No matches.')); return; }
+  const card = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] divide-y divide-slate-800');
+  let lastYear = '';
+  rows.forEach(r => {
+    const y = r.date.slice(0, 4);
+    if (y !== lastYear) { lastYear = y; card.appendChild(el('div', 'px-4 py-1.5 text-xs font-medium text-slate-400 bg-slate-800/40', y)); }
+    const a = el('a', 'flex items-baseline gap-3 px-4 py-2 hover:bg-slate-800/40');
+    a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
+    a.appendChild(el('span', 'text-xs text-slate-500 num w-20 shrink-0', r.date.length >= 10 ? r.date.slice(5) + '-' + y : r.date.length === 7 ? r.date.slice(5) + '-' + y : y));
+    a.appendChild(el('span', 'text-sm text-slate-200', r.title));
+    card.appendChild(a);
+  });
+  host.appendChild(card);
+}
+
 function show() {
   const h = location.hash;
-  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : 'home';
-  ["home", "watchlist", "charts", "gurus", "semper"].forEach(n => { $('view-' + n).hidden = v !== n; });
+  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : 'home';
+  ["home", "watchlist", "charts", "gurus", "semper", "pabrai"].forEach(n => { $('view-' + n).hidden = v !== n; });
   document.querySelectorAll('[data-nav]').forEach(a => {
     const on = a.dataset.nav === v;
     a.className = 'pb-3 text-sm border-b-2 -mb-px ' + (on ? 'text-white border-sky-500' : 'text-slate-400 border-transparent hover:text-slate-200');
     on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   });
-  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets"}[v];
+  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Pabrai | Markets"}[v];
   if (v === 'charts') chartsRoute();
   if (v === "gurus") gurusShow();
   if (v === "semper") semperShow();
+  if (v === "pabrai") pabraiShow();
 }
 window.addEventListener('hashchange', show);
 
