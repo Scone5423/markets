@@ -70,6 +70,63 @@ async function fetchFredDaily(id) {
   return { rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null };
 }
 
+// ---- Pabrai Wagons ETF (WAGN): documents from wagonsetf.com/ir and holdings from StockAnalysis ----
+const MONTHS = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+function dateFromText(s) {
+  let m = /\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),?\s+(20\d{2})\b/i.exec(s);
+  if (m) return Date.UTC(+m[3], MONTHS.indexOf(m[1].toLowerCase()), +m[2], 12);
+  m = /\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(20\d{2})\b/i.exec(s);
+  if (m) return Date.UTC(+m[2], MONTHS.indexOf(m[1].toLowerCase()), 15, 12);
+  m = /\b(\d{1,2})\.(\d{1,2})\.(20\d{2}|\d{2})\b/.exec(s);
+  if (m) return Date.UTC(m[3].length === 2 ? 2000 + +m[3] : +m[3], +m[1] - 1, +m[2], 12);
+  return null;
+}
+async function getWagn() {
+  return cached('wagn', 1800000, async () => {
+    const out = {};
+    try {
+      const r = await fetch('https://www.wagonsetf.com/ir', { headers: { 'User-Agent': BROWSER_UA } });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const html = (await r.text()).slice(0, 2000000), seen = new Set(), docs = [];
+      for (const m of html.matchAll(/<a\s[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+        let u; try { u = new URL(m[1].replace(/&amp;/g, '&'), 'https://www.wagonsetf.com/ir').href; } catch (e) { continue; }
+        if (!/b-cdn\.net|sec\.gov\/Archives|prnewswire\.com|wagonsetf\.com\/(investor-call|semi-annual)/i.test(u) || seen.has(u)) continue;
+        let title = textOf(m[2]).replace(/\s+/g, ' ').trim();
+        let fname = ''; try { fname = decodeURIComponent(u.split('?')[0].split('/').pop()).replace(/\.(pdf|xml|html?)$/i, '').replace(/[-_]+/g, ' ').trim(); } catch (e) {}
+        if (title.length < 12 || /^(download|view|read|pdf|listen|watch|link)\b/i.test(title)) title = fname || title;
+        if (!title) continue;
+        const t = dateFromText(title) || dateFromText(fname) || null;
+        const type = /replay/i.test(title + u) ? 'Replay' : /call/i.test(title + u) ? 'Investor call' : /press|prnewswire/i.test(title + u) ? 'Press release' : /holdings|SOI/i.test(title + u) ? 'Holdings' : /prospectus|SAI/i.test(title + u) ? 'Prospectus' : /letter/i.test(title) ? 'Letter' : /fact ?sheet/i.test(title) ? 'Fact sheet' : /presentation/i.test(title) ? 'Presentation' : 'Report';
+        seen.add(u); docs.push({ title, type, url: u, t });
+      }
+      out.documents = docs.slice(0, 80);
+    } catch (e) { out.docError = String(e.message || e); }
+    try {
+      const r = await fetch('https://stockanalysis.com/etf/wagn/holdings/', { headers: { 'User-Agent': BROWSER_UA } });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const html = await r.text(), rows = [];
+      for (const tr of html.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)) {
+        const c = [...tr[1].matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi)].map(x => textOf(x[1]).trim());
+        if (c.length < 4 || !/%/.test(c[3])) continue;
+        const pct = parseFloat(c[3]); if (!isFinite(pct)) continue;
+        let sym = c[2] || '';
+        if (!sym || /^n\/a$/i.test(sym)) { rows.push({ s: '', n: c[1], pct }); continue; }
+        let m;
+        if ((m = /^(NSE|BSE):(.+)$/.exec(sym))) sym = m[2] + (m[1] === 'NSE' ? '.NS' : '.BO');
+        else if ((m = /^TSXV:(.+)$/.exec(sym))) sym = m[1] + '.V';
+        else if ((m = /^TSX:(.+)$/.exec(sym))) sym = m[1] + '.TO';
+        else if ((m = /^OSL:(.+)$/.exec(sym))) sym = m[1] + '.OL';
+        else if ((m = /^WSE:(.+)$/.exec(sym))) sym = m[1] + '.WA';
+        else sym = sym.replace(/\.E\.IS$/, '.IS');
+        rows.push({ s: sym, n: c[1], pct });
+      }
+      const asOf = (/Updated\s+([A-Z][a-z]{2}\s+\d{1,2},\s+20\d{2})/.exec(textOf(html)) || [])[1] || '';
+      if (rows.length >= 10) { out.holdings = rows; out.asOf = asOf; } else out.holdError = 'table not found';
+    } catch (e) { out.holdError = String(e.message || e); }
+    return out;
+  });
+}
+
 // Yield for a money market fund such as FZCXX. Tries Yahoo's own yield field first, then
 // annualizes the most recent monthly payout (payout x 12 / price).
 async function fetchFundYield(sym) {
@@ -676,6 +733,11 @@ export default {
       if (!/^\d{1,10}$/.test(cik)) return new Response('{}', { status: 400, headers });
       const d = await getFiler(cik).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=3600' } });
+    }
+
+    if (url.searchParams.get('wagn')) {
+      const d = await getWagn().catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=1800' } });
     }
 
     if (url.searchParams.get('fred')) {

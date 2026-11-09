@@ -975,7 +975,32 @@ function gLink(item, sub, fresh) {
 async function loadGuru(g) {
   const base = cfg.worker ? cfg.worker.replace(/\/+$/, '') : null;
   const d = gData[g.name] = gData[g.name] || {};
-  if (g.static) { try { d.st = await getJSON(g.static + '?v=' + Date.now(), 20000); } catch (e) { d.st = {error: e.message}; } return; }
+  if (g.static) {
+    try { d.st = await getJSON(g.static + '?v=' + Date.now(), 20000); } catch (e) { d.st = {error: e.message}; return; }
+    // Overlay anything newer the Worker can read from wagonsetf.com and StockAnalysis; the file stays as the fallback.
+    if (base) try {
+      const lv = await getJSON(base + '/?wagn=1', 40000), st = d.st;
+      if (lv.holdings && lv.holdings.length >= 10) {
+        const skip = /treasury|cash|dollar|lira|rupee|other assets|money market|obligs/i;
+        const hold = lv.holdings.filter(x => x.s && !skip.test(x.n));
+        if (hold.length >= 10) {
+          st.holdings = hold; if (lv.asOf) st.holdingsAsOf = lv.asOf;
+          const bs = new Set((st.baseline && st.baseline.s) || []);
+          if (bs.size) {
+            const names = hold.map(x => x.n.toLowerCase());
+            st.newHoldings = hold.filter(x => !bs.has(x.s)).map(x => ({s: x.s, n: x.n, pct: x.pct, note: 'new'}))
+              .concat(((st.baseline && st.baseline.gone) || []).filter(n => !names.some(m => m.includes(n.toLowerCase()))).map(n => ({s: '', n, pct: null, note: 'no longer listed'})));
+          }
+          st.live = true;
+        }
+      }
+      if (lv.documents && lv.documents.length >= 10) {
+        const have = new Set(st.documents.map(x => x.url));
+        lv.documents.filter(x => !have.has(x.url)).forEach(x => st.documents.push(x));
+      }
+    } catch (e) {}
+    return;
+  }
   if (!base) { d.err = 'Needs your Cloudflare Worker (add its address under Price sources).'; return; }
   const jobs = [];
   if (g.cik) jobs.push(getJSON(base + '/?filer=' + encodeURIComponent(g.cik), 40000).then(x => { d.hold = x; }).catch(e => { d.hold = {error: e.message}; }));

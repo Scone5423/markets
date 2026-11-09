@@ -312,5 +312,30 @@
    "label": "Investor resources",
    "url": "https://www.wagonsetf.com/ir"
   }
- ]
+ ],
+ "baseline": {
+  "s": [
+   "RYGYO.IS",
+   "HCC",
+   "RIG",
+   "EDELWEISS.NS",
+   "TAVHL.IS",
+   "GMTAS.IS",
+   "DAC",
+   "VAL",
+   "KSPI",
+   "NE",
+   "AMR",
+   "CSU.TO",
+   "LMN.V",
+   "TABGD.IS",
+   "TOI.V",
+   "NUVAMA.NS",
+   "RYSAS.IS",
+   "SGN.WA"
+  ],
+  "gone": [
+   "Mongolian Mining"
+  ]
+ }
 }
