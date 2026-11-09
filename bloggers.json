@@ -6,7 +6,7 @@
    "author": "Aswath Damodaran",
    "url": "https://aswathdamodaran.blogspot.com/",
    "totalPosts": 686,
-   "postsRead": 279,
+   "postsRead": 284,
    "posts": [
     {
      "date": "2026-11-09",
@@ -149,6 +149,11 @@
      "url": "https://aswathdamodaran.blogspot.com/2025/08/the-imitation-game-defending-against.html"
     },
     {
+     "date": "2025-07-15",
+     "title": "To Bitcoin or not to Bitcoin? A Corporate Cash Question!",
+     "url": "https://aswathdamodaran.blogspot.com/2025/07/to-bitcoin-or-not-to-bitcoin-corporate.html"
+    },
+    {
      "date": "2025-06-17",
      "title": "The (Uncertain) Payoff from Alternative Investments: Many a slip between the cup and the lip?",
      "url": "https://aswathdamodaran.blogspot.com/2025/06/the-uncertain-payoff-from-alternative.html"
@@ -212,6 +217,11 @@
      "date": "2025-01-26",
      "title": "Data Update 3 for 2025: The times they are a'changin'!",
      "url": "https://aswathdamodaran.blogspot.com/2025/01/data-update-3-for-2025-slicing-and.html"
+    },
+    {
+     "date": "2025-01-09",
+     "title": "Data Update 1 for 2025: The Draw (and Danger) of Data",
+     "url": "https://aswathdamodaran.blogspot.com/2025/01/data-update-1-for-2025-draw-and-danger.html"
     },
     {
      "date": "2024-11-14",
@@ -299,6 +309,16 @@
      "url": "https://aswathdamodaran.blogspot.com/2024/01/data-update-2-for-2024-stock-comeback.html"
     },
     {
+     "date": "2024-01-10",
+     "title": "Data Update 1 for 2024: The data speaks, but what does it say?",
+     "url": "https://aswathdamodaran.blogspot.com/2024/01/data-update-1-for-2024-data-speaks-but.html"
+    },
+    {
+     "date": "2024-01-05",
+     "title": "The School Bell Rings: Time for Class!",
+     "url": "https://aswathdamodaran.blogspot.com/2024/01/the-school-bell-rings-time-for-class.html"
+    },
+    {
      "date": "2023-12-10",
      "title": "The Difference Makers: Key Person(s) Valuation",
      "url": "https://aswathdamodaran.blogspot.com/2023/12/the-difference-makers-key-persons.html"
@@ -362,6 +382,11 @@
      "date": "2023-05-05",
      "title": "Breach of Trust: Decoding the Banking Crisis",
      "url": "https://aswathdamodaran.blogspot.com/2023/05/breach-of-trust-decoding-banking-crisis.html"
+    },
+    {
+     "date": "2023-03-08",
+     "title": "Data Update 7 for 2023: Dividends, Buybacks and Cash Flows",
+     "url": "https://aswathdamodaran.blogspot.com/2023/03/data-update-7-for-2023-dividends.html"
     },
     {
      "date": "2023-02-27",
@@ -1643,6 +1668,216 @@
      ]
     },
     {
+     "s": "^GSPC",
+     "name": "S&P 500 index",
+     "notes": [
+      {
+       "date": "2026-11-09",
+       "title": "The AI Trade Deconstructed: AI Builders, AI Suppliers and AI Product firms!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-ai-trade-deconstructed-ai-builders.html",
+       "text": "Fell 4% on Nov 5, 2026; AI companies' share of US equity market cap peaked at about 37% on Sept 30, 2026. AI stocks lost almost $1.8 trillion of market cap on Nov 5 alone."
+      },
+      {
+       "date": "2026-11-03",
+       "title": "The Anthropic Feedback Loop: The Cost of Capital Delusion and Diversion!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-anthropic-feedback-loop-cost-of.html",
+       "text": "Implied expected return 8.99% at the start of October 2026 with a forward PE near 20; he argues a cost of equity above 10% is hard to justify."
+      },
+      {
+       "date": "2026-10-08",
+       "title": "Stock Prices, Earnings and Cashflows: The AI Effect plays through!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/10/stock-prices-earnings-and-cashflows-ai.html",
+       "text": "Companies returned 63% of earnings to shareholders in the twelve months into 2026, a low not seen since 2004. Implied expected return rose from 8.41% to 8.99%; implied equity risk premium 3.70% (below 4% for the first time this year). Not a market timer, so no verdict."
+      },
+      {
+       "date": "2026-09-10",
+       "title": "Interest Rates and Stock Prices: An Old Debate Flares up!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/09/interest-rates-and-stock-prices-old.html",
+       "text": "Rose strongly in the first eight months of 2026. On days the 10-year yield rose more than 3 bp the index fell about half a percent on average, and rose about half a percent when it fell. Analysts' 2026-27 earnings estimates rose more than 11%, the main reason equities held up. Technology aggregate return 25.22% but the median tech company only 7.75%, so gains were concentrated in the largest firms. No valuation call."
+      },
+      {
+       "date": "2026-07-15",
+       "title": "Country Risk: Drivers, Measures and Investment Implications - The 2026 Edition!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/07/country-risk-drivers-measures-and.html",
+       "text": "At 7,499.36 on July 1, 2026; implied equity risk premium 4.42% (4.20% after a 0.22% default spread for the US Aa1 rating)."
+      },
+      {
+       "date": "2026-06-18",
+       "title": "SpaceX, OpenAI and Anthropic: The S&P 500 Inclusion Question and Investment Consequences!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/06/indexology-index-mechanics-and.html",
+       "text": "Closed at 7554.29 on June 15, 2026, float-adjusted market cap $63,498 billion; covers over 80% of US market cap. Inclusion effects have faded (S&P study of 715 additions, 1995-2021)."
+      },
+      {
+       "date": "2026-04-01",
+       "title": "Oil, War and the Global Economy: The Market's Narrative in March 2026",
+       "url": "https://aswathdamodaran.blogspot.com/2026/04/oil-war-and-global-economy-markets.html",
+       "text": "Implied ERP rose from 4.37% (Feb 27) to 4.77% (Mar 31) after the Iran war began; he calls the rise modest and says the decline reflects inflation and growth concerns, not panic. VIX rose from 19.86 to 25.25, smaller than in March 2020 or April 2025."
+      },
+      {
+       "date": "2026-03-15",
+       "title": "The Price of Risk: An Equity Risk Premium Monologue!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/03/the-price-of-risk-equity-risk-premium.html",
+       "text": "Implied ERP 4.23% at the start of 2026, 4.37% at the start of March and 4.51% by March 13 (index fell Feb 27-Mar 13 while oil rose above $100). Stocks look richly priced on P/E and dividend yield but the implied ERP is \"in line\" with the 65-year US average. Not clearly over- or undervalued; the market seems too sanguine about catastrophic risk. Historical-premium methods would have given roughly 5.5% to 14.5%."
+      },
+      {
+       "date": "2026-02-24",
+       "title": "Data Update 8 for 2026: Time for Harvesting - Dividends and Buybacks",
+       "url": "https://aswathdamodaran.blogspot.com/2026/02/data-update-8-for-2026-time-for.html",
+       "text": "Dividend yield has declined since 1960: about half of expected returns came from dividends in 1960 vs under 15% in 2025. US buybacks totaled $1.153 trillion in 2025, about 60% of cash returned."
+      },
+      {
+       "date": "2026-01-23",
+       "title": "Data Update 2 for 2026: Equities get tested, and pass again!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/01/data-update-2-for-2026-equities-get.html",
+       "text": "Rose from 5881.6 to 6845.5 in 2025, a 16.39% price return (17.72% total), 45th of 98 years. Implied ERP 4.23%. At a 2% ERP he estimates 14,834 (53% undervalued); at 6%, 4,790 (43% overvalued). He is holding back on putting idle cash into US equities and prefers T-bills. Mag Seven share of US equity rose from 11% in 2014 to 30.89%."
+      },
+      {
+       "date": "2026-01-09",
+       "title": "Data Update 1 for 2026: The Push and Pull of Data!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/01/data-update-1-for-2026-push-and-pull-of.html",
+       "text": "US equity market (5,994 firms, $69.8 trillion) up about 16.8% in 2025; China up 32.5% in dollars, India up 3.31%. No valuation view."
+      },
+      {
+       "date": "2025-12-03",
+       "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
+       "text": "Implied cost of equity about 8% at the start of November 2025."
+      },
+      {
+       "date": "2025-11-06",
+       "title": "A Golden Year (2025): Gold's Price Surge - The Signal in the Noise!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/11/a-golden-year-2025-golds-price-surge.html",
+       "text": "Implied equity risk premium 4.03% at the start of October 2025."
+      },
+      {
+       "date": "2025-10-06",
+       "title": "A \"Fairly Highly Valued\" Market: A Fed Chair Opines on Stocks, but should we listen?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/10/a-fairly-highly-valued-market-fed-chair.html",
+       "text": "Fell 14.3% to the April 8 bottom then rose 13.7% year to date through Q3. Agrees with Powell that stocks are \"fairly highly valued\": 15-year return about 18.74% a year vs 9.94% over the century, with elevated PE, CAPE and equity risk premium readings. Magnificent Seven are 30.35% of US market cap and 52.4% of the 2025 gain."
+      },
+      {
+       "date": "2025-10-06",
+       "title": "A \"Fairly Highly Valued\" Market: A Fed Chair Opines on Stocks, but should we listen?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/10/a-fairly-highly-valued-market-fed-chair.html",
+       "text": "Intrinsic value about 5,940, roughly 12.6% below its Sept 30, 2025 level (ERP 4.25%, risk-free 4.16%, implied return 8.41%). Backtests from 1871 to 2025 found no CAPE-based timing rule that added to returns, so he does not time the market."
+      },
+      {
+       "date": "2025-06-02",
+       "title": "Sovereign Ratings, Default Risk and Markets: The Moody's Downgrade Aftermath!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/06/sovereign-ratings-default-risk-and.html",
+       "text": "Expected return 8.64% on May 30, 2025. The Moody's downgrade lowers the riskfree rate from 4.41% to 4.01% and raises the ERP from 4.23% to 4.63%; effects too small for investors to notice."
+      },
+      {
+       "date": "2025-05-03",
+       "title": "The Greed & Fear Tango: The Markets in April 2025!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/05/the-greed-fear-tango-markets-in-april.html",
+       "text": "Fell about 10% in the first two days of April then recovered to within 1% of the start-of-month level; implied ERP 4.59% to 4.58% after rising above 5%. VIX peaked at 52.33 on April 8 and ended at 24.70. Mag Seven down $2.6T year to date; he holds six of the seven."
+      },
+      {
+       "date": "2025-04-07",
+       "title": "Anatomy of a Market Crisis: Tariffs, Markets and the Economy!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/04/anatomy-of-market-crisis-tariffs-rock.html",
+       "text": "US equities lost $5.3 trillion in the week (down 9.24% from March 28). Implied ERP rose from 4.57% on April 2 to 5.08%. Compares with 2008 (equities fell 28% from Sept 12 to Dec 31, ERP near 8%) and 2020 (down 33%, ERP 7.75%)."
+      },
+      {
+       "date": "2025-03-15",
+       "title": "Investing Politics: Globalization Backlash and Government Disruption!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/03/investing-politics-globalization.html",
+       "text": "Implied ERP rose from 4.35% at the start of March to 4.68% in two weeks (4.28% on Election Day). Values the index at 5262 (set in January) vs 5882 at the start of the year; still above his estimate after the drawdown through March 10, since recent events lowered his fair value."
+      },
+      {
+       "date": "2025-01-26",
+       "title": "Data Update 3 for 2025: The times they are a'changin'!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/01/data-update-3-for-2025-slicing-and.html",
+       "text": "Mag Seven added $5.6 trillion in 2024, nearly all of the market's gain, and $15.8 trillion over 2014-2024 (about 40% of the increase). Technology added $4.63 trillion in 2024. He argues the small-cap premium is not returning; large caps beat small caps by about 4-4.5% a year over 20 years; low price-to-book stocks have trailed by 0.87% a year since about 1990."
+      },
+      {
+       "date": "2024-01-17",
+       "title": "Data Update 2 for 2024: A Stock Comeback - Winning the Expectations Game!",
+       "url": "https://aswathdamodaran.blogspot.com/2024/01/data-update-2-for-2024-stock-comeback.html",
+       "text": "He judged the index overvalued by about 9.2% at the stated levels. Seven companies (Meta, Amazon, Apple, Microsoft, Alphabet, Nvidia, Tesla) drove a large share of the 2023 market-cap increase."
+      },
+      {
+       "date": "2023-07-17",
+       "title": "Market Resilience or Investors In Denial? A Mid-year Assessment for 2023!",
+       "url": "https://aswathdamodaran.blogspot.com/2023/07/",
+       "text": "Up about 16% from the start of 2023; assumes analyst earnings for 2023-2025 and long-term growth of 3.88% after 2027; fairly valued; macro forecasting and timing are unreliable; do not chase recent winners."
+      },
+      {
+       "date": "2023-01-21",
+       "title": "Data Update 2 for 2023: A Rocky Year for Equities!",
+       "url": "https://aswathdamodaran.blogspot.com/2023/01/data-update-2-for-2023-rocky-year-for.html",
+       "text": "2022 total return -18.01%. Using analyst estimates and a 5% ERP, close to fair value; scenarios range from 4,311 (low inflation, no recession) to 3,212 (high inflation, steep recession)."
+      },
+      {
+       "date": "2022-09-26",
+       "title": "Reaping the Whirlwind: A September 2022 Inflation Update!",
+       "url": "https://aswathdamodaran.blogspot.com/2022/09/inflation-interest-rates-and-stock.html",
+       "text": "\"Very mildly over valued\" on Sept 23, 2022: 10-year Treasury 3.69%, ERP 6.05% (from 4.24% on Jan 1), implied return 9.75%, 2023 earnings estimate 243.46. Keeps existing holdings; no direction bets."
+      },
+      {
+       "date": "2022-05-06",
+       "title": "In Search of a Steady State: Inflation, Interest Rates and Value",
+       "url": "https://aswathdamodaran.blogspot.com/2022/05/in-search-of-steady-state-inflation.html",
+       "text": "Value about 4,181 vs a 4,147 close on May 5: roughly in line (steady-state 10-year rate about 3%, ERP near 5.24%)."
+      },
+      {
+       "date": "2022-03-19",
+       "title": "Russia in Ukraine: Let Loose the Dogs of War!",
+       "url": "https://aswathdamodaran.blogspot.com/2022/03/russia-and-ukraine-let-loose-dogs-of-war.html",
+       "text": "Value 4,197 vs about 4,431 on March 16, 2022: about 5.6% overvalued (target T-bond rate raised to 3%). Does not time the market; prefers company-level selection, with caution on tech growth and Russian equities."
+      },
+      {
+       "date": "2022-01-19",
+       "title": "Data Update 2 for 2022: US Stocks kept winning in 2021, but...",
+       "url": "https://aswathdamodaran.blogspot.com/2022/01/data-update-2-for-2022-us-stocks-kept.html",
+       "text": "Index 4,766 at end of 2021, 4,533 at the update; stocks look expensive. Assumes analyst estimates for two years, growth fading to the risk-free rate, starting payout 77.36%, risk-free 1.51% rising to 2.5%, ERP 5%, implied return about 5.75%. DIY valuation; no recommendation."
+      },
+      {
+       "date": "2021-05-11",
+       "title": "Investor Taxes and Stock Prices: Threading the Needle!",
+       "url": "https://aswathdamodaran.blogspot.com/2021/05/investor-taxes-and-stock-prices.html",
+       "text": "At 4,201.62 on May 7: 5.73% pre-personal-tax and 5.01% post-tax expected return; a higher capital gains rate for the wealthiest (30% of holdings) would lift the required return to 6.05% and cut value about 7.09%."
+      },
+      {
+       "date": "2021-03-25",
+       "title": "Interest Rates, Earning Growth and Equity Value: Investment Implications",
+       "url": "https://aswathdamodaran.blogspot.com/2021/03/rates-growth-and-value-investment.html",
+       "text": "Best case worth 3,919, just above current levels (T-bond rate falling to 1.00%); significantly overvalued if rates reach 3% or more with earnings growth lagging by 0.5%."
+      },
+      {
+       "date": "2021-01-20",
+       "title": "Data Update 2 for 2021: The Price of Risk!",
+       "url": "https://aswathdamodaran.blogspot.com/2021/01/data-update-2-for-2021-price-of-risk.html",
+       "text": "About 12% overvalued (implied equity risk premium 4.72% on Jan 1, 2021, risk-free rate rising toward 2%, consensus 2021-22 earnings then economy-rate growth, 5% fair ERP): \"certainly not bubble territory.\" Holds more cash than usual and bought partial downside protection with derivatives."
+      },
+      {
+       "date": "2019-10-01",
+       "title": "US Equities: Resilient Force or Case Study in Denial?",
+       "url": "https://aswathdamodaran.blogspot.com/2019/10/us-equities-resilient-force-or-case.html",
+       "text": "Implied equity risk premium 5.55%: stocks not unduly priced; market-neutral."
+      },
+      {
+       "date": "2018-03-02",
+       "title": "Interest Rates and Stock Prices: It's Complicated!",
+       "url": "https://aswathdamodaran.blogspot.com/2018/03/interest-rates-and-stock-prices-its.html",
+       "text": "Scenarios: more of the same about 2,250; return of inflation about 2,133; growth engine about 3,031; melded about 2,610 (about 3.1% below the March 2 level)."
+      },
+      {
+       "date": "2018-02-10",
+       "title": "Testing Times: Market Turmoil and Investment Serenity",
+       "url": "https://aswathdamodaran.blogspot.com/2018/02/testing-times-market-turmoil-and.html",
+       "text": "At 2,581 on Feb 8, 2018: about 3.9% undervalued on 7.26% earnings growth; about 16% overvalued at 3.03% growth. Does not time the market; revaluing every holding."
+      },
+      {
+       "date": "2017-06-06",
+       "title": "A Tale of Two Markets: Politics and Investing!",
+       "url": "https://aswathdamodaran.blogspot.com/2017/06/a-tale-of-two-markets-politics-and.html",
+       "text": "At 2,411.8: 7.50% expected return, 5.29% premium over a 2.21% 10-year Treasury: richly priced vs history, not vs alternatives."
+      }
+     ]
+    },
+    {
      "s": "AAPL",
      "name": "Apple",
      "notes": [
@@ -1847,210 +2082,6 @@
      ]
     },
     {
-     "s": "^GSPC",
-     "name": "S&P 500 index",
-     "notes": [
-      {
-       "date": "2026-11-09",
-       "title": "The AI Trade Deconstructed: AI Builders, AI Suppliers and AI Product firms!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-ai-trade-deconstructed-ai-builders.html",
-       "text": "Fell 4% on Nov 5, 2026; AI companies' share of US equity market cap peaked at about 37% on Sept 30, 2026. AI stocks lost almost $1.8 trillion of market cap on Nov 5 alone."
-      },
-      {
-       "date": "2026-11-03",
-       "title": "The Anthropic Feedback Loop: The Cost of Capital Delusion and Diversion!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-anthropic-feedback-loop-cost-of.html",
-       "text": "Implied expected return 8.99% at the start of October 2026 with a forward PE near 20; he argues a cost of equity above 10% is hard to justify."
-      },
-      {
-       "date": "2026-10-08",
-       "title": "Stock Prices, Earnings and Cashflows: The AI Effect plays through!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/10/stock-prices-earnings-and-cashflows-ai.html",
-       "text": "Companies returned 63% of earnings to shareholders in the twelve months into 2026, a low not seen since 2004. Implied expected return rose from 8.41% to 8.99%; implied equity risk premium 3.70% (below 4% for the first time this year). Not a market timer, so no verdict."
-      },
-      {
-       "date": "2026-09-10",
-       "title": "Interest Rates and Stock Prices: An Old Debate Flares up!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/09/interest-rates-and-stock-prices-old.html",
-       "text": "Rose strongly in the first eight months of 2026. On days the 10-year yield rose more than 3 bp the index fell about half a percent on average, and rose about half a percent when it fell. Analysts' 2026-27 earnings estimates rose more than 11%, the main reason equities held up. Technology aggregate return 25.22% but the median tech company only 7.75%, so gains were concentrated in the largest firms. No valuation call."
-      },
-      {
-       "date": "2026-07-15",
-       "title": "Country Risk: Drivers, Measures and Investment Implications - The 2026 Edition!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/07/country-risk-drivers-measures-and.html",
-       "text": "At 7,499.36 on July 1, 2026; implied equity risk premium 4.42% (4.20% after a 0.22% default spread for the US Aa1 rating)."
-      },
-      {
-       "date": "2026-06-18",
-       "title": "SpaceX, OpenAI and Anthropic: The S&P 500 Inclusion Question and Investment Consequences!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/06/indexology-index-mechanics-and.html",
-       "text": "Closed at 7554.29 on June 15, 2026, float-adjusted market cap $63,498 billion; covers over 80% of US market cap. Inclusion effects have faded (S&P study of 715 additions, 1995-2021)."
-      },
-      {
-       "date": "2026-04-01",
-       "title": "Oil, War and the Global Economy: The Market's Narrative in March 2026",
-       "url": "https://aswathdamodaran.blogspot.com/2026/04/oil-war-and-global-economy-markets.html",
-       "text": "Implied ERP rose from 4.37% (Feb 27) to 4.77% (Mar 31) after the Iran war began; he calls the rise modest and says the decline reflects inflation and growth concerns, not panic. VIX rose from 19.86 to 25.25, smaller than in March 2020 or April 2025."
-      },
-      {
-       "date": "2026-03-15",
-       "title": "The Price of Risk: An Equity Risk Premium Monologue!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/03/the-price-of-risk-equity-risk-premium.html",
-       "text": "Implied ERP 4.23% at the start of 2026, 4.37% at the start of March and 4.51% by March 13 (index fell Feb 27-Mar 13 while oil rose above $100). Stocks look richly priced on P/E and dividend yield but the implied ERP is \"in line\" with the 65-year US average. Not clearly over- or undervalued; the market seems too sanguine about catastrophic risk. Historical-premium methods would have given roughly 5.5% to 14.5%."
-      },
-      {
-       "date": "2026-02-24",
-       "title": "Data Update 8 for 2026: Time for Harvesting - Dividends and Buybacks",
-       "url": "https://aswathdamodaran.blogspot.com/2026/02/data-update-8-for-2026-time-for.html",
-       "text": "Dividend yield has declined since 1960: about half of expected returns came from dividends in 1960 vs under 15% in 2025. US buybacks totaled $1.153 trillion in 2025, about 60% of cash returned."
-      },
-      {
-       "date": "2026-01-23",
-       "title": "Data Update 2 for 2026: Equities get tested, and pass again!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/01/data-update-2-for-2026-equities-get.html",
-       "text": "Rose from 5881.6 to 6845.5 in 2025, a 16.39% price return (17.72% total), 45th of 98 years. Implied ERP 4.23%. At a 2% ERP he estimates 14,834 (53% undervalued); at 6%, 4,790 (43% overvalued). He is holding back on putting idle cash into US equities and prefers T-bills. Mag Seven share of US equity rose from 11% in 2014 to 30.89%."
-      },
-      {
-       "date": "2026-01-09",
-       "title": "Data Update 1 for 2026: The Push and Pull of Data!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/01/data-update-1-for-2026-push-and-pull-of.html",
-       "text": "US equity market (5,994 firms, $69.8 trillion) up about 16.8% in 2025; China up 32.5% in dollars, India up 3.31%. No valuation view."
-      },
-      {
-       "date": "2025-12-03",
-       "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
-       "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
-       "text": "Implied cost of equity about 8% at the start of November 2025."
-      },
-      {
-       "date": "2025-11-06",
-       "title": "A Golden Year (2025): Gold's Price Surge - The Signal in the Noise!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/11/a-golden-year-2025-golds-price-surge.html",
-       "text": "Implied equity risk premium 4.03% at the start of October 2025."
-      },
-      {
-       "date": "2025-10-06",
-       "title": "A \"Fairly Highly Valued\" Market: A Fed Chair Opines on Stocks, but should we listen?",
-       "url": "https://aswathdamodaran.blogspot.com/2025/10/a-fairly-highly-valued-market-fed-chair.html",
-       "text": "Fell 14.3% to the April 8 bottom then rose 13.7% year to date through Q3. Agrees with Powell that stocks are \"fairly highly valued\": 15-year return about 18.74% a year vs 9.94% over the century, with elevated PE, CAPE and equity risk premium readings. Magnificent Seven are 30.35% of US market cap and 52.4% of the 2025 gain."
-      },
-      {
-       "date": "2025-06-02",
-       "title": "Sovereign Ratings, Default Risk and Markets: The Moody's Downgrade Aftermath!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/06/sovereign-ratings-default-risk-and.html",
-       "text": "Expected return 8.64% on May 30, 2025. The Moody's downgrade lowers the riskfree rate from 4.41% to 4.01% and raises the ERP from 4.23% to 4.63%; effects too small for investors to notice."
-      },
-      {
-       "date": "2025-05-03",
-       "title": "The Greed & Fear Tango: The Markets in April 2025!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/05/the-greed-fear-tango-markets-in-april.html",
-       "text": "Fell about 10% in the first two days of April then recovered to within 1% of the start-of-month level; implied ERP 4.59% to 4.58% after rising above 5%. VIX peaked at 52.33 on April 8 and ended at 24.70. Mag Seven down $2.6T year to date; he holds six of the seven."
-      },
-      {
-       "date": "2025-04-07",
-       "title": "Anatomy of a Market Crisis: Tariffs, Markets and the Economy!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/04/anatomy-of-market-crisis-tariffs-rock.html",
-       "text": "US equities lost $5.3 trillion in the week (down 9.24% from March 28). Implied ERP rose from 4.57% on April 2 to 5.08%. Compares with 2008 (equities fell 28% from Sept 12 to Dec 31, ERP near 8%) and 2020 (down 33%, ERP 7.75%)."
-      },
-      {
-       "date": "2025-03-15",
-       "title": "Investing Politics: Globalization Backlash and Government Disruption!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/03/investing-politics-globalization.html",
-       "text": "Implied ERP rose from 4.35% at the start of March to 4.68% in two weeks (4.28% on Election Day). Values the index at 5262 (set in January) vs 5882 at the start of the year; still above his estimate after the drawdown through March 10, since recent events lowered his fair value."
-      },
-      {
-       "date": "2025-01-26",
-       "title": "Data Update 3 for 2025: The times they are a'changin'!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/01/data-update-3-for-2025-slicing-and.html",
-       "text": "Mag Seven added $5.6 trillion in 2024, nearly all of the market's gain, and $15.8 trillion over 2014-2024 (about 40% of the increase). Technology added $4.63 trillion in 2024. He argues the small-cap premium is not returning; large caps beat small caps by about 4-4.5% a year over 20 years; low price-to-book stocks have trailed by 0.87% a year since about 1990."
-      },
-      {
-       "date": "2024-01-17",
-       "title": "Data Update 2 for 2024: A Stock Comeback - Winning the Expectations Game!",
-       "url": "https://aswathdamodaran.blogspot.com/2024/01/data-update-2-for-2024-stock-comeback.html",
-       "text": "He judged the index overvalued by about 9.2% at the stated levels. Seven companies (Meta, Amazon, Apple, Microsoft, Alphabet, Nvidia, Tesla) drove a large share of the 2023 market-cap increase."
-      },
-      {
-       "date": "2023-07-17",
-       "title": "Market Resilience or Investors In Denial? A Mid-year Assessment for 2023!",
-       "url": "https://aswathdamodaran.blogspot.com/2023/07/",
-       "text": "Up about 16% from the start of 2023; assumes analyst earnings for 2023-2025 and long-term growth of 3.88% after 2027; fairly valued; macro forecasting and timing are unreliable; do not chase recent winners."
-      },
-      {
-       "date": "2023-01-21",
-       "title": "Data Update 2 for 2023: A Rocky Year for Equities!",
-       "url": "https://aswathdamodaran.blogspot.com/2023/01/data-update-2-for-2023-rocky-year-for.html",
-       "text": "2022 total return -18.01%. Using analyst estimates and a 5% ERP, close to fair value; scenarios range from 4,311 (low inflation, no recession) to 3,212 (high inflation, steep recession)."
-      },
-      {
-       "date": "2022-09-26",
-       "title": "Reaping the Whirlwind: A September 2022 Inflation Update!",
-       "url": "https://aswathdamodaran.blogspot.com/2022/09/inflation-interest-rates-and-stock.html",
-       "text": "\"Very mildly over valued\" on Sept 23, 2022: 10-year Treasury 3.69%, ERP 6.05% (from 4.24% on Jan 1), implied return 9.75%, 2023 earnings estimate 243.46. Keeps existing holdings; no direction bets."
-      },
-      {
-       "date": "2022-05-06",
-       "title": "In Search of a Steady State: Inflation, Interest Rates and Value",
-       "url": "https://aswathdamodaran.blogspot.com/2022/05/in-search-of-steady-state-inflation.html",
-       "text": "Value about 4,181 vs a 4,147 close on May 5: roughly in line (steady-state 10-year rate about 3%, ERP near 5.24%)."
-      },
-      {
-       "date": "2022-03-19",
-       "title": "Russia in Ukraine: Let Loose the Dogs of War!",
-       "url": "https://aswathdamodaran.blogspot.com/2022/03/russia-and-ukraine-let-loose-dogs-of-war.html",
-       "text": "Value 4,197 vs about 4,431 on March 16, 2022: about 5.6% overvalued (target T-bond rate raised to 3%). Does not time the market; prefers company-level selection, with caution on tech growth and Russian equities."
-      },
-      {
-       "date": "2022-01-19",
-       "title": "Data Update 2 for 2022: US Stocks kept winning in 2021, but...",
-       "url": "https://aswathdamodaran.blogspot.com/2022/01/data-update-2-for-2022-us-stocks-kept.html",
-       "text": "Index 4,766 at end of 2021, 4,533 at the update; stocks look expensive. Assumes analyst estimates for two years, growth fading to the risk-free rate, starting payout 77.36%, risk-free 1.51% rising to 2.5%, ERP 5%, implied return about 5.75%. DIY valuation; no recommendation."
-      },
-      {
-       "date": "2021-05-11",
-       "title": "Investor Taxes and Stock Prices: Threading the Needle!",
-       "url": "https://aswathdamodaran.blogspot.com/2021/05/investor-taxes-and-stock-prices.html",
-       "text": "At 4,201.62 on May 7: 5.73% pre-personal-tax and 5.01% post-tax expected return; a higher capital gains rate for the wealthiest (30% of holdings) would lift the required return to 6.05% and cut value about 7.09%."
-      },
-      {
-       "date": "2021-03-25",
-       "title": "Interest Rates, Earning Growth and Equity Value: Investment Implications",
-       "url": "https://aswathdamodaran.blogspot.com/2021/03/rates-growth-and-value-investment.html",
-       "text": "Best case worth 3,919, just above current levels (T-bond rate falling to 1.00%); significantly overvalued if rates reach 3% or more with earnings growth lagging by 0.5%."
-      },
-      {
-       "date": "2021-01-20",
-       "title": "Data Update 2 for 2021: The Price of Risk!",
-       "url": "https://aswathdamodaran.blogspot.com/2021/01/data-update-2-for-2021-price-of-risk.html",
-       "text": "About 12% overvalued (implied equity risk premium 4.72% on Jan 1, 2021, risk-free rate rising toward 2%, consensus 2021-22 earnings then economy-rate growth, 5% fair ERP): \"certainly not bubble territory.\" Holds more cash than usual and bought partial downside protection with derivatives."
-      },
-      {
-       "date": "2019-10-01",
-       "title": "US Equities: Resilient Force or Case Study in Denial?",
-       "url": "https://aswathdamodaran.blogspot.com/2019/10/us-equities-resilient-force-or-case.html",
-       "text": "Implied equity risk premium 5.55%: stocks not unduly priced; market-neutral."
-      },
-      {
-       "date": "2018-03-02",
-       "title": "Interest Rates and Stock Prices: It's Complicated!",
-       "url": "https://aswathdamodaran.blogspot.com/2018/03/interest-rates-and-stock-prices-its.html",
-       "text": "Scenarios: more of the same about 2,250; return of inflation about 2,133; growth engine about 3,031; melded about 2,610 (about 3.1% below the March 2 level)."
-      },
-      {
-       "date": "2018-02-10",
-       "title": "Testing Times: Market Turmoil and Investment Serenity",
-       "url": "https://aswathdamodaran.blogspot.com/2018/02/testing-times-market-turmoil-and.html",
-       "text": "At 2,581 on Feb 8, 2018: about 3.9% undervalued on 7.26% earnings growth; about 16% overvalued at 3.03% growth. Does not time the market; revaluing every holding."
-      },
-      {
-       "date": "2017-06-06",
-       "title": "A Tale of Two Markets: Politics and Investing!",
-       "url": "https://aswathdamodaran.blogspot.com/2017/06/a-tale-of-two-markets-politics-and.html",
-       "text": "At 2,411.8: 7.50% expected return, 5.29% premium over a 2.21% 10-year Treasury: richly priced vs history, not vs alternatives."
-      }
-     ]
-    },
-    {
      "s": "TSLA",
      "name": "Tesla",
      "notes": [
@@ -2101,6 +2132,12 @@
        "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
        "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
        "text": "Net margin 5.31%, so breakeven revenue exceeds $2.2 trillion, needing 86.4% revenue growth over five years, the steepest among the twelve largest companies. \"Possible\" but pushing the limits, with \"a long, long way to go\"; higher margins from robotics and automated driving could bring it into plausible territory."
+      },
+      {
+       "date": "2025-12-03",
+       "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
+       "text": "Breakeven revenue above $2.2 trillion at a 5.31% net margin; needs 86.4% five-year revenue growth to justify the market cap. No recommendation; a bull case could rest on higher-margin new businesses."
       },
       {
        "date": "2025-05-03",
@@ -2715,6 +2752,12 @@
        "text": "Market cap crested $5 trillion. Perpetuity breakeven revenue $483.38 billion at a 53.01% net margin and 64.44% ROE; $677.97 billion with a five-year wait and a 2% cash yield. Breakeven revenue about $590 billion by 2030 at a $4.3 trillion market cap, needing about 26% annual growth: \"possible and plausible\" but he considers the path to justify the price improbable. Entered in 2018 and has had reservations about pricing outrunning value for three years."
       },
       {
+       "date": "2025-12-03",
+       "title": "Trillion Dollar Market Caps: Fairy Tale Pricing or Business Marvels?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/12/trillion-dollar-market-caps-fairy-tale.html",
+       "text": "About $5 trillion market cap at writing. Breakeven revenue about $483 billion (no growth wait) or about $678 billion if growth takes five years and equity receives a 2% cash yield; 8% cost of equity, 53.01% net margin, 64.44% ROE. Possible and plausible but hard to meet on probability as competition rises. No recommendation."
+      },
+      {
        "date": "2025-08-05",
        "title": "The Imitation Game: Defending against AI's Dark Side!",
        "url": "https://aswathdamodaran.blogspot.com/2025/08/the-imitation-game-defending-against.html",
@@ -3251,6 +3294,54 @@
      ]
     },
     {
+     "s": "PLTR",
+     "name": "Palantir",
+     "notes": [
+      {
+       "date": "2026-11-09",
+       "title": "The AI Trade Deconstructed: AI Builders, AI Suppliers and AI Product firms!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-ai-trade-deconstructed-ai-builders.html",
+       "text": "The most prominent of the few public companies using AI to build and sell products. The AI product group has only three public companies, so he urges caution in reading its performance."
+      },
+      {
+       "date": "2026-04-23",
+       "title": "To a Trillion(s) Dollars and beyond: A SpaceX IPO Odyssey!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/04/to-trillion-dollars-and-beyond-spacex.html",
+       "text": "Weak peer for SpaceX: high growth but a data/software business without SpaceX's infrastructure needs."
+      },
+      {
+       "date": "2025-08-05",
+       "title": "The Imitation Game: Defending against AI's Dark Side!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/08/the-imitation-game-defending-against.html",
+       "text": "Interested in owning it \"at the right price\"; needs a two-channel story (government and commercial) and \"this is not a company where you can extrapolate the past.\" No numbers."
+      },
+      {
+       "date": "2025-08-05",
+       "title": "The Imitation Game: Defending against AI's Dark Side!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/08/the-imitation-game-defending-against.html",
+       "text": "Discussed in general terms of its valuation framework; no value given."
+      },
+      {
+       "date": "2025-05-03",
+       "title": "The Greed & Fear Tango: The Markets in April 2025!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/05/the-greed-fear-tango-markets-in-april.html",
+       "text": "Limit buy order not triggered; he plans to revisit his valuation."
+      },
+      {
+       "date": "2025-04-20",
+       "title": "Buy the Dip: The Draw and Dangers of Contrarian Investing!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/04/buy-dip-draw-and-dangers-of-contrarian.html",
+       "text": "Holds a limit buy that has not yet been reached. Considers it the company closest to delivering on the promise of AI products and services."
+      },
+      {
+       "date": "2025-01-31",
+       "title": "DeepSeek crashes the AI Party: Story Break, Change or Shift?",
+       "url": "https://aswathdamodaran.blogspot.com/2025/01/deepseek-crashes-ai-party-story-break.html",
+       "text": "Up 1,285% over 2023-2024, the largest percentage gainer in his AI group; unaffected by DeepSeek. Sees complex AI for defense and commercial clients as less exposed to disruption."
+      }
+     ]
+    },
+    {
      "s": "SPOT",
      "name": "Spotify",
      "notes": [
@@ -3389,48 +3480,6 @@
      ]
     },
     {
-     "s": "PLTR",
-     "name": "Palantir",
-     "notes": [
-      {
-       "date": "2026-11-09",
-       "title": "The AI Trade Deconstructed: AI Builders, AI Suppliers and AI Product firms!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/11/the-ai-trade-deconstructed-ai-builders.html",
-       "text": "The most prominent of the few public companies using AI to build and sell products. The AI product group has only three public companies, so he urges caution in reading its performance."
-      },
-      {
-       "date": "2026-04-23",
-       "title": "To a Trillion(s) Dollars and beyond: A SpaceX IPO Odyssey!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/04/to-trillion-dollars-and-beyond-spacex.html",
-       "text": "Weak peer for SpaceX: high growth but a data/software business without SpaceX's infrastructure needs."
-      },
-      {
-       "date": "2025-08-05",
-       "title": "The Imitation Game: Defending against AI's Dark Side!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/08/the-imitation-game-defending-against.html",
-       "text": "Interested in owning it \"at the right price\"; needs a two-channel story (government and commercial) and \"this is not a company where you can extrapolate the past.\" No numbers."
-      },
-      {
-       "date": "2025-05-03",
-       "title": "The Greed & Fear Tango: The Markets in April 2025!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/05/the-greed-fear-tango-markets-in-april.html",
-       "text": "Limit buy order not triggered; he plans to revisit his valuation."
-      },
-      {
-       "date": "2025-04-20",
-       "title": "Buy the Dip: The Draw and Dangers of Contrarian Investing!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/04/buy-dip-draw-and-dangers-of-contrarian.html",
-       "text": "Holds a limit buy that has not yet been reached. Considers it the company closest to delivering on the promise of AI products and services."
-      },
-      {
-       "date": "2025-01-31",
-       "title": "DeepSeek crashes the AI Party: Story Break, Change or Shift?",
-       "url": "https://aswathdamodaran.blogspot.com/2025/01/deepseek-crashes-ai-party-story-break.html",
-       "text": "Up 1,285% over 2023-2024, the largest percentage gainer in his AI group; unaffected by DeepSeek. Sees complex AI for defense and commercial clients as less exposed to disruption."
-      }
-     ]
-    },
-    {
      "s": "VRX",
      "name": "Valeant Pharmaceuticals",
      "notes": [
@@ -3469,6 +3518,42 @@
        "title": "Checkmate or Stalemate? Valeant's Fall from Investing Grace",
        "url": "https://aswathdamodaran.blogspot.com/2015/11/checkmate-or-stalemate-valeants-fall.html",
        "text": "Value $72.10 a share vs $83.64 on Nov 10 (about 14% below price); after the Salix quarters update, $77 (base) or $81 (optimistic margins). Acquisition charges added back on the assumption that acquisitions stop; price rollbacks cut earnings permanently by about 10%; margin toward the industry's about 25.5%; tax rate rising to 20%; 3% growth for ten years; cost of capital 7.52%. Sat on the sidelines: not significantly undervalued, nor a likely zero; never tempted, because of his skepticism of acquisition-driven growth."
+      }
+     ]
+    },
+    {
+     "s": "MELI",
+     "name": "MercadoLibre",
+     "notes": [
+      {
+       "date": "2025-08-05",
+       "title": "The Imitation Game: Defending against AI's Dark Side!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/08/the-imitation-game-defending-against.html",
+       "text": "Named among stocks he values and acts on."
+      },
+      {
+       "date": "2025-07-15",
+       "title": "To Bitcoin or not to Bitcoin? A Corporate Cash Question!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/07/to-bitcoin-or-not-to-bitcoin-corporate.html",
+       "text": "On his buy list; no value given."
+      },
+      {
+       "date": "2025-05-03",
+       "title": "The Greed & Fear Tango: The Markets in April 2025!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/05/the-greed-fear-tango-markets-in-april.html",
+       "text": "Limit buy not triggered; plans to revisit his valuation."
+      },
+      {
+       "date": "2025-04-20",
+       "title": "Buy the Dip: The Draw and Dangers of Contrarian Investing!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/04/buy-dip-draw-and-dangers-of-contrarian.html",
+       "text": "Holds a limit buy not yet reached; sees it as a possible Amazon-plus-fintech."
+      },
+      {
+       "date": "2025-04-07",
+       "title": "Anatomy of a Market Crisis: Tariffs, Markets and the Economy!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/04/anatomy-of-market-crisis-tariffs-rock.html",
+       "text": "Moved from significantly overvalued to near his limit price."
       }
      ]
     },
@@ -3715,36 +3800,6 @@
        "title": "Dream Big or Stay Focused? Lyft's Counter to Uber!",
        "url": "https://aswathdamodaran.blogspot.com/2015/10/dream-big-or-stay-focused-lyfts-counter.html",
        "text": "Value $3.1 billion vs an implied price of $2.5 billion. Assumes a US-only car-service market of about $150 billion by 2025, a 25% share on network benefits, drivers as partial employees, a 25% steady-state margin on a 15% slice of revenue, cost of capital 12%, 10% failure risk. Better investment than Uber at these prices, but it must survive heavy near-term losses and keep access to capital. Peers: Didi Kuaidi, Ola, GrabTaxi, BlaBlaCar."
-      }
-     ]
-    },
-    {
-     "s": "MELI",
-     "name": "MercadoLibre",
-     "notes": [
-      {
-       "date": "2025-08-05",
-       "title": "The Imitation Game: Defending against AI's Dark Side!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/08/the-imitation-game-defending-against.html",
-       "text": "Named among stocks he values and acts on."
-      },
-      {
-       "date": "2025-05-03",
-       "title": "The Greed & Fear Tango: The Markets in April 2025!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/05/the-greed-fear-tango-markets-in-april.html",
-       "text": "Limit buy not triggered; plans to revisit his valuation."
-      },
-      {
-       "date": "2025-04-20",
-       "title": "Buy the Dip: The Draw and Dangers of Contrarian Investing!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/04/buy-dip-draw-and-dangers-of-contrarian.html",
-       "text": "Holds a limit buy not yet reached; sees it as a possible Amazon-plus-fintech."
-      },
-      {
-       "date": "2025-04-07",
-       "title": "Anatomy of a Market Crisis: Tariffs, Markets and the Economy!",
-       "url": "https://aswathdamodaran.blogspot.com/2025/04/anatomy-of-market-crisis-tariffs-rock.html",
-       "text": "Moved from significantly overvalued to near his limit price."
       }
      ]
     },
@@ -4673,6 +4728,24 @@
      ]
     },
     {
+     "s": "MSTR",
+     "name": "Strategy (MicroStrategy)",
+     "notes": [
+      {
+       "date": "2026-01-28",
+       "title": "Data Update 3 for 2026: The Trust Deficit - Bonds, Currencies, Gold and Bitcoin!",
+       "url": "https://aswathdamodaran.blogspot.com/2026/01/data-update-3-for-2026-trust-deficit.html",
+       "text": "Referenced from his July 2025 post arguing against companies copying its bitcoin-in-corporate-cash strategy. He says both MicroStrategy and bitcoin have since seen price collapses, vindicating that view."
+      },
+      {
+       "date": "2025-07-15",
+       "title": "To Bitcoin or not to Bitcoin? A Corporate Cash Question!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/07/to-bitcoin-or-not-to-bitcoin-corporate.html",
+       "text": "Enterprise value above $100 billion in July 2025; discussed as a company holding bitcoin on its balance sheet. Most companies should not put their cash into bitcoin; exceptions include a trusted bitcoin-savvy leader, bitcoin as part of the business, failing home currencies and meme stocks, with governance guardrails."
+      }
+     ]
+    },
+    {
      "s": "TLRY",
      "name": "Tilray",
      "notes": [
@@ -4867,6 +4940,18 @@
        "title": "The Sharing Economy come home: The IPO of Airbnb!",
        "url": "https://aswathdamodaran.blogspot.com/2020/12/the-sharing-economy-come-home-ipo-of.html",
        "text": "Operating margin 35.48% in 2019; used as the high-end comparable for Airbnb (pricing off Booking.com would give a much higher value)."
+      }
+     ]
+    },
+    {
+     "s": "BYDDY",
+     "name": "BYD",
+     "notes": [
+      {
+       "date": "2025-03-15",
+       "title": "Investing Politics: Globalization Backlash and Government Disruption!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/03/investing-politics-globalization.html",
+       "text": "Defers a possible BYD investment to a future post; the EV market splits into a low-priced segment led by BYD and a premium segment."
       }
      ]
     },
@@ -5119,6 +5204,18 @@
        "title": "To a Trillion(s) Dollars and beyond: A SpaceX IPO Odyssey!",
        "url": "https://aswathdamodaran.blogspot.com/2026/04/to-trillion-dollars-and-beyond-spacex.html",
        "text": "Limited competitive threat to Starlink: a fraction of the satellites."
+      }
+     ]
+    },
+    {
+     "s": "GC=F",
+     "name": "Gold",
+     "notes": [
+      {
+       "date": "2025-11-06",
+       "title": "A Golden Year (2025): Gold's Price Surge - The Signal in the Noise!",
+       "url": "https://aswathdamodaran.blogspot.com/2025/11/a-golden-year-2025-golds-price-surge.html",
+       "text": "Up about 57% in 2025 through late October. Treated as a collectible: price driven by mood and demand, not intrinsic value; looks expensive against historical CPI and risk-premium models. Four uses: core holding, insurance, trade or signal."
       }
      ]
     },
@@ -5567,18 +5664,6 @@
      ]
     },
     {
-     "s": "MSTR",
-     "name": "Strategy (MicroStrategy)",
-     "notes": [
-      {
-       "date": "2026-01-28",
-       "title": "Data Update 3 for 2026: The Trust Deficit - Bonds, Currencies, Gold and Bitcoin!",
-       "url": "https://aswathdamodaran.blogspot.com/2026/01/data-update-3-for-2026-trust-deficit.html",
-       "text": "Referenced from his July 2025 post arguing against companies copying its bitcoin-in-corporate-cash strategy. He says both MicroStrategy and bitcoin have since seen price collapses, vindicating that view."
-      }
-     ]
-    },
-    {
      "s": "TMUS",
      "name": "T-Mobile",
      "notes": [
@@ -5735,7 +5820,7 @@
      ]
     },
     {
-     "s": "WAS-COMMANDERS",
+     "s": "",
      "name": "Washington Commanders",
      "notes": [
       {
@@ -5759,7 +5844,7 @@
      ]
     }
    ],
-   "coverage": "279 of 686 posts read so far: most of 2025 and 2026, January to February 2024 and the company-specific posts from earlier years that I have found. The rest of the archive (back to 2008) is being added in stages."
+   "coverage": "284 of 686 posts read so far: most of 2025 and 2026, January to February 2024 and the company-specific posts from earlier years that I have found. The rest of the archive (back to 2008) is being added in stages."
   },
   {
    "name": "Base Hit Investing",
