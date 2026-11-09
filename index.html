@@ -888,6 +888,9 @@ const DEFAULT_GURUS = [
     photo: 'https://cdn.prod.website-files.com/6913ba09c594c4cd77f9d47f/691c3c499915d5878e9e12f0_20251009-mp-profile-picture-vf_orig.jpg',
     links: [{label: 'Website', url: 'https://www.chaiwithpabrai.com/'}],
     sources: [{kind: 'posts', label: 'chaiwithpabrai.com', url: 'https://www.chaiwithpabrai.com/', match: '/blog/'}]},
+  {name: 'Pabrai Wagons ETF (WAGN)', code: '', cik: '', static: 'wagn.json', search: false, sync: true,
+    photo: 'https://cdn.prod.website-files.com/6913ba09c594c4cd77f9d47f/691c3c499915d5878e9e12f0_20251009-mp-profile-picture-vf_orig.jpg',
+    links: [{label: 'Website', url: 'https://www.wagonsetf.com/'}, {label: 'Investor resources', url: 'https://www.wagonsetf.com/ir'}], sources: []},
   {name: 'Christopher Bloomstran', code: 'SA', cik: '1115373', search: false, sync: true, recent: true,
     photo: 'https://static.fmgsuite.com/media/images/f6b203fd-1365-4654-8cbb-a08a07a44185.jpg',
     links: [{label: 'Website', url: 'https://www.semperaugustus.com/'}],
@@ -904,6 +907,9 @@ try { const s = localStorage.getItem('gurus.v1'); guruList = s === null ? null :
 if (!Array.isArray(guruList)) guruList = DEFAULT_GURUS.map(g => JSON.parse(JSON.stringify(g)));
 // Photos you gave me for investors already in a saved list.
 guruList.forEach(g => { const d = DEFAULT_GURUS.find(x => x.name === g.name); if (d && d.photo && !g.photo) g.photo = d.photo; if (d && d.cik && !g.cik) g.cik = d.cik; if (d && d.insider && !g.insider) g.insider = d.insider; if (d && d.cik === '' && g.cik === '1840586') g.cik = ''; if (d && d.sync) { g.search = d.search; g.sources = JSON.parse(JSON.stringify(d.sources)); g.recent = !!d.recent; g.twoMedia = !!d.twoMedia; g.twitter = d.twitter || ''; } });
+DEFAULT_GURUS.forEach((d, di) => { if (!d.static) return; const have = guruList.find(g => g.name === d.name);
+  if (have) { have.static = d.static; have.links = JSON.parse(JSON.stringify(d.links)); }
+  else { const at = guruList.findIndex(g => g.name === 'Mohnish Pabrai'); guruList.splice(at < 0 ? guruList.length : at + 1, 0, JSON.parse(JSON.stringify(d))); } });
 const saveGurus = () => { try { localStorage.setItem('gurus.v1', JSON.stringify(guruList)); } catch (e) {} };
 let gSeen = {};
 try { gSeen = JSON.parse(localStorage.getItem('gurus.seen')) || {}; } catch (e) {}
@@ -930,6 +936,7 @@ function gLink(item, sub, fresh) {
 async function loadGuru(g) {
   const base = cfg.worker ? cfg.worker.replace(/\/+$/, '') : null;
   const d = gData[g.name] = gData[g.name] || {};
+  if (g.static) { try { d.st = await getJSON(g.static + '?v=' + Date.now(), 20000); } catch (e) { d.st = {error: e.message}; } return; }
   if (!base) { d.err = 'Needs your Cloudflare Worker (add its address under Price sources).'; return; }
   const jobs = [];
   if (g.cik) jobs.push(getJSON(base + '/?filer=' + encodeURIComponent(g.cik), 40000).then(x => { d.hold = x; }).catch(e => { d.hold = {error: e.message}; }));
@@ -1027,6 +1034,37 @@ function renderGurus() {
 
 
     const cols = el('div', 'grid lg:grid-cols-3 gap-6');
+
+    if (g.static) {
+      const st = d.st;
+      const rowOf = (x, right) => {
+        const row = el('a', 'flex items-baseline justify-between gap-3 py-1 px-1 rounded hover:bg-slate-800/50');
+        if (x.s) row.href = '#charts/' + encodeURIComponent(x.s.replace('.', '-'));
+        const l = el('span', 'min-w-0 truncate');
+        l.appendChild(el('span', 'font-semibold text-white', x.s || x.n)); l.appendChild(document.createTextNode(' '));
+        if (x.s) l.appendChild(el('span', 'text-xs text-slate-500', x.n));
+        if (x.s && mine.has(x.s.replace('.', '-'))) l.appendChild(el('span', 'ml-1 text-[10px] text-sky-400', '●'));
+        row.appendChild(l); row.appendChild(right); return row;
+      };
+      const hs = section('All holdings', st && st.holdingsAsOf ? '· ' + st.holdingsAsOf : '');
+      const ns = section('New holdings', st && st.newSince ? '· since ' + st.newSince : '');
+      const ds = section('Documents', '· wagonsetf.com/ir');
+      if (!st) { [hs, ns, ds].forEach(x => x.appendChild(note('Loading…'))); }
+      else if (st.error) { [hs, ns, ds].forEach(x => x.appendChild(note("Couldn't load (" + st.error + ')'))); }
+      else {
+        const t1 = el('div', 'divide-y divide-slate-800/70');
+        st.holdings.forEach(x => t1.appendChild(rowOf(x, el('span', 'num text-sm whitespace-nowrap text-slate-300', x.pct.toFixed(1) + '%'))));
+        hs.appendChild(t1);
+        const t2 = el('div', 'divide-y divide-slate-800/70');
+        st.newHoldings.forEach(x => t2.appendChild(rowOf(x, el('span', 'num text-xs whitespace-nowrap text-slate-400', x.note + (x.pct !== null && x.pct !== undefined ? ' · ' + x.pct.toFixed(1) + '%' : '')))));
+        ns.appendChild(t2);
+        const docs = st.documents.slice().sort((a, b) => (b.t === null) - (a.t === null) || (b.t || 0) - (a.t || 0));
+        docs.forEach(it => ds.appendChild(gLink(it, it.type, false)));
+      }
+      cols.appendChild(hs); cols.appendChild(ns); cols.appendChild(ds);
+      card.appendChild(cols); box.appendChild(card);
+      return;
+    }
 
     // Top 10 holdings
     const hs = section('Top 10 holdings', d.hold && d.hold.period ? '· ' + d.hold.period : '');

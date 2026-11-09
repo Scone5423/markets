@@ -1,0 +1,316 @@
+{
+ "updated": "2026-11-09",
+ "name": "Pabrai Wagons ETF (NYSE Arca: WAGN)",
+ "holdingsAsOf": "Oct 12, 2026",
+ "holdingsNote": "Weights as of Oct 12, 2026 from StockAnalysis (26 positions; the smallest is not shown). The ETF's own fact sheet (Oct 31) has the same names, with Reysas at 14.9%, Transocean 9.2% and Warrior 7.0%.",
+ "holdings": [
+  {
+   "s": "RYGYO.IS",
+   "n": "Reysas REIT (Turkey)",
+   "pct": 14.57
+  },
+  {
+   "s": "HCC",
+   "n": "Warrior Met Coal",
+   "pct": 8.01
+  },
+  {
+   "s": "RIG",
+   "n": "Transocean",
+   "pct": 7.75
+  },
+  {
+   "s": "EDELWEISS.NS",
+   "n": "Edelweiss Financial Services (India)",
+   "pct": 6.78
+  },
+  {
+   "s": "TAVHL.IS",
+   "n": "TAV Airports (Turkey)",
+   "pct": 5.39
+  },
+  {
+   "s": "GMTAS.IS",
+   "n": "Gimat (Turkey)",
+   "pct": 5.33
+  },
+  {
+   "s": "DAC",
+   "n": "Danaos",
+   "pct": 4.82
+  },
+  {
+   "s": "VAL",
+   "n": "Valaris",
+   "pct": 4.72
+  },
+  {
+   "s": "KSPI",
+   "n": "Kaspi.kz",
+   "pct": 4.66
+  },
+  {
+   "s": "NE",
+   "n": "Noble Corp",
+   "pct": 4.6
+  },
+  {
+   "s": "AMR",
+   "n": "Alpha Metallurgical Resources",
+   "pct": 4.57
+  },
+  {
+   "s": "ODL.OL",
+   "n": "Odfjell Drilling (Norway)",
+   "pct": 4.55
+  },
+  {
+   "s": "CSU.TO",
+   "n": "Constellation Software",
+   "pct": 4.04
+  },
+  {
+   "s": "LMN.V",
+   "n": "Lumine Group",
+   "pct": 3.87
+  },
+  {
+   "s": "TABGD.IS",
+   "n": "TAB Gida (Turkey)",
+   "pct": 3.57
+  },
+  {
+   "s": "TOI.V",
+   "n": "Topicus.com",
+   "pct": 3.54
+  },
+  {
+   "s": "NUVAMA.NS",
+   "n": "Nuvama Wealth Management (India)",
+   "pct": 3.4
+  },
+  {
+   "s": "RYSAS.IS",
+   "n": "Reysas Logistics (Turkey)",
+   "pct": 3.39
+  },
+  {
+   "s": "SGN.WA",
+   "n": "Sygnity (Poland)",
+   "pct": 1.51
+  },
+  {
+   "s": "OTL.OL",
+   "n": "Odfjell Technology (Norway)",
+   "pct": 0.11
+  }
+ ],
+ "newSince": "Mar 31, 2026",
+ "newHoldings": [
+  {
+   "s": "ODL.OL",
+   "n": "Odfjell Drilling (Norway)",
+   "pct": 4.55,
+   "note": "new"
+  },
+  {
+   "s": "OTL.OL",
+   "n": "Odfjell Technology (Norway)",
+   "pct": 0.11,
+   "note": "new"
+  },
+  {
+   "s": "",
+   "n": "Mongolian Mining",
+   "pct": null,
+   "note": "no longer listed (was 4.4% in March)"
+  }
+ ],
+ "newNote": "Compared with the Mar 31, 2026 holdings filed with the SEC. Share counts for nearly every position rose because net assets about doubled (from $150 million to roughly $300 million), so those are not read as buying decisions.",
+ "documents": [
+  {
+   "title": "Investor call transcript, September 23, 2026",
+   "type": "Investor call",
+   "url": "https://wagonsfund.b-cdn.net/Investor%20Call%20Transcript%20-%20September%2023%202026.pdf",
+   "t": 1790164800000
+  },
+  {
+   "title": "Investor call replay, September 23, 2026",
+   "type": "Replay",
+   "url": "https://www.wagonsetf.com/investor-call-replay-september-23-2026",
+   "t": 1790164800000
+  },
+  {
+   "title": "Annual shareholder report with holdings (Form N-CSR), June 30, 2026",
+   "type": "Report",
+   "url": "https://wagonsfund.b-cdn.net/Certified%20Shareholder%20Report%20%28Form%20N-CSR%29%20with%20Holdings%20%E2%80%93%20June%2030%2C%202026.pdf",
+   "t": 1782820800000
+  },
+  {
+   "title": "Annual tailored shareholder report, June 30, 2026",
+   "type": "Report",
+   "url": "https://wagonsfund.b-cdn.net/Pabrai%20Wagons%20ETF%20TSR.pdf",
+   "t": 1782820800000
+  },
+  {
+   "title": "Proxy voting record (Form N-PX), June 30, 2026",
+   "type": "Filing",
+   "url": "https://www.sec.gov/Archives/edgar/data/811030/000143893426002579/xslNPX-INFO-TABLE_X01/BRD017_0000811030_2026.xml",
+   "t": 1782820800000
+  },
+  {
+   "title": "Press release: exchange listing change to NYSE Arca",
+   "type": "Press release",
+   "url": "https://www.prnewswire.com/news-releases/pabrai-wagons-etf-wagn-announces-transfer-of-trading-venue-to-nyse-arca-302811223.html",
+   "t": 1781784000000
+  },
+  {
+   "title": "Investor call transcript, June 10, 2026",
+   "type": "Investor call",
+   "url": "https://wagonsfund.b-cdn.net/Investor%20Call%20Transcript%20-%20June%2010%202026.pdf",
+   "t": 1781092800000
+  },
+  {
+   "title": "Investor call replay, June 10, 2026",
+   "type": "Replay",
+   "url": "https://www.wagonsetf.com/investor-call-replay-june-10-2026",
+   "t": 1781092800000
+  },
+  {
+   "title": "Complete holdings, March 31, 2026",
+   "type": "Holdings",
+   "url": "https://wagonsfund.b-cdn.net/Pabrai%20Wagons%20ETF%20SOI%20%283.31.2026%29.pdf",
+   "t": 1774958400000
+  },
+  {
+   "title": "Investor call transcript, March 11, 2026",
+   "type": "Investor call",
+   "url": "https://wagonsfund.b-cdn.net/Investor%20Call%20Transcript%20-%20March%2011%202026.pdf",
+   "t": 1773230400000
+  },
+  {
+   "title": "Investor call replay, March 11, 2026",
+   "type": "Replay",
+   "url": "https://www.wagonsetf.com/investor-call-replay-march-11-2026",
+   "t": 1773230400000
+  },
+  {
+   "title": "Semi-annual financial statements, December 31, 2025",
+   "type": "Report",
+   "url": "https://wagonsfund.b-cdn.net/Semi-Annual%20Financial%20Statements%20and%20Additional%20Information%20-%20December%2031%2C%202025.pdf",
+   "t": 1767182400000
+  },
+  {
+   "title": "Combined information statement and prospectus",
+   "type": "Prospectus",
+   "url": "https://wagonsfund.b-cdn.net/Combined%20Information%20Statement%20%26%20Prospectus%20dated%20December%2029%2C%202025.pdf",
+   "t": 1767009600000
+  },
+  {
+   "title": "Investor call transcript, December 3, 2025",
+   "type": "Investor call",
+   "url": "https://wagonsfund.b-cdn.net/Investor%20Call%20Transcript%20-%20December%203%202025.pdf",
+   "t": 1764763200000
+  },
+  {
+   "title": "Investor call replay, December 3, 2025",
+   "type": "Replay",
+   "url": "https://www.wagonsetf.com/investor-call-replay-december-3-2025",
+   "t": 1764763200000
+  },
+  {
+   "title": "Complete holdings, September 30, 2025",
+   "type": "Holdings",
+   "url": "https://wagonsfund.b-cdn.net/Pabrai%20Wagons%20Fund%20SOI%20%289.30.25%29.pdf",
+   "t": 1759233600000
+  },
+  {
+   "title": "Investor call transcript, August 20, 2025",
+   "type": "Investor call",
+   "url": "https://wagonsfund.b-cdn.net/Investor%20Call%20Transcript%20-%20August%2020%202025.pdf",
+   "t": 1755691200000
+  },
+  {
+   "title": "Investor call replay, August 20, 2025",
+   "type": "Replay",
+   "url": "https://www.wagonsetf.com/investor-call-replay-august-20-2025",
+   "t": 1755691200000
+  },
+  {
+   "title": "Annual shareholder report with holdings (Form N-CSR), June 30, 2025",
+   "type": "Report",
+   "url": "https://wagonsfund.b-cdn.net/Certified%20Shareholder%20Report%20%28Form%20N-CSR%29%20with%20Holdings%20%E2%80%93%20June%2030%2C%202025.pdf",
+   "t": 1751284800000
+  },
+  {
+   "title": "Investor call transcript, May 14, 2025",
+   "type": "Investor call",
+   "url": "https://wagonsfund.b-cdn.net/Investor%20Call%20Transcript%20-%20May%2014%202025.pdf",
+   "t": 1747224000000
+  },
+  {
+   "title": "Investor call replay, May 14, 2025",
+   "type": "Replay",
+   "url": "https://www.wagonsetf.com/investor-call-replay-may-14-2025",
+   "t": 1747224000000
+  },
+  {
+   "title": "Complete holdings, March 31, 2025",
+   "type": "Holdings",
+   "url": "https://wagonsfund.b-cdn.net/Pabrai%20SOI%203.31.25%20-%20To%20Pabrai.pdf",
+   "t": 1743422400000
+  },
+  {
+   "title": "Semi-annual investor call transcript, March 19, 2025",
+   "type": "Investor call",
+   "url": "https://wagonsfund.b-cdn.net/Semi-Annual%20Investor%20Call%20Transcript%20%E2%80%93%20March%2019%202025.pdf",
+   "t": 1742385600000
+  },
+  {
+   "title": "Semi-annual investor call replay, March 19, 2025",
+   "type": "Replay",
+   "url": "https://www.wagonsetf.com/semi-annual-investor-call-replay-march-2025",
+   "t": 1742385600000
+  },
+  {
+   "title": "Semi-annual investor call transcript, September 18, 2024",
+   "type": "Investor call",
+   "url": "https://wagonsfund.b-cdn.net/Semi-Annual%20Investor%20Call%20Transcript%20%E2%80%93%20September%202024.pdf",
+   "t": 1726660800000
+  },
+  {
+   "title": "Annual letter to shareholders, fiscal year ended June 30, 2024",
+   "type": "Letter",
+   "url": "https://wagonsfund.b-cdn.net/Annual%20Letter%20to%20Shareholders.pdf",
+   "t": 1719748800000
+  },
+  {
+   "title": "Semi-annual investor call transcript, March 14, 2024",
+   "type": "Investor call",
+   "url": "https://wagonsfund.b-cdn.net/Semi-Annual%20Investor%20Call%20Transcript%20%E2%80%93%20March%202024.pdf",
+   "t": 1710417600000
+  },
+  {
+   "title": "Latest investor presentation",
+   "type": "Presentation",
+   "url": "https://wagonsfund.b-cdn.net/Pabrai%20Wagons%20ETF%20Investor%20Presentation.pdf",
+   "t": null
+  },
+  {
+   "title": "Latest fact sheet",
+   "type": "Fact sheet",
+   "url": "https://wagonsfund.b-cdn.net/Pabrai%20Wagons%20ETF%20Fact%20Sheet.pdf",
+   "t": null
+  }
+ ],
+ "links": [
+  {
+   "label": "Website",
+   "url": "https://www.wagonsetf.com/"
+  },
+  {
+   "label": "Investor resources",
+   "url": "https://www.wagonsetf.com/ir"
+  }
+ ]
+}
