@@ -13989,7 +13989,7 @@
    "listLabel": "Recent letters",
    "coverage": "10 quarterly letters read (Q1 2024 through Q2 2026), from the PDF links the fund publishes. The investor-letters index page itself could not be opened by my tools, so earlier letters (the fund began in 2019) are not included yet. The emerging-markets, precious-metals and refiner baskets are deliberately unnamed in the letters.",
    "profile": [
-    "Praetorian Capital Fund is a concentrated, long-biased hedge fund run by founder and CIO Harris Kupperman. It began investing on January 1, 2019. Its letters report net returns of about 915% through the second quarter of 2026, with large swings: +129.5% in 2020, +142.9% in 2021, -10.6% in 2024, +12.4% in 2025 and +11.3% in the first half of 2026.",
+    "Praetorian Capital Fund is a concentrated, long-biased hedge fund run by founder and CIO Harris Kupperman. It began investing on January 1, 2019 and writes quarterly letters to investors.",
     "How it invests: a core book of a handful of concentrated, asymmetric positions (typically at least 5% of capital each, mostly companies worth $1-5 billion, never above 5% of a company), plus an Event-Driven book of shorter situations. Its themes are inflation and fiscal stress ('Project Zimbabwe'), a weaker US dollar and emerging markets, precious metals, uranium, offshore energy and refiners. It avoids large-cap tech and expects most AI capital to be impaired.",
     "Fund facts from the letters: about $343 million of net assets at March 2024 and about $350 million with 198 investors at September 2024; a 1.25% management fee and a 20% incentive allocation; a Cayman offshore vehicle. Returns are unaudited estimates."
    ],
@@ -14003,57 +14003,6 @@
      "url": "https://pracap.com/"
     }
    ],
-   "perf": {
-    "title": "Fund performance (net and gross of fees)",
-    "note": "From the Q4 2025 and Q2 2026 letters. Net of a 1.25% management fee and 20% incentive allocation since January 2021; unaudited, excludes a side pocket.",
-    "rows": [
-     {
-      "label": "2019",
-      "net": "14.97%",
-      "gross": "18.71%"
-     },
-     {
-      "label": "2020",
-      "net": "129.49%",
-      "gross": "161.87%"
-     },
-     {
-      "label": "2021",
-      "net": "142.87%",
-      "gross": "181.80%"
-     },
-     {
-      "label": "2022",
-      "net": "11.95%",
-      "gross": "16.38%"
-     },
-     {
-      "label": "2023",
-      "net": "26.45%",
-      "gross": "34.70%"
-     },
-     {
-      "label": "2024",
-      "net": "-10.55%",
-      "gross": "-9.41%"
-     },
-     {
-      "label": "2025",
-      "net": "12.39%",
-      "gross": "13.94%"
-     },
-     {
-      "label": "2026 through Q2",
-      "net": "11.33%",
-      "gross": "14.87%"
-     },
-     {
-      "label": "Since inception (1/1/19)",
-      "net": "915.33%",
-      "gross": "1528.17%"
-     }
-    ]
-   },
    "purchases": {
     "title": "Positions disclosed in the latest letter (Q2 2026, dated July 16, 2026)",
     "note": "As disclosed in the letter. Baskets are deliberately unnamed, the Event-Driven book is not itemized, and positions may have changed since July 2026. Not a record of the whole portfolio.",
