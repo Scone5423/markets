@@ -20919,8 +20919,26 @@
    "author": "Matt Sweeney",
    "url": "https://www.laughingwatercapital.com/letters",
    "totalPosts": 37,
-   "postsRead": 14,
+   "postsRead": 22,
    "posts": [
+    {
+     "date": "2026-07-14",
+     "title": "H1 2026 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+     "access": "PDF"
+    },
+    {
+     "date": "2026-04-20",
+     "title": "Q1 2026 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+     "access": "PDF"
+    },
+    {
+     "date": "2026-01-01",
+     "title": "YE 2025 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+     "access": "PDF"
+    },
     {
      "date": "2025-10-16",
      "title": "Q3 2025 Letter to Partners",
@@ -20931,6 +20949,12 @@
      "date": "2025-07-19",
      "title": "H1 2025 Letter to Partners",
      "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+     "access": "PDF"
+    },
+    {
+     "date": "2025-04-24",
+     "title": "Q1 2025 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
      "access": "PDF"
     },
     {
@@ -20946,6 +20970,12 @@
      "access": "PDF"
     },
     {
+     "date": "2024-04-18",
+     "title": "Q1 2024 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+     "access": "PDF"
+    },
+    {
      "date": "2024-01-24",
      "title": "YE 2023 Letter to Partners",
      "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
@@ -20958,6 +20988,18 @@
      "access": "PDF"
     },
     {
+     "date": "2023-07-19",
+     "title": "H1 2023 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+     "access": "PDF"
+    },
+    {
+     "date": "2023-05-11",
+     "title": "Q1 2023 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q123-LFCR-final.pdf",
+     "access": "PDF"
+    },
+    {
      "date": "2023-01-23",
      "title": "YE 2022 Letter to Partners",
      "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
@@ -20967,6 +21009,12 @@
      "date": "2022-07-18",
      "title": "H1 2022 Letter to Partners",
      "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
+     "access": "PDF"
+    },
+    {
+     "date": "2022-04-21",
+     "title": "Q1 2022 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
      "access": "PDF"
     },
     {
@@ -21008,6 +21056,24 @@
    ],
    "recent": [
     {
+     "date": "2026-07-14",
+     "title": "H1 2026 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+     "access": "PDF"
+    },
+    {
+     "date": "2026-04-20",
+     "title": "Q1 2026 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+     "access": "PDF"
+    },
+    {
+     "date": "2026-01-01",
+     "title": "YE 2025 Letter to Partners",
+     "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+     "access": "PDF"
+    },
+    {
      "date": "2025-10-16",
      "title": "Q3 2025 Letter to Partners",
      "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
@@ -21018,24 +21084,6 @@
      "title": "H1 2025 Letter to Partners",
      "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
      "access": "PDF"
-    },
-    {
-     "date": "2025-01-16",
-     "title": "YE 2024 Letter to Partners",
-     "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
-     "access": "PDF"
-    },
-    {
-     "date": "2024-07-15",
-     "title": "H1 2024 Letter to Partners",
-     "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
-     "access": "PDF"
-    },
-    {
-     "date": "2024-01-24",
-     "title": "YE 2023 Letter to Partners",
-     "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
-     "access": "PDF"
     }
    ],
    "stocks": [
@@ -21043,6 +21091,12 @@
      "s": "THRY",
      "name": "Thryv Holdings",
      "notes": [
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "text": "Exited: he calls it a likely mistake, saying its distribution advantage was finite and management credibility is impaired."
+      },
       {
        "date": "2025-10-16",
        "title": "Q3 2025 Letter to Partners",
@@ -21054,6 +21108,12 @@
        "title": "H1 2025 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
        "text": "Also held: shares fell about 40% from February's high after a guidance trim; he thinks the market prices a collapse; a former HubSpot product executive joined the board."
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Held: 25% SaaS revenue growth in 2024; about 1.8x 2025 SaaS revenue and 12.5x SaaS EBITDA guidance; insiders including the Chairman-CEO bought."
       },
       {
        "date": "2025-01-16",
@@ -21068,6 +21128,12 @@
        "text": "Held: milking the declining Marketing Services business while growing SaaS; shares sold off despite guidance raises and a new buyback; insiders bought; SaaS revenue to exceed Marketing Services around mid-2025."
       },
       {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "text": "Held: flat customer count drew criticism but he believes profitability may come sooner than expected."
+      },
+      {
        "date": "2024-01-24",
        "title": "YE 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
@@ -21080,6 +21146,12 @@
        "text": "Held: SaaS margins jumped 10 points and it is shifting away from paid acquisition; he expects the $200M SaaS EBITDA goal; shares fell about 25% on the news and insiders bought."
       },
       {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "text": "Held: the software unit turned EBITDA positive globally and referrals rose to about 40% of new business; insider buying and a buyback signal confidence."
+      },
+      {
        "date": "2023-01-23",
        "title": "YE 2022 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
@@ -21090,6 +21162,12 @@
        "title": "H1 2022 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
        "text": "Held as a cash-flowing software business that can switch back to cash focus if the economy weakens; management plans to grow about 5x over five years."
+      },
+      {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "text": "Held: undemanding valuation for a cash-generating SaaS transition with a plan to grow SaaS revenue 5x+ by 2027; distressed-debt holders still own about 25%, a temporary overhang."
       },
       {
        "date": "2022-02-10",
@@ -21110,8 +21188,14 @@
        "text": "Undisclosed 'Company 2': a former bankruptcy with a declining but cash-generative legacy business (Yellow Pages) funding a small-business software business; he expects a re-rating as revenue turns recurring."
       }
      ],
-     "summary": "A former Yellow Pages company turning into small-business SaaS, held from 2021. The legacy business funds growth while SaaS overtakes it (about mid-2025). Shares have fallen several times (a distressed seller, then a 2025 guidance trim); he calls about 9x FY26 SaaS EBITDA absurd and notes repeated insider buying.",
+     "summary": "A former Yellow Pages company turning into small-business SaaS, held from 2021. The legacy business funds growth while SaaS overtakes it (about mid-2025). Shares have fallen several times (a distressed seller, then a 2025 guidance trim); he calls about 9x FY26 SaaS EBITDA absurd and notes repeated insider buying. By the YE 2025 letter he had exited, calling it a likely mistake because its distribution advantage was finite and management credibility impaired.",
      "links": [
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "access": "PDF"
+      },
       {
        "date": "2025-10-16",
        "title": "Q3 2025 Letter to Partners",
@@ -21122,6 +21206,12 @@
        "date": "2025-07-19",
        "title": "H1 2025 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
        "access": "PDF"
       },
       {
@@ -21137,6 +21227,12 @@
        "access": "PDF"
       },
       {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "access": "PDF"
+      },
+      {
        "date": "2024-01-24",
        "title": "YE 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
@@ -21149,6 +21245,12 @@
        "access": "PDF"
       },
       {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "access": "PDF"
+      },
+      {
        "date": "2023-01-23",
        "title": "YE 2022 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
@@ -21158,6 +21260,12 @@
        "date": "2022-07-18",
        "title": "H1 2022 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
        "access": "PDF"
       },
       {
@@ -21181,6 +21289,195 @@
      ]
     },
     {
+     "s": "LFCR",
+     "name": "Lifecore Biomedical (formerly Landec)",
+     "notes": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "text": "Held: the fill-finish CDMO keeps winning business the market ignores; after quarter end preferred holders redeemed shares and the company is evaluating strategic alternatives, which he sees as likely leading to a sale."
+      },
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "text": "Held: wins continue but pipeline timing slipped and the stock fell; he thinks a sale would close the gap between public and private value."
+      },
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "text": "Held, top position: excess capacity filling through customer wins and cost cuts; 16x on about $100M EBITDA (vs about $400M EV) would be conservative; a Catalent FDA warning letter is pushing customers away."
+      },
+      {
+       "date": "2025-10-16",
+       "title": "Q3 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
+       "text": "Held: fill-finish CDMO with excess capacity and high operating leverage; new customer wins and US manufacturing policy help; he dismisses an S-3 shelf as housekeeping."
+      },
+      {
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "text": "Top-5: expects better utilization and margins and eventual acquisition as the last sizable public domestic CDMO; about 6x revenue is fair (above $13, nearer $16 on 2026 numbers)."
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Held: new leadership improving the balance sheet and sales force; a filing shows an internal 80% chance of a sale within three years; at Avid's deal multiple shares would be in the low-to-mid double digits."
+      },
+      {
+       "date": "2025-01-16",
+       "title": "YE 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
+       "text": "Held (top 5): new management is building out sales to reach $300M of annual revenue by filling spare CDMO capacity; he thinks a change of control is likelier than management's 80% estimate by 2028; comparable multiples imply over 100% upside; management bought shares."
+      },
+      {
+       "date": "2024-07-15",
+       "title": "H1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "text": "Held: strategic review ended without a sale; new CEO Paul Josephs took over in May; he hopes for about $40M EBITDA guidance, is open to a rights offering and notes delinquent 10-Q filings."
+      },
+      {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "text": "Held: the strategic review ended without a sale and event-driven holders sold; he sees buyers above the price and upside from a new CEO; Catalent's sale to Novo Holdings should push fill-finish customers elsewhere; expects index funds to buy about 20 days of volume on joining the Russell 2000."
+      },
+      {
+       "date": "2024-01-24",
+       "title": "YE 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "text": "Held in a holding pattern: strategic review may lead to a premium sale but delayed financial filings stall it; about 100% upside if a buyer pays a middling multiple; Alcon is its largest customer."
+      },
+      {
+       "date": "2023-10-19",
+       "title": "Q3 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
+       "text": "Held: he expects a sale after the strategic review, but the process has taken longer than hoped, so a $20+ upside case looks less likely; Apellis is a customer."
+      },
+      {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "text": "Held in size: running a sale process that could pay 40-200% more within 1-3 months; he calls the outcome important to the fund."
+      },
+      {
+       "date": "2023-05-11",
+       "title": "Q1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q123-LFCR-final.pdf",
+       "text": "Substantially increased the position: 'a balance sheet problem, not a business problem', in covenant default; asset replacement cost about $400M vs an EV near $250M; a sale-leaseback (as Societal CDMO did for $39M) or sale is a path; Alcon accelerated orders ($10M upfront, $15M capex reimbursement); Baxter's CDMO was reported at about 6.2x revenue."
+      },
+      {
+       "date": "2023-01-23",
+       "title": "YE 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
+       "text": "Held: moving to pure-play injectable drug manufacturing; avocado business sale delayed; a January convertible preferred raise adds dilution but reduces execution risk."
+      },
+      {
+       "date": "2022-07-18",
+       "title": "H1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
+       "text": "New position (as Landec, LNDC) bought around $10 as it sells its food businesses to become a pure-play injectables CDMO; he values the CDMO at $14-25 a share with capacity doubling by 2025 and sees the avocado unit as implicitly overpriced."
+      }
+     ],
+     "summary": "Injectable-drug CDMO bought as Landec around $10 in 2022 while it sold its food businesses. A sale after the strategic review never came, and new management is filling spare capacity (targets $300M of annual revenue). He expects it to be acquired eventually as the last sizable public domestic CDMO, worth about 6x revenue. In Q2 2026 the company began evaluating strategic alternatives, which he sees as likely leading to a sale.",
+     "links": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-10-16",
+       "title": "Q3 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-01-16",
+       "title": "YE 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-07-15",
+       "title": "H1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-01-24",
+       "title": "YE 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-10-19",
+       "title": "Q3 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-05-11",
+       "title": "Q1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q123-LFCR-final.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-01-23",
+       "title": "YE 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2022-07-18",
+       "title": "H1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
      "s": "",
      "name": "Avid Bioservices",
      "notes": [
@@ -21189,6 +21486,12 @@
        "title": "H1 2025 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
        "text": "Bought out from under the fund (cited as a recent buyout)."
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Sold: private equity completed its acquisition at $12.50 a share in February; he believes it came at the cycle bottom (proxy projects revenue +47% and EBITDA doubling in fiscal 2026)."
       },
       {
        "date": "2025-01-16",
@@ -21203,6 +21506,12 @@
        "text": "Top-5 holding: unprofitable while new capacity fills slowly amid a biotech spending slowdown; he expects about $125M of EBITDA once full and a 20x FCF multiple."
       },
       {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "text": "Held: an unremoved 144A legend on a convertible triggered a default claim, forcing a new 7% convertible with heavier dilution; he now sees $25-28 a share in a few years (down from $30-33) vs about $7."
+      },
+      {
        "date": "2024-01-24",
        "title": "YE 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
@@ -21213,6 +21522,18 @@
        "title": "Q3 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
        "text": "Held; shares fell about half after weak near-term guidance; he expects new capacity to produce about $100M of FCF vs a ~$700M EV. Insiders bought."
+      },
+      {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "text": "Held: new capacity can more than double the business; he treats the guidance cut and slower early-stage biotech spending as near-term noise (late-stage signings +34%)."
+      },
+      {
+       "date": "2023-05-11",
+       "title": "Q1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q123-LFCR-final.pdf",
+       "text": "A long-held position and a major winner over more than five years, driven by secular tailwinds and high margins; he draws on that CDMO experience for Lifecore."
       },
       {
        "date": "2023-01-23",
@@ -21254,6 +21575,12 @@
        "access": "PDF"
       },
       {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "access": "PDF"
+      },
+      {
        "date": "2025-01-16",
        "title": "YE 2024 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
@@ -21266,6 +21593,12 @@
        "access": "PDF"
       },
       {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "access": "PDF"
+      },
+      {
        "date": "2024-01-24",
        "title": "YE 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
@@ -21275,6 +21608,18 @@
        "date": "2023-10-19",
        "title": "Q3 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-05-11",
+       "title": "Q1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q123-LFCR-final.pdf",
        "access": "PDF"
       },
       {
@@ -21310,114 +21655,21 @@
      ]
     },
     {
-     "s": "LFCR",
-     "name": "Lifecore Biomedical (formerly Landec)",
-     "notes": [
-      {
-       "date": "2025-10-16",
-       "title": "Q3 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
-       "text": "Held: fill-finish CDMO with excess capacity and high operating leverage; new customer wins and US manufacturing policy help; he dismisses an S-3 shelf as housekeeping."
-      },
-      {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
-       "text": "Top-5: expects better utilization and margins and eventual acquisition as the last sizable public domestic CDMO; about 6x revenue is fair (above $13, nearer $16 on 2026 numbers)."
-      },
-      {
-       "date": "2025-01-16",
-       "title": "YE 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
-       "text": "Held (top 5): new management is building out sales to reach $300M of annual revenue by filling spare CDMO capacity; he thinks a change of control is likelier than management's 80% estimate by 2028; comparable multiples imply over 100% upside; management bought shares."
-      },
-      {
-       "date": "2024-07-15",
-       "title": "H1 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
-       "text": "Held: strategic review ended without a sale; new CEO Paul Josephs took over in May; he hopes for about $40M EBITDA guidance, is open to a rights offering and notes delinquent 10-Q filings."
-      },
-      {
-       "date": "2024-01-24",
-       "title": "YE 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
-       "text": "Held in a holding pattern: strategic review may lead to a premium sale but delayed financial filings stall it; about 100% upside if a buyer pays a middling multiple; Alcon is its largest customer."
-      },
-      {
-       "date": "2023-10-19",
-       "title": "Q3 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
-       "text": "Held: he expects a sale after the strategic review, but the process has taken longer than hoped, so a $20+ upside case looks less likely; Apellis is a customer."
-      },
-      {
-       "date": "2023-01-23",
-       "title": "YE 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
-       "text": "Held: moving to pure-play injectable drug manufacturing; avocado business sale delayed; a January convertible preferred raise adds dilution but reduces execution risk."
-      },
-      {
-       "date": "2022-07-18",
-       "title": "H1 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
-       "text": "New position (as Landec, LNDC) bought around $10 as it sells its food businesses to become a pure-play injectables CDMO; he values the CDMO at $14-25 a share with capacity doubling by 2025 and sees the avocado unit as implicitly overpriced."
-      }
-     ],
-     "summary": "Injectable-drug CDMO bought as Landec around $10 in 2022 while it sold its food businesses. A sale after the strategic review never came, and new management is filling spare capacity (targets $300M of annual revenue). He expects it to be acquired eventually as the last sizable public domestic CDMO, worth about 6x revenue.",
-     "links": [
-      {
-       "date": "2025-10-16",
-       "title": "Q3 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2025-01-16",
-       "title": "YE 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2024-07-15",
-       "title": "H1 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2024-01-24",
-       "title": "YE 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2023-10-19",
-       "title": "Q3 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2023-01-23",
-       "title": "YE 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2022-07-18",
-       "title": "H1 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
-       "access": "PDF"
-      }
-     ]
-    },
-    {
      "s": "PAR",
      "name": "PAR Technology",
      "notes": [
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "text": "Exited: still likes the business but was uneasy about valuation and convertible-debt refinancing risk."
+      },
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "text": "Held: blames the sharp share decline on AI-driven software multiple compression and believes delayed revenue from a tier-1 operator win will be rewarded."
+      },
       {
        "date": "2025-10-16",
        "title": "Q3 2025 Letter to Partners",
@@ -21431,10 +21683,22 @@
        "text": "Top-5: revenue growing on flat costs, the largest pipeline yet; he expects the Burger King rollout to accelerate in H2 2025."
       },
       {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Top-5: annual recurring revenue and customer doors roughly doubled in 2024; management expects about 20% organic growth near term with operating leverage emerging."
+      },
+      {
        "date": "2025-01-16",
        "title": "YE 2024 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
        "text": "Held (top 5): now a pure-play restaurant software company after selling Defense; management expects about 25% growth with flat operating expenses for two years, which he thinks yields substantial FCF."
+      },
+      {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "text": "Held, now mid-sized after trimming earlier and adding on the lower price: execution, a planned government-business sale and margin expansion."
       },
       {
        "date": "2022-02-10",
@@ -21467,8 +21731,20 @@
        "text": "Held: cloud POS for fast-casual and quick-serve restaurants; he expects chains to gain share from independents and M&A to accelerate given its balance sheet."
       }
      ],
-     "summary": "Restaurant and convenience-store software (POS, back office, loyalty via Punchh) held since 2020. Not cheap, but he liked its competitive position, Ron Shaich's $160M investment and later the pure-play shape after selling its Defense unit. Still held in Q3 2025 with a record backlog and delayed rollouts.",
+     "summary": "Restaurant and convenience-store software (POS, back office, loyalty via Punchh) held since 2020. Not cheap, but he liked its competitive position, Ron Shaich's $160M investment and later the pure-play shape after selling its Defense unit. Still held in Q3 2025 with a record backlog and delayed rollouts; he blamed a sharp share fall on AI-driven software multiple compression, then exited in Q1 2026 over valuation and convertible-debt refinancing risk.",
      "links": [
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "access": "PDF"
+      },
       {
        "date": "2025-10-16",
        "title": "Q3 2025 Letter to Partners",
@@ -21482,9 +21758,21 @@
        "access": "PDF"
       },
       {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "access": "PDF"
+      },
+      {
        "date": "2025-01-16",
        "title": "YE 2024 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
        "access": "PDF"
       },
       {
@@ -21520,6 +21808,264 @@
      ]
     },
     {
+     "s": "NN",
+     "name": "NextNav",
+     "notes": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "text": "Held: awaiting an FCC proposed rule; the balance sheet improved after SPAC warrants were called and convertibles converted; the CEO testified before a House subcommittee."
+      },
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "text": "Outsized position: he believes the FCC's draft rule is advancing through White House review and sees value well above the roughly $15 month-end price; Amazon, Globalstar and SpaceX interest in terrestrial spectrum is positive."
+      },
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "text": "Held: expects an FCC rulemaking ('when' not 'if') and estimates spectrum near $60 a share in the best case; AT&T bought EchoStar's low-band spectrum, and Verizon, T-Mobile face low-band congestion; Starlink a possible bidder."
+      },
+      {
+       "date": "2025-10-16",
+       "title": "Q3 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
+       "text": "Held: pending FCC approval to repurpose spectrum for 5G; he cites FCC chair remarks and the AT&T/EchoStar spectrum deal, which implies about $60 a share."
+      },
+      {
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "text": "Top-5: expects an FCC rulemaking and spectrum monetization with a mobile operator at $35-$60 a share."
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Largest position: weakness from venture fund selling and GAAP optics; he expects a possible FCC rulemaking by early fall and values the spectrum at 3-5x the stock price."
+      },
+      {
+       "date": "2025-01-16",
+       "title": "YE 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
+       "text": "Largest position: awaiting FCC action on its 900 MHz petition for terrestrial GPS and about 15 MHz of 5G spectrum; at Verizon's $1.44 per MHz-pop he estimates about $40 a share before any premium; pressure is a temporary fund-selling overhang."
+      },
+      {
+       "date": "2024-07-15",
+       "title": "H1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "text": "Top-5: owns wireless spectrum and has petitioned the FCC to swap and repurpose it for 5G; $1.00 per MHz-pop would imply about $30 a share (he cites a much lower price at the time); insider Joe Samberg bought."
+      },
+      {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "text": "Now a large position, added after a discounted acquisition; sees low-band spectrum worth over $20 a share if repurposed."
+      },
+      {
+       "date": "2024-01-24",
+       "title": "YE 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "text": "New position bought at under 30 cents per MHz-pop of spectrum; he expects an FCC request to repurpose spectrum for broadband and cites 2x-7x+ spectrum value comparables (Verizon/Straight Path 2017). Spartacus SPAC merged into it."
+      }
+     ],
+     "summary": "Owns wireless spectrum and a terrestrial GPS alternative; bought from 2023 at under 30 cents per MHz-pop. The thesis is an FCC rulemaking repurposing 900 MHz spectrum for 5G, with Verizon's $1.44 per MHz-pop and the AT&T/EchoStar deal as valuation markers ($40-60 a share). Often his largest position, still held in mid-2026 while awaiting an FCC proposed rule (a draft was moving through White House review).",
+     "links": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-10-16",
+       "title": "Q3 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-01-16",
+       "title": "YE 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-07-15",
+       "title": "H1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-01-24",
+       "title": "YE 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "VTY.L",
+     "name": "Vistry Group",
+     "notes": [
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "text": "Exited: the CEO's retirement and uncertain buybacks impaired the thesis; he may revisit it."
+      },
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "text": "Held: about 4.5x 2026 EBIT vs low double-digit transaction comps; buying back shares; could double and still trade below pre-accounting-problem levels."
+      },
+      {
+       "date": "2025-10-16",
+       "title": "Q3 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
+       "text": "Held: capital-light partnerships model; GBP39B ten-year funding program should drive growth in 2027; about 4.5x 2026 EBIT vs low double-digit transaction comps; CEO bought about GBP1M."
+      },
+      {
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "text": "Top-5: a new GBP39B government housing program should help H2 2025 and 2026; the $800M operating profit goal is attainable from a price below tangible book."
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Held: thesis intact though slower due to legacy accounting problems and delayed capital returns; insider buying, buybacks and government support for UK affordable housing."
+      },
+      {
+       "date": "2025-01-16",
+       "title": "YE 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
+       "text": "Held (top 5): 2024 problems tied to the legacy business being wound down; below tangible book and under 3x his 2025 EBIT (above GBP500M)."
+      },
+      {
+       "date": "2024-07-15",
+       "title": "H1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "text": "Top-5: exiting traditional building for Partnerships and buying back stock; targets GBP800M EBIT, about 4x vs 12-13x in past deals; CEO Greg Fitzgerald bought shares."
+      },
+      {
+       "date": "2024-01-24",
+       "title": "YE 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "text": "Held: exiting traditional homebuilding to focus on partnerships, with a planned ~GBP1B buyback over three years and a GBP3B+ market cap; multi-bagger potential."
+      },
+      {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "text": "Held: likes the asset-light Partnerships business with local housing authorities and expects a capital allocation review to lead to aggressive buybacks; cheap alongside the FTSE 100."
+      },
+      {
+       "date": "2023-01-23",
+       "title": "YE 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
+       "text": "Held: its Partnerships business could earn GBP450M after tax, about 5x current value, with a higher multiple possible. (Countryside Partnerships, a prior holding, was acquired by Vistry in November.)"
+      }
+     ],
+     "summary": "UK homebuilder pivoting to an asset-light Partnerships model, held since the Countryside deal in 2022. 2024 accounting problems hit the shares, but he sees it below tangible book and at 3-4.5x EBIT, helped by a new GBP39B ten-year government funding program, a GBP1B buyback and CEO share purchases. He exited in Q1 2026 after the CEO's retirement and uncertain buybacks impaired the thesis.",
+     "links": [
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-10-16",
+       "title": "Q3 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-01-16",
+       "title": "YE 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-07-15",
+       "title": "H1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-01-24",
+       "title": "YE 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-01-23",
+       "title": "YE 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
      "s": "AIM.TO",
      "name": "Aimia",
      "notes": [
@@ -21534,6 +22080,12 @@
        "title": "H1 2022 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
        "text": "Long-term holding expected to receive about C$6.00 a share from a PLM sale, lifting cash to about C$575M against a ~C$400M market cap; portfolio ballast."
+      },
+      {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "text": "Held: agreed to sell its PLM stake to Aeromexico for C$5.58 a share in cash; plans to return $75M through buybacks and expand disclosure on other investments."
       },
       {
        "date": "2022-02-10",
@@ -21575,6 +22127,12 @@
        "access": "PDF"
       },
       {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "access": "PDF"
+      },
+      {
        "date": "2022-02-10",
        "title": "YE 2021 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
@@ -21601,64 +22159,52 @@
      ]
     },
     {
-     "s": "VTY.L",
-     "name": "Vistry Group",
+     "s": "HGV",
+     "name": "Hilton Grand Vacations",
      "notes": [
       {
-       "date": "2025-10-16",
-       "title": "Q3 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
-       "text": "Held: capital-light partnerships model; GBP39B ten-year funding program should drive growth in 2027; about 4.5x 2026 EBIT vs low double-digit transaction comps; CEO bought about GBP1M."
-      },
-      {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
-       "text": "Top-5: a new GBP39B government housing program should help H2 2025 and 2026; the $800M operating profit goal is attainable from a price below tangible book."
-      },
-      {
-       "date": "2025-01-16",
-       "title": "YE 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
-       "text": "Held (top 5): 2024 problems tied to the legacy business being wound down; below tangible book and under 3x his 2025 EBIT (above GBP500M)."
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Held: 4-5x FCF; buyback authorization raised 50% to $600M a year, which could retire nearly half the shares over three years."
       },
       {
        "date": "2024-07-15",
        "title": "H1 2024 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
-       "text": "Top-5: exiting traditional building for Partnerships and buying back stock; targets GBP800M EBIT, about 4x vs 12-13x in past deals; CEO Greg Fitzgerald bought shares."
+       "text": "Held: about a 25% FCF yield and about 10% annual buybacks."
       },
       {
        "date": "2024-01-24",
        "title": "YE 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
-       "text": "Held: exiting traditional homebuilding to focus on partnerships, with a planned ~GBP1B buyback over three years and a GBP3B+ market cap; multi-bagger potential."
+       "text": "Held: under 5x estimated normalized 2025E FCF to equity; expects aggressive buybacks (about $100M a quarter); acquiring Bluegreen at a reasonable price after synergies."
+      },
+      {
+       "date": "2023-10-19",
+       "title": "Q3 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
+       "text": "Held: sees the Maui wildfire travel restrictions as temporary; about 7x free cash flow and keeps buying back shares."
+      },
+      {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "text": "Held: integrating Diamond Resorts; his 'share cannibal' thesis is intact, with a new $500M buyback."
       },
       {
        "date": "2023-01-23",
        "title": "YE 2022 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
-       "text": "Held: its Partnerships business could earn GBP450M after tax, about 5x current value, with a higher multiple possible. (Countryside Partnerships, a prior holding, was acquired by Vistry in November.)"
+       "text": "Held: about 6x normalized FCF on a two-year view; buybacks and Diamond Resorts integration are drivers; Bluegreen's 23% tender shows insiders are not worried."
       }
      ],
-     "summary": "UK homebuilder pivoting to an asset-light Partnerships model, held since the Countryside deal in 2022. 2024 accounting problems hit the shares, but he sees it below tangible book and at 3-4.5x EBIT, helped by a new GBP39B ten-year government funding program, a GBP1B buyback and CEO share purchases.",
+     "summary": "Timeshare operator held 2022-24 at 5-7x FCF with a 10% annual buyback and the Diamond Resorts and Bluegreen acquisitions; he named it as a value contrast to Royal Caribbean at about 25x.",
      "links": [
       {
-       "date": "2025-10-16",
-       "title": "Q3 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2025-01-16",
-       "title": "YE 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
        "access": "PDF"
       },
       {
@@ -21671,6 +22217,18 @@
        "date": "2024-01-24",
        "title": "YE 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-10-19",
+       "title": "Q3 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
        "access": "PDF"
       },
       {
@@ -21682,70 +22240,82 @@
      ]
     },
     {
-     "s": "NN",
-     "name": "NextNav",
+     "s": "TACT",
+     "name": "Transact Technologies",
      "notes": [
       {
-       "date": "2025-10-16",
-       "title": "Q3 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
-       "text": "Held: pending FCC approval to repurpose spectrum for 5G; he cites FCC chair remarks and the AT&T/EchoStar spectrum deal, which implies about $60 a share."
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
+       "text": "Held, small position: sees $10-14 a share from a strategic review, but B. Riley's selling is an overhang."
       },
       {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
-       "text": "Top-5: expects an FCC rulemaking and spectrum monetization with a mobile operator at $35-$60 a share."
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "text": "Held: slot-printer value up on share gains while BOHA! valuation fell with higher rates; he expects activists to push a sale of one or both businesses after a CEO change."
       },
       {
-       "date": "2025-01-16",
-       "title": "YE 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
-       "text": "Largest position: awaiting FCC action on its 900 MHz petition for terrestrial GPS and about 15 MHz of 5G spectrum; at Verizon's $1.44 per MHz-pop he estimates about $40 a share before any premium; pressure is a temporary fund-selling overhang."
+       "date": "2022-07-18",
+       "title": "H1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
+       "text": "Held; supply-chain delays defer demand; 3-4x normalized slot-machine EBITDA with restaurant/C-store software valued at zero."
       },
       {
-       "date": "2024-07-15",
-       "title": "H1 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
-       "text": "Top-5: owns wireless spectrum and has petitioned the FCC to swap and repurpose it for 5G; $1.00 per MHz-pop would imply about $30 a share (he cites a much lower price at the time); insider Joe Samberg bought."
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "text": "Held: supply chain slows growth but a new large customer and two activist-backed board additions could lead to monetizing the slot-machine printer business."
       },
       {
-       "date": "2024-01-24",
-       "title": "YE 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
-       "text": "New position bought at under 30 cents per MHz-pop of spectrum; he expects an FCC request to repurpose spectrum for broadband and cites 2x-7x+ spectrum value comparables (Verizon/Straight Path 2017). Spartacus SPAC merged into it."
+       "date": "2022-02-10",
+       "title": "YE 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
+       "text": "Top-5 long: the ~40% decline is temporary; a printer-business sale would cover most of the market cap and fund BOHA! growth."
+      },
+      {
+       "date": "2021-07-23",
+       "title": "H1 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H1-2021-gggt.pdf",
+       "text": "Top-five holding, a large position despite thin liquidity: expects a shift from slot-machine printers to restaurant and convenience-store software, possibly selling the printer unit for 50-75% of EV; BOHA! SaaS revenue growing 100% with a $140M pipeline (7-Eleven, about 14,000 stores, a long-term customer; Apple partnering)."
       }
      ],
-     "summary": "Owns wireless spectrum and a terrestrial GPS alternative; bought from 2023 at under 30 cents per MHz-pop. The thesis is an FCC rulemaking repurposing 900 MHz spectrum for 5G, with Verizon's $1.44 per MHz-pop and the AT&T/EchoStar deal as valuation markers ($40-60 a share). Often his largest position, and still held in Q3 2025 awaiting FCC approval.",
+     "summary": "Printers for slot machines plus the BOHA! restaurant and convenience-store SaaS unit (7-Eleven a customer). A top-five position in 2021-22 on the thesis that the printer business, valued at 3-4x EBITDA, could be sold and BOHA! was worth multiples of the EV.",
      "links": [
       {
-       "date": "2025-10-16",
-       "title": "Q3 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q325-Letter.pdf",
+       "date": "2024-04-18",
+       "title": "Q1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q124-Letter.pdf",
        "access": "PDF"
       },
       {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
        "access": "PDF"
       },
       {
-       "date": "2025-01-16",
-       "title": "YE 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
+       "date": "2022-07-18",
+       "title": "H1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
        "access": "PDF"
       },
       {
-       "date": "2024-07-15",
-       "title": "H1 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
        "access": "PDF"
       },
       {
-       "date": "2024-01-24",
-       "title": "YE 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "date": "2022-02-10",
+       "title": "YE 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2021-07-23",
+       "title": "H1 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H1-2021-gggt.pdf",
        "access": "PDF"
       }
      ]
@@ -21765,6 +22335,12 @@
        "title": "YE 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
        "text": "Held: a fire-safety business with debt paydown that could restart M&A; shares could comfortably double over a few years."
+      },
+      {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "text": "Held: growing recurring inspection work, widening margins and paying down debt; expects a re-rating and sees possible value in separating Safety and Specialty Services."
       },
       {
        "date": "2023-01-23",
@@ -21794,6 +22370,12 @@
        "access": "PDF"
       },
       {
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "access": "PDF"
+      },
+      {
        "date": "2023-01-23",
        "title": "YE 2022 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
@@ -21816,6 +22398,12 @@
        "title": "H1 2025 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
        "text": "Taken private by a PE buyer this quarter; solid return but a disappointing price; the chairman rolled his equity."
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Held: Reuters reports a sale process; he is unsure it is the right time to sell since operating leverage is just starting; under 3x revenue vs 4-6x for historical sales."
       },
       {
        "date": "2025-01-16",
@@ -21845,6 +22433,12 @@
        "access": "PDF"
       },
       {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "access": "PDF"
+      },
+      {
        "date": "2025-01-16",
        "title": "YE 2024 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE24.pdf",
@@ -21865,58 +22459,193 @@
      ]
     },
     {
-     "s": "HGV",
-     "name": "Hilton Grand Vacations",
+     "s": "SES.TO",
+     "name": "SECURE Waste Infrastructure",
      "notes": [
       {
-       "date": "2024-07-15",
-       "title": "H1 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
-       "text": "Held: about a 25% FCF yield and about 10% annual buybacks."
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "text": "Acquired by GFL in a cash-and-stock deal after about a year; he was disappointed and suspects a private equity holder forced the sale."
       },
       {
-       "date": "2024-01-24",
-       "title": "YE 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
-       "text": "Held: under 5x estimated normalized 2025E FCF to equity; expects aggressive buybacks (about $100M a quarter); acquiring Bluegreen at a reasonable price after synergies."
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "text": "Held, bought after an undersubscribed tender near C$14.50; GFL agreed to acquire it for C$24.75, which he is 'not thrilled' about."
       },
       {
-       "date": "2023-10-19",
-       "title": "Q3 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
-       "text": "Held: sees the Maui wildfire travel restrictions as temporary; about 7x free cash flow and keeps buying back shares."
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "text": "Held (Secure Energy Services): a stable Western Canadian oilfield waste business at about 10x EBITDA vs peers in the mid-to-high teens; expects continued buybacks and a re-rating."
       },
       {
-       "date": "2023-01-23",
-       "title": "YE 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
-       "text": "Held: about 6x normalized FCF on a two-year view; buybacks and Diamond Resorts integration are drivers; Bluegreen's 23% tender shows insiders are not worried."
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "text": "New position: Western Canadian oil-industry waste manager, about 80% recurring cash flow with adjusted EBITDA margins above 30%; a 7.5x forced-sale multiple sets a floor and buybacks could drive returns. Waste Connections bought 29 divested Tervita sites in 2024 for $1.15B; GFL sold a majority of its environmental business at about 16x EBITDA."
       }
      ],
-     "summary": "Timeshare operator held 2022-24 at 5-7x FCF with a 10% annual buyback and the Diamond Resorts and Bluegreen acquisitions; he named it as a value contrast to Royal Caribbean at about 25x.",
+     "summary": "Western Canadian oilfield waste manager bought in H1 2025: about 80% recurring cash flow, margins above 30%, a 7.5x forced-sale floor and aggressive buybacks. GFL agreed to acquire it for C$24.75 a share (a deal he was 'not thrilled' about); the deal closed by mid-2026.",
      "links": [
       {
-       "date": "2024-07-15",
-       "title": "H1 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
        "access": "PDF"
       },
       {
-       "date": "2024-01-24",
-       "title": "YE 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
        "access": "PDF"
       },
       {
-       "date": "2023-10-19",
-       "title": "Q3 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q323-Letter.pdf",
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
        "access": "PDF"
       },
+      {
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "",
+     "name": "Canadian-listed U.S. cannabis basket (unnamed)",
+     "notes": [
       {
        "date": "2023-01-23",
        "title": "YE 2022 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
+       "text": "Held, unnamed, and described as a disaster to date."
+      },
+      {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "text": "Held; he expects the stocks to trade on legislative progress toward federal legalization and will ignore fund flows. (He made no energy or commodity investments.)"
+      },
+      {
+       "date": "2022-02-10",
+       "title": "YE 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
+       "text": "Several small positions; he expects federal legalization to drive a re-rating but near-term volatility."
+      }
+     ],
+     "summary": "Feb 2022: Several small positions; he expects federal legalization to drive a re-rating but near-term volatility. Apr 2022: Held; he expects the stocks to trade on legislative progress toward federal legalization and will ignore fund flows. (He made no energy or commodity investments.) Jan 2023: Held, unnamed, and described as a disaster to date.",
+     "links": [
+      {
+       "date": "2023-01-23",
+       "title": "YE 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2022-02-10",
+       "title": "YE 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "",
+     "name": "Countryside Partnerships",
+     "notes": [
+      {
+       "date": "2022-07-18",
+       "title": "H1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
+       "text": "Held despite a broken thesis: buybacks were suspended for a sale process after an activist bid; about 100% upside from a sale on GBP60-80M of potential synergies."
+      },
+      {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "text": "Held as a large position: new leadership 'kitchen-sinking' bad news; activist-backed buybacks could retire about 36% of the float (nearly 50% with activist holdings) over about two years."
+      },
+      {
+       "date": "2022-02-10",
+       "title": "YE 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
+       "text": "New position: UK homebuilder moving to an asset-light partnership model; bought from dividend-focused sellers after the dividend was eliminated and added after an earnings miss; expects a large buyback to support the shares. NVR is the model it should emulate."
+      }
+     ],
+     "summary": "UK homebuilder moving to an asset-light model, bought in late 2021 after its dividend was cut; buybacks were suspended when an activist bid triggered a sale process, and Vistry acquired it in November 2022.",
+     "links": [
+      {
+       "date": "2022-07-18",
+       "title": "H1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2022-02-10",
+       "title": "YE 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "",
+     "name": "Houghton Mifflin Harcourt",
+     "notes": [
+      {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "text": "Exited: he built a max position near $18 believing a strategic buyer might pay $30; he called Veritas Capital's $21 tender 'woefully inadequate' and the process flawed; the forced sale triggers short-term tax treatment."
+      },
+      {
+       "date": "2022-02-10",
+       "title": "YE 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
+       "text": "Top-5 long: cash flow rising and normalized EPS could double in 4-5 years; Bloomberg reported a sale exploration; he stays a holder unless offered a very substantial premium."
+      },
+      {
+       "date": "2021-07-23",
+       "title": "H1 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H1-2021-gggt.pdf",
+       "text": "New top-five holding: he expects large free cash flow from federal stimulus, digital adoption and possible M&A; about 6.5x normalized FCF; McGraw Hill recently sold at 10x EBITDA. (Idea prompted by Chris Colvin of Breach Inlet.)"
+      }
+     ],
+     "summary": "Educational publisher bought in 2021 as a top-five holding on federal stimulus-driven free cash flow (about 6.5x normalized FCF) and M&A; he said he would stay a holder absent a very substantial premium. (A related 2022 public letter to its board is on the firm's site.)",
+     "links": [
+      {
+       "date": "2022-04-21",
+       "title": "Q1 2022 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q122-sn57.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2022-02-10",
+       "title": "YE 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2021-07-23",
+       "title": "H1 2021 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H1-2021-gggt.pdf",
        "access": "PDF"
       }
      ]
@@ -21967,46 +22696,46 @@
      ]
     },
     {
-     "s": "TACT",
-     "name": "Transact Technologies",
+     "s": "LQDA",
+     "name": "Liquidia",
      "notes": [
       {
-       "date": "2022-07-18",
-       "title": "H1 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
-       "text": "Held; supply-chain delays defer demand; 3-4x normalized slot-machine EBITDA with restaurant/C-store software valued at zero."
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "text": "Held: praises the launch and estimates $6-8 of EPS next year; at 10-12x forward earnings because of the litigation, he expects a re-rating after the judge's ruling."
       },
       {
-       "date": "2022-02-10",
-       "title": "YE 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
-       "text": "Top-5 long: the ~40% decline is temporary; a printer-business sale would cover most of the market cap and fund BOHA! growth."
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "text": "Held: strong YUTREPIA launch, but a pending patent ruling against United Therapeutics holds the stock back; downside protection and possible pharma takeout interest."
       },
       {
-       "date": "2021-07-23",
-       "title": "H1 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H1-2021-gggt.pdf",
-       "text": "Top-five holding, a large position despite thin liquidity: expects a shift from slot-machine printers to restaurant and convenience-store software, possibly selling the printer unit for 50-75% of EV; BOHA! SaaS revenue growing 100% with a $140M pipeline (7-Eleven, about 14,000 stores, a long-term customer; Apple partnering)."
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
+       "text": "Held, now a top position: he believes the odds favor Liquidia in its patent fight with United Therapeutics, and a win could let the stock easily double or triple."
       }
      ],
-     "summary": "Printers for slot machines plus the BOHA! restaurant and convenience-store SaaS unit (7-Eleven a customer). A top-five position in 2021-22 on the thesis that the printer business, valued at 3-4x EBITDA, could be sold and BOHA! was worth multiples of the EV.",
+     "summary": "Pulmonary hypertension drug company (YUTREPIA launch) held from late 2025 as a top position. He thinks the odds favor it in a patent fight with United Therapeutics and estimates $6-8 of EPS next year; at 10-12x forward earnings he expects a re-rating once the judge rules.",
      "links": [
       {
-       "date": "2022-07-18",
-       "title": "H1 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
        "access": "PDF"
       },
       {
-       "date": "2022-02-10",
-       "title": "YE 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
        "access": "PDF"
       },
       {
-       "date": "2021-07-23",
-       "title": "H1 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H1-2021-gggt.pdf",
+       "date": "2026-01-01",
+       "title": "YE 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE25.pdf",
        "access": "PDF"
       }
      ]
@@ -22057,39 +22786,6 @@
      ]
     },
     {
-     "s": "",
-     "name": "Canadian-listed U.S. cannabis basket (unnamed)",
-     "notes": [
-      {
-       "date": "2023-01-23",
-       "title": "YE 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
-       "text": "Held, unnamed, and described as a disaster to date."
-      },
-      {
-       "date": "2022-02-10",
-       "title": "YE 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
-       "text": "Several small positions; he expects federal legalization to drive a re-rating but near-term volatility."
-      }
-     ],
-     "summary": "Feb 2022: Several small positions; he expects federal legalization to drive a re-rating but near-term volatility. Jan 2023: Held, unnamed, and described as a disaster to date.",
-     "links": [
-      {
-       "date": "2023-01-23",
-       "title": "YE 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2022.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2022-02-10",
-       "title": "YE 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
-       "access": "PDF"
-      }
-     ]
-    },
-    {
      "s": "CLAR",
      "name": "Clarus Corp",
      "notes": [
@@ -22123,67 +22819,34 @@
      ]
     },
     {
-     "s": "",
-     "name": "Countryside Partnerships",
+     "s": "ENZ",
+     "name": "Enzo Biochem",
      "notes": [
       {
-       "date": "2022-07-18",
-       "title": "H1 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
-       "text": "Held despite a broken thesis: buybacks were suspended for a sale process after an activist bid; about 100% upside from a sale on GBP60-80M of potential synergies."
+       "date": "2024-01-24",
+       "title": "YE 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "text": "Exited at a permanent loss after Labcorp cut its purchase price for Enzo's clinical labs business following a cyber attack."
       },
       {
-       "date": "2022-02-10",
-       "title": "YE 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
-       "text": "New position: UK homebuilder moving to an asset-light partnership model; bought from dividend-focused sellers after the dividend was eliminated and added after an earnings miss; expects a large buyback to support the shares. NVR is the model it should emulate."
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
+       "text": "Recent small position: Enzo agreed to sell its clinical lab to LabCorp and he bought below expected cash value; a ransomware attack cut the deal price by about $33M, leaving a loss though shares remain below his cash estimate."
       }
      ],
-     "summary": "UK homebuilder moving to an asset-light model, bought in late 2021 after its dividend was cut; buybacks were suspended when an activist bid triggered a sale process, and Vistry acquired it in November 2022.",
+     "summary": "Jul 2023: Recent small position: Enzo agreed to sell its clinical lab to LabCorp and he bought below expected cash value; a ransomware attack cut the deal price by about $33M, leaving a loss though shares remain below his cash estimate. Jan 2024: Exited at a permanent loss after Labcorp cut its purchase price for Enzo's clinical labs business following a cyber attack.",
      "links": [
       {
-       "date": "2022-07-18",
-       "title": "H1 2022 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H22.pdf",
+       "date": "2024-01-24",
+       "title": "YE 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
        "access": "PDF"
       },
       {
-       "date": "2022-02-10",
-       "title": "YE 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
-       "access": "PDF"
-      }
-     ]
-    },
-    {
-     "s": "",
-     "name": "Houghton Mifflin Harcourt",
-     "notes": [
-      {
-       "date": "2022-02-10",
-       "title": "YE 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
-       "text": "Top-5 long: cash flow rising and normalized EPS could double in 4-5 years; Bloomberg reported a sale exploration; he stays a holder unless offered a very substantial premium."
-      },
-      {
-       "date": "2021-07-23",
-       "title": "H1 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H1-2021-gggt.pdf",
-       "text": "New top-five holding: he expects large free cash flow from federal stimulus, digital adoption and possible M&A; about 6.5x normalized FCF; McGraw Hill recently sold at 10x EBITDA. (Idea prompted by Chris Colvin of Breach Inlet.)"
-      }
-     ],
-     "summary": "Educational publisher bought in 2021 as a top-five holding on federal stimulus-driven free cash flow (about 6.5x normalized FCF) and M&A; he said he would stay a holder absent a very substantial premium. (A related 2022 public letter to its board is on the firm's site.)",
-     "links": [
-      {
-       "date": "2022-02-10",
-       "title": "YE 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE-2021.pdf",
-       "access": "PDF"
-      },
-      {
-       "date": "2021-07-23",
-       "title": "H1 2021 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H1-2021-gggt.pdf",
+       "date": "2023-07-19",
+       "title": "H1 2023 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-H123-Letter.pdf",
        "access": "PDF"
       }
      ]
@@ -22217,6 +22880,180 @@
        "date": "2024-01-24",
        "title": "YE 2023 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "",
+     "name": "Playa Hotels & Resorts",
+     "notes": [
+      {
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "text": "Cited as a recent buyout and an example of private markets correcting undervaluation."
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Held and being bought out; the deal adds to the fund's cash."
+      }
+     ],
+     "summary": "Apr 2025: Held and being bought out; the deal adds to the fund's cash. Jul 2025: Cited as a recent buyout and an example of private markets correcting undervaluation.",
+     "links": [
+      {
+       "date": "2025-07-19",
+       "title": "H1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "LRN",
+     "name": "Stride",
+     "notes": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "text": "Held: lost a Texas school that is not renewing and shares were punished; single-digit cash flow multiple and a large buyback; re-rating expected if tech problems are fixed."
+      },
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "text": "New mid-sized position bought after a 50%+ drop tied to a failed software rollout; below 7.5x EBIT; he expects a re-rating once the fixes take hold ('either they can fix their software, or they cannot')."
+      }
+     ],
+     "summary": "Online-schooling company bought in Q1 2026 after a 50%+ fall tied to a failed software rollout; below 7.5x EBIT with a large buyback; a re-rating if the software is fixed.",
+     "links": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "TBPH",
+     "name": "Theravance Biopharma",
+     "notes": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "text": "Sold near quarter-end at the low end of his expected range after a strategic review."
+      },
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "text": "Top-5 position bought below $14 after a failed Phase 3 trial; downside protected by cash. He expects a sale of its YUPELRI royalty (likely buyer Viatris or Royalty Pharma) in 0-6 months, worth $17-25, and gives $2.6B of Irish tax assets zero value."
+      }
+     ],
+     "summary": "Bought below $14 in early 2026 after a failed Phase 3 as a cash-and-royalty situation with a YUPELRI royalty to sell; sold near the end of Q2 2026 at the low end of his range.",
+     "links": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "XPOF",
+     "name": "Xponential Fitness",
+     "notes": [
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "text": "Upsized to a top-5 position in Q1 after regulatory issues eased, then shares fell about half on weak store openings and guidance; he calls the upsizing a mistake but sees Club Pilates still executing."
+      },
+      {
+       "date": "2024-07-15",
+       "title": "H1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "text": "Bought in May after a short report and the CEO's removal drove shares down: franchisor economics, a new CEO, possible divestitures and buybacks; an SEC probe is an overhang; a franchise-peer multiple could mean a 200%+ rally."
+      }
+     ],
+     "summary": "Jul 2024: Bought in May after a short report and the CEO's removal drove shares down: franchisor economics, a new CEO, possible divestitures and buybacks; an SEC probe is an overhang; a franchise-peer multiple could mean a 200%+ rally. Apr 2025: Upsized to a top-5 position in Q1 after regulatory issues eased, then shares fell about half on weak store openings and guidance; he calls the upsizing a mistake but sees Club Pilates still executing.",
+     "links": [
+      {
+       "date": "2025-04-24",
+       "title": "Q1 2025 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q125-Letter.pdf",
+       "access": "PDF"
+      },
+      {
+       "date": "2024-07-15",
+       "title": "H1 2024 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "ANAB",
+     "name": "AnaptysBio",
+     "notes": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "text": "New position: a royalty company on GSK's Jemperli, with a Delaware trial against GSK set for July 14-17, 2026. He sees a settlement, higher royalties or a buyout; $65-69 DCF with takeout scenarios near $96-100. About $325M of non-recourse Sagard debt must be paid down; it also holds a 10% royalty on Vanda's imsidolimab (about $3-4 a share) and spun off First Tracks Biotherapeutics in April 2026."
+      }
+     ],
+     "summary": "New in Q2 2026: a royalty company on GSK's Jemperli with a July 2026 Delaware trial. He sees a settlement, higher royalties or a buyout; DCF $65-69, takeout $96-100.",
+     "links": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "access": "PDF"
+      }
+     ]
+    },
+    {
+     "s": "AVNS",
+     "name": "Avanos Medical",
+     "notes": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
+       "text": "Position that was acquired at a 72% premium; he saw the feeding-tube business as the attractive part, obscured by a struggling pain-management unit."
+      }
+     ],
+     "summary": "Position that was acquired at a 72% premium; he saw the feeding-tube business as the attractive part, obscured by a struggling pain-management unit.",
+     "links": [
+      {
+       "date": "2026-07-14",
+       "title": "H1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-H1-2026-Letter.pdf",
        "access": "PDF"
       }
      ]
@@ -22259,27 +23096,6 @@
        "date": "2020-07-23",
        "title": "H1 2020 Letter to Partners",
        "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-1H20.pdf",
-       "access": "PDF"
-      }
-     ]
-    },
-    {
-     "s": "ENZ",
-     "name": "Enzo Biochem",
-     "notes": [
-      {
-       "date": "2024-01-24",
-       "title": "YE 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
-       "text": "Exited at a permanent loss after Labcorp cut its purchase price for Enzo's clinical labs business following a cyber attack."
-      }
-     ],
-     "summary": "Exited at a permanent loss after Labcorp cut its purchase price for Enzo's clinical labs business following a cyber attack.",
-     "links": [
-      {
-       "date": "2024-01-24",
-       "title": "YE 2023 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-YE23-Letter2.pdf",
        "access": "PDF"
       }
      ]
@@ -22370,27 +23186,6 @@
     },
     {
      "s": "",
-     "name": "Playa Hotels & Resorts",
-     "notes": [
-      {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
-       "text": "Cited as a recent buyout and an example of private markets correcting undervaluation."
-      }
-     ],
-     "summary": "Cited as a recent buyout and an example of private markets correcting undervaluation.",
-     "links": [
-      {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
-       "access": "PDF"
-      }
-     ]
-    },
-    {
-     "s": "",
      "name": "Points International",
      "notes": [
       {
@@ -22474,22 +23269,22 @@
      ]
     },
     {
-     "s": "SES.TO",
-     "name": "SECURE Waste Infrastructure",
+     "s": "",
+     "name": "Undisclosed new top-5 position (Q1 2026)",
      "notes": [
       {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
-       "text": "New position: Western Canadian oil-industry waste manager, about 80% recurring cash flow with adjusted EBITDA margins above 30%; a 7.5x forced-sale multiple sets a floor and buybacks could drive returns. Waste Connections bought 29 divested Tervita sites in 2024 for $1.15B; GFL sold a majority of its environmental business at about 16x EBITDA."
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
+       "text": "A new 'good co / bad co' situation with an unlevered balance sheet at about 10x his normalized FCF; board changes and an activist's arrival suggest the good business will be allowed to shine; he plans to add."
       }
      ],
-     "summary": "Western Canadian oilfield waste manager bought in H1 2025: about 80% recurring cash flow, margins above 30%, a 7.5x forced-sale floor and aggressive buybacks.",
+     "summary": "A new 'good co / bad co' situation with an unlevered balance sheet at about 10x his normalized FCF; board changes and an activist's arrival suggest the good business will be allowed to shine; he plans to add.",
      "links": [
       {
-       "date": "2025-07-19",
-       "title": "H1 2025 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/LWC-Q225-Letter.pdf",
+       "date": "2026-04-20",
+       "title": "Q1 2026 Letter to Partners",
+       "url": "https://www.laughingwatercapital.com/s/LWC-Q1-2026-Letter.pdf",
        "access": "PDF"
       }
      ]
@@ -22514,32 +23309,11 @@
        "access": "PDF"
       }
      ]
-    },
-    {
-     "s": "XPOF",
-     "name": "Xponential Fitness",
-     "notes": [
-      {
-       "date": "2024-07-15",
-       "title": "H1 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
-       "text": "Bought in May after a short report and the CEO's removal drove shares down: franchisor economics, a new CEO, possible divestitures and buybacks; an SEC probe is an overhang; a franchise-peer multiple could mean a 200%+ rally."
-      }
-     ],
-     "summary": "Bought in May after a short report and the CEO's removal drove shares down: franchisor economics, a new CEO, possible divestitures and buybacks; an SEC probe is an overhang; a franchise-peer multiple could mean a 200%+ rally.",
-     "links": [
-      {
-       "date": "2024-07-15",
-       "title": "H1 2024 Letter to Partners",
-       "url": "https://www.laughingwatercapital.com/s/Laughing-Water-Capital-Q224-Letter.pdf",
-       "access": "PDF"
-      }
-     ]
     }
    ],
    "logo": "<svg viewBox=\"0 0 64 64\" width=\"64\" height=\"64\"><rect width=\"64\" height=\"64\" rx=\"14\" fill=\"#0f2433\"/><path d=\"M32 8C32 8 16 28 16 38a16 16 0 0032 0C48 28 32 8 32 8Z\" fill=\"none\" stroke=\"#22d3ee\" stroke-width=\"3\"/><text x=\"32\" y=\"38\" text-anchor=\"middle\" font-family=\"Georgia,serif\" font-weight=\"700\" font-size=\"17\" fill=\"#fff\">LW</text></svg>",
    "listLabel": "Recent letters",
-   "coverage": "14 of the 37 periodic letters on the firm's letters page are read so far (Q3 2017, H1 2020 through Q3 2025 where available). The others, including the Q1 2026 and H1 2026 letters and most 2016-2019 letters, could not be retrieved by my tools and are not included yet. Letter dates are approximate (the files carry only the month). Some holdings have since been acquired or gone private and have no chart link.",
+   "coverage": "22 of the 37 periodic letters on the firm site's letters page are read (Q3 2017, H1 2020, Q4 2020 onward, with Q3 2020 missing). Not yet included: 2016, 2017 (H1, year-end), 2018, 2019, Q1 2020, the March 2020 interim and Q3 2020, because only summaries or no text could be retrieved. Letter dates are approximate. Some holdings have since been acquired or gone private and have no chart link.",
    "profile": [
     "Laughing Water Capital is a small, concentrated long-only equity fund (Laughing Water Capital, LP and, since 2021, Laughing Water Capital II, LP) run by Matt Sweeney, CFA, Managing Partner of LW Capital Management, LLC, from a base about 40 minutes outside New York City. It writes to partners twice a year and its auditor is Spicer Jeffries.",
     "How it invests: about 15 stocks, mostly small and micro caps, in good businesses facing temporary operating, optical or structural problems and led by incentivized management, often with insider buying. He says he buys at 'special-situation prices', thinks 3-5 years ahead and gives little weight to macro forecasts. Recurring themes in the letters are spectrum assets, asset-light homebuilding, restaurant software, CDMOs and SaaS.",
@@ -22556,44 +23330,62 @@
     }
    ],
    "purchases": {
-    "title": "Positions named in the latest letter I could read (Q3 2025, October 2025)",
-    "note": "The Q1 2026 and H1 2026 letters exist on the firm site but were not retrievable, so this is not the current portfolio. Four unnamed small positions bought in late 2024 were not identified.",
+    "title": "Positions named in the latest letter (H1 2026, dated July 14, 2026)",
+    "note": "As named in the letter; one top-5 position from the Q1 2026 letter is undisclosed. Positions may have changed since July 2026. Not a record of the whole portfolio.",
     "rows": [
      {
-      "s": "CLAR",
-      "name": "Clarus Corp",
-      "status": "Held",
-      "detail": "Black Diamond and Rhino-Rack; well below private-market value; insiders buying."
+      "s": "ANAB",
+      "name": "AnaptysBio",
+      "status": "New position",
+      "detail": "Jemperli royalty; Delaware trial vs GSK; DCF $65-69, takeout $96-100."
      },
      {
-      "s": "LFCR",
-      "name": "Lifecore Biomedical",
+      "s": "LQDA",
+      "name": "Liquidia",
       "status": "Held",
-      "detail": "Fill-finish CDMO with excess capacity and high operating leverage."
+      "detail": "YUTREPIA launch; $6-8 EPS next year; patent ruling vs United Therapeutics pending."
      },
      {
       "s": "NN",
       "name": "NextNav",
       "status": "Held",
-      "detail": "Spectrum and alternative GPS; FCC decision pending; AT&T/EchoStar comp implies about $60."
+      "detail": "Awaiting an FCC proposed rule for its spectrum; balance sheet improved."
      },
      {
-      "s": "PAR",
-      "name": "PAR Technology",
+      "s": "LFCR",
+      "name": "Lifecore Biomedical",
       "status": "Held",
-      "detail": "Restaurant software; record backlog; pursuing three mega-deals."
+      "detail": "Evaluating strategic alternatives, which he expects to lead to a sale."
      },
      {
-      "s": "THRY",
-      "name": "Thryv Holdings",
+      "s": "LRN",
+      "name": "Stride",
       "status": "Held",
-      "detail": "About 9x FY26 SaaS EBITDA; four insiders bought this year."
+      "detail": "Single-digit cash flow multiple after a software rollout stumble; large buyback."
      },
      {
-      "s": "VTY.L",
-      "name": "Vistry Group",
-      "status": "Held",
-      "detail": "About 4.5x 2026 EBIT; GBP39B government program; CEO bought about GBP1M."
+      "s": "",
+      "name": "Undisclosed top-5 position",
+      "status": "Held (from Q1 2026)",
+      "detail": "Unlevered good-co/bad-co situation at about 10x normalized FCF."
+     },
+     {
+      "s": "TBPH",
+      "name": "Theravance Biopharma",
+      "status": "Sold",
+      "detail": "Sold near quarter-end at the low end of his range."
+     },
+     {
+      "s": "AVNS",
+      "name": "Avanos Medical",
+      "status": "Acquired",
+      "detail": "Bought out at a 72% premium."
+     },
+     {
+      "s": "SES.TO",
+      "name": "SECURE Waste Infrastructure",
+      "status": "Acquired",
+      "detail": "Taken over by GFL in cash and stock; he was disappointed."
      }
     ]
    }
