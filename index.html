@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Markets</title>
+<script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"
   onerror="var s=document.createElement('script');s.src='https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js';document.head.appendChild(s)"></script>
@@ -13,6 +14,44 @@
   .num { font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
   input:focus-visible, button:focus-visible, select:focus-visible { outline:2px solid #5eb0e5; outline-offset:2px; }
   thead th { position:sticky; top:0; background:#151b22; z-index:1; }
+  /* Light theme (default). Add class "dark" on <html> for the original dark look. */
+  html:not(.dark) { color-scheme: light; }
+  html:not(.dark) body { background:#f6f3ec; color:#2d343c; }
+  html:not(.dark) thead th { background:#fbfaf6; }
+  html:not(.dark) .bg-\[\#151b22\] { background-color:#fffefb; }
+  html:not(.dark) .bg-gradient-to-br { background-image:none; background-color:#fffefb; }
+  html:not(.dark) .bg-\[\#0f1419\] { background-color:#fffefb; }
+  html:not(.dark) .text-white { color:#1b2128; }
+  html:not(.dark) .bg-sky-600.text-white { color:#fff; }
+  html:not(.dark) .text-slate-200 { color:#2d343c; }
+  html:not(.dark) .text-slate-300 { color:#3b444e; }
+  html:not(.dark) .text-slate-400 { color:#59636e; }
+  html:not(.dark) .text-slate-500 { color:#6c7681; }
+  html:not(.dark) .text-slate-600 { color:#8b949d; }
+  html:not(.dark) .placeholder\:text-slate-600::placeholder, html:not(.dark) .placeholder-slate-500::placeholder { color:#8b949d; }
+  html:not(.dark) .border-slate-800, html:not(.dark) .border-slate-700 { border-color:#e2dccf; }
+  html:not(.dark) .border-slate-600 { border-color:#cfc8b8; }
+  html:not(.dark) .divide-slate-800 > :not([hidden]) ~ :not([hidden]), html:not(.dark) .divide-slate-700 > :not([hidden]) ~ :not([hidden]), html:not(.dark) .divide-slate-800\/70 > :not([hidden]) ~ :not([hidden]) { border-color:#e8e3d7; }
+  html:not(.dark) .decoration-slate-600 { text-decoration-color:#c3bcab; }
+  html:not(.dark) .bg-slate-800 { background-color:#ebe6da; }
+  html:not(.dark) .bg-slate-700 { background-color:#ddd6c6; }
+  html:not(.dark) .hover\:bg-slate-800:hover, html:not(.dark) .hover\:bg-slate-800\/50:hover, html:not(.dark) .hover\:bg-slate-800\/40:hover { background-color:#efeadf; }
+  html:not(.dark) .hover\:bg-slate-700:hover { background-color:#e2dccd; }
+  html:not(.dark) .focus\:border-slate-600:focus { border-color:#9a937f; }
+  html:not(.dark) .hover\:text-white:hover, html:not(.dark) .hover\:text-slate-200:hover { color:#1b2128; }
+  html:not(.dark) .text-emerald-400, html:not(.dark) .text-emerald-400\/80 { color:#0d7f58; }
+  html:not(.dark) .hover\:text-emerald-300:hover { color:#0a6646; }
+  html:not(.dark) .text-red-400 { color:#bd3b35; }
+  html:not(.dark) .hover\:text-red-400:hover { color:#bd3b35; }
+  html:not(.dark) .text-amber-400 { color:#9a6200; }
+  html:not(.dark) .hover\:text-amber-200:hover { color:#7a4d00; }
+  html:not(.dark) .text-sky-400, html:not(.dark) .text-sky-300 { color:#1a6aa3; }
+  html:not(.dark) .hover\:text-sky-300:hover, html:not(.dark) .hover\:text-sky-200:hover { color:#0b4f82; }
+  html:not(.dark) .hover\:decoration-sky-400:hover { text-decoration-color:#1a6aa3; }
+  html:not(.dark) .text-sky-500\/20 { color:rgba(26,106,163,.18); }
+  html:not(.dark) input, html:not(.dark) select { color:#2d343c; }
+  .theme-btn { cursor:pointer; }
+
 </style>
 </head>
 <body class="min-h-screen">
@@ -25,6 +64,7 @@
     </div>
     <div class="flex items-center gap-3">
       <span id="mode" class="text-xs px-2 py-1 rounded border border-slate-700 text-slate-400">…</span>
+      <button id="themeBtn" type="button" class="theme-btn text-sm px-3 py-1.5 rounded border border-slate-700 text-slate-300 hover:text-white" aria-label="Switch between light and dark theme"></button>
       <button id="refresh" class="text-sm px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 disabled:opacity-50">Refresh prices</button>
     </div>
   </header>
@@ -266,6 +306,24 @@
 </main>
 
 <script>
+// ---- Theme (light by default, dark optional) ---------------------------------------------
+function isDark() { return document.documentElement.classList.contains('dark'); }
+function themeColors() {
+  return isDark()
+    ? {bg: '#151b22', text: '#9aa7b5', grid: '#1d2630', border: '#263040', up: '#34d399', down: '#f87171', ink: '#ffffff', gridLine: '#1e293b'}
+    : {bg: '#fffefb', text: '#59636e', grid: '#efeadf', border: '#d9d2c2', up: '#0d9166', down: '#d14a43', ink: '#1b2128', gridLine: '#e6e0d3'};
+}
+(function () {
+  const b = document.getElementById('themeBtn'); if (!b) return;
+  const paint = () => { b.textContent = isDark() ? 'Light theme' : 'Dark theme'; };
+  paint();
+  b.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    try { localStorage.setItem('theme', isDark() ? 'dark' : 'light'); } catch (e) {}
+    location.reload();
+  });
+})();
+
 const KEY = 'watchlist.v2';
 // [Yahoo symbol, name, target price, price when imported, note]
 const DEFAULTS = [
@@ -796,10 +854,10 @@ function ensureChart() {
   const box = $('chBox');
   lwChart = LW.createChart(box, {
     width: box.clientWidth, height: box.clientHeight,
-    layout: {background: {type: 'solid', color: '#151b22'}, textColor: '#9aa7b5', fontFamily: "'IBM Plex Sans', system-ui, sans-serif"},
-    grid: {vertLines: {color: '#1d2630'}, horzLines: {color: '#1d2630'}},
-    rightPriceScale: {borderColor: '#263040'},
-    timeScale: {borderColor: '#263040', timeVisible: false, secondsVisible: false},
+    layout: {background: {type: 'solid', color: themeColors().bg}, textColor: themeColors().text, fontFamily: "'IBM Plex Sans', system-ui, sans-serif"},
+    grid: {vertLines: {color: themeColors().grid}, horzLines: {color: themeColors().grid}},
+    rightPriceScale: {borderColor: themeColors().border},
+    timeScale: {borderColor: themeColors().border, timeVisible: false, secondsVisible: false},
     crosshair: {mode: LW.CrosshairMode.Normal}
   });
   new ResizeObserver(() => {
@@ -845,9 +903,9 @@ function drawChart(d) {
   chartBars = bars; chartCur = d.cur; barByTime = {};
   bars.forEach(b => { barByTime[b.time] = b; });
   const first = (R.range === '1d' && d.prev) ? d.prev : bars[0].close, last = bars[bars.length - 1].close;
-  const up = last >= first, col = up ? '#34d399' : '#f87171';
+  const up = last >= first, col = up ? themeColors().up : themeColors().down;
   if (CH.type === 1) {
-    priceSeries = lwChart.addCandlestickSeries({upColor: '#34d399', downColor: '#f87171', borderVisible: false, wickUpColor: '#34d399', wickDownColor: '#f87171'});
+    priceSeries = lwChart.addCandlestickSeries({upColor: themeColors().up, downColor: themeColors().down, borderVisible: false, wickUpColor: themeColors().up, wickDownColor: themeColors().down});
     priceSeries.setData(bars.map(b => ({time: b.time, open: b.open, high: b.high, low: b.low, close: b.close})));
   } else {
     priceSeries = lwChart.addAreaSeries({lineColor: col, topColor: up ? 'rgba(52,211,153,0.28)' : 'rgba(248,113,113,0.28)', bottomColor: 'rgba(21,27,34,0)', lineWidth: 2});
@@ -1339,7 +1397,7 @@ const SEMPER_METHODS = [
   {k: 'gaap', label: 'GAAP-adjusted', color: '#a78bfa'},
   {k: 'book', label: 'Price to book', color: '#34d399'},
   {k: 'two', label: 'Two-pronged', color: '#f472b6'},
-  {k: 'avg', label: 'Simple average', color: '#ffffff'}
+  {k: 'avg', label: 'Simple average', color: isDark() ? '#ffffff' : '#1b2128'}
 ];
 const semperFmt = (v, unit) => unit === 'm' ? '$' + v.toLocaleString('en-US') + 'B' : unit === 'a' ? '$' + v.toLocaleString('en-US') : '$' + v.toLocaleString('en-US');
 
@@ -1374,7 +1432,7 @@ function semperChart(vals, unit) {
   const mk = (tag, attrs, text) => { const e = document.createElementNS(ns, tag); Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v)); if (text !== undefined) e.textContent = text; svg.appendChild(e); return e; };
   const step = (() => { const raw = hi / 5, p = Math.pow(10, Math.floor(Math.log10(raw))); const n = raw / p; return (n < 1.5 ? 1 : n < 3 ? 2 : n < 7 ? 5 : 10) * p; })();
   for (let t = 0; t <= hi; t += step) {
-    mk('line', {x1: L, x2: W - R, y1: y(t), y2: y(t), stroke: '#1e293b', 'stroke-width': 1});
+    mk('line', {x1: L, x2: W - R, y1: y(t), y2: y(t), stroke: themeColors().gridLine, 'stroke-width': 1});
     mk('text', {x: L - 8, y: y(t) + 4, 'text-anchor': 'end', fill: '#64748b', 'font-size': 11}, unit === 'm' ? '$' + (t >= 1000 ? (t / 1000).toFixed(1) + 'T' : t + 'B') : '$' + (t >= 1000 ? Math.round(t / 1000) + 'k' : t));
   }
   vals.forEach((v, i) => mk('text', {x: x(i), y: H - 12, 'text-anchor': 'middle', fill: '#64748b', 'font-size': 11}, String(v.year) + (v.status === 'expected' ? 'e' : '')));
