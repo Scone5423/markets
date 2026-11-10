@@ -1940,8 +1940,10 @@ const SC_FIELDS = [
   {k:'mcap_max', l:'Market cap max ($M)', ph:'', scale:1e6},
   {k:'chg52_max', l:'52-week change max (%)', ph:'-20'},
   {k:'sector', l:'Sector', type:'sector'},
-  {k:'region', l:'Country', type:'region'}
+  {k:'region', l:'Country', type:'region'},
+  {k:'index', l:'Index', type:'index'}
 ];
+const SC_INDEXES = [['sp500','S&P 500'],['dow','Dow Jones 30'],['nasdaq100','Nasdaq-100'],['nasdaq','Nasdaq-listed (all)'],['sp400','S&P MidCap 400'],['sp600','S&P SmallCap 600'],['russell1000','Russell 1000'],['russell2000','Russell 2000'],['russell3000','Russell 3000']];
 const SC_REGIONS = [['us','United States'],['all','All countries'],['ca','Canada'],['gb','United Kingdom'],['de','Germany'],['fr','France'],['ch','Switzerland'],['nl','Netherlands'],['se','Sweden'],['no','Norway'],['dk','Denmark'],['fi','Finland'],['it','Italy'],['es','Spain'],['be','Belgium'],['at','Austria'],['ie','Ireland'],['pt','Portugal'],['pl','Poland'],['tr','Turkey'],['il','Israel'],['za','South Africa'],['jp','Japan'],['kr','South Korea'],['tw','Taiwan'],['hk','Hong Kong'],['cn','China'],['sg','Singapore'],['in','India'],['au','Australia'],['nz','New Zealand'],['br','Brazil'],['mx','Mexico'],['ar','Argentina'],['cl','Chile']];
 const SC_SECTORS = ['Technology','Healthcare','Financial Services','Consumer Cyclical','Industrials','Energy','Utilities','Real Estate','Basic Materials','Communication Services','Consumer Defensive'];
 const SC_PRESETS = [
@@ -1964,6 +1966,10 @@ function scBuild() {
       inp = el('select', 'w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2 text-sm text-slate-200');
       inp.appendChild(new Option('Any sector', ''));
       SC_SECTORS.forEach(z => inp.appendChild(new Option(z, z)));
+    } else if (x.type === 'index') {
+      inp = el('select', 'w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2 text-sm text-slate-200');
+      inp.appendChild(new Option('Any index', ''));
+      SC_INDEXES.forEach(z => inp.appendChild(new Option(z[1], z[0])));
     } else if (x.type === 'region') {
       inp = el('select', 'w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2 text-sm text-slate-200');
       SC_REGIONS.forEach(z => inp.appendChild(new Option(z[1], z[0])));
@@ -1978,7 +1984,7 @@ function scBuild() {
   SC_PRESETS.forEach(p => {
     const b = el('button', 'rounded-full border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:text-white hover:border-sky-500', p.n);
     b.type = 'button'; b.title = p.d;
-    b.addEventListener('click', () => { scFill(p.f); scRun(); });
+    b.addEventListener('click', () => { const keep = {index: $('sc_index').value, region: $('sc_region').value}; scFill(Object.assign({}, keep, p.f)); scRun(); });
     pr.appendChild(b);
   });
   $('scForm').addEventListener('submit', e => { e.preventDefault(); scRun(); });
@@ -1990,14 +1996,15 @@ function scFill(vals) { SC_FIELDS.forEach(x => { $('sc_' + x.k).value = vals[x.k
 async function scRun() {
   if (scLoading) return;
   if (!cfg.worker) { $('scStatus').textContent = 'Add your price proxy address under Price sources first.'; return; }
-  const q = new URLSearchParams({screen: '1', size: '150', sort: 'intradaymarketcap', dir: 'DESC'});
+  const idxOn = !!$('sc_index').value;
+  const q = new URLSearchParams({screen: '1', size: idxOn ? '500' : '150', sort: 'intradaymarketcap', dir: 'DESC'});
   SC_FIELDS.forEach(x => {
     const v = $('sc_' + x.k).value.trim(); if (v === '') return;
     q.set(x.k, x.scale ? String(+v * x.scale) : v);
   });
   scLoading = true; $('scStatus').textContent = 'Running…';
   try {
-    const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?' + q.toString(), 30000);
+    const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?' + q.toString(), idxOn ? 60000 : 30000);
     if (d.error) throw new Error(d.error);
     scRows = (d.rows || []).filter(r => r && r.s);
     scScore();

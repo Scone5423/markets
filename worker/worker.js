@@ -594,6 +594,95 @@ const SCREEN_SORTS = ['intradaymarketcap', 'peratio.lasttwelvemonths', 'priceboo
 const SCREEN_SECTORS = ['Technology', 'Healthcare', 'Financial Services', 'Consumer Cyclical', 'Industrials', 'Energy', 'Utilities',
   'Real Estate', 'Basic Materials', 'Communication Services', 'Consumer Defensive'];
 const SCREEN_REGIONS = ['us', 'ca', 'gb', 'de', 'fr', 'ch', 'nl', 'se', 'no', 'dk', 'fi', 'it', 'es', 'be', 'at', 'ie', 'pt', 'jp', 'kr', 'tw', 'hk', 'cn', 'sg', 'in', 'au', 'nz', 'br', 'mx', 'ar', 'cl', 'za', 'il', 'tr', 'pl'];
+// Index membership. Yahoo's screener cannot filter by index, so we fetch the member list
+// (Wikipedia tables or iShares fund holdings) and keep only matching rows.
+const WIKI = 'https://en.wikipedia.org/wiki/';
+const IDX_SOURCES = {
+  sp500: { wiki: 'List_of_S%26P_500_companies' },
+  dow: { wiki: 'Dow_Jones_Industrial_Average' },
+  nasdaq100: { wiki: 'Nasdaq-100' },
+  sp400: { wiki: 'List_of_S%26P_400_companies' },
+  sp600: { wiki: 'List_of_S%26P_600_companies' },
+  russell1000: { ishares: 'https://www.ishares.com/us/products/239707/ishares-russell-1000-etf/1467271812596.ajax?fileType=csv&fileName=IWB_holdings&dataType=fund' },
+  russell2000: { ishares: 'https://www.ishares.com/us/products/239710/ishares-russell-2000-etf/1467271812596.ajax?fileType=csv&fileName=IWM_holdings&dataType=fund' },
+  russell3000: { ishares: 'https://www.ishares.com/us/products/239714/ishares-russell-3000-etf/1467271812596.ajax?fileType=csv&fileName=IWV_holdings&dataType=fund' }
+};
+const NASDAQ_LISTED = ['NMS', 'NGM', 'NCM'];
+const cellText = h => h.replace(/<sup[\s\S]*?<\/sup>/g, '').replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/&#160;|&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+const normSym = t => String(t || '').trim().toUpperCase().replace(/\./g, '-').replace(/[^A-Z0-9\-]/g, '');
+function wikiSymbols(html) {
+  const tables = [...html.matchAll(/<table[^>]*class="[^"]*wikitable[^"]*"[^>]*>([\s\S]*?)<\/table>/g)].map(m => m[1]);
+  let best = [];
+  for (const t of tables) {
+    const rows = [...t.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].map(m => [...m[1].matchAll(/<t([hd])[^>]*>([\s\S]*?)<\/t[hd]>/g)].map(c => cellText(c[2])));
+    const head = rows.find(r => r.some(c => /^(symbol|ticker)$/i.test(c)));
+    if (!head) continue;
+    const col = head.findIndex(c => /^(symbol|ticker)$/i.test(c));
+    const syms = rows.filter(r => r !== head && r.length > col).map(r => normSym(r[col])).filter(x => /^[A-Z][A-Z0-9\-]{0,5}$/.test(x));
+    if (syms.length > best.length) best = syms;
+  }
+  return best;
+}
+function csvSymbols(text) {
+  const lines = text.split(/\r?\n/);
+  const hi = lines.findIndex(l => /^"?Ticker"?,/i.test(l));
+  if (hi < 0) return [];
+  const out = [];
+  for (const l of lines.slice(hi + 1)) {
+    const m = /^"([^"]+)"/.exec(l);
+    if (!m) continue;
+    const t = normSym(m[1]);
+    if (/^[A-Z][A-Z0-9\-]{0,5}$/.test(t)) out.push(t);
+  }
+  return out;
+}
+async function getIndexMembers(code) {
+  const src = IDX_SOURCES[code];
+  if (!src) throw new Error('unknown index');
+  return cached('idx:' + code, 86400000, async () => {
+    let syms = [];
+    if (src.wiki) {
+      const r = await fetch(WIKI + src.wiki, { headers: { 'User-Agent': 'PersonalMarketsDashboard/1.0 (personal use)', Accept: 'text/html' } });
+      if (!r.ok) throw new Error('index list HTTP ' + r.status);
+      syms = wikiSymbols(await r.text());
+    } else {
+      const r = await fetch(src.ishares, { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/csv,*/*' } });
+      if (!r.ok) throw new Error('index list HTTP ' + r.status);
+      syms = csvSymbols(await r.text());
+    }
+    const min = { sp500: 400, dow: 25, nasdaq100: 80, sp400: 300, sp600: 500, russell1000: 800, russell2000: 1500, russell3000: 2500 }[code];
+    if (syms.length < min) throw new Error('could not read the ' + code + ' member list');
+    return { symbols: [...new Set(syms)] };
+  });
+}
+async function screenPage(operands, sortField, sortType, size, offset) {
+  const s = await getSession();
+  const r = await fetch(
+    'https://query1.finance.yahoo.com/v1/finance/screener?lang=en-US&region=US&formatted=false&corsDomain=finance.yahoo.com&crumb=' + encodeURIComponent(s.crumb),
+    {
+      method: 'POST',
+      headers: { 'User-Agent': UA, 'Content-Type': 'application/json', Cookie: s.cookie },
+      body: JSON.stringify({ size, offset, sortField, sortType, quoteType: 'EQUITY', userId: '', userIdType: 'guid',
+        query: { operator: 'AND', operands } })
+    }
+  );
+  if (!r.ok) {
+    const t = (await r.text()).slice(0, 200).replace(/\s+/g, ' ');
+    if (r.status === 401 || r.status === 403) session = null;
+    throw new Error('screener HTTP ' + r.status + ' ' + t);
+  }
+  const res = ((await r.json()).finance || {}).result;
+  if (!res || !res[0]) throw new Error('no screener result');
+  return { quotes: res[0].quotes || [], total: res[0].total };
+}
+const screenRow = q => ({
+  s: q.symbol, n: q.shortName || q.longName || '', x: q.fullExchangeName || q.exchange || '',
+  p: q.regularMarketPrice, c: q.regularMarketChangePercent, mc: q.marketCap,
+  pe: q.trailingPE, fpe: q.forwardPE, pb: q.priceToBook, eps: q.epsTrailingTwelveMonths,
+  dy: q.dividendYield != null ? q.dividendYield : q.trailingAnnualDividendYield != null ? q.trailingAnnualDividendYield * 100 : null,
+  lo: q.fiftyTwoWeekLow, hi: q.fiftyTwoWeekHigh, ch52: q.fiftyTwoWeekChangePercent,
+  ar: q.averageAnalystRating || '', bv: q.bookValue
+});
 async function runScreen(params) {
   const operands = [];
   const region = (params.get('region') || 'us').toLowerCase();
@@ -617,38 +706,27 @@ async function runScreen(params) {
   let sortField = params.get('sort') || 'intradaymarketcap';
   if (!SCREEN_SORTS.includes(sortField)) sortField = 'intradaymarketcap';
   const sortType = params.get('dir') === 'ASC' ? 'ASC' : 'DESC';
-  const size = Math.min(Math.max(parseInt(params.get('size') || '100', 10) || 100, 10), 250);
-  const s = await getSession();
-  const r = await fetch(
-    'https://query1.finance.yahoo.com/v1/finance/screener?lang=en-US&region=US&formatted=false&corsDomain=finance.yahoo.com&crumb=' + encodeURIComponent(s.crumb),
-    {
-      method: 'POST',
-      headers: { 'User-Agent': UA, 'Content-Type': 'application/json', Cookie: s.cookie },
-      body: JSON.stringify({ size, offset: 0, sortField, sortType, quoteType: 'EQUITY', userId: '', userIdType: 'guid',
-        query: { operator: 'AND', operands } })
-    }
-  );
-  if (!r.ok) {
-    const t = (await r.text()).slice(0, 200).replace(/\s+/g, ' ');
-    if (r.status === 401 || r.status === 403) session = null;
-    throw new Error('screener HTTP ' + r.status + ' ' + t);
+  const index = params.get('index') || '';
+  if (index === 'nasdaq') {
+    operands.push({ operator: 'IS-IN', operands: ['exchange', ...NASDAQ_LISTED] });
   }
-  const res = ((await r.json()).finance || {}).result;
-  if (!res || !res[0]) throw new Error('no screener result');
-  const quotes = res[0].quotes || [];
-  return {
-    total: res[0].total, count: quotes.length,
-    rows: quotes.map(q => ({
-      s: q.symbol, n: q.shortName || q.longName || '', x: q.fullExchangeName || q.exchange || '',
-      p: q.regularMarketPrice, c: q.regularMarketChangePercent, mc: q.marketCap,
-      pe: q.trailingPE, fpe: q.forwardPE, pb: q.priceToBook, eps: q.epsTrailingTwelveMonths,
-      dy: q.dividendYield != null ? q.dividendYield : q.trailingAnnualDividendYield != null ? q.trailingAnnualDividendYield * 100 : null,
-      lo: q.fiftyTwoWeekLow, hi: q.fiftyTwoWeekHigh, ch52: q.fiftyTwoWeekChangePercent,
-      ar: q.averageAnalystRating || '', bv: q.bookValue
-    }))
-  };
+  if (index && index !== 'nasdaq') {
+    // Walk the filtered universe a page at a time and keep only index members.
+    const members = new Set((await getIndexMembers(index)).symbols);
+    const want = Math.min(Math.max(parseInt(params.get('size') || '100', 10) || 100, 10), 600);
+    const rows = []; let total = null, pages = 0;
+    for (let offset = 0; offset < 6000 && pages < 24 && rows.length < want; offset += 250, pages++) {
+      const pg = await screenPage(operands, sortField, sortType, 250, offset);
+      if (total === null) total = pg.total;
+      for (const q of pg.quotes) if (members.has(normSym(q.symbol)) && rows.length < want) rows.push(screenRow(q));
+      if (pg.quotes.length < 250) break;
+    }
+    return { total: rows.length, count: rows.length, members: members.size, rows };
+  }
+  const size = Math.min(Math.max(parseInt(params.get('size') || '100', 10) || 100, 10), 250);
+  const pg = await screenPage(operands, sortField, sortType, size, 0);
+  return { total: pg.total, count: pg.quotes.length, rows: pg.quotes.map(screenRow) };
 }
-
 
 // ---- Basic financials for the Charts page ---------------------------------
 const FIN_TYPES = ['TotalRevenue', 'GrossProfit', 'OperatingIncome', 'EBITDA', 'NetIncome', 'DilutedEPS',
