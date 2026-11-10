@@ -1924,8 +1924,10 @@ const SC_FIELDS = [
   {k:'mcap_min', l:'Market cap min ($M)', ph:'300', scale:1e6},
   {k:'mcap_max', l:'Market cap max ($M)', ph:'', scale:1e6},
   {k:'chg52_max', l:'52-week change max (%)', ph:'-20'},
-  {k:'sector', l:'Sector', type:'sector'}
+  {k:'sector', l:'Sector', type:'sector'},
+  {k:'region', l:'Country', type:'region'}
 ];
+const SC_REGIONS = [['us','United States'],['all','All countries'],['ca','Canada'],['gb','United Kingdom'],['de','Germany'],['fr','France'],['ch','Switzerland'],['nl','Netherlands'],['se','Sweden'],['no','Norway'],['dk','Denmark'],['fi','Finland'],['it','Italy'],['es','Spain'],['be','Belgium'],['at','Austria'],['ie','Ireland'],['pt','Portugal'],['pl','Poland'],['tr','Turkey'],['il','Israel'],['za','South Africa'],['jp','Japan'],['kr','South Korea'],['tw','Taiwan'],['hk','Hong Kong'],['cn','China'],['sg','Singapore'],['in','India'],['au','Australia'],['nz','New Zealand'],['br','Brazil'],['mx','Mexico'],['ar','Argentina'],['cl','Chile']];
 const SC_SECTORS = ['Technology','Healthcare','Financial Services','Consumer Cyclical','Industrials','Energy','Utilities','Real Estate','Basic Materials','Communication Services','Consumer Defensive'];
 const SC_PRESETS = [
   {n:'Deep value', d:'Cheap on earnings and book, still profitable', f:{pe_max:12, pb_max:1.5, roe_min:8, mcap_min:300}},
@@ -1947,6 +1949,9 @@ function scBuild() {
       inp = el('select', 'w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2 text-sm text-slate-200');
       inp.appendChild(new Option('Any sector', ''));
       SC_SECTORS.forEach(z => inp.appendChild(new Option(z, z)));
+    } else if (x.type === 'region') {
+      inp = el('select', 'w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2 text-sm text-slate-200');
+      SC_REGIONS.forEach(z => inp.appendChild(new Option(z[1], z[0])));
     } else {
       inp = el('input', 'w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600');
       inp.type = 'number'; inp.step = 'any'; inp.placeholder = x.ph || 'any';
@@ -1966,7 +1971,7 @@ function scBuild() {
   $('scFind').addEventListener('input', scRender);
   $('scCsv').addEventListener('click', scCsv);
 }
-function scFill(vals) { SC_FIELDS.forEach(x => { $('sc_' + x.k).value = vals[x.k] !== undefined ? vals[x.k] : ''; }); }
+function scFill(vals) { SC_FIELDS.forEach(x => { $('sc_' + x.k).value = vals[x.k] !== undefined ? vals[x.k] : (x.k === 'region' ? 'us' : ''); }); }
 async function scRun() {
   if (scLoading) return;
   if (!cfg.worker) { $('scStatus').textContent = 'Add your price proxy address under Price sources first.'; return; }
@@ -2059,7 +2064,7 @@ function scRender() {
       const td = el('td', 'px-3 py-2 whitespace-nowrap ' + (c.k === 's' ? 'text-left' : 'text-right'));
       if (c.k === 's') {
         const a = el('a', 'text-sky-400 hover:underline font-medium', r.s); a.href = '#charts/' + encodeURIComponent(r.s);
-        td.appendChild(a); td.appendChild(el('span', 'ml-2 text-xs text-slate-500', (r.n || '').slice(0, 28)));
+        td.appendChild(a); td.appendChild(el('span', 'ml-2 text-xs text-slate-500', (r.n || '').slice(0, 28) + (r.x ? ' · ' + r.x : '')));
       } else {
         const v = r[c.k]; td.textContent = c.f(v);
         if (c.k === 'c' || c.k === 'ch52') td.className += typeof v === 'number' ? (v >= 0 ? ' text-emerald-400' : ' text-rose-400') : '';

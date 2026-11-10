@@ -593,8 +593,14 @@ const SCREEN_SORTS = ['intradaymarketcap', 'peratio.lasttwelvemonths', 'priceboo
   'forward_dividend_yield', 'fiftytwowkpercentchange', 'percentchange', 'pegratio_5y'];
 const SCREEN_SECTORS = ['Technology', 'Healthcare', 'Financial Services', 'Consumer Cyclical', 'Industrials', 'Energy', 'Utilities',
   'Real Estate', 'Basic Materials', 'Communication Services', 'Consumer Defensive'];
+const SCREEN_REGIONS = ['us', 'ca', 'gb', 'de', 'fr', 'ch', 'nl', 'se', 'no', 'dk', 'fi', 'it', 'es', 'be', 'at', 'ie', 'pt', 'jp', 'kr', 'tw', 'hk', 'cn', 'sg', 'in', 'au', 'nz', 'br', 'mx', 'ar', 'cl', 'za', 'il', 'tr', 'pl'];
 async function runScreen(params) {
-  const operands = [{ operator: 'EQ', operands: ['region', params.get('region') === 'all' ? 'us' : 'us'] }];
+  const operands = [];
+  const region = (params.get('region') || 'us').toLowerCase();
+  if (region !== 'all') {
+    if (!SCREEN_REGIONS.includes(region)) throw new Error('unknown country');
+    operands.push({ operator: 'EQ', operands: ['region', region] });
+  }
   for (const [k, [op, field]] of Object.entries(SCREEN_FIELDS)) {
     const raw = params.get(k);
     if (raw === null || raw === '') continue;
