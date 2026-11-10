@@ -77,6 +77,7 @@
     <a href="#semper" data-nav="semper" class="pb-3 text-sm">Semper</a>
     <a href="#pabrai" data-nav="pabrai" class="pb-3 text-sm">Dhandho</a>
     <a href="#bloggers" data-nav="bloggers" class="pb-3 text-sm">Bloggers</a>
+    <a href="#screener" data-nav="screener" class="pb-3 text-sm">Screener</a>
   </nav>
 
   <section id="view-home">
@@ -159,6 +160,30 @@
       <h2 id="bloggersTitle" class="text-3xl font-semibold text-white">Bloggers</h2>
     </div>
     <div id="bloggersBody"></div>
+  </section>
+
+
+  <section id="view-screener" hidden>
+    <div class="mb-4">
+      <h2 class="text-3xl font-semibold text-white">Screener</h2>
+      <p class="text-sm text-slate-400 mt-1">Search US-listed stocks for value. Pick a preset or set your own limits, then run it. Data comes from Yahoo Finance through your price proxy.</p>
+    </div>
+    <div id="scPresets" class="flex flex-wrap gap-2 mb-4"></div>
+    <form id="scForm" class="rounded-lg border border-slate-800 bg-[#151b22] p-4 mb-4">
+      <div id="scFields" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"></div>
+      <div class="flex flex-wrap items-center gap-3 mt-4">
+        <button type="submit" class="rounded bg-sky-600 hover:bg-sky-500 text-white text-sm px-4 py-2">Run screen</button>
+        <button type="button" id="scReset" class="rounded border border-slate-700 text-sm px-3 py-2 text-slate-300 hover:text-white">Clear</button>
+        <span id="scStatus" class="text-sm text-slate-400" role="status"></span>
+      </div>
+    </form>
+    <div id="scResultsBar" class="flex flex-wrap items-center gap-3 mb-2" hidden>
+      <input id="scFind" placeholder="Filter results by symbol or name" autocomplete="off" class="w-64 max-w-full rounded bg-[#151b22] border border-slate-700 px-3 py-2 text-sm placeholder:text-slate-500">
+      <button type="button" id="scCsv" class="rounded border border-slate-700 text-sm px-3 py-2 text-slate-300 hover:text-white">Download CSV</button>
+      <span id="scCount" class="text-sm text-slate-400"></span>
+    </div>
+    <div id="scTableWrap" class="overflow-x-auto rounded-lg border border-slate-800 bg-[#151b22]" hidden></div>
+    <p class="text-xs text-slate-500 mt-3">Value rank scores each result against the others in this list: lower P/E, forward P/E and P/B, a higher dividend yield and a bigger discount to the 52-week high all raise it (0 to 100). It is a way to sort a list, not a buy signal. Data can be delayed or missing; check filings before acting. Not investment advice.</p>
   </section>
 
   <section id="view-pabrai" hidden>
@@ -1884,21 +1909,194 @@ function renderPabraiList() {
   host.appendChild(card);
 }
 
+
+// ---- Screener -------------------------------------------------------------
+const SC_FIELDS = [
+  {k:'pe_max', l:'P/E (trailing) max', ph:'15'},
+  {k:'pb_max', l:'Price / book max', ph:'1.5'},
+  {k:'peg_max', l:'PEG (5y) max', ph:'1.5'},
+  {k:'roe_min', l:'Return on equity min (%)', ph:'12'},
+  {k:'margin_min', l:'Net margin min (%)', ph:'8'},
+  {k:'de_max', l:'Debt / equity max (%)', ph:'80'},
+  {k:'revg_min', l:'Revenue growth min (%)', ph:'5'},
+  {k:'epsg_min', l:'EPS growth min (%)', ph:'10'},
+  {k:'dy_min', l:'Dividend yield min (%)', ph:'2'},
+  {k:'mcap_min', l:'Market cap min ($M)', ph:'300', scale:1e6},
+  {k:'mcap_max', l:'Market cap max ($M)', ph:'', scale:1e6},
+  {k:'chg52_max', l:'52-week change max (%)', ph:'-20'},
+  {k:'sector', l:'Sector', type:'sector'}
+];
+const SC_SECTORS = ['Technology','Healthcare','Financial Services','Consumer Cyclical','Industrials','Energy','Utilities','Real Estate','Basic Materials','Communication Services','Consumer Defensive'];
+const SC_PRESETS = [
+  {n:'Deep value', d:'Cheap on earnings and book, still profitable', f:{pe_max:12, pb_max:1.5, roe_min:8, mcap_min:300}},
+  {n:'Quality at a fair price', d:'High returns, good margins, modest debt', f:{roe_min:15, margin_min:10, de_max:80, pe_max:20, mcap_min:1000}},
+  {n:'Dividend value', d:'Real yield from reasonably priced, not overly indebted firms', f:{dy_min:3, pe_max:18, de_max:100, mcap_min:1000}},
+  {n:'Beaten down', d:'Down 30%+ over 52 weeks but cheap and profitable', f:{chg52_max:-30, pe_max:15, roe_min:5, mcap_min:500}},
+  {n:'Small-cap contrarian', d:'Small, cheap, low debt', f:{mcap_min:100, mcap_max:2000, pe_max:15, pb_max:1.5, de_max:60}},
+  {n:'Growth at a reasonable price', d:'Growing earnings and sales without a high PEG', f:{peg_max:1.5, epsg_min:15, revg_min:10, pe_max:25, mcap_min:500}}
+];
+let scRows = [], scSort = {k:'rank', dir:-1}, scReady = false, scLoading = false;
+function scBuild() {
+  if (scReady) return; scReady = true;
+  const f = $('scFields');
+  SC_FIELDS.forEach(x => {
+    const w = el('label', 'block text-xs text-slate-400');
+    w.appendChild(el('span', 'block mb-1', x.l));
+    let inp;
+    if (x.type === 'sector') {
+      inp = el('select', 'w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2 text-sm text-slate-200');
+      inp.appendChild(new Option('Any sector', ''));
+      SC_SECTORS.forEach(z => inp.appendChild(new Option(z, z)));
+    } else {
+      inp = el('input', 'w-full rounded bg-[#0f1419] border border-slate-700 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600');
+      inp.type = 'number'; inp.step = 'any'; inp.placeholder = x.ph || 'any';
+    }
+    inp.id = 'sc_' + x.k; inp.name = x.k;
+    w.appendChild(inp); f.appendChild(w);
+  });
+  const pr = $('scPresets');
+  SC_PRESETS.forEach(p => {
+    const b = el('button', 'rounded-full border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:text-white hover:border-sky-500', p.n);
+    b.type = 'button'; b.title = p.d;
+    b.addEventListener('click', () => { scFill(p.f); scRun(); });
+    pr.appendChild(b);
+  });
+  $('scForm').addEventListener('submit', e => { e.preventDefault(); scRun(); });
+  $('scReset').addEventListener('click', () => { scFill({}); });
+  $('scFind').addEventListener('input', scRender);
+  $('scCsv').addEventListener('click', scCsv);
+}
+function scFill(vals) { SC_FIELDS.forEach(x => { $('sc_' + x.k).value = vals[x.k] !== undefined ? vals[x.k] : ''; }); }
+async function scRun() {
+  if (scLoading) return;
+  if (!cfg.worker) { $('scStatus').textContent = 'Add your price proxy address under Price sources first.'; return; }
+  const q = new URLSearchParams({screen: '1', size: '150', sort: 'intradaymarketcap', dir: 'DESC'});
+  SC_FIELDS.forEach(x => {
+    const v = $('sc_' + x.k).value.trim(); if (v === '') return;
+    q.set(x.k, x.scale ? String(+v * x.scale) : v);
+  });
+  scLoading = true; $('scStatus').textContent = 'Running…';
+  try {
+    const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?' + q.toString(), 30000);
+    if (d.error) throw new Error(d.error);
+    scRows = (d.rows || []).filter(r => r && r.s);
+    scScore();
+    scSort = {k:'rank', dir:-1};
+    $('scStatus').textContent = scRows.length ? 'Showing ' + scRows.length + (d.total && d.total > scRows.length ? ' of ' + d.total.toLocaleString() + ' matches (largest first)' : ' matches') + '.' : 'No stocks matched. Loosen a limit and try again.';
+    scRender();
+  } catch (e) {
+    $('scStatus').textContent = 'Could not run the screen: ' + (e.message || e) + '. If this says the screener is missing, redeploy the updated Worker code.';
+  }
+  scLoading = false;
+}
+function scScore() {
+  const n = scRows.length;
+  const rankOf = (get, asc) => {
+    const vals = scRows.map((r, i) => ({i, v: get(r)})).filter(o => typeof o.v === 'number' && isFinite(o.v));
+    vals.sort((a, b) => asc ? a.v - b.v : b.v - a.v);
+    const out = new Array(n).fill(null);
+    vals.forEach((o, j) => { out[o.i] = vals.length > 1 ? 1 - j / (vals.length - 1) : 0.5; });
+    return out;
+  };
+  const parts = [
+    rankOf(r => r.pe > 0 ? r.pe : null, true),
+    rankOf(r => r.fpe > 0 ? r.fpe : null, true),
+    rankOf(r => r.pb > 0 ? r.pb : null, true),
+    rankOf(r => typeof r.dy === 'number' ? r.dy : null, false),
+    rankOf(r => r.hi > 0 && r.p > 0 ? r.p / r.hi : null, true)
+  ];
+  scRows.forEach((r, i) => {
+    const v = parts.map(p => p[i]).filter(x => x !== null);
+    r.rank = v.length >= 3 ? Math.round(100 * v.reduce((a, b) => a + b, 0) / v.length) : null;
+    r.off = r.hi > 0 && r.p > 0 ? (r.p / r.hi - 1) * 100 : null;
+  });
+}
+const SC_COLS = [
+  {k:'rank', l:'Value rank', f: v => v === null ? '—' : String(v)},
+  {k:'s', l:'Stock'},
+  {k:'p', l:'Price', f: v => typeof v === 'number' ? v.toFixed(2) : '—'},
+  {k:'c', l:'Day', f: v => typeof v === 'number' ? fmtPct(v) : '—'},
+  {k:'mc', l:'Mkt cap', f: v => !v ? '—' : v >= 1e12 ? (v/1e12).toFixed(2)+'T' : v >= 1e9 ? (v/1e9).toFixed(1)+'B' : (v/1e6).toFixed(0)+'M'},
+  {k:'pe', l:'P/E', f: v => typeof v === 'number' ? v.toFixed(1) : '—'},
+  {k:'fpe', l:'Fwd P/E', f: v => typeof v === 'number' ? v.toFixed(1) : '—'},
+  {k:'pb', l:'P/B', f: v => typeof v === 'number' ? v.toFixed(2) : '—'},
+  {k:'dy', l:'Div yld', f: v => typeof v === 'number' ? v.toFixed(2) + '%' : '—'},
+  {k:'off', l:'From 52w high', f: v => typeof v === 'number' ? v.toFixed(0) + '%' : '—'},
+  {k:'ch52', l:'52w chg', f: v => typeof v === 'number' ? fmtPct(v) : '—'},
+  {k:'ar', l:'Analysts', f: v => v ? String(v).replace(/^\d+(\.\d+)?\s*-\s*/, '') : '—'}
+];
+function scVisible() {
+  const t = $('scFind').value.trim().toLowerCase();
+  let rows = scRows.filter(r => !t || r.s.toLowerCase().includes(t) || (r.n || '').toLowerCase().includes(t));
+  const k = scSort.k, d = scSort.dir;
+  rows = rows.slice().sort((a, b) => {
+    let x = a[k], y = b[k];
+    if (k === 's') return d * String(x).localeCompare(String(y));
+    if (k === 'ar') { x = parseFloat(x); y = parseFloat(y); }
+    const nx = typeof x !== 'number' || !isFinite(x), ny = typeof y !== 'number' || !isFinite(y);
+    if (nx && ny) return 0; if (nx) return 1; if (ny) return -1;
+    return d * (x - y);
+  });
+  return rows;
+}
+function scRender() {
+  const wrap = $('scTableWrap'), bar = $('scResultsBar');
+  if (!scRows.length) { wrap.hidden = true; bar.hidden = true; return; }
+  const rows = scVisible();
+  wrap.hidden = false; bar.hidden = false; wrap.innerHTML = '';
+  $('scCount').textContent = rows.length + ' shown';
+  const tb = el('table', 'w-full text-sm num'), hd = el('thead', 'text-xs text-slate-400'), hr = el('tr');
+  SC_COLS.forEach(c => {
+    const th = el('th', 'px-3 py-2 font-medium whitespace-nowrap cursor-pointer select-none ' + (c.k === 's' ? 'text-left' : 'text-right'), c.l + (scSort.k === c.k ? (scSort.dir > 0 ? ' ▲' : ' ▼') : ''));
+    th.addEventListener('click', () => { scSort = {k: c.k, dir: scSort.k === c.k ? -scSort.dir : (c.k === 's' ? 1 : (['pe','fpe','pb'].includes(c.k) ? 1 : -1))}; scRender(); });
+    hr.appendChild(th);
+  });
+  hd.appendChild(hr); tb.appendChild(hd);
+  const body = el('tbody');
+  rows.forEach(r => {
+    const tr = el('tr', 'border-t border-slate-800');
+    SC_COLS.forEach(c => {
+      const td = el('td', 'px-3 py-2 whitespace-nowrap ' + (c.k === 's' ? 'text-left' : 'text-right'));
+      if (c.k === 's') {
+        const a = el('a', 'text-sky-400 hover:underline font-medium', r.s); a.href = '#charts/' + encodeURIComponent(r.s);
+        td.appendChild(a); td.appendChild(el('span', 'ml-2 text-xs text-slate-500', (r.n || '').slice(0, 28)));
+      } else {
+        const v = r[c.k]; td.textContent = c.f(v);
+        if (c.k === 'c' || c.k === 'ch52') td.className += typeof v === 'number' ? (v >= 0 ? ' text-emerald-400' : ' text-rose-400') : '';
+        if (c.k === 'rank' && typeof v === 'number') td.className += v >= 70 ? ' text-emerald-400 font-medium' : v < 30 ? ' text-slate-500' : '';
+      }
+      tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+  tb.appendChild(body); wrap.appendChild(tb);
+}
+function scCsv() {
+  const rows = scVisible();
+  const cols = ['s','n','p','c','mc','pe','fpe','pb','dy','off','ch52','ar','rank'];
+  const esc = v => { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => esc(r[c])).join(','))).join('\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], {type: 'text/csv'}));
+  a.download = 'screen.csv'; document.body.appendChild(a); a.click(); a.remove();
+}
+function screenerShow() { scBuild(); }
+
 function show() {
   const h = location.hash;
-  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : h === "#bloggers" ? "bloggers" : 'home';
-  ["home", "watchlist", "charts", "gurus", "semper", "pabrai", "bloggers"].forEach(n => { $('view-' + n).hidden = v !== n; });
+  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : h === "#bloggers" ? "bloggers" : h === "#screener" ? "screener" : 'home';
+  ["home", "watchlist", "charts", "gurus", "semper", "pabrai", "bloggers", "screener"].forEach(n => { $('view-' + n).hidden = v !== n; });
   document.querySelectorAll('[data-nav]').forEach(a => {
     const on = a.dataset.nav === v;
     a.className = 'pb-3 text-sm border-b-2 -mb-px ' + (on ? 'text-white border-sky-500' : 'text-slate-400 border-transparent hover:text-slate-200');
     on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   });
-  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Dhandho | Markets", bloggers: "Bloggers | Markets"}[v];
+  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Dhandho | Markets", bloggers: "Bloggers | Markets", screener: "Screener | Markets"}[v];
   if (v === 'charts') chartsRoute();
   if (v === "gurus") gurusShow();
   if (v === "semper") semperShow();
   if (v === "pabrai") pabraiShow();
   if (v === "bloggers") bloggersShow();
+  if (v === "screener") screenerShow();
 }
 window.addEventListener('hashchange', show);
 

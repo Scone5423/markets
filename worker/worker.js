@@ -570,6 +570,79 @@ async function screen(sortField, sortType, size, offset = 0) {
   return res[0].quotes || [];
 }
 
+
+// ---- Stock screener (Screener page) ---------------------------------------
+// Filters come in as simple query parameters and are turned into a Yahoo screener query.
+const SCREEN_FIELDS = {
+  pe_max: ['LT', 'peratio.lasttwelvemonths'], pe_min: ['GT', 'peratio.lasttwelvemonths'],
+  pb_max: ['LT', 'pricebookratio.quarterly'],
+  peg_max: ['LT', 'pegratio_5y'],
+  roe_min: ['GT', 'returnonequity.lasttwelvemonths'],
+  roa_min: ['GT', 'returnonassets.lasttwelvemonths'],
+  margin_min: ['GT', 'netincomemargin.lasttwelvemonths'],
+  de_max: ['LT', 'totaldebtequity.lasttwelvemonths'],
+  revg_min: ['GT', 'quarterlyrevenuegrowth.quarterly'],
+  epsg_min: ['GT', 'epsgrowth.lasttwelvemonths'],
+  dy_min: ['GT', 'forward_dividend_yield'],
+  mcap_min: ['GTE', 'intradaymarketcap'], mcap_max: ['LTE', 'intradaymarketcap'],
+  price_min: ['GTE', 'intradayprice'],
+  vol_min: ['GT', 'avgdailyvol3m'],
+  chg52_max: ['LT', 'fiftytwowkpercentchange']
+};
+const SCREEN_SORTS = ['intradaymarketcap', 'peratio.lasttwelvemonths', 'pricebookratio.quarterly', 'returnonequity.lasttwelvemonths',
+  'forward_dividend_yield', 'fiftytwowkpercentchange', 'percentchange', 'pegratio_5y'];
+const SCREEN_SECTORS = ['Technology', 'Healthcare', 'Financial Services', 'Consumer Cyclical', 'Industrials', 'Energy', 'Utilities',
+  'Real Estate', 'Basic Materials', 'Communication Services', 'Consumer Defensive'];
+async function runScreen(params) {
+  const operands = [{ operator: 'EQ', operands: ['region', params.get('region') === 'all' ? 'us' : 'us'] }];
+  for (const [k, [op, field]] of Object.entries(SCREEN_FIELDS)) {
+    const raw = params.get(k);
+    if (raw === null || raw === '') continue;
+    const v = Number(raw);
+    if (!isFinite(v)) throw new Error('bad value for ' + k);
+    operands.push({ operator: op, operands: [field, v] });
+  }
+  if (params.get('pe_max') && !params.get('pe_min')) operands.push({ operator: 'GT', operands: ['peratio.lasttwelvemonths', 0] });
+  const sector = params.get('sector');
+  if (sector) {
+    if (!SCREEN_SECTORS.includes(sector)) throw new Error('unknown sector');
+    operands.push({ operator: 'EQ', operands: ['sector', sector] });
+  }
+  let sortField = params.get('sort') || 'intradaymarketcap';
+  if (!SCREEN_SORTS.includes(sortField)) sortField = 'intradaymarketcap';
+  const sortType = params.get('dir') === 'ASC' ? 'ASC' : 'DESC';
+  const size = Math.min(Math.max(parseInt(params.get('size') || '100', 10) || 100, 10), 250);
+  const s = await getSession();
+  const r = await fetch(
+    'https://query1.finance.yahoo.com/v1/finance/screener?lang=en-US&region=US&formatted=false&corsDomain=finance.yahoo.com&crumb=' + encodeURIComponent(s.crumb),
+    {
+      method: 'POST',
+      headers: { 'User-Agent': UA, 'Content-Type': 'application/json', Cookie: s.cookie },
+      body: JSON.stringify({ size, offset: 0, sortField, sortType, quoteType: 'EQUITY', userId: '', userIdType: 'guid',
+        query: { operator: 'AND', operands } })
+    }
+  );
+  if (!r.ok) {
+    const t = (await r.text()).slice(0, 200).replace(/\s+/g, ' ');
+    if (r.status === 401 || r.status === 403) session = null;
+    throw new Error('screener HTTP ' + r.status + ' ' + t);
+  }
+  const res = ((await r.json()).finance || {}).result;
+  if (!res || !res[0]) throw new Error('no screener result');
+  const quotes = res[0].quotes || [];
+  return {
+    total: res[0].total, count: quotes.length,
+    rows: quotes.map(q => ({
+      s: q.symbol, n: q.shortName || q.longName || '', x: q.fullExchangeName || q.exchange || '',
+      p: q.regularMarketPrice, c: q.regularMarketChangePercent, mc: q.marketCap,
+      pe: q.trailingPE, fpe: q.forwardPE, pb: q.priceToBook, eps: q.epsTrailingTwelveMonths,
+      dy: q.dividendYield != null ? q.dividendYield : q.trailingAnnualDividendYield != null ? q.trailingAnnualDividendYield * 100 : null,
+      lo: q.fiftyTwoWeekLow, hi: q.fiftyTwoWeekHigh, ch52: q.fiftyTwoWeekChangePercent,
+      ar: q.averageAnalystRating || '', bv: q.bookValue
+    }))
+  };
+}
+
 // 5-trading-day change for up to ~20 symbols per request.
 async function sparkWeek(batch) {
   const s = await getSession();
@@ -753,6 +826,15 @@ export default {
     }
 
     // Biggest winners and losers across the US market (Home page).
+    if (url.searchParams.get('screen')) {
+      try {
+        const d = await runScreen(url.searchParams);
+        return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=300' } });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: String(e.message || e) }), { headers });
+      }
+    }
+
     if (url.searchParams.get('movers')) {
       try {
         return new Response(JSON.stringify(await getMovers()), { headers: { ...headers, 'cache-control': 'public, max-age=300' } });
