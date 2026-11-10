@@ -2166,7 +2166,7 @@ function renderFin(d) {
     const g = (y, k) => (ys[y] || {})[k];
     const prev = y => { const i = yrs.indexOf(y); return i >= 0 && i + 1 < yrs.length ? yrs[i + 1] : null; };
     const ratio = (a, b) => typeof a === 'number' && typeof b === 'number' && b ? fPc(a / b) : '—';
-    box.appendChild(finTable('Income statement (annual)', yrs, [
+    box.appendChild(finTable('Income statement (annual)', yrs.slice().reverse(), [
       {l: 'Revenue', f: y => fMoney(g(y, 'TotalRevenue'))},
       {l: 'Revenue growth', sub: true, f: y => { const p = prev(y); return p ? ratio(g(y, 'TotalRevenue') - g(p, 'TotalRevenue'), Math.abs(g(p, 'TotalRevenue'))) : '—'; }},
       {l: 'Gross profit', f: y => fMoney(g(y, 'GrossProfit'))},
@@ -2178,7 +2178,7 @@ function renderFin(d) {
       {l: 'Net margin', sub: true, f: y => ratio(g(y, 'NetIncome'), g(y, 'TotalRevenue'))},
       {l: 'Diluted EPS', f: y => fNum(g(y, 'DilutedEPS'))}
     ]));
-    box.appendChild(finTable('Balance sheet (annual)', yrs, [
+    box.appendChild(finTable('Balance sheet (annual)', yrs.slice().reverse(), [
       {l: 'Cash and equivalents', f: y => fMoney(g(y, 'CashAndCashEquivalents'))},
       {l: 'Total assets', f: y => fMoney(g(y, 'TotalAssets'))},
       {l: 'Total liabilities', f: y => fMoney(g(y, 'TotalLiabilitiesNetMinorityInterest'))},
@@ -2186,7 +2186,7 @@ function renderFin(d) {
       {l: "Shareholders' equity", f: y => fMoney(g(y, 'StockholdersEquity'))},
       {l: 'Debt / equity', sub: true, f: y => ratio(g(y, 'TotalDebt'), g(y, 'StockholdersEquity'))}
     ]));
-    box.appendChild(finTable('Cash flow (annual)', yrs, [
+    box.appendChild(finTable('Cash flow (annual)', yrs.slice().reverse(), [
       {l: 'Operating cash flow', f: y => fMoney(g(y, 'OperatingCashFlow'))},
       {l: 'Capital expenditure', f: y => fMoney(g(y, 'CapitalExpenditure'))},
       {l: 'Free cash flow', f: y => fMoney(g(y, 'FreeCashFlow'))},
