@@ -683,6 +683,44 @@ const screenRow = q => ({
   lo: q.fiftyTwoWeekLow, hi: q.fiftyTwoWeekHigh, ch52: q.fiftyTwoWeekChangePercent,
   ar: q.averageAnalystRating || '', bv: q.bookValue
 });
+
+// Latest annual debt / cash / SBC for one symbol (used by the screener's balance-sheet filters).
+async function getBal(sym) {
+  return cached('bal:' + sym, 43200000, async () => {
+    const now = Math.floor(Date.now() / 1000);
+    const types = ['TotalDebt', 'CashCashEquivalentsAndShortTermInvestments', 'CashAndCashEquivalents', 'StockBasedCompensation'];
+    const r = await fetch('https://query1.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/' + encodeURIComponent(sym) +
+      '?type=' + types.map(t => 'annual' + t).join(',') + '&merge=false&padTimeSeries=false&period1=' + (now - 3 * 366 * 86400) + '&period2=' + (now + 86400),
+      { headers: { 'User-Agent': UA } });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const out = {};
+    for (const it of ((await r.json()).timeseries || {}).result || []) {
+      const type = it.meta && it.meta.type && it.meta.type[0];
+      const rows = type && it[type]; if (!rows) continue;
+      let best = null;
+      for (const row of rows) { const v = row && row.reportedValue && row.reportedValue.raw; if (typeof v === 'number' && row.asOfDate && (!best || row.asOfDate > best.d)) best = { d: row.asOfDate, v }; }
+      if (best) out[type.replace(/^annual/, '')] = best.v;
+    }
+    return { debt: out.TotalDebt, cash: out.CashCashEquivalentsAndShortTermInvestments != null ? out.CashCashEquivalentsAndShortTermInvestments : out.CashAndCashEquivalents, sbc: out.StockBasedCompensation };
+  });
+}
+const BAL_KEYS = ['debt_max', 'cash_min', 'sbc_max'];
+async function enrichBal(rows, params, want) {
+  const debtMax = params.get('debt_max'), cashMin = params.get('cash_min'), sbcMax = params.get('sbc_max');
+  const cand = rows.slice(0, 120), out = [];
+  for (let i = 0; i < cand.length; i += 10) {
+    await Promise.all(cand.slice(i, i + 10).map(async r => {
+      try { Object.assign(r, await getBal(r.s)); } catch (e) { r.balErr = String(e.message || e); }
+    }));
+  }
+  for (const r of cand) {
+    if (debtMax !== null && debtMax !== '' && !(typeof r.debt === 'number' && r.debt <= Number(debtMax))) continue;
+    if (cashMin !== null && cashMin !== '' && !(typeof r.cash === 'number' && r.cash >= Number(cashMin))) continue;
+    if (sbcMax !== null && sbcMax !== '' && typeof r.sbc === 'number' && r.sbc > Number(sbcMax)) continue;
+    out.push(r);
+  }
+  return out;
+}
 async function runScreen(params) {
   const operands = [];
   const region = (params.get('region') || 'us').toLowerCase();
@@ -713,7 +751,7 @@ async function runScreen(params) {
   if (index && index !== 'nasdaq') {
     // Walk the filtered universe a page at a time and keep only index members.
     const members = new Set((await getIndexMembers(index)).symbols);
-    const want = Math.min(Math.max(parseInt(params.get('size') || '100', 10) || 100, 10), 600);
+    const want = BAL_KEYS.some(k => params.get(k)) ? 120 : Math.min(Math.max(parseInt(params.get('size') || '100', 10) || 100, 10), 600);
     const rows = []; let total = null, pages = 0;
     for (let offset = 0; offset < 6000 && pages < 24 && rows.length < want; offset += 250, pages++) {
       const pg = await screenPage(operands, sortField, sortType, 250, offset);
@@ -721,11 +759,18 @@ async function runScreen(params) {
       for (const q of pg.quotes) if (members.has(normSym(q.symbol)) && rows.length < want) rows.push(screenRow(q));
       if (pg.quotes.length < 250) break;
     }
-    return { total: rows.length, count: rows.length, members: members.size, rows };
+    return finishScreen({ total: rows.length, count: rows.length, members: members.size, rows }, params);
   }
-  const size = Math.min(Math.max(parseInt(params.get('size') || '100', 10) || 100, 10), 250);
+  const size = BAL_KEYS.some(k => params.get(k)) ? 120 : Math.min(Math.max(parseInt(params.get('size') || '100', 10) || 100, 10), 250);
   const pg = await screenPage(operands, sortField, sortType, size, 0);
-  return { total: pg.total, count: pg.quotes.length, rows: pg.quotes.map(screenRow) };
+  return finishScreen({ total: pg.total, count: pg.quotes.length, rows: pg.quotes.map(screenRow) }, params);
+}
+async function finishScreen(res, params) {
+  if (!BAL_KEYS.some(k => params.get(k))) return res;
+  const before = res.rows.length;
+  res.rows = await enrichBal(res.rows, params);
+  res.checked = Math.min(before, 120); res.total = res.rows.length; res.count = res.rows.length;
+  return res;
 }
 
 // ---- Basic financials for the Charts page ---------------------------------

@@ -1938,6 +1938,9 @@ const SC_FIELDS = [
   {k:'dy_min', l:'Dividend yield min (%)', ph:'2'},
   {k:'mcap_min', l:'Market cap min ($M)', ph:'300', scale:1e6},
   {k:'mcap_max', l:'Market cap max ($M)', ph:'', scale:1e6},
+  {k:'debt_max', l:'Total debt max ($M)', ph:'500', scale:1e6},
+  {k:'cash_min', l:'Total cash min ($M)', ph:'100', scale:1e6},
+  {k:'sbc_max', l:'Stock-based comp max ($M)', ph:'20', scale:1e6},
   {k:'chg52_max', l:'52-week change max (%)', ph:'-20'},
   {k:'sector', l:'Sector', type:'sector'},
   {k:'region', l:'Country', type:'region'},
@@ -1997,6 +2000,7 @@ async function scRun() {
   if (scLoading) return;
   if (!cfg.worker) { $('scStatus').textContent = 'Add your price proxy address under Price sources first.'; return; }
   const idxOn = !!$('sc_index').value;
+  const balOn = ['debt_max','cash_min','sbc_max'].some(k => $('sc_' + k).value.trim() !== '');
   const q = new URLSearchParams({screen: '1', size: idxOn ? '500' : '150', sort: 'intradaymarketcap', dir: 'DESC'});
   SC_FIELDS.forEach(x => {
     const v = $('sc_' + x.k).value.trim(); if (v === '') return;
@@ -2004,12 +2008,12 @@ async function scRun() {
   });
   scLoading = true; $('scStatus').textContent = 'Running…';
   try {
-    const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?' + q.toString(), idxOn ? 60000 : 30000);
+    const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?' + q.toString(), (idxOn || balOn) ? 90000 : 30000);
     if (d.error) throw new Error(d.error);
     scRows = (d.rows || []).filter(r => r && r.s);
     scScore();
     scSort = {k:'rank', dir:-1};
-    $('scStatus').textContent = scRows.length ? 'Showing ' + scRows.length + (d.total && d.total > scRows.length ? ' of ' + d.total.toLocaleString() + ' matches (largest first)' : ' matches') + '.' : 'No stocks matched. Loosen a limit and try again.';
+    $('scStatus').textContent = scRows.length ? 'Showing ' + scRows.length + (d.total && d.total > scRows.length ? ' of ' + d.total.toLocaleString() + ' matches (largest first)' : ' matches') + '.' + (d.checked ? ' Debt, cash and SBC were checked on the ' + d.checked + ' largest candidates.' : '') : 'No stocks matched. Loosen a limit and try again.';
     scRender();
   } catch (e) {
     $('scStatus').textContent = 'Could not run the screen: ' + (e.message || e) + '. If this says the screener is missing, redeploy the updated Worker code.';
@@ -2038,6 +2042,7 @@ function scScore() {
     r.off = r.hi > 0 && r.p > 0 ? (r.p / r.hi - 1) * 100 : null;
   });
 }
+const scBig = v => typeof v !== 'number' ? '—' : Math.abs(v) >= 1e9 ? (v/1e9).toFixed(2)+'B' : (v/1e6).toFixed(0)+'M';
 const SC_COLS = [
   {k:'rank', l:'Value rank', f: v => v === null ? '—' : String(v)},
   {k:'s', l:'Stock'},
@@ -2047,11 +2052,15 @@ const SC_COLS = [
   {k:'pe', l:'P/E', f: v => typeof v === 'number' ? v.toFixed(1) : '—'},
   {k:'fpe', l:'Fwd P/E', f: v => typeof v === 'number' ? v.toFixed(1) : '—'},
   {k:'pb', l:'P/B', f: v => typeof v === 'number' ? v.toFixed(2) : '—'},
+  {k:'debt', l:'Debt', f: scBig},
+  {k:'cash', l:'Cash', f: scBig},
+  {k:'sbc', l:'SBC', f: scBig},
   {k:'dy', l:'Div yld', f: v => typeof v === 'number' ? v.toFixed(2) + '%' : '—'},
   {k:'off', l:'From 52w high', f: v => typeof v === 'number' ? v.toFixed(0) + '%' : '—'},
   {k:'ch52', l:'52w chg', f: v => typeof v === 'number' ? fmtPct(v) : '—'},
   {k:'ar', l:'Analysts', f: v => v ? String(v).replace(/^\d+(\.\d+)?\s*-\s*/, '') : '—'}
 ];
+function scCols() { return SC_COLS.filter(c => !['debt','cash','sbc'].includes(c.k) || scRows.some(r => typeof r[c.k] === 'number')); }
 function scVisible() {
   const t = $('scFind').value.trim().toLowerCase();
   let rows = scRows.filter(r => !t || r.s.toLowerCase().includes(t) || (r.n || '').toLowerCase().includes(t));
@@ -2073,7 +2082,7 @@ function scRender() {
   wrap.hidden = false; bar.hidden = false; wrap.innerHTML = '';
   $('scCount').textContent = rows.length + ' shown';
   const tb = el('table', 'w-full text-sm num'), hd = el('thead', 'text-xs text-slate-400'), hr = el('tr');
-  SC_COLS.forEach(c => {
+  scCols().forEach(c => {
     const th = el('th', 'px-3 py-2 font-medium whitespace-nowrap cursor-pointer select-none ' + (c.k === 's' ? 'text-left' : 'text-right'), c.l + (scSort.k === c.k ? (scSort.dir > 0 ? ' ▲' : ' ▼') : ''));
     th.addEventListener('click', () => { scSort = {k: c.k, dir: scSort.k === c.k ? -scSort.dir : (c.k === 's' ? 1 : (['pe','fpe','pb'].includes(c.k) ? 1 : -1))}; scRender(); });
     hr.appendChild(th);
@@ -2082,7 +2091,7 @@ function scRender() {
   const body = el('tbody');
   rows.forEach(r => {
     const tr = el('tr', 'border-t border-slate-800');
-    SC_COLS.forEach(c => {
+    scCols().forEach(c => {
       const td = el('td', 'px-3 py-2 whitespace-nowrap ' + (c.k === 's' ? 'text-left' : 'text-right'));
       if (c.k === 's') {
         const a = el('a', 'text-sky-400 hover:underline font-medium', r.s); a.href = '#charts/' + encodeURIComponent(r.s);
