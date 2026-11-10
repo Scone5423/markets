@@ -1537,8 +1537,42 @@ function renderBloggers() {
     const sec = el('section', 'mb-12');
     const h = el('h3', 'text-2xl font-semibold text-white');
     const a = el('a', 'hover:text-sky-300', b.name); a.href = b.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; h.appendChild(a);
-    sec.appendChild(h);
-    sec.appendChild(el('p', 'text-sm text-slate-400 mt-0.5', b.author));
+    if (b.profile) {
+      const top = el('div', 'flex items-center gap-4 mb-4');
+      const logo = el('div', 'shrink-0'); logo.setAttribute('role', 'img'); logo.setAttribute('aria-label', 'Base Hit Investing logo');
+      logo.innerHTML = '<svg viewBox="0 0 64 64" width="64" height="64"><rect width="64" height="64" rx="14" fill="#0f2a1d"/><path d="M32 8 56 32 32 56 8 32Z" fill="none" stroke="#4ade80" stroke-width="3"/><path d="M32 18 46 32 32 46 18 32Z" fill="#4ade80" opacity=".18"/><text x="32" y="38" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="17" fill="#e8fff0">BH</text></svg>';
+      top.appendChild(logo);
+      const tt = el('div'); tt.appendChild(h); tt.appendChild(el('p', 'text-sm text-slate-400 mt-0.5', b.author)); top.appendChild(tt);
+      sec.appendChild(top);
+      b.profile.forEach(t => sec.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-2', t)));
+      const pl = el('p', 'text-xs text-slate-500 mb-6');
+      (b.profileLinks || []).forEach((l, i) => { if (i) pl.appendChild(document.createTextNode(' · ')); const x = el('a', 'underline decoration-slate-600 underline-offset-2 hover:text-sky-300', l.title); x.href = l.url; x.target = '_blank'; x.rel = 'noopener noreferrer'; pl.appendChild(x); });
+      sec.appendChild(pl);
+      if (b.holdings) {
+        const H = b.holdings;
+        sec.appendChild(el('div', 'text-xs font-medium text-slate-400 mb-1', 'Saber Capital holdings, as of ' + H.asOf + ' (13F filed ' + H.filed + ')'));
+        const hc = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-3 mb-2 overflow-x-auto');
+        const tb = el('table', 'w-full text-sm');
+        const hr = el('tr', 'text-left text-xs text-slate-500');
+        ['Ticker', 'Company', 'Value', '% of portfolio'].forEach((c, i) => hr.appendChild(el('th', 'py-1 pr-3 font-medium' + (i > 1 ? ' text-right' : ''), c)));
+        tb.appendChild(hr);
+        H.rows.forEach(r => {
+          const tr = el('tr', 'border-t border-slate-800');
+          const td = el('td', 'py-1 pr-3'); const ca = el('a', 'text-sky-300 hover:underline', r.s); ca.href = '#charts/' + encodeURIComponent(r.s); td.appendChild(ca); tr.appendChild(td);
+          tr.appendChild(el('td', 'py-1 pr-3 text-slate-200', r.name));
+          tr.appendChild(el('td', 'py-1 pr-3 text-right text-slate-300', r.value));
+          tr.appendChild(el('td', 'py-1 text-right text-slate-300', r.pct));
+          tb.appendChild(tr);
+        });
+        hc.appendChild(tb); sec.appendChild(hc);
+        const hn = el('p', 'text-xs text-slate-500 mb-6', H.note + ' Source: ');
+        const sa = el('a', 'underline decoration-slate-600 underline-offset-2 hover:text-sky-300', H.sourceName); sa.href = H.source; sa.target = '_blank'; sa.rel = 'noopener noreferrer'; hn.appendChild(sa);
+        sec.appendChild(hn);
+      }
+    } else {
+      sec.appendChild(h);
+      sec.appendChild(el('p', 'text-sm text-slate-400 mt-0.5', b.author));
+    }
     if (b.coverage) sec.appendChild(el('p', 'text-xs text-slate-500 mt-1 mb-4', b.coverage));
     sec.appendChild(el('div', 'text-xs font-medium text-slate-400 mb-1', 'Recent articles'));
     const rl = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-3 mb-6');
@@ -1557,7 +1591,7 @@ function renderBloggers() {
     lists.forEach(({b, list, cnt}) => {
       list.innerHTML = ''; let n = 0;
       b.stocks.forEach(s => {
-        if (q && !(s.name + ' ' + s.s + ' ' + s.notes.map(x => x.text).join(' ')).toLowerCase().includes(q)) return;
+        if (q && !(s.name + ' ' + s.s + ' ' + (s.summary || '') + ' ' + s.notes.map(x => x.text).join(' ')).toLowerCase().includes(q)) return;
         n++;
         const card = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-4');
         const head = el('div', 'flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-2');
@@ -1568,7 +1602,17 @@ function renderBloggers() {
         if (s.s) head.appendChild(el('span', 'text-xs text-slate-500', s.s));
         head.appendChild(el('span', 'text-xs text-slate-500 ml-auto', s.notes.length + (s.notes.length === 1 ? ' post' : ' posts')));
         card.appendChild(head);
-        s.notes.forEach(nt => {
+        if (s.summary) {
+          card.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed', s.summary));
+          const ls = el('div', 'mt-3 space-y-1');
+          s.links.forEach(l => {
+            const row = el('div', 'text-xs text-slate-500');
+            const a = el('a', 'underline decoration-slate-600 underline-offset-2 hover:text-sky-300', bDate(l.date) + ', ' + l.title); a.href = l.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+            row.appendChild(a); if (l.access) row.appendChild(document.createTextNode(' (' + l.access + ')'));
+            ls.appendChild(row);
+          });
+          card.appendChild(ls);
+        } else s.notes.forEach(nt => {
           const row = el('div', 'mt-2');
           const src = el('div', 'text-xs text-slate-500');
           const a = el('a', 'underline decoration-slate-600 underline-offset-2 hover:text-sky-300', bDate(nt.date) + ', ' + nt.title); a.href = nt.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
