@@ -792,6 +792,29 @@ async function getFin(sym) {
   });
 }
 
+
+// ---- Shiller CAPE (cyclically adjusted P/E) for the Home page -------------
+const CAPE_MONTHS = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
+async function getCape() {
+  return cached('cape', 6 * 3600000, async () => {
+    const r = await fetch('https://www.multpl.com/shiller-pe/table/by-month', { headers: { 'User-Agent': BROWSER_UA, Accept: 'text/html' } });
+    if (!r.ok) throw new Error('CAPE source HTTP ' + r.status);
+    const html = await r.text();
+    const rows = [], seen = new Set();
+    for (const m of html.matchAll(/<tr[^>]*>\s*<td[^>]*>\s*([A-Z][a-z]{2})\s+\d{1,2},\s+(\d{4})\s*<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>/g)) {
+      const num = parseFloat(m[3].replace(/<[^>]*>/g, '').replace(/&[a-z#0-9]+;/g, ' ').replace(/,/g, '').match(/-?\d+(\.\d+)?/)?.[0]);
+      const mo = CAPE_MONTHS[m[1]];
+      if (!mo || !isFinite(num) || num <= 0) continue;
+      const key = m[2] + '-' + String(mo).padStart(2, '0');
+      if (seen.has(key)) continue;
+      seen.add(key); rows.push([key, num]);
+    }
+    if (rows.length < 500) throw new Error('could not read the CAPE table');
+    rows.sort((a, b) => a[0].localeCompare(b[0]));
+    return { rows, source: 'multpl.com (Robert Shiller data)' };
+  });
+}
+
 // 5-trading-day change for up to ~20 symbols per request.
 async function sparkWeek(batch) {
   const s = await getSession();
@@ -980,6 +1003,14 @@ export default {
       if (!/^[A-Z0-9.\-^=]{1,14}$/.test(sym)) return new Response('{}', { status: 400, headers });
       const d = await getFin(sym).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=900' } });
+    }
+
+    if (url.searchParams.get('cape')) {
+      try {
+        return new Response(JSON.stringify(await getCape()), { headers: { ...headers, 'cache-control': 'public, max-age=3600' } });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: String(e.message || e) }), { headers });
+      }
     }
 
     if (url.searchParams.get('screen')) {
