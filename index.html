@@ -2121,7 +2121,21 @@ function renderFin(d) {
   const box = $('chFin'); box.innerHTML = '';
   const st = d.stats || {}, ys = d.years || {};
   const yrs = Object.keys(ys).sort().reverse().slice(0, 5);
-  if (!Object.keys(st).length && !yrs.length) { box.appendChild(el('p', 'text-sm text-slate-500', 'No financial data is available for ' + d.symbol + ' (funds and indexes do not report these).')); return; }
+  const ten = (d.ten && d.ten.rows) || [];
+  if (ten.length) {
+    const tr = ten.map(r => r.d);
+    const byD = Object.fromEntries(ten.map(r => [r.d, r]));
+    const card = finTable('Ten-year history (annual)', tr, [
+      {l: 'Diluted EPS', f: y => fNum(byD[y].eps)},
+      {l: 'Shares outstanding', f: y => fMoney(byD[y].shares)},
+      {l: 'Total debt', f: y => fMoney(byD[y].debt)},
+      {l: 'Total cash and short-term investments', f: y => fMoney(byD[y].cash)},
+      {l: 'Stock-based compensation', f: y => fMoney(byD[y].sbc)}
+    ]);
+    card.appendChild(el('p', 'text-xs text-slate-500 px-4 pb-3', 'Source: ' + (d.ten.source || 'Yahoo Finance') + '. Shares are the year-end or cover-page count. Debt is borrowings only (leases excluded where the filing separates them). A dash means the company did not report that line.'));
+    box.appendChild(card);
+  }
+  if (!Object.keys(st).length && !yrs.length && !ten.length) { box.appendChild(el('p', 'text-sm text-slate-500', 'No financial data is available for ' + d.symbol + ' (funds and indexes do not report these).')); return; }
   if (Object.keys(st).length) {
     const grid = el('div', 'grid gap-3 sm:grid-cols-2 lg:grid-cols-4');
     FIN_GROUPS.forEach(([title, fn]) => {

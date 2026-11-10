@@ -653,7 +653,7 @@ async function runScreen(params) {
 // ---- Basic financials for the Charts page ---------------------------------
 const FIN_TYPES = ['TotalRevenue', 'GrossProfit', 'OperatingIncome', 'EBITDA', 'NetIncome', 'DilutedEPS',
   'CashAndCashEquivalents', 'TotalAssets', 'TotalDebt', 'TotalLiabilitiesNetMinorityInterest', 'StockholdersEquity',
-  'OperatingCashFlow', 'CapitalExpenditure', 'FreeCashFlow'];
+  'OperatingCashFlow', 'CapitalExpenditure', 'FreeCashFlow', 'OrdinarySharesNumber', 'CashCashEquivalentsAndShortTermInvestments', 'StockBasedCompensation'];
 const FIN_STATS = {
   financialData: ['currentPrice', 'targetMeanPrice', 'recommendationKey', 'totalCash', 'totalDebt', 'debtToEquity', 'currentRatio', 'quickRatio',
     'returnOnEquity', 'returnOnAssets', 'profitMargins', 'grossMargins', 'operatingMargins', 'ebitdaMargins', 'revenueGrowth', 'earningsGrowth', 'freeCashflow', 'operatingCashflow', 'totalRevenue'],
@@ -661,6 +661,96 @@ const FIN_STATS = {
     'bookValue', 'sharesOutstanding', 'floatShares', 'shortPercentOfFloat', 'beta', 'payoutRatio', 'heldPercentInsiders', 'heldPercentInstitutions'],
   summaryDetail: ['marketCap', 'trailingPE', 'priceToSalesTrailing12Months', 'dividendYield', 'dividendRate', 'fiftyTwoWeekHigh', 'fiftyTwoWeekLow', 'averageVolume']
 };
+
+// ---- Ten-year history from SEC filings (US filers), Yahoo fills gaps -------
+let tickerMap = null, tickerMapAt = 0;
+async function secCik(sym) {
+  if (!tickerMap || Date.now() - tickerMapAt > 86400000) {
+    const j = await (await secGet('https://www.sec.gov/files/company_tickers.json')).json();
+    tickerMap = {};
+    for (const k of Object.keys(j)) tickerMap[String(j[k].ticker).toUpperCase()] = j[k].cik_str;
+    tickerMapAt = Date.now();
+  }
+  return tickerMap[sym.toUpperCase()] || tickerMap[sym.toUpperCase().replace('-', '.')] || tickerMap[sym.toUpperCase().replace('.', '-')] || null;
+}
+const DAY = 86400000;
+function annualFacts(gaap, tags, unit, kind) {
+  // returns {endDate: value} using 10-K style annual facts; latest filing wins
+  for (const tag of tags) {
+    const f = gaap[tag] && gaap[tag].units && gaap[tag].units[unit];
+    if (!f) continue;
+    const out = {}, filed = {};
+    for (const x of f) {
+      if (!/^10-K/.test(x.form || '') || typeof x.val !== 'number') continue;
+      if (kind === 'dur') {
+        if (!x.start) continue;
+        const days = (Date.parse(x.end) - Date.parse(x.start)) / DAY;
+        if (days < 340 || days > 390) continue;
+      }
+      if (!filed[x.end] || x.filed >= filed[x.end]) { out[x.end] = x.val; filed[x.end] = x.filed; }
+    }
+    if (Object.keys(out).length) return out;
+  }
+  return {};
+}
+async function getTen(sym, yahooYears) {
+  const rows = {};
+  const put = (d, k, v) => { if (typeof v === 'number' && isFinite(v)) (rows[d] = rows[d] || {})[k] = v; };
+  let source = '';
+  try {
+    const cik = await secCik(sym);
+    if (cik) {
+      const j = await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + String(cik).padStart(10, '0') + '.json')).json();
+      const g = (j.facts || {})['us-gaap'] || {}, dei = (j.facts || {}).dei || {};
+      const eps = annualFacts(g, ['EarningsPerShareDiluted', 'EarningsPerShareBasicAndDiluted', 'EarningsPerShareBasic'], 'USD/shares', 'dur');
+      const sbc = annualFacts(g, ['ShareBasedCompensation', 'AllocatedShareBasedCompensationExpense'], 'USD', 'dur');
+      const cash1 = annualFacts(g, ['CashCashEquivalentsAndShortTermInvestments'], 'USD', 'inst');
+      const cash2 = annualFacts(g, ['CashAndCashEquivalentsAtCarryingValue', 'CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents'], 'USD', 'inst');
+      const sti = annualFacts(g, ['ShortTermInvestments', 'MarketableSecuritiesCurrent', 'AvailableForSaleSecuritiesDebtSecuritiesCurrent'], 'USD', 'inst');
+      const dComb = annualFacts(g, ['DebtLongtermAndShorttermCombinedAmount'], 'USD', 'inst');
+      const dNon = annualFacts(g, ['LongTermDebtNoncurrent'], 'USD', 'inst');
+      const dCur = annualFacts(g, ['LongTermDebtCurrent', 'DebtCurrent'], 'USD', 'inst');
+      const dShort = annualFacts(g, ['ShortTermBorrowings', 'CommercialPaper'], 'USD', 'inst');
+      const dLt = annualFacts(g, ['LongTermDebt'], 'USD', 'inst');
+      const sh = annualFacts(g, ['CommonStockSharesOutstanding'], 'shares', 'inst');
+      const shCover = (() => { const f = (dei.EntityCommonStockSharesOutstanding || {}).units; const a = f && f.shares; const o = {}; (a || []).forEach(x => { if (/^10-K/.test(x.form || '')) o[x.end] = x.val; }); return o; })();
+      const ends = [...new Set([...Object.keys(eps), ...Object.keys(sbc), ...Object.keys(cash1), ...Object.keys(cash2)])].sort();
+      const fy = ends.filter(e => eps[e] !== undefined || sbc[e] !== undefined);
+      for (const d of fy) {
+        put(d, 'eps', eps[d]); put(d, 'sbc', sbc[d]);
+        put(d, 'cash', cash1[d] !== undefined ? cash1[d] : cash2[d] !== undefined ? cash2[d] + (sti[d] || 0) : undefined);
+        let debt;
+        if (dComb[d] !== undefined) debt = dComb[d];
+        else if (dNon[d] !== undefined || dCur[d] !== undefined) debt = (dNon[d] || 0) + (dCur[d] || 0) + (dCur[d] === undefined ? (dShort[d] || 0) : 0);
+        else if (dLt[d] !== undefined) debt = dLt[d];
+        put(d, 'debt', debt);
+        let shares = sh[d];
+        if (shares === undefined) {
+          // cover-page count filed within ~5 months after the fiscal year end
+          const t0 = Date.parse(d);
+          const c = Object.keys(shCover).filter(e => Date.parse(e) >= t0 && Date.parse(e) - t0 < 150 * DAY).sort()[0];
+          if (c) shares = shCover[c];
+        }
+        put(d, 'shares', shares);
+      }
+      if (Object.keys(rows).length) source = 'SEC filings';
+    }
+  } catch (e) { /* fall back to Yahoo below */ }
+  // Yahoo fills missing years and fields
+  const near = d => Object.keys(rows).find(r => Math.abs(Date.parse(r) - Date.parse(d)) < 20 * DAY);
+  const map = { eps: 'DilutedEPS', shares: 'OrdinarySharesNumber', debt: 'TotalDebt', cash: 'CashCashEquivalentsAndShortTermInvestments', sbc: 'StockBasedCompensation' };
+  let used = false;
+  for (const [d, y] of Object.entries(yahooYears || {})) {
+    let key = near(d) || d;
+    for (const [k, yk] of Object.entries(map)) {
+      if (typeof y[yk] === 'number' && !(rows[key] && typeof rows[key][k] === 'number')) { put(key, k, y[yk]); used = true; }
+    }
+  }
+  if (used) source = source ? source + ' + Yahoo Finance' : 'Yahoo Finance';
+  const list = Object.keys(rows).sort().reverse().slice(0, 10).map(d => ({ d, ...rows[d] }));
+  return { source, rows: list };
+}
+
 async function getFin(sym) {
   return cached('fin:' + sym, 1800000, async () => {
     const out = { symbol: sym, stats: {}, years: {} };
@@ -681,7 +771,7 @@ async function getFin(sym) {
     try {
       const now = Math.floor(Date.now() / 1000);
       const r = await fetch('https://query1.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/' + encodeURIComponent(sym) +
-        '?type=' + FIN_TYPES.map(t => 'annual' + t).join(',') + '&merge=false&padTimeSeries=false&period1=' + (now - 6 * 366 * 86400) + '&period2=' + (now + 86400),
+        '?type=' + FIN_TYPES.map(t => 'annual' + t).join(',') + '&merge=false&padTimeSeries=false&period1=' + (now - 11 * 366 * 86400) + '&period2=' + (now + 86400),
         { headers: { 'User-Agent': UA } });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const j = await r.json();
@@ -697,6 +787,7 @@ async function getFin(sym) {
         }
       }
     } catch (e) { out.yearsError = String(e.message || e); }
+    try { out.ten = await getTen(sym, out.years); } catch (e) { out.tenError = String(e.message || e); }
     return out;
   });
 }
