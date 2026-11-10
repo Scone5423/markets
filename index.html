@@ -2123,7 +2123,7 @@ function renderFin(d) {
   const yrs = Object.keys(ys).sort().reverse().slice(0, 5);
   const ten = (d.ten && d.ten.rows) || [];
   if (ten.length) {
-    const tr = ten.map(r => r.d);
+    const tr = ten.map(r => r.d).reverse();
     const byD = Object.fromEntries(ten.map(r => [r.d, r]));
     const card = finTable('Ten-year history (annual)', tr, [
       {l: 'Diluted EPS', f: y => fNum(byD[y].eps)},
