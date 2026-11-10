@@ -1502,7 +1502,7 @@ function renderSemper() {
 
 
 // ---- Bloggers (posts and stocks discussed, loaded from bloggers.json) -----------------------
-let bloggersData = null, bloggersTried = false, bloggersQ = '';
+let bloggersData = null, bloggersTried = false, bloggersQ = '', bloggersSel = 0;
 async function bloggersShow() {
   if (!bloggersTried) {
     bloggersTried = true;
@@ -1519,12 +1519,21 @@ const bDate = d => d.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$2-$3-$1');
 function renderBloggers() {
   const box = $('bloggersBody'); box.innerHTML = '';
   if (!bloggersData) { box.appendChild(el('p', 'text-sm text-slate-400', 'The bloggers page could not be loaded. Try refreshing in a minute.')); return; }
+  const order = ['Base Hit Investing', 'Musings on Markets'];
+  const blogs = bloggersData.blogs.slice().sort((x, y) => { const i = order.indexOf(x.name), j = order.indexOf(y.name); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); });
+  if (bloggersSel >= blogs.length) bloggersSel = 0;
+  const tabs = el('div', 'flex flex-wrap items-center gap-2 mb-4');
+  blogs.forEach((b, i) => {
+    const t = el('button', 'text-sm px-3 py-1.5 rounded border ' + (bloggersSel === i ? 'bg-slate-700 text-white border-slate-600' : 'text-slate-400 border-slate-800 hover:text-slate-200 hover:bg-slate-800'), b.name);
+    t.type = 'button'; t.addEventListener('click', () => { bloggersSel = i; renderBloggers(); }); tabs.appendChild(t);
+  });
+  box.appendChild(tabs);
   const bar = el('div', 'flex flex-wrap items-center gap-2 mb-6');
   const inp = el('input', 'w-full sm:w-72 bg-[#151b22] border border-slate-800 rounded px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-slate-600');
-  inp.type = 'search'; inp.placeholder = 'Search stocks across all blogs…'; inp.value = bloggersQ; inp.setAttribute('aria-label', 'Search stocks');
+  inp.type = 'search'; inp.placeholder = 'Search stocks in this blog…'; inp.value = bloggersQ; inp.setAttribute('aria-label', 'Search stocks');
   bar.appendChild(inp); box.appendChild(bar);
   const lists = [];
-  bloggersData.blogs.forEach(b => {
+  [blogs[bloggersSel]].forEach(b => {
     const sec = el('section', 'mb-12');
     const h = el('h3', 'text-2xl font-semibold text-white');
     const a = el('a', 'hover:text-sky-300', b.name); a.href = b.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; h.appendChild(a);
