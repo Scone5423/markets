@@ -1577,7 +1577,7 @@ const bDate = d => d.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$2-$3-$1');
 function renderBloggers() {
   const box = $('bloggersBody'); box.innerHTML = '';
   if (!bloggersData) { box.appendChild(el('p', 'text-sm text-slate-400', 'The bloggers page could not be loaded. Try refreshing in a minute.')); return; }
-  const order = ['Base Hit Investing', 'Musings on Markets', 'Praetorian Capital'];
+  const order = ['Base Hit Investing', 'Musings on Markets', 'Praetorian Capital', 'Alluvial Capital'];
   const blogs = bloggersData.blogs.slice().sort((x, y) => { const i = order.indexOf(x.name), j = order.indexOf(y.name); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); });
   if (bloggersSel >= blogs.length) bloggersSel = 0;
   const tabs = el('div', 'flex flex-wrap items-center gap-2 mb-4');
