@@ -238,6 +238,7 @@
         <p id="chMsg" class="pointer-events-none absolute inset-0 flex items-center justify-center px-6 text-center text-sm text-slate-400"></p>
       </div>
     </div>
+    <div id="chFin" class="mt-6 space-y-6"></div>
     <p class="text-xs text-slate-500 mt-3">Drag to pan, scroll or pinch to zoom, and hover for the exact price. Intraday times are in the stock's local exchange time. Click any ticker on the Watchlist tab to open its chart here.</p>
   </section>
 
@@ -1002,6 +1003,7 @@ function chartsRoute() {
   if (!CH.sym) CH.sym = list.some(h => h.s === '^GSPC') ? '^GSPC' : ((list[0] && list[0].s) || 'SPY');
   buildControls();
   if (CH.key !== CH.sym + '|' + CH.ri + '|' + CH.type) loadChart();
+  if (FIN.sym !== CH.sym) finLoad(CH.sym);
 }
 $('chSel').addEventListener('change', e => pickSymbol(e.target.value));
 $('chForm').addEventListener('submit', e => {
@@ -2086,6 +2088,102 @@ function scCsv() {
 }
 function screenerShow() { scBuild(); }
 
+
+// ---- Basic financials under the chart ---------------------------------------
+const FIN = {sym: '', token: 0};
+const fMoney = v => typeof v !== 'number' ? '—' : (v < 0 ? '-' : '') + (Math.abs(v) >= 1e12 ? (Math.abs(v)/1e12).toFixed(2)+'T' : Math.abs(v) >= 1e9 ? (Math.abs(v)/1e9).toFixed(2)+'B' : Math.abs(v) >= 1e6 ? (Math.abs(v)/1e6).toFixed(1)+'M' : Math.abs(v).toFixed(0));
+const fNum = (v, d = 2) => typeof v === 'number' && isFinite(v) ? v.toFixed(d) : '—';
+const fPc = v => typeof v === 'number' && isFinite(v) ? (v * 100).toFixed(1) + '%' : '—';
+const fX = v => typeof v === 'number' && isFinite(v) ? v.toFixed(1) + 'x' : '—';
+const FIN_GROUPS = [
+  ['Valuation', st => [['Market cap', fMoney(st.marketCap)], ['Enterprise value', fMoney(st.enterpriseValue)], ['P/E (trailing)', fNum(st.trailingPE, 1)], ['P/E (forward)', fNum(st.forwardPE, 1)], ['PEG', fNum(st.pegRatio)], ['Price / book', fNum(st.priceToBook)], ['Price / sales', fNum(st.priceToSalesTrailing12Months)], ['EV / EBITDA', fX(st.enterpriseToEbitda)]]],
+  ['Profitability', st => [['Gross margin', fPc(st.grossMargins)], ['Operating margin', fPc(st.operatingMargins)], ['EBITDA margin', fPc(st.ebitdaMargins)], ['Net margin', fPc(st.profitMargins)], ['Return on equity', fPc(st.returnOnEquity)], ['Return on assets', fPc(st.returnOnAssets)], ['EPS (trailing)', fNum(st.trailingEps)], ['EPS (forward)', fNum(st.forwardEps)]]],
+  ['Financial health', st => [['Cash', fMoney(st.totalCash)], ['Total debt', fMoney(st.totalDebt)], ['Debt / equity', typeof st.debtToEquity === 'number' ? st.debtToEquity.toFixed(0) + '%' : '—'], ['Current ratio', fNum(st.currentRatio)], ['Quick ratio', fNum(st.quickRatio)], ['Operating cash flow', fMoney(st.operatingCashflow)], ['Free cash flow', fMoney(st.freeCashflow)], ['Book value / share', fNum(st.bookValue)]]],
+  ['Growth, income and ownership', st => [['Revenue growth', fPc(st.revenueGrowth)], ['Earnings growth', fPc(st.earningsGrowth)], ['Dividend yield', fPc(st.dividendYield)], ['Payout ratio', fPc(st.payoutRatio)], ['Beta', fNum(st.beta)], ['Short % of float', fPc(st.shortPercentOfFloat)], ['Held by insiders', fPc(st.heldPercentInsiders)], ['Analyst target', st.targetMeanPrice ? fNum(st.targetMeanPrice) + (st.recommendationKey ? ' (' + st.recommendationKey.replace('_', ' ') + ')' : '') : '—']]]
+];
+function finTable(title, yrs, rows) {
+  const card = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] overflow-x-auto');
+  card.appendChild(el('h3', 'font-medium text-white px-4 pt-3 pb-1', title));
+  const t = el('table', 'w-full text-sm num'), hd = el('thead', 'text-xs text-slate-400'), hr = el('tr');
+  hr.appendChild(el('th', 'px-4 py-2 text-left font-medium', 'Fiscal year ending'));
+  yrs.forEach(y => hr.appendChild(el('th', 'px-4 py-2 text-right font-medium whitespace-nowrap', y.slice(0, 7))));
+  hd.appendChild(hr); t.appendChild(hd);
+  const tb = el('tbody');
+  rows.forEach(r => {
+    const tr = el('tr', 'border-t border-slate-800');
+    tr.appendChild(el('td', 'px-4 py-2 text-left ' + (r.sub ? 'text-slate-500 text-xs' : ''), r.l));
+    yrs.forEach(y => { const v = r.f(y); tr.appendChild(el('td', 'px-4 py-2 text-right whitespace-nowrap ' + (r.sub ? 'text-slate-500 text-xs' : ''), v)); });
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb); card.appendChild(t); return card;
+}
+function renderFin(d) {
+  const box = $('chFin'); box.innerHTML = '';
+  const st = d.stats || {}, ys = d.years || {};
+  const yrs = Object.keys(ys).sort().reverse().slice(0, 5);
+  if (!Object.keys(st).length && !yrs.length) { box.appendChild(el('p', 'text-sm text-slate-500', 'No financial data is available for ' + d.symbol + ' (funds and indexes do not report these).')); return; }
+  if (Object.keys(st).length) {
+    const grid = el('div', 'grid gap-3 sm:grid-cols-2 lg:grid-cols-4');
+    FIN_GROUPS.forEach(([title, fn]) => {
+      const c = el('div', 'rounded-lg border border-slate-800 bg-[#151b22] p-4');
+      c.appendChild(el('h3', 'font-medium text-white mb-2', title));
+      fn(st).forEach(([l, v]) => {
+        const row = el('div', 'flex justify-between gap-3 py-1 text-sm');
+        row.appendChild(el('span', 'text-slate-400', l)); row.appendChild(el('span', 'num text-slate-200', v)); c.appendChild(row);
+      });
+      grid.appendChild(c);
+    });
+    box.appendChild(grid);
+  }
+  if (yrs.length) {
+    const g = (y, k) => (ys[y] || {})[k];
+    const prev = y => { const i = yrs.indexOf(y); return i >= 0 && i + 1 < yrs.length ? yrs[i + 1] : null; };
+    const ratio = (a, b) => typeof a === 'number' && typeof b === 'number' && b ? fPc(a / b) : '—';
+    box.appendChild(finTable('Income statement (annual)', yrs, [
+      {l: 'Revenue', f: y => fMoney(g(y, 'TotalRevenue'))},
+      {l: 'Revenue growth', sub: true, f: y => { const p = prev(y); return p ? ratio(g(y, 'TotalRevenue') - g(p, 'TotalRevenue'), Math.abs(g(p, 'TotalRevenue'))) : '—'; }},
+      {l: 'Gross profit', f: y => fMoney(g(y, 'GrossProfit'))},
+      {l: 'Gross margin', sub: true, f: y => ratio(g(y, 'GrossProfit'), g(y, 'TotalRevenue'))},
+      {l: 'Operating income', f: y => fMoney(g(y, 'OperatingIncome'))},
+      {l: 'Operating margin', sub: true, f: y => ratio(g(y, 'OperatingIncome'), g(y, 'TotalRevenue'))},
+      {l: 'EBITDA', f: y => fMoney(g(y, 'EBITDA'))},
+      {l: 'Net income', f: y => fMoney(g(y, 'NetIncome'))},
+      {l: 'Net margin', sub: true, f: y => ratio(g(y, 'NetIncome'), g(y, 'TotalRevenue'))},
+      {l: 'Diluted EPS', f: y => fNum(g(y, 'DilutedEPS'))}
+    ]));
+    box.appendChild(finTable('Balance sheet (annual)', yrs, [
+      {l: 'Cash and equivalents', f: y => fMoney(g(y, 'CashAndCashEquivalents'))},
+      {l: 'Total assets', f: y => fMoney(g(y, 'TotalAssets'))},
+      {l: 'Total liabilities', f: y => fMoney(g(y, 'TotalLiabilitiesNetMinorityInterest'))},
+      {l: 'Total debt', f: y => fMoney(g(y, 'TotalDebt'))},
+      {l: "Shareholders' equity", f: y => fMoney(g(y, 'StockholdersEquity'))},
+      {l: 'Debt / equity', sub: true, f: y => ratio(g(y, 'TotalDebt'), g(y, 'StockholdersEquity'))}
+    ]));
+    box.appendChild(finTable('Cash flow (annual)', yrs, [
+      {l: 'Operating cash flow', f: y => fMoney(g(y, 'OperatingCashFlow'))},
+      {l: 'Capital expenditure', f: y => fMoney(g(y, 'CapitalExpenditure'))},
+      {l: 'Free cash flow', f: y => fMoney(g(y, 'FreeCashFlow'))},
+      {l: 'FCF margin', sub: true, f: y => ratio(g(y, 'FreeCashFlow'), g(y, 'TotalRevenue'))}
+    ]));
+  }
+  box.appendChild(el('p', 'text-xs text-slate-500', 'Figures come from Yahoo Finance and are in the company\'s reporting currency. Margins, growth and debt/equity rows are calculated here. Not every company reports every line.'));
+}
+async function finLoad(sym) {
+  const box = $('chFin'); if (!box) return;
+  const token = ++FIN.token; FIN.sym = sym;
+  box.innerHTML = '';
+  if (!cfg.worker || /^[\^]|=/.test(sym)) return;
+  box.appendChild(el('p', 'text-sm text-slate-500', 'Loading financials…'));
+  try {
+    const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?fin=' + encodeURIComponent(sym), 30000);
+    if (token !== FIN.token) return;
+    if (d.error) throw new Error(d.error);
+    renderFin(d);
+  } catch (e) {
+    if (token !== FIN.token) return;
+    box.innerHTML = ''; box.appendChild(el('p', 'text-sm text-slate-500', 'Could not load financial data for ' + sym + ' right now.'));
+  }
+}
 function show() {
   const h = location.hash;
   const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : h === "#bloggers" ? "bloggers" : h === "#screener" ? "screener" : 'home';

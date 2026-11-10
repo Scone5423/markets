@@ -649,6 +649,58 @@ async function runScreen(params) {
   };
 }
 
+
+// ---- Basic financials for the Charts page ---------------------------------
+const FIN_TYPES = ['TotalRevenue', 'GrossProfit', 'OperatingIncome', 'EBITDA', 'NetIncome', 'DilutedEPS',
+  'CashAndCashEquivalents', 'TotalAssets', 'TotalDebt', 'TotalLiabilitiesNetMinorityInterest', 'StockholdersEquity',
+  'OperatingCashFlow', 'CapitalExpenditure', 'FreeCashFlow'];
+const FIN_STATS = {
+  financialData: ['currentPrice', 'targetMeanPrice', 'recommendationKey', 'totalCash', 'totalDebt', 'debtToEquity', 'currentRatio', 'quickRatio',
+    'returnOnEquity', 'returnOnAssets', 'profitMargins', 'grossMargins', 'operatingMargins', 'ebitdaMargins', 'revenueGrowth', 'earningsGrowth', 'freeCashflow', 'operatingCashflow', 'totalRevenue'],
+  defaultKeyStatistics: ['enterpriseValue', 'enterpriseToEbitda', 'enterpriseToRevenue', 'pegRatio', 'priceToBook', 'forwardPE', 'forwardEps', 'trailingEps',
+    'bookValue', 'sharesOutstanding', 'floatShares', 'shortPercentOfFloat', 'beta', 'payoutRatio', 'heldPercentInsiders', 'heldPercentInstitutions'],
+  summaryDetail: ['marketCap', 'trailingPE', 'priceToSalesTrailing12Months', 'dividendYield', 'dividendRate', 'fiftyTwoWeekHigh', 'fiftyTwoWeekLow', 'averageVolume']
+};
+async function getFin(sym) {
+  return cached('fin:' + sym, 1800000, async () => {
+    const out = { symbol: sym, stats: {}, years: {} };
+    try {
+      const s = await getSession();
+      const r = await fetch('https://query1.finance.yahoo.com/v10/finance/quoteSummary/' + encodeURIComponent(sym) +
+        '?modules=' + Object.keys(FIN_STATS).join(',') + '&crumb=' + encodeURIComponent(s.crumb), { headers: { 'User-Agent': UA, Cookie: s.cookie } });
+      if (!r.ok) { if (r.status === 401 || r.status === 403) session = null; throw new Error('HTTP ' + r.status); }
+      const res = ((await r.json()).quoteSummary.result || [])[0] || {};
+      for (const [mod, keys] of Object.entries(FIN_STATS)) {
+        for (const k of keys) {
+          const v = res[mod] && res[mod][k];
+          const raw = v && typeof v === 'object' ? v.raw : v;
+          if (raw !== undefined && raw !== null && raw !== '') out.stats[k] = raw;
+        }
+      }
+    } catch (e) { out.statsError = String(e.message || e); }
+    try {
+      const now = Math.floor(Date.now() / 1000);
+      const r = await fetch('https://query1.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/' + encodeURIComponent(sym) +
+        '?type=' + FIN_TYPES.map(t => 'annual' + t).join(',') + '&merge=false&padTimeSeries=false&period1=' + (now - 6 * 366 * 86400) + '&period2=' + (now + 86400),
+        { headers: { 'User-Agent': UA } });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const j = await r.json();
+      for (const it of ((j.timeseries || {}).result || [])) {
+        const type = it.meta && it.meta.type && it.meta.type[0];
+        const rows = type && it[type];
+        if (!rows) continue;
+        const key = type.replace(/^annual/, '');
+        for (const row of rows) {
+          const v = row && row.reportedValue && row.reportedValue.raw;
+          if (typeof v !== 'number' || !row.asOfDate) continue;
+          (out.years[row.asOfDate] = out.years[row.asOfDate] || {})[key] = v;
+        }
+      }
+    } catch (e) { out.yearsError = String(e.message || e); }
+    return out;
+  });
+}
+
 // 5-trading-day change for up to ~20 symbols per request.
 async function sparkWeek(batch) {
   const s = await getSession();
@@ -832,6 +884,13 @@ export default {
     }
 
     // Biggest winners and losers across the US market (Home page).
+    if (url.searchParams.get('fin')) {
+      const sym = url.searchParams.get('fin').toUpperCase();
+      if (!/^[A-Z0-9.\-^=]{1,14}$/.test(sym)) return new Response('{}', { status: 400, headers });
+      const d = await getFin(sym).catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=900' } });
+    }
+
     if (url.searchParams.get('screen')) {
       try {
         const d = await runScreen(url.searchParams);
