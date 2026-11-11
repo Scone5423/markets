@@ -2188,9 +2188,7 @@ function deepRender(sym) {
     if (b1) s1.appendChild(b1);
     const b2 = dPeriods('Shares outstanding at period end (balance sheet)', (d.balance || []).map(x => ({d: x.d, v: x.v})), [['Shares outstanding', p => dN(p.v)]], 'Period end');
     if (b2) s1.appendChild(b2);
-    const b3 = dPeriods('Weighted average shares, by quarter', d.weighted || [], [['Basic', p => dN(p.basic)], ['Diluted', p => dN(p.diluted)]], 'Quarter end');
-    if (b3) s1.appendChild(b3);
-    const b4 = dPeriods('Weighted average shares, by fiscal year', d.weightedAnnual || [], [['Basic', p => dN(p.basic)], ['Diluted', p => dN(p.diluted)]], 'Year end');
+    const b4 = dPeriods('Weighted average shares, by fiscal year, last 10 years', d.weightedAnnual || [], [['Basic', p => dN(p.basic)], ['Diluted', p => dN(p.diluted)]], 'Year end');
     if (b4) s1.appendChild(b4);
     if (!s1.querySelector('table')) s1.appendChild(el('div', 'text-sm text-slate-400', 'No share-count data came back from the filings.'));
   }
@@ -2201,12 +2199,10 @@ function deepRender(sym) {
   const s2 = dSection('2. Share repurchases');
   if (live) {
     const mt = [['Shares repurchased', p => dN(p.shares)], ['Cash paid ($M)', p => dM(p.paid)], ['Value repurchased ($M)', p => dM(p.value)], ['Average price per share', p => dP(p.price)]];
-    const q = dPeriods('By quarter (year-to-date figures are differenced into single quarters)', d.buyQ || [], mt, 'Quarter end');
-    if (q) s2.appendChild(q);
-    const a = dPeriods('By fiscal year', d.buyA || [], mt, 'Year end');
+    const a = dPeriods('By fiscal year, last 10 years', d.buyA || [], mt, 'Year end');
     if (a) s2.appendChild(a);
-    if (!q && !a) s2.appendChild(el('div', 'text-sm text-slate-400 mb-3', 'No repurchase figures are tagged in the filings.'));
-    s2.appendChild(el('div', 'text-sm text-slate-400 mb-2 mt-4', 'Purchases by month, as listed under Issuer Purchases of Equity Securities in each filing'));
+    if (!a) s2.appendChild(el('div', 'text-sm text-slate-400 mb-3', 'No repurchase figures are tagged in the filings.'));
+    s2.appendChild(el('div', 'text-sm text-slate-400 mb-2 mt-4', 'Each purchase period reported, from Issuer Purchases of Equity Securities in the last 12 10-Ks and 10-Qs (companies report monthly, not trade by trade)'));
     (d.issuer || []).forEach(f => {
       const h = el('div', 'text-sm text-slate-300 mb-1 mt-3');
       const a2 = el('a', 'text-sky-400 hover:underline', f.form + ' for period ending ' + f.period + ' (filed ' + f.filed + ')'); a2.href = f.url; a2.target = '_blank'; a2.rel = 'noopener';

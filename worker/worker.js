@@ -858,7 +858,7 @@ async function getDeep(sym) {
     out.shares = coverRows.slice(0, 12).map(c => ({ d: c.d, filed: c.filed, form: c.form, cover: c.v }));
     out.balance = Object.keys(bs).sort().reverse().slice(0, 12).map(d => ({ d, v: bs[d].val }));
     out.weighted = Object.keys(Object.assign({}, wd.q, wb.q)).sort().reverse().slice(0, 12).map(d => ({ d, basic: wb.q[d], diluted: wd.q[d] }));
-    out.weightedAnnual = Object.keys(Object.assign({}, wd.a, wb.a)).sort().reverse().slice(0, 6).map(d => ({ d, basic: wb.a[d], diluted: wd.a[d] }));
+    out.weightedAnnual = Object.keys(Object.assign({}, wd.a, wb.a)).sort().reverse().slice(0, 10).map(d => ({ d, basic: wb.a[d], diluted: wd.a[d] }));
     // repurchases
     const cash = qFacts(g, ['PaymentsForRepurchaseOfCommonStock', 'PaymentsForRepurchaseOfEquity'], 'USD');
     const val = qFacts(g, ['StockRepurchasedAndRetiredDuringPeriodValue', 'TreasuryStockValueAcquiredCostMethod', 'StockRepurchasedDuringPeriodValue'], 'USD');
@@ -867,7 +867,7 @@ async function getDeep(sym) {
       const usd = val[k][d] !== undefined ? val[k][d] : cash[k][d], sh = shr[k][d];
       return { d, paid: cash[k][d], value: val[k][d], shares: sh, price: sh > 0 && usd !== undefined ? usd / sh : undefined };
     });
-    out.buyQ = bb('q', 12); out.buyA = bb('a', 6);
+    out.buyQ = bb('q', 12); out.buyA = bb('a', 10);
     // stock-based compensation
     const sbc = qFacts(g, ['ShareBasedCompensation', 'AllocatedShareBasedCompensationExpense'], 'USD');
     const sbcRows = k => Object.keys(sbc[k]).sort().reverse().slice(0, k === 'q' ? 12 : 6).map(d => ({ d, v: sbc[k][d] }));
@@ -876,7 +876,7 @@ async function getDeep(sym) {
     out.unrecognized = un.filter(x => /^10-(K|Q)/.test(x.form || '')).sort((a, b) => (a.end < b.end ? 1 : -1)).slice(0, 4).map(x => ({ d: x.end, v: x.val }));
     // Item 2 / Item 5 "Issuer Purchases of Equity Securities" tables from the six latest filings
     out.issuer = [];
-    const take = filings.slice(0, 6);
+    const take = filings.slice(0, 12);
     await Promise.all(take.map(async f => {
       const url = 'https://www.sec.gov/Archives/edgar/data/' + cik + '/' + f.acc.replace(/-/g, '') + '/' + f.doc;
       const item = { form: f.form, period: f.period, filed: f.filed, url };
