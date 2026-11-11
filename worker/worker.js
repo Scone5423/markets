@@ -874,6 +874,31 @@ async function getDeep(sym) {
     out.sbcQ = sbcRows('q'); out.sbcA = sbcRows('a');
     const un = ((g.EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognizedShareBasedAwardsOtherThanOptions || {}).units || {}).USD || [];
     out.unrecognized = un.filter(x => /^10-(K|Q)/.test(x.form || '')).sort((a, b) => (a.end < b.end ? 1 : -1)).slice(0, 4).map(x => ({ d: x.end, v: x.val }));
+    // annual debt, cash, interest and earnings (10-K data, last 10 fiscal years)
+    {
+      const A = (tags, unit, kind) => annualFacts(g, tags, unit, kind);
+      const ni = A(['NetIncomeLoss', 'ProfitLoss', 'NetIncomeLossAvailableToCommonStockholdersBasic'], 'USD', 'dur');
+      const eps = A(['EarningsPerShareDiluted', 'EarningsPerShareBasicAndDiluted', 'EarningsPerShareBasic'], 'USD/shares', 'dur');
+      const paid = A(['InterestPaidNet', 'InterestPaid', 'InterestPaidExcludingCapitalizedInterest'], 'USD', 'dur');
+      const iexp = A(['InterestExpense', 'InterestExpenseNonoperating', 'InterestExpenseDebt', 'InterestAndDebtExpense'], 'USD', 'dur');
+      const cash1 = A(['CashCashEquivalentsAndShortTermInvestments'], 'USD', 'inst');
+      const cash2 = A(['CashAndCashEquivalentsAtCarryingValue', 'CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents'], 'USD', 'inst');
+      const sti = A(['ShortTermInvestments', 'MarketableSecuritiesCurrent', 'AvailableForSaleSecuritiesDebtSecuritiesCurrent'], 'USD', 'inst');
+      const dComb = A(['DebtLongtermAndShorttermCombinedAmount'], 'USD', 'inst');
+      const dNon = A(['LongTermDebtNoncurrent'], 'USD', 'inst');
+      const dCur = A(['LongTermDebtCurrent', 'DebtCurrent'], 'USD', 'inst');
+      const dShort = A(['ShortTermBorrowings', 'CommercialPaper'], 'USD', 'inst');
+      const dLt = A(['LongTermDebt'], 'USD', 'inst');
+      const ends = [...new Set([...Object.keys(ni), ...Object.keys(eps)])].sort().reverse().slice(0, 10);
+      out.annual = ends.map(d => {
+        let debt;
+        if (dComb[d] !== undefined) debt = dComb[d];
+        else if (dNon[d] !== undefined || dCur[d] !== undefined) debt = (dNon[d] || 0) + (dCur[d] || 0) + (dCur[d] === undefined ? (dShort[d] || 0) : 0);
+        else if (dLt[d] !== undefined) debt = dLt[d];
+        return { d, debt, cash: cash1[d] !== undefined ? cash1[d] : cash2[d] !== undefined ? cash2[d] + (sti[d] || 0) : undefined,
+          paid: paid[d], iexp: iexp[d], ni: ni[d], eps: eps[d] };
+      });
+    }
     // Item 2 / Item 5 "Issuer Purchases of Equity Securities" tables from the six latest filings
     out.issuer = [];
     const take = filings.slice(0, 12);

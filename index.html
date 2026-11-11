@@ -2241,6 +2241,17 @@ function deepRender(sym) {
     if (u) s3.appendChild(u);
   }
   body.appendChild(s3);
+  // 4. Debt, cash, interest and earnings
+  const s4 = dSection('4. Debt, cash, interest and earnings');
+  if (live) {
+    const t = dPeriods('Annual, last 10 fiscal years ($M except per share)', d.annual || [], [
+      ['Total debt', p => dM(p.debt)], ['Total cash and short-term investments', p => dM(p.cash)],
+      ['Interest paid', p => dM(p.paid)], ['Interest expense', p => dM(p.iexp)],
+      ['Net income', p => dM(p.ni)], ['Diluted EPS', p => dP(p.eps)]], 'Fiscal year end');
+    if (t) s4.appendChild(t); else s4.appendChild(el('div', 'text-sm text-slate-400', 'No annual data came back from the filings.'));
+    s4.appendChild(el('div', 'text-xs text-slate-500', 'Blank cells mean the company does not tag that item in its 10-K.'));
+  } else if (st.nonsec) s4.appendChild(el('div', 'text-sm text-slate-400', 'Not available: this company does not file 10-Ks.'));
+  body.appendChild(s4);
 }
 async function deepLoad(sym) {
   if (deepData[sym] !== undefined || (deepStatic && (deepStatic[sym] || {}).nonsec)) return;
