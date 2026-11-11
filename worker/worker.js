@@ -773,6 +773,124 @@ async function finishScreen(res, params) {
   return res;
 }
 
+
+// ---- Deep Dive: shares, buybacks and SBC from SEC 10-K / 10-Q filings --------
+function qFacts(g, tags, unit) {
+  // {q:{endDate:value}, a:{endDate:value}} - discrete quarters (YTD figures are differenced) and fiscal years
+  const q = {}, a = {};
+  for (const tag of tags) {
+    const f = g[tag] && g[tag].units && g[tag].units[unit];
+    if (!f) continue;
+    const m = {};
+    for (const x of f) {
+      if (!x.start || typeof x.val !== 'number') continue;
+      const k = x.start + '|' + x.end;
+      if (!m[k] || x.filed >= m[k].filed) m[k] = x;
+    }
+    const list = Object.values(m).map(x => ({ s: x.start, e: x.end, v: x.val, d: (Date.parse(x.end) - Date.parse(x.start)) / DAY }));
+    const tq = {}, ta = {};
+    for (const x of list) {
+      if (x.d >= 80 && x.d <= 100) tq[x.e] = x.v;
+      else if (x.d >= 350 && x.d <= 380) ta[x.e] = x.v;
+    }
+    const byStart = {};
+    list.forEach(x => (byStart[x.s] = byStart[x.s] || []).push(x));
+    for (const grp of Object.values(byStart)) {
+      grp.sort((p1, p2) => p1.d - p2.d);
+      let prev = null;
+      for (const x of grp) {
+        if (x.d >= 80 && x.d <= 100) prev = x;
+        else if (prev && ((x.d >= 170 && x.d <= 195) || (x.d >= 260 && x.d <= 285) || (x.d >= 350 && x.d <= 380))) {
+          if (tq[x.e] === undefined) tq[x.e] = x.v - prev.v;
+          prev = x;
+        }
+      }
+    }
+    for (const [k, v] of Object.entries(tq)) if (q[k] === undefined) q[k] = v;
+    for (const [k, v] of Object.entries(ta)) if (a[k] === undefined) a[k] = v;
+  }
+  return { q, a };
+}
+function tableRows(tbl) {
+  const rows = [];
+  for (const m of tbl.matchAll(/<tr[\s\S]*?<\/tr>/gi)) {
+    const cells = [...m[0].matchAll(/<t[dh][\s\S]*?<\/t[dh]>/gi)].map(c => cellText(c[0])).filter(c => c && c !== '$' && c !== ')' && c !== '%');
+    if (cells.length >= 2) rows.push(cells);
+  }
+  return rows;
+}
+function issuerTable(html) {
+  const re = /issuer\s+purchases\s+of\s+equity\s+securities/ig;
+  let mm;
+  while ((mm = re.exec(html))) {
+    const seg = html.slice(mm.index, mm.index + 60000);
+    const t = /<table[\s\S]*?<\/table>/i.exec(seg);
+    if (!t) continue;
+    const rows = tableRows(t[0]);
+    if (rows.length >= 2 && rows.some(r => /average\s+price|price\s+paid/i.test(r.join(' ')))) return rows;
+  }
+  return null;
+}
+async function getDeep(sym) {
+  return cached('deep:' + sym, 43200000, async () => {
+    const cik = await secCik(sym);
+    if (!cik) return { symbol: sym, note: 'Not found in the SEC company list (not a US domestic filer).' };
+    const id = String(cik).padStart(10, '0');
+    const sub = await (await secGet('https://data.sec.gov/submissions/CIK' + id + '.json')).json();
+    const rec = (sub.filings || {}).recent || {};
+    const filings = [];
+    (rec.form || []).forEach((f, i) => { if (/^10-(K|Q)$/.test(f)) filings.push({ form: f, acc: rec.accessionNumber[i], doc: rec.primaryDocument[i], period: rec.reportDate[i], filed: rec.filingDate[i] }); });
+    if (!filings.length) return { symbol: sym, name: sub.name, note: 'Files annual and interim reports as ' + [...new Set((rec.form || []).filter(f => /^(20-F|40-F|6-K)$/.test(f)))].join('/') + ', not 10-K / 10-Q.' };
+    const out = { symbol: sym, name: sub.name, cik };
+    const j = await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + id + '.json')).json();
+    const g = (j.facts || {})['us-gaap'] || {}, dei = (j.facts || {}).dei || {};
+    // shares outstanding
+    const cover = {};
+    for (const x of ((dei.EntityCommonStockSharesOutstanding || {}).units || {}).shares || []) {
+      if (!/^10-(K|Q)/.test(x.form || '')) continue;
+      const k = x.accn; if (!cover[k] || x.end > cover[k].d) cover[k] = { d: x.end, filed: x.filed, form: x.form, v: x.val };
+    }
+    const coverRows = Object.values(cover).sort((a, b) => (a.filed < b.filed ? 1 : -1));
+    const bs = {};
+    for (const x of ((g.CommonStockSharesOutstanding || {}).units || {}).shares || []) { if (/^10-(K|Q)/.test(x.form || '') && (!bs[x.end] || x.filed >= bs[x.end].filed)) bs[x.end] = x; }
+    const wd = qFacts(g, ['WeightedAverageNumberOfDilutedSharesOutstanding'], 'shares');
+    const wb = qFacts(g, ['WeightedAverageNumberOfSharesOutstandingBasic'], 'shares');
+    out.shares = coverRows.slice(0, 12).map(c => ({ d: c.d, filed: c.filed, form: c.form, cover: c.v }));
+    out.balance = Object.keys(bs).sort().reverse().slice(0, 12).map(d => ({ d, v: bs[d].val }));
+    out.weighted = Object.keys(Object.assign({}, wd.q, wb.q)).sort().reverse().slice(0, 12).map(d => ({ d, basic: wb.q[d], diluted: wd.q[d] }));
+    out.weightedAnnual = Object.keys(Object.assign({}, wd.a, wb.a)).sort().reverse().slice(0, 6).map(d => ({ d, basic: wb.a[d], diluted: wd.a[d] }));
+    // repurchases
+    const cash = qFacts(g, ['PaymentsForRepurchaseOfCommonStock', 'PaymentsForRepurchaseOfEquity'], 'USD');
+    const val = qFacts(g, ['StockRepurchasedAndRetiredDuringPeriodValue', 'TreasuryStockValueAcquiredCostMethod', 'StockRepurchasedDuringPeriodValue'], 'USD');
+    const shr = qFacts(g, ['StockRepurchasedAndRetiredDuringPeriodShares', 'TreasuryStockSharesAcquired', 'StockRepurchasedDuringPeriodShares'], 'shares');
+    const bb = (k, n) => Object.keys(Object.assign({}, cash[k], val[k], shr[k])).sort().reverse().slice(0, n).map(d => {
+      const usd = val[k][d] !== undefined ? val[k][d] : cash[k][d], sh = shr[k][d];
+      return { d, paid: cash[k][d], value: val[k][d], shares: sh, price: sh > 0 && usd !== undefined ? usd / sh : undefined };
+    });
+    out.buyQ = bb('q', 12); out.buyA = bb('a', 6);
+    // stock-based compensation
+    const sbc = qFacts(g, ['ShareBasedCompensation', 'AllocatedShareBasedCompensationExpense'], 'USD');
+    const sbcRows = k => Object.keys(sbc[k]).sort().reverse().slice(0, k === 'q' ? 12 : 6).map(d => ({ d, v: sbc[k][d] }));
+    out.sbcQ = sbcRows('q'); out.sbcA = sbcRows('a');
+    const un = ((g.EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognizedShareBasedAwardsOtherThanOptions || {}).units || {}).USD || [];
+    out.unrecognized = un.filter(x => /^10-(K|Q)/.test(x.form || '')).sort((a, b) => (a.end < b.end ? 1 : -1)).slice(0, 4).map(x => ({ d: x.end, v: x.val }));
+    // Item 2 / Item 5 "Issuer Purchases of Equity Securities" tables from the six latest filings
+    out.issuer = [];
+    const take = filings.slice(0, 6);
+    await Promise.all(take.map(async f => {
+      const url = 'https://www.sec.gov/Archives/edgar/data/' + cik + '/' + f.acc.replace(/-/g, '') + '/' + f.doc;
+      const item = { form: f.form, period: f.period, filed: f.filed, url };
+      try {
+        const html = await (await secGet(url)).text();
+        item.rows = issuerTable(html);
+      } catch (e) { item.error = String(e.message || e); }
+      out.issuer.push(item);
+    }));
+    out.issuer.sort((a, b) => (a.filed < b.filed ? 1 : -1));
+    return out;
+  });
+}
+
 // ---- Basic financials for the Charts page ---------------------------------
 const FIN_TYPES = ['TotalRevenue', 'GrossProfit', 'OperatingIncome', 'EBITDA', 'NetIncome', 'DilutedEPS',
   'CashAndCashEquivalents', 'TotalAssets', 'TotalDebt', 'TotalLiabilitiesNetMinorityInterest', 'StockholdersEquity',
@@ -1126,6 +1244,15 @@ export default {
       if (!/^[A-Z0-9.\-^=]{1,14}$/.test(sym)) return new Response('{}', { status: 400, headers });
       const d = await getFin(sym).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=900' } });
+    }
+
+    if (url.searchParams.get('deep')) {
+      try {
+        const sym = url.searchParams.get('deep').toUpperCase().replace(/[^A-Z0-9.\-]/g, '').slice(0, 10);
+        return new Response(JSON.stringify(await getDeep(sym)), { headers: { ...headers, 'cache-control': 'public, max-age=3600' } });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: String(e.message || e) }), { headers });
+      }
     }
 
     if (url.searchParams.get('cape')) {

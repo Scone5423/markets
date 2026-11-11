@@ -78,6 +78,7 @@
     <a href="#pabrai" data-nav="pabrai" class="pb-3 text-sm">Dhandho</a>
     <a href="#bloggers" data-nav="bloggers" class="pb-3 text-sm">Bloggers</a>
     <a href="#screener" data-nav="screener" class="pb-3 text-sm">Screener</a>
+    <a href="#deep" data-nav="deep" class="pb-3 text-sm">Deep Dive</a>
   </nav>
 
   <section id="view-home">
@@ -175,6 +176,12 @@
     <div id="bloggersBody"></div>
   </section>
 
+
+  <section id="view-deep" hidden>
+    <div class="mb-4"><h2 class="text-3xl font-semibold text-white">Deep Dive</h2></div>
+    <div id="deepBtns" class="flex flex-wrap gap-2 mb-5"></div>
+    <div id="deepBody"></div>
+  </section>
 
   <section id="view-screener" hidden>
     <div class="mb-4">
@@ -2117,6 +2124,139 @@ function scCsv() {
 }
 function screenerShow() { scBuild(); }
 
+// ---- Deep Dive (shares, buybacks, SBC from SEC filings) --------------------------------
+const DEEP_SYMS = ['DECK','NKE','PYPL','KSPI','ADSK','CPRT','PRKA','CSU'];
+let deepStatic = null, deepSym = null, deepBuilt = false;
+const deepData = {};
+const dN = v => typeof v === 'number' && isFinite(v) ? Math.round(v).toLocaleString('en-US') : '—';
+const dM = v => typeof v === 'number' && isFinite(v) ? (v / 1e6).toLocaleString('en-US', {minimumFractionDigits: 1, maximumFractionDigits: 1}) : '—';
+const dP = v => typeof v === 'number' && isFinite(v) ? '$' + v.toFixed(2) : '—';
+function deepBtns() {
+  if (deepBuilt) return; deepBuilt = true;
+  DEEP_SYMS.forEach(sy => {
+    const b = el('button', 'rounded border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:border-sky-500', sy);
+    b.type = 'button'; b.dataset.sym = sy;
+    b.addEventListener('click', () => { location.hash = '#deep/' + sy; });
+    $('deepBtns').appendChild(b);
+  });
+}
+function dTable(head, rows, opts) {
+  opts = opts || {};
+  const w = el('div', 'overflow-x-auto rounded-lg border border-slate-800 mb-3');
+  const t = el('table', 'w-full text-sm');
+  const th = el('thead', 'text-slate-400 text-xs'); const hr = el('tr');
+  head.forEach((h, i) => hr.appendChild(el('th', 'px-3 py-2 font-medium whitespace-nowrap ' + (i === 0 ? 'text-left' : 'text-right'), h)));
+  th.appendChild(hr); t.appendChild(th);
+  const tb = el('tbody');
+  rows.forEach(r => {
+    const tr = el('tr', 'border-t border-slate-800');
+    r.forEach((c, i) => tr.appendChild(el('td', 'px-3 py-2 whitespace-nowrap ' + (i === 0 ? 'text-left text-slate-300' : 'text-right'), c)));
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb); w.appendChild(t); return w;
+}
+function dSection(title) {
+  const s = el('div', 'mb-8'); s.appendChild(el('h3', 'text-xl font-semibold text-white mb-3', title)); return s;
+}
+// periods as columns, oldest on the left; metrics as rows
+function dPeriods(title, periods, metrics, label) {
+  const ps = periods.slice().sort((a, b) => a.d < b.d ? -1 : 1);
+  if (!ps.length) return null;
+  const box = el('div'); box.appendChild(el('div', 'text-sm text-slate-400 mb-2', title));
+  box.appendChild(dTable([label || ''].concat(ps.map(p => p.d)), metrics.map(m => [m[0]].concat(ps.map(p => m[1](p))))));
+  return box;
+}
+function dBullets(arr) {
+  const u = el('ul', 'list-disc pl-5 space-y-1 text-sm text-slate-300 mb-3');
+  (arr || []).forEach(x => u.appendChild(el('li', '', x)));
+  return u;
+}
+function deepRender(sym) {
+  const body = $('deepBody'); body.textContent = '';
+  const st = (deepStatic || {})[sym] || {};
+  const d = deepData[sym];
+  body.appendChild(el('div', 'text-lg text-white mb-4', sym + (st.name ? ' · ' + st.name : '')));
+  if (d === undefined && !st.nonsec) { body.appendChild(el('div', 'text-sm text-slate-400', 'Loading filings…')); return; }
+  const live = d && !d.error && !d.note && !st.nonsec;
+  if (d && d.error && !st.nonsec) body.appendChild(el('div', 'text-sm text-rose-400 mb-4', 'Could not load the filings: ' + d.error));
+  if (d && d.note && !st.nonsec) body.appendChild(el('div', 'text-sm text-amber-400 mb-4', d.note));
+  // 1. Shares outstanding
+  const s1 = dSection('1. Shares outstanding');
+  if (live) {
+    const cov = (d.shares || []).map(x => ({d: x.filed, form: x.form, asof: x.d, v: x.cover}));
+    const b1 = dPeriods('Share count on the cover page of each 10-K and 10-Q (by filing date)', cov, [['Form', p => p.form], ['As of', p => p.asof], ['Shares outstanding', p => dN(p.v)]], 'Filed');
+    if (b1) s1.appendChild(b1);
+    const b2 = dPeriods('Shares outstanding at period end (balance sheet)', (d.balance || []).map(x => ({d: x.d, v: x.v})), [['Shares outstanding', p => dN(p.v)]], 'Period end');
+    if (b2) s1.appendChild(b2);
+    const b3 = dPeriods('Weighted average shares, by quarter', d.weighted || [], [['Basic', p => dN(p.basic)], ['Diluted', p => dN(p.diluted)]], 'Quarter end');
+    if (b3) s1.appendChild(b3);
+    const b4 = dPeriods('Weighted average shares, by fiscal year', d.weightedAnnual || [], [['Basic', p => dN(p.basic)], ['Diluted', p => dN(p.diluted)]], 'Year end');
+    if (b4) s1.appendChild(b4);
+    if (!s1.querySelector('table')) s1.appendChild(el('div', 'text-sm text-slate-400', 'No share-count data came back from the filings.'));
+  }
+  (st.tables || []).forEach(t => { s1.appendChild(el('div', 'text-sm text-slate-400 mb-2', t.title)); s1.appendChild(dTable(t.head, t.rows)); });
+  if (!live && !(st.tables || []).length) s1.appendChild(dBullets((st.sbc || []).filter(x => /shares outstanding|Shares outstanding/.test(x))));
+  body.appendChild(s1);
+  // 2. Repurchases
+  const s2 = dSection('2. Share repurchases');
+  if (live) {
+    const mt = [['Shares repurchased', p => dN(p.shares)], ['Cash paid ($M)', p => dM(p.paid)], ['Value repurchased ($M)', p => dM(p.value)], ['Average price per share', p => dP(p.price)]];
+    const q = dPeriods('By quarter (year-to-date figures are differenced into single quarters)', d.buyQ || [], mt, 'Quarter end');
+    if (q) s2.appendChild(q);
+    const a = dPeriods('By fiscal year', d.buyA || [], mt, 'Year end');
+    if (a) s2.appendChild(a);
+    if (!q && !a) s2.appendChild(el('div', 'text-sm text-slate-400 mb-3', 'No repurchase figures are tagged in the filings.'));
+    s2.appendChild(el('div', 'text-sm text-slate-400 mb-2 mt-4', 'Purchases by month, as listed under Issuer Purchases of Equity Securities in each filing'));
+    (d.issuer || []).forEach(f => {
+      const h = el('div', 'text-sm text-slate-300 mb-1 mt-3');
+      const a2 = el('a', 'text-sky-400 hover:underline', f.form + ' for period ending ' + f.period + ' (filed ' + f.filed + ')'); a2.href = f.url; a2.target = '_blank'; a2.rel = 'noopener';
+      h.appendChild(a2); s2.appendChild(h);
+      if (f.rows && f.rows.length) {
+        const n = Math.max.apply(null, f.rows.map(r => r.length));
+        const rows = f.rows.map(r => r.concat(Array(n - r.length).fill('')));
+        const w = dTable(rows[0], rows.slice(1)); s2.appendChild(w);
+      } else s2.appendChild(el('div', 'text-xs text-slate-500 mb-2', f.error ? 'Could not open this filing: ' + f.error : 'No purchases table found in this filing.'));
+    });
+  }
+  if (st.buy && st.buy.length) s2.appendChild(dBullets(st.buy));
+  body.appendChild(s2);
+  // 3. SBC
+  const s3 = dSection('3. Stock-based compensation');
+  s3.appendChild(dBullets(st.sbc));
+  if (st.src) s3.appendChild(el('div', 'text-xs text-slate-500 mb-3', 'Description from the ' + st.src + '.'));
+  if (live) {
+    const q = dPeriods('Expense by quarter, cash flow statement ($M)', (d.sbcQ || []).map(x => ({d: x.d, v: x.v})), [['SBC expense', p => dM(p.v)]], 'Quarter end');
+    if (q) s3.appendChild(q);
+    const a = dPeriods('Expense by fiscal year ($M)', (d.sbcA || []).map(x => ({d: x.d, v: x.v})), [['SBC expense', p => dM(p.v)]], 'Year end');
+    if (a) s3.appendChild(a);
+    const u = dPeriods('Unrecognized cost on unvested awards ($M)', (d.unrecognized || []).map(x => ({d: x.d, v: x.v})), [['Unrecognized', p => dM(p.v)]], 'As of');
+    if (u) s3.appendChild(u);
+  }
+  body.appendChild(s3);
+}
+async function deepLoad(sym) {
+  if (deepData[sym] !== undefined || (deepStatic && (deepStatic[sym] || {}).nonsec)) return;
+  if (!cfg.worker) { deepData[sym] = {error: 'Add your price proxy address under Price sources first.'}; return; }
+  try { deepData[sym] = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?deep=' + encodeURIComponent(sym), 60000); }
+  catch (e) { deepData[sym] = {error: String(e.message || e)}; }
+}
+async function deepShow() {
+  deepBtns();
+  const m = /^#deep\/([A-Za-z.]+)/.exec(location.hash);
+  const sym = m && DEEP_SYMS.includes(m[1].toUpperCase()) ? m[1].toUpperCase() : DEEP_SYMS[0];
+  deepSym = sym;
+  document.querySelectorAll('#deepBtns button').forEach(b => {
+    b.className = 'rounded border px-4 py-2 text-sm font-medium ' + (b.dataset.sym === sym ? 'border-sky-500 text-white bg-sky-600/20' : 'border-slate-700 text-slate-300 hover:text-white hover:border-sky-500');
+  });
+  if (!deepStatic) {
+    try { deepStatic = await (await fetch('deepdive.json?v=' + Date.now())).json(); } catch (e) { deepStatic = {}; }
+  }
+  deepRender(sym);
+  await deepLoad(sym);
+  if (deepSym === sym) deepRender(sym);
+}
+
+
 
 // ---- Basic financials under the chart ---------------------------------------
 const FIN = {sym: '', token: 0};
@@ -2303,20 +2443,21 @@ function renderCape() {
 }
 function show() {
   const h = location.hash;
-  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : h === "#bloggers" ? "bloggers" : h === "#screener" ? "screener" : 'home';
-  ["home", "watchlist", "charts", "gurus", "semper", "pabrai", "bloggers", "screener"].forEach(n => { $('view-' + n).hidden = v !== n; });
+  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : h === "#bloggers" ? "bloggers" : h === "#screener" ? "screener" : h.startsWith('#deep') ? "deep" : 'home';
+  ["home", "watchlist", "charts", "gurus", "semper", "pabrai", "bloggers", "screener", "deep"].forEach(n => { $('view-' + n).hidden = v !== n; });
   document.querySelectorAll('[data-nav]').forEach(a => {
     const on = a.dataset.nav === v;
     a.className = 'pb-3 text-sm border-b-2 -mb-px ' + (on ? 'text-white border-sky-500' : 'text-slate-400 border-transparent hover:text-slate-200');
     on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   });
-  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Dhandho | Markets", bloggers: "Bloggers | Markets", screener: "Screener | Markets"}[v];
+  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Dhandho | Markets", bloggers: "Bloggers | Markets", screener: "Screener | Markets", deep: "Deep Dive | Markets"}[v];
   if (v === 'charts') chartsRoute();
   if (v === "gurus") gurusShow();
   if (v === "semper") semperShow();
   if (v === "pabrai") pabraiShow();
   if (v === "bloggers") bloggersShow();
   if (v === "screener") screenerShow();
+  if (v === "deep") deepShow();
 }
 window.addEventListener('hashchange', show);
 

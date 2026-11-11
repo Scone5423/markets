@@ -1,0 +1,126 @@
+{
+ "DECK": {
+  "name": "Deckers Outdoor",
+  "sbc": [
+   "Equity plan: 2024 Stock Incentive Plan (replaced the 2015 plan in September 2024). Permits RSUs, PSUs, LTIP PSUs, stock appreciation rights, stock bonuses, incentive and non-qualified stock options.",
+   "Six months to Sep 30, 2026: granted 371,047 RSUs (weighted grant-date fair value $90.10) and 172,694 LTIP PSUs at target ($92.80). No options were granted.",
+   "Expense: $10.6M in the Sep 2026 quarter and $21.1M for the six months (cash flow statement).",
+   "Unrecognized cost at Sep 30, 2026: $46.3M for RSUs and $27.1M for LTIP PSUs (at anticipated performance)."
+  ],
+  "buy": [
+   "Sep 2026 quarter: 3,196K shares for $299.3M (about $93.64 a share). Jun 2026 quarter: 3,258K shares for $338.2M. Six-month cash paid $637.5M; excise tax $10.4M paid, $6.2M accrued."
+  ],
+  "src": "Form 10-Q for the quarter ended Sep 30, 2026"
+ },
+ "NKE": {
+  "name": "Nike",
+  "sbc": [
+   "Plan: NIKE Stock Incentive Plan (up to 798 million previously unissued Class B shares). Awards: stock options, SARs, restricted stock, RSUs and PSUs; granted generally once a year.",
+   "Substantially all awards vest ratably over 4 years. Options expire after 10 years and are priced at no less than fair market value on the grant date.",
+   "Expense FY2025 / FY2024 / FY2023 ($M): options and SARs 292 / 336 / 311; ESPP 69 / 69 / 72; restricted stock and RSUs 348 / 399 / 372; total 709 / 804 / 755.",
+   "Unrecognized at May 31, 2025: $400M for options (2.4-year weighted period) and $631M for restricted stock and RSUs (2.5 years).",
+   "75.1M options outstanding at a weighted $97.99 exercise price. FY2025 grants: 13.3M options at $83.20, grant-date fair value $25.90.",
+   "ESPP: employees bought 3.6M, 3.1M and 3.0M shares in FY2025, FY2024 and FY2023 at 85% of the lower of start or end-of-period market price."
+  ],
+  "src": "Form 10-K for the fiscal year ended May 31, 2025"
+ },
+ "PYPL": {
+  "name": "PayPal",
+  "sbc": [
+   "Plan: Amended and Restated 2015 Equity Incentive Award Plan. Awards: RSUs, restricted stock, PBRSUs, options, deferred stock units. About 75M shares authorized and 45M available at Dec 31, 2025.",
+   "RSUs granted since 2022 vest over 3 years (33% after year one, then quarterly). PBRSUs are earned over 1-3 year performance periods and pay 0-200% of target.",
+   "Expense 2025 / 2024 / 2023 ($M): 1,084 / 1,293 / 1,530 (2024 includes $100M restructuring). 2025 by function: technology and development 489, general and administrative 266, customer support 204, sales and marketing 125. A further $134M was capitalized in 2025.",
+   "Unrecognized: about $1.4B at Dec 31, 2025, over a weighted 1.87 years.",
+   "Awards 2025: 22.3M RSU/PBRSU/restricted units granted ($70.92); 15.9M vested; 31.8M outstanding at year end. Intrinsic value vested: $1.1B in 2025.",
+   "ESPP: 2.6M shares bought in 2025 at an average $45.85."
+  ],
+  "src": "Form 10-K for the year ended Dec 31, 2025"
+ },
+ "ADSK": {
+  "name": "Autodesk",
+  "sbc": [
+   "Awards: RSUs (vest over 1-4 years), PSUs (revenue, non-GAAP operating income less SBC and relative TSR criteria; up to one-third can vest after each of years one to three) and an ESPP (up to 15% of pay at 85% of the lower of offering-date or exercise-date price).",
+   "Expense FY2026 / FY2025 / FY2024 ($M): 788 / 686 / 703. By plan FY2026: RSUs 596, PSUs 77, ESPP 115. By line FY2026: R&D 339, marketing and sales 284, G&A 107, cost of revenue 58.",
+   "Unvested restricted stock FY2026: 5,188K at start, granted 2,860K ($265.58), vested 3,048K, canceled 529K, 4,477K at Jan 31, 2026 ($255.39).",
+   "Unrecognized at Jan 31, 2026: RSUs $737M (1.80 years), PSUs $24M (1.14 years).",
+   "Repurchases: FY2026 about 5M shares at $290.38; FY2025 3M at $278.86; FY2024 4M at $201.54. $2.48B left on the Nov 2022 program and $5B on the Nov 2024 program (no expiry)."
+  ],
+  "src": "Form 10-K for the fiscal year ended Jan 31, 2026"
+ },
+ "CPRT": {
+  "name": "Copart",
+  "sbc": [
+   "The filing text for Copart's stock compensation note was not readable from here, so no written description yet. The tables above come straight from Copart's SEC data.",
+   "Copart's 10-Q has notes titled Stock-Based Compensation (option activity, RSA/RSU/PSU awards) and Stock Repurchases."
+  ],
+  "src": "Form 10-K / 10-Q (SEC XBRL data)"
+ },
+ "PRKA": {
+  "name": "Parks! America",
+  "sbc": [
+   "Parks! America (animal safari parks in Georgia, Missouri and Texas). Taken to be the PRKA you meant (ticker PRKA, CIK 1297937); ParkerVision trades as PRKR.",
+   "No stock options have ever been granted. The 2005 Stock Option and Award Plan reserves 5,000,000 shares but has not been approved by stockholders and no awards have been made under it.",
+   "Compensation is paid in shares: FY2024 expense $57,500 (209,088 shares issued to directors); FY2023 $131,667 (162,500 director shares plus 128,205 shares to the CEO under his employment agreement, equity statement value $115,000).",
+   "Shares outstanding 75,726,851 at Sep 29, 2024 and 75,517,763 at Oct 1, 2023. The FY2024 10-K reports no repurchases; the company has since announced a share repurchase program, which the live tables pick up once it shows in a filing."
+  ],
+  "src": "Form 10-K for the fiscal year ended Sep 29, 2024"
+ },
+ "KSPI": {
+  "name": "Kaspi.kz",
+  "nonsec": true,
+  "sbc": [
+   "Kaspi.kz files an annual report on Form 20-F (IFRS, tenge), not a 10-K or 10-Q, so the live SEC tables do not apply.",
+   "Share-based payment expense (KZT millions): 20,859 in 2023, 16,963 in 2024, 15,476 in 2025. By segment 2025: Payments 6,087, Marketplace 3,435, Fintech 5,954. By function 2025: technology and product development 10,658, G&A 3,209, sales and marketing 516.",
+   "Diluted EPS counts share-based compensation as the only dilutive item: potential shares 2,202,438 (2023), 1,598,230 (2024), 1,319,074 (2025)."
+  ],
+  "tables": [
+   {
+    "title": "Shares",
+    "head": [
+     "Item",
+     "2023",
+     "2024",
+     "2025"
+    ],
+    "rows": [
+     [
+      "Weighted average shares, basic",
+      "189,859,971",
+      "189,832,053",
+      "190,581,647"
+     ],
+     [
+      "Weighted average shares, diluted",
+      "192,062,409",
+      "191,430,283",
+      "191,900,721"
+     ],
+     [
+      "Shares outstanding (cover page, Dec 31, 2025)",
+      "",
+      "",
+      "190,227,932"
+     ]
+    ]
+   }
+  ],
+  "buy": [
+   "The buyback programme details (shares, prices, amounts) sit in Item 16E and the share capital note of the 20-F, which I could not read yet."
+  ],
+  "src": "Form 20-F for 2025"
+ },
+ "CSU": {
+  "name": "Constellation Software",
+  "nonsec": true,
+  "sbc": [
+   "Constellation Software is a Canadian filer (reports in SEDAR+), with no 10-K or 10-Q, so the live SEC tables do not apply.",
+   "Shares outstanding: 21,191,530 common shares at Aug 11, 2026. Weighted average 21.2 million basic and diluted for the 2026 and 2025 quarters and six months; the MD&A says there was no change in the share count.",
+   "No normal course issuer bid or repurchases are described in the Q2 2026 MD&A.",
+   "Compensation detail (how management is paid in shares) is not in the MD&A and has not been compiled."
+  ],
+  "buy": [
+   "No repurchases disclosed in the Q2 2026 MD&A."
+  ],
+  "src": "Q2 2026 MD&A"
+ }
+}
