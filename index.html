@@ -2127,7 +2127,12 @@ function screenerShow() { scBuild(); }
 // ---- Deep Dive (shares, buybacks, SBC from SEC filings) --------------------------------
 const DEEP_SYMS = ['DECK','NKE','PYPL','KSPI','ADSK','CPRT','PRKA','CSU'];
 let deepStatic = null, deepSym = null, deepBuilt = false;
-const deepData = {};
+const deepData = {}, deepPrice = {};
+const DEEP_QUOTE = {CSU: 'CSU.TO'};
+async function deepQuote(sym) {
+  if (!cfg.worker) return;
+  try { const q = DEEP_QUOTE[sym] || sym; const r = await viaWorker([q]); if (r[q]) deepPrice[sym] = r[q]; } catch (e) {}
+}
 const dN = v => typeof v === 'number' && isFinite(v) ? Math.round(v).toLocaleString('en-US') : '—';
 const dM = v => typeof v === 'number' && isFinite(v) ? (v / 1e6).toLocaleString('en-US', {minimumFractionDigits: 1, maximumFractionDigits: 1}) : '—';
 const dP = v => typeof v === 'number' && isFinite(v) ? '$' + v.toFixed(2) : '—';
@@ -2175,7 +2180,14 @@ function deepRender(sym) {
   const body = $('deepBody'); body.textContent = '';
   const st = (deepStatic || {})[sym] || {};
   const d = deepData[sym];
-  body.appendChild(el('div', 'text-lg text-white mb-4', sym + (st.name ? ' · ' + st.name : '')));
+  const hd = el('div', 'flex flex-wrap items-baseline gap-x-3 mb-4');
+  hd.appendChild(el('span', 'text-lg text-white', sym + (st.name ? ' · ' + st.name : '')));
+  const pq = deepPrice[sym];
+  if (pq) {
+    hd.appendChild(el('span', 'text-lg font-medium text-white', (pq.cur && pq.cur !== 'USD' ? pq.cur + ' ' : '$') + pq.price.toFixed(2)));
+    if (pq.prev) { const c = (pq.price / pq.prev - 1) * 100; hd.appendChild(el('span', 'text-sm ' + (c >= 0 ? 'text-emerald-400' : 'text-rose-400'), (c >= 0 ? '+' : '') + c.toFixed(2) + '%')); }
+  }
+  body.appendChild(hd);
   if (d === undefined && !st.nonsec) { body.appendChild(el('div', 'text-sm text-slate-400', 'Loading filings…')); return; }
   const live = d && !d.error && !d.note && !st.nonsec;
   if (d && d.error && !st.nonsec) body.appendChild(el('div', 'text-sm text-rose-400 mb-4', 'Could not load the filings: ' + d.error));
@@ -2248,6 +2260,7 @@ async function deepShow() {
     try { deepStatic = await (await fetch('deepdive.json?v=' + Date.now())).json(); } catch (e) { deepStatic = {}; }
   }
   deepRender(sym);
+  deepQuote(sym).then(() => { if (deepSym === sym) deepRender(sym); });
   await deepLoad(sym);
   if (deepSym === sym) deepRender(sym);
 }
