@@ -122,5 +122,16 @@
    "Unrecognized cost on all unvested awards at Dec 31, 2025: about $1,131M (options 5.2 years, RSUs 1.8 years)."
   ],
   "src": "Form 10-K for the year ended Dec 31, 2025"
+ },
+ "BLDR": {
+  "name": "Builders FirstSource",
+  "sbc": [
+   "Plan: 2014 Incentive Plan, as amended. Award types: incentive and non-qualified stock options, restricted stock, RSUs, other stock-based awards and cash-based awards. 15.1M shares reserved and 7.1M available at Dec 31, 2025.",
+   "Awards generally vest ratably over three to four years, or cliff-vest after three to four years. Some RSUs carry market conditions with variable payouts, valued with a Monte Carlo model.",
+   "Options: only 7 thousand outstanding at Dec 31, 2025 (weighted exercise price $11.32). None were granted or vested in 2023-2025.",
+   "Expense: $53.5M (2025), $63.1M (2024), $48.5M (2023).",
+   "Repurchases: 3.4M shares at $118.65 in 2025 ($403.6M cost, $414.0M cash paid); 8.9M at $170.74 in 2024 ($1,514.1M); 17.8M at $100.49 in 2023 ($1,784.1M). Costs include fees and taxes. The 2023 buybacks offset dilution from the BMC merger. Programs were authorized in Nov 2022, expanded Apr 2023, and authorized again Feb and Aug 2024."
+  ],
+  "src": "Form 10-K for the year ended Dec 31, 2025"
  }
 }
