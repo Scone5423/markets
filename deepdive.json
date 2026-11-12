@@ -109,20 +109,6 @@
   ],
   "src": "Form 20-F for 2025"
  },
- "CSU": {
-  "name": "Constellation Software",
-  "nonsec": true,
-  "sbc": [
-   "Constellation Software is a Canadian filer (reports in SEDAR+), with no 10-K or 10-Q, so the live SEC tables do not apply.",
-   "Shares outstanding: 21,191,530 common shares at Aug 11, 2026. Weighted average 21.2 million basic and diluted for the 2026 and 2025 quarters and six months; the MD&A says there was no change in the share count.",
-   "No normal course issuer bid or repurchases are described in the Q2 2026 MD&A.",
-   "Compensation detail (how management is paid in shares) is not in the MD&A and has not been compiled."
-  ],
-  "buy": [
-   "No repurchases disclosed in the Q2 2026 MD&A."
-  ],
-  "src": "Q2 2026 MD&A"
- },
  "RIVN": {
   "name": "Rivian Automotive",
   "sbc": [

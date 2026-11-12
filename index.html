@@ -2125,10 +2125,10 @@ function scCsv() {
 function screenerShow() { scBuild(); }
 
 // ---- Deep Dive (shares, buybacks, SBC from SEC filings) --------------------------------
-const DEEP_SYMS = ['DECK','NKE','PYPL','KSPI','ADSK','CPRT','PRKA','CSU','RIVN'];
+const DEEP_SYMS = ['DECK','NKE','PYPL','KSPI','ADSK','CPRT','PRKA','RIVN'];
 let deepStatic = null, deepSym = null, deepBuilt = false;
 const deepData = {}, deepPrice = {};
-const DEEP_QUOTE = {CSU: 'CSU.TO'};
+const DEEP_QUOTE = {};
 async function deepQuote(sym) {
   if (!cfg.worker) return;
   try { const q = DEEP_QUOTE[sym] || sym; const r = await viaWorker([q]); if (r[q]) deepPrice[sym] = r[q]; } catch (e) {}
