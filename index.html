@@ -2150,12 +2150,12 @@ function dTable(head, rows, opts) {
   const w = el('div', 'overflow-x-auto rounded-lg border border-slate-800 mb-3');
   const t = el('table', 'w-full text-sm');
   const th = el('thead', 'text-slate-400 text-xs'); const hr = el('tr');
-  head.forEach((h, i) => hr.appendChild(el('th', 'px-3 py-2 font-medium whitespace-nowrap ' + (i === 0 ? 'text-left' : 'text-right'), h)));
+  head.forEach((h, i) => hr.appendChild(el('th', 'px-3 py-2 font-medium whitespace-nowrap ' + (i === 0 ? 'text-left sticky left-0 z-10 bg-[#0f1419] border-r border-slate-800' : 'text-right'), h)));
   th.appendChild(hr); t.appendChild(th);
   const tb = el('tbody');
   rows.forEach(r => {
     const tr = el('tr', 'border-t border-slate-800');
-    r.forEach((c, i) => tr.appendChild(el('td', 'px-3 py-2 whitespace-nowrap ' + (i === 0 ? 'text-left text-slate-300' : 'text-right'), c)));
+    r.forEach((c, i) => tr.appendChild(el('td', 'px-3 py-2 whitespace-nowrap ' + (i === 0 ? 'text-left text-slate-300 sticky left-0 z-10 bg-[#0f1419] border-r border-slate-800' : 'text-right'), c)));
     tb.appendChild(tr);
   });
   t.appendChild(tb); w.appendChild(t); return w;
