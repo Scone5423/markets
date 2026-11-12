@@ -122,5 +122,19 @@
    "No repurchases disclosed in the Q2 2026 MD&A."
   ],
   "src": "Q2 2026 MD&A"
+ },
+ "RIVN": {
+  "name": "Rivian Automotive",
+  "sbc": [
+   "Plans: 2015 Long-Term Incentive Plan and 2021 Incentive Award Plan (options, RSUs and other stock awards). Reserved at Dec 31, 2025: 32M shares (2015 plan) and 189M (2021 plan).",
+   "RSUs generally vest quarterly over 2-4 years. Options generally vest annually over 4-5 years with 7- or 10-year terms. Performance conditions (production and other targets) can attach to RSUs and options. Forfeitures reduce expense when they occur.",
+   "Stock bonuses under the 2021 plan vest immediately in Q1 each year: accrued $49M at Dec 31, 2024 and $119M at Dec 31, 2025.",
+   "ESPP: Class A shares at a 15% discount, about every six months. 42M shares reserved at Dec 31, 2025.",
+   "2025 grants: 66M RSUs (weighted grant-date fair value $12.07) and 40M options (exercise price $14.86, fair value $9.74). At year end 66M RSUs and 77M options (weighted exercise price $12.35) were outstanding.",
+   "RSU fair value vested: $630M (2023), $720M (2024), $697M (2025).",
+   "CEO award: January 2021 option for 27M shares (fair value $241M). In November 2025 it was replaced with an option for up to 36.5M shares at $15.22, a modification adding $285M of fair value. About 14.5M shares carry performance and service conditions and about 22M market and service conditions. Unrecognized expense on it: $355M over 5.8 years.",
+   "Unrecognized cost on all unvested awards at Dec 31, 2025: about $1,131M (options 5.2 years, RSUs 1.8 years)."
+  ],
+  "src": "Form 10-K for the year ended Dec 31, 2025"
  }
 }
