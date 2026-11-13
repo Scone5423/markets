@@ -810,6 +810,24 @@ function splitAdjust(j, splits) {
   return j;
 }
 
+// Some small filers tag share counts in thousands in one filing and in units in the next. Using the
+// median cover-page count as the yardstick, a count that is ~1,000x too big or too small is rescaled.
+function shareScaleFix(j) {
+  const dei = (j.facts || {}).dei || {}, g = (j.facts || {})['us-gaap'] || {};
+  const cover = (((dei.EntityCommonStockSharesOutstanding || {}).units || {}).shares || []).map(x => x.val).filter(v => v > 0).sort((a, b) => a - b);
+  if (cover.length < 3) return j;
+  const med = cover[Math.floor(cover.length / 2)];
+  const fix = list => (list || []).forEach(x => {
+    if (!(x.val > 0)) return;
+    const r = x.val / med;
+    if (r > 300 && r < 3000) x.val /= 1000; else if (r < 1 / 300 && r > 1 / 3000) x.val *= 1000;
+  });
+  fix(((dei.EntityCommonStockSharesOutstanding || {}).units || {}).shares);
+  for (const t of ['CommonStockSharesOutstanding', 'CommonStockSharesIssued', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding', 'WeightedAverageNumberOfShareOutstandingBasicAndDiluted'])
+    fix(((g[t] || {}).units || {}).shares);
+  return j;
+}
+
 // ---- Deep Dive: shares, buybacks and SBC from SEC 10-K / 10-Q filings --------
 function qFacts(g, tags, unit) {
   // {q:{endDate:value}, a:{endDate:value}} - discrete quarters (YTD figures are differenced) and fiscal years
@@ -898,7 +916,7 @@ async function getDeep(sym) {
     (rec.form || []).forEach((f, i) => { if (/^10-(K|Q)$/.test(f)) filings.push({ form: f, acc: rec.accessionNumber[i], doc: rec.primaryDocument[i], period: rec.reportDate[i], filed: rec.filingDate[i] }); });
     if (!filings.length) return { symbol: sym, name: sub.name, cik, docs, note: 'Files annual and interim reports as ' + [...new Set((rec.form || []).filter(f => /^(20-F|40-F|6-K)$/.test(f)))].join('/') + ', not 10-K / 10-Q.' };
     const out = { symbol: sym, name: sub.name, cik, docs };
-    const j = splitAdjust(await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + id + '.json')).json(), out.splits = await getSplits(sym));
+    const j = shareScaleFix(splitAdjust(await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + id + '.json')).json(), out.splits = await getSplits(sym)));
     const g = (j.facts || {})['us-gaap'] || {}, dei = (j.facts || {}).dei || {};
     // shares outstanding
     const cover = {};
@@ -944,9 +962,9 @@ async function getDeep(sym) {
       const cash1 = A(['CashCashEquivalentsAndShortTermInvestments'], 'USD', 'inst');
       const cash2 = A(['CashAndCashEquivalentsAtCarryingValue', 'CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents'], 'USD', 'inst');
       const sti = A(['ShortTermInvestments', 'MarketableSecuritiesCurrent', 'AvailableForSaleSecuritiesDebtSecuritiesCurrent'], 'USD', 'inst');
-      const dComb = A(['DebtLongtermAndShorttermCombinedAmount'], 'USD', 'inst');
-      const dNon = A(['LongTermDebtNoncurrent'], 'USD', 'inst');
-      const dCur = A(['LongTermDebtCurrent', 'DebtCurrent'], 'USD', 'inst');
+      const dComb = A(['DebtLongtermAndShorttermCombinedAmount', 'DebtAndCapitalLeaseObligations'], 'USD', 'inst');
+      const dNon = A(['LongTermDebtNoncurrent', 'LongTermDebtAndCapitalLeaseObligations', 'LongTermDebtAndFinanceLeaseObligationsNoncurrent', 'OtherLongTermDebtNoncurrent'], 'USD', 'inst');
+      const dCur = A(['LongTermDebtCurrent', 'DebtCurrent', 'LongTermDebtAndCapitalLeaseObligationsCurrent', 'LongTermDebtAndFinanceLeaseObligationsCurrent'], 'USD', 'inst');
       const dShort = A(['ShortTermBorrowings', 'CommercialPaper'], 'USD', 'inst');
       const dLt = A(['LongTermDebt'], 'USD', 'inst');
       const ends = [...new Set([...Object.keys(ni), ...Object.keys(eps)])].sort().reverse().slice(0, 10);
@@ -1026,7 +1044,7 @@ async function getTen(sym, yahooYears) {
   try {
     const cik = await secCik(sym);
     if (cik) {
-      const j = splitAdjust(await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + String(cik).padStart(10, '0') + '.json')).json(), await getSplits(sym));
+      const j = shareScaleFix(splitAdjust(await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + String(cik).padStart(10, '0') + '.json')).json(), await getSplits(sym)));
       const g = (j.facts || {})['us-gaap'] || {}, dei = (j.facts || {}).dei || {};
       const eps = annualFacts(g, ['EarningsPerShareDiluted', 'EarningsPerShareBasicAndDiluted', 'EarningsPerShareBasic'], 'USD/shares', 'dur');
       const sbc = annualFacts(g, ['ShareBasedCompensation', 'AllocatedShareBasedCompensationExpense'], 'USD', 'dur');
