@@ -608,7 +608,9 @@ const IDX_SOURCES = {
   russell3000: { ishares: 'https://www.ishares.com/us/products/239714/ishares-russell-3000-etf/1467271812596.ajax?fileType=csv&fileName=IWV_holdings&dataType=fund' }
 };
 const NASDAQ_LISTED = ['NMS', 'NGM', 'NCM'];
-const cellText = h => h.replace(/<sup[\s\S]*?<\/sup>/g, '').replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/&#160;|&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+const ENT = { nbsp: ' ', amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", mdash: '\u2014', ndash: '\u2013', rsquo: '\u2019', lsquo: '\u2018', rdquo: '\u201d', ldquo: '\u201c', hellip: '\u2026', bull: '\u2022', dollar: '$', percnt: '%' };
+const decodeEnt = t => t.replace(/&#x([0-9a-f]+);/gi, (m, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (m, d) => String.fromCodePoint(+d)).replace(/&([a-z]+);/gi, (m, n) => ENT[n.toLowerCase()] !== undefined ? ENT[n.toLowerCase()] : m);
+const cellText = h => decodeEnt(h.replace(/<sup[\s\S]*?<\/sup>/g, '').replace(/<[^>]*>/g, ' ')).replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
 const normSym = t => String(t || '').trim().toUpperCase().replace(/\./g, '-').replace(/[^A-Z0-9\-]/g, '');
 function wikiSymbols(html) {
   const tables = [...html.matchAll(/<table[^>]*class="[^"]*wikitable[^"]*"[^>]*>([\s\S]*?)<\/table>/g)].map(m => m[1]);
@@ -914,9 +916,13 @@ async function getDeep(sym) {
     out.weighted = Object.keys(Object.assign({}, wd.q, wb.q)).sort().reverse().slice(0, 12).map(d => ({ d, basic: wb.q[d], diluted: wd.q[d] }));
     out.weightedAnnual = Object.keys(Object.assign({}, wd.a, wb.a)).sort().reverse().slice(0, 10).map(d => ({ d, basic: wb.a[d], diluted: wd.a[d] }));
     // repurchases
-    const cash = qFacts(g, ['PaymentsForRepurchaseOfCommonStock', 'PaymentsForRepurchaseOfEquity'], 'USD');
-    const val = qFacts(g, ['StockRepurchasedAndRetiredDuringPeriodValue', 'TreasuryStockValueAcquiredCostMethod', 'StockRepurchasedDuringPeriodValue'], 'USD');
-    const shr = qFacts(g, ['StockRepurchasedAndRetiredDuringPeriodShares', 'TreasuryStockSharesAcquired', 'StockRepurchasedDuringPeriodShares'], 'shares');
+    // all namespaces (us-gaap plus company-specific tags); standard tags first, then any other concept naming a buyback
+    const all = {};
+    for (const [ns, o] of Object.entries(j.facts || {})) if (ns !== 'dei') for (const [k, v] of Object.entries(o)) if (!all[k]) all[k] = v;
+    const extra = (re, unit, std) => std.concat(Object.keys(all).filter(k => !std.includes(k) && re.test(k) && !/Authoriz|Remaining|Excise|Tax|Cost[A-Z]*Incurred|Accrued|Payable|Liabilit|PerShare|Price/.test(k) && all[k].units && all[k].units[unit]));
+    const cash = qFacts(all, extra(/^Payments?For(Repurchase|Purchase)Of(Common|Treasury|Equity|Stock)/, 'USD', ['PaymentsForRepurchaseOfCommonStock', 'PaymentsForRepurchaseOfEquity']), 'USD');
+    const val = qFacts(all, extra(/(StockRepurchased|TreasuryStock(Value)?Acquired|SharesRepurchased|Repurchas\w*CommonStock)\w*Value|TreasuryStockValueAcquired/, 'USD', ['StockRepurchasedAndRetiredDuringPeriodValue', 'TreasuryStockValueAcquiredCostMethod', 'StockRepurchasedDuringPeriodValue']), 'USD');
+    const shr = qFacts(all, extra(/(StockRepurchased|TreasuryStock|SharesRepurchased|Repurchas)\w*(Shares|Acquired)$/, 'shares', ['StockRepurchasedAndRetiredDuringPeriodShares', 'TreasuryStockSharesAcquired', 'StockRepurchasedDuringPeriodShares']), 'shares');
     const bb = (k, n) => Object.keys(Object.assign({}, cash[k], val[k], shr[k])).sort().reverse().slice(0, n).map(d => {
       const usd = val[k][d] !== undefined ? val[k][d] : cash[k][d], sh = shr[k][d];
       return { d, paid: cash[k][d], value: val[k][d], shares: sh, price: sh > 0 && usd !== undefined ? usd / sh : undefined };

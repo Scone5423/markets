@@ -2150,7 +2150,7 @@ function dTable(head, rows, opts) {
   const w = el('div', 'overflow-x-auto rounded-lg border border-slate-800 mb-3');
   const t = el('table', 'w-full text-sm');
   const th = el('thead', 'text-slate-400 text-xs'); const hr = el('tr');
-  head.forEach((h, i) => hr.appendChild(el('th', 'px-3 py-2 font-medium whitespace-nowrap ' + (i === 0 ? 'text-left sticky left-0 z-10 bg-[#0f1419] border-r border-slate-800' : 'text-right'), h)));
+  head.forEach((h, i) => hr.appendChild(el('th', 'px-3 py-2 font-medium align-bottom ' + (opts.wrap && i ? 'whitespace-normal min-w-[6rem] max-w-[11rem] ' : 'whitespace-nowrap ') + (i === 0 ? 'text-left sticky left-0 z-10 bg-[#0f1419] border-r border-slate-800' : 'text-right'), h)));
   th.appendChild(hr); t.appendChild(th);
   const tb = el('tbody');
   rows.forEach(r => {
@@ -2265,7 +2265,7 @@ function deepRender(sym) {
       if (f.rows && f.rows.length) {
         const n = Math.max.apply(null, f.rows.map(r => r.length));
         const rows = f.rows.map(r => r.concat(Array(n - r.length).fill('')));
-        const w = dTable(rows[0], rows.slice(1)); s2.appendChild(w);
+        const w = dTable(rows[0], rows.slice(1), {wrap: true}); s2.appendChild(w);
       } else s2.appendChild(el('div', 'text-xs text-slate-500 mb-2', f.error ? 'Could not open this filing: ' + f.error : 'No purchases table found in this filing.'));
     });
   }
