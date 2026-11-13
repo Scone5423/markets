@@ -995,16 +995,31 @@ async function getDeep(sym) {
     for (const it of out.issuer) {
       const rows = it.rows; if (!rows || rows.length < 3) continue;
       const head = rows[0].map(h => h.toLowerCase());
-      const ci = head.findIndex(h => /total number of shares/.test(h) && !/part of|plans?|program/.test(h));
-      const pi = head.findIndex(h => /average price/.test(h));
-      const tot = rows.find(r => /^total\b/i.test(r[0]));
-      if (ci < 0 || pi < 0 || !tot) continue;
-      let sh = numOf(tot[ci]), px = numOf(tot[pi]);
-      if (!(sh > 0)) continue;
+      const isNum = t => numOf(t) !== null;
+      // does the header include a label column (e.g. "Period") before the numeric columns?
+      const headLabel = !/number of shares|price|dollar value|approximate/.test(head[0]);
+      let ci = head.findIndex(h => /total number of shares|shares purchased/.test(h) && !/part of|publicly|plans? or programs?/.test(h));
+      let pi = head.findIndex(h => /average price/.test(h));
+      if (ci < 0 || pi < 0) continue;
+      if (!headLabel) { ci += 1; pi += 1; } // positions in a labelled data row
+      let tot = rows.slice(1).find(r => /^total\b/i.test(r[0]) && r.slice(1).some(isNum));
+      let shift = 0;
+      if (!tot) { const last = rows[rows.length - 1]; if (last.every(isNum)) { tot = last; shift = -1; } } // unlabelled total row
+      if (!tot) continue;
+      let sh = numOf(tot[ci + shift]), px = numOf(tot[pi + shift]);
+      if (!(sh > 0) || !(px > 0)) continue;
       const f = (out.splits || []).reduce((a, s) => (it.filed < s.date ? a * s.ratio : a), 1);
-      sh *= f; if (px) px /= f;
       const near = out.buyQ.find(b => Math.abs(Date.parse(b.d) - Date.parse(it.period)) < 10 * DAY);
-      if (near) { if (near.shares === undefined) { near.shares = sh; near.price = px || (near.value || near.paid) / sh; near.fromTable = true; } }
+      const usd = near ? (near.value !== undefined ? near.value : near.paid) : undefined;
+      // scale: pick the multiplier that makes shares x price match the tagged dollars; else read the header
+      let mult = /in millions/.test(head.join(' ')) && !/dollar value[^|]*in millions/.test(head.join(' ')) ? 1e6 : /shares in thousands|in thousands/.test(head.join(' ')) ? 1e3 : 1;
+      if (usd > 0) {
+        const best = [1, 1e3, 1e6].map(m => [m, Math.abs(Math.log(sh * m * px / usd))]).sort((a, b) => a[1] - b[1])[0];
+        if (best[1] > Math.log(1.6)) continue; // the total does not reconcile with the tagged dollars; skip it
+        mult = best[0];
+      }
+      sh = sh * mult * f; px /= f;
+      if (near) { if (near.shares === undefined || near.fromTable) { near.shares = sh; near.price = px; near.fromTable = true; } }
       else out.buyQ.push({ d: it.period, shares: sh, price: px, fromTable: true });
     }
     out.buyQ = out.buyQ.sort((a, b) => (a.d < b.d ? 1 : -1)).slice(0, 12);
