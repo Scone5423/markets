@@ -2225,6 +2225,9 @@ function deepRender(sym) {
   }
   body.appendChild(hd);
   body.appendChild(deepLinks(st, d));
+  const splits = (d && d.splits) || [];
+  const sTxt = sp => (sp.ratio >= 1 ? +sp.ratio.toFixed(2) + '-for-1' : '1-for-' + +(1 / sp.ratio).toFixed(2)) + ' split on ' + sp.date;
+  if (splits.length) body.appendChild(el('div', 'text-xs text-slate-500 mb-4', 'Share counts and per-share figures are adjusted for the ' + splits.map(sTxt).join(', ') + '.'));
   if (d === undefined && !st.nonsec) { body.appendChild(el('div', 'text-sm text-slate-400', 'Loading filings…')); return; }
   const live = d && !d.error && !d.note && !st.nonsec;
   if (d && d.error && !st.nonsec) body.appendChild(el('div', 'text-sm text-rose-400 mb-4', 'Could not load the filings: ' + d.error));
@@ -2255,7 +2258,10 @@ function deepRender(sym) {
     (d.issuer || []).forEach(f => {
       const h = el('div', 'text-sm text-slate-300 mb-1 mt-3');
       const a2 = el('a', 'text-sky-400 hover:underline', f.form + ' for period ending ' + f.period + ' (filed ' + f.filed + ')'); a2.href = f.url; a2.target = '_blank'; a2.rel = 'noopener';
-      h.appendChild(a2); s2.appendChild(h);
+      h.appendChild(a2);
+      const later = splits.filter(sp => f.filed < sp.date);
+      if (later.length) h.appendChild(el('span', 'text-xs text-amber-500 ml-2', 'as filed, before the ' + later.map(sTxt).join(', ')));
+      s2.appendChild(h);
       if (f.rows && f.rows.length) {
         const n = Math.max.apply(null, f.rows.map(r => r.length));
         const rows = f.rows.map(r => r.concat(Array(n - r.length).fill('')));

@@ -774,6 +774,40 @@ async function finishScreen(res, params) {
 }
 
 
+// ---- Stock splits -----------------------------------------------------------
+// Filings report share counts and per-share figures on the basis in force when they were filed, and
+// later filings restate only a few years back. To put every year on today's basis, each fact filed
+// before a split is scaled by that split (shares x ratio, per-share / ratio).
+async function getSplits(sym) {
+  return cached('splits:' + sym, 86400000, async () => {
+    try {
+      const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=3mo&range=max&events=split', { headers: { 'User-Agent': UA } });
+      const ev = (((await r.json()).chart.result || [])[0] || {}).events || {};
+      return Object.values(ev.splits || {}).filter(s => s.numerator > 0 && s.denominator > 0)
+        .map(s => ({ date: new Date(s.date * 1000).toISOString().slice(0, 10), ratio: s.numerator / s.denominator }))
+        .filter(s => s.ratio !== 1).sort((a, b) => (a.date < b.date ? -1 : 1));
+    } catch (e) { return []; }
+  });
+}
+function splitAdjust(j, splits) {
+  if (!splits || !splits.length) return j;
+  const factor = filed => splits.reduce((f, s) => (filed && filed < s.date ? f * s.ratio : f), 1);
+  for (const ns of Object.values(j.facts || {})) {
+    for (const t of Object.values(ns)) {
+      for (const [unit, list] of Object.entries(t.units || {})) {
+        const perShare = /\/shares$/i.test(unit);
+        if (unit !== 'shares' && !perShare) continue;
+        for (const x of list) {
+          if (typeof x.val !== 'number') continue;
+          const f = factor(x.filed);
+          if (f !== 1) x.val = perShare ? x.val / f : x.val * f;
+        }
+      }
+    }
+  }
+  return j;
+}
+
 // ---- Deep Dive: shares, buybacks and SBC from SEC 10-K / 10-Q filings --------
 function qFacts(g, tags, unit) {
   // {q:{endDate:value}, a:{endDate:value}} - discrete quarters (YTD figures are differenced) and fiscal years
@@ -851,7 +885,7 @@ async function secDocs(cik, sub) {
   return { annual, quarterly, ars: ars ? link(ars) : null };
 }
 async function getDeep(sym) {
-  return cached('deep2:' + sym, 43200000, async () => {
+  return cached('deep3:' + sym, 43200000, async () => {
     const cik = await secCik(sym);
     if (!cik) return { symbol: sym, note: 'Not found in the SEC company list (not a US domestic filer).' };
     const id = String(cik).padStart(10, '0');
@@ -862,7 +896,7 @@ async function getDeep(sym) {
     (rec.form || []).forEach((f, i) => { if (/^10-(K|Q)$/.test(f)) filings.push({ form: f, acc: rec.accessionNumber[i], doc: rec.primaryDocument[i], period: rec.reportDate[i], filed: rec.filingDate[i] }); });
     if (!filings.length) return { symbol: sym, name: sub.name, cik, docs, note: 'Files annual and interim reports as ' + [...new Set((rec.form || []).filter(f => /^(20-F|40-F|6-K)$/.test(f)))].join('/') + ', not 10-K / 10-Q.' };
     const out = { symbol: sym, name: sub.name, cik, docs };
-    const j = await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + id + '.json')).json();
+    const j = splitAdjust(await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + id + '.json')).json(), out.splits = await getSplits(sym));
     const g = (j.facts || {})['us-gaap'] || {}, dei = (j.facts || {}).dei || {};
     // shares outstanding
     const cover = {};
@@ -986,7 +1020,7 @@ async function getTen(sym, yahooYears) {
   try {
     const cik = await secCik(sym);
     if (cik) {
-      const j = await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + String(cik).padStart(10, '0') + '.json')).json();
+      const j = splitAdjust(await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + String(cik).padStart(10, '0') + '.json')).json(), await getSplits(sym));
       const g = (j.facts || {})['us-gaap'] || {}, dei = (j.facts || {}).dei || {};
       const eps = annualFacts(g, ['EarningsPerShareDiluted', 'EarningsPerShareBasicAndDiluted', 'EarningsPerShareBasic'], 'USD/shares', 'dur');
       const sbc = annualFacts(g, ['ShareBasedCompensation', 'AllocatedShareBasedCompensationExpense'], 'USD', 'dur');
