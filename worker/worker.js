@@ -962,7 +962,7 @@ async function getDeep(sym) {
       const cash1 = A(['CashCashEquivalentsAndShortTermInvestments'], 'USD', 'inst');
       const cash2 = A(['CashAndCashEquivalentsAtCarryingValue', 'CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents'], 'USD', 'inst');
       const sti = A(['ShortTermInvestments', 'MarketableSecuritiesCurrent', 'AvailableForSaleSecuritiesDebtSecuritiesCurrent'], 'USD', 'inst');
-      const dComb = A(['DebtLongtermAndShorttermCombinedAmount', 'DebtAndCapitalLeaseObligations'], 'USD', 'inst');
+      const dComb = A(['DebtLongtermAndShorttermCombinedAmount', 'LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities', 'DebtAndCapitalLeaseObligations'], 'USD', 'inst');
       const dNon = A(['LongTermDebtNoncurrent', 'LongTermDebtAndCapitalLeaseObligations', 'LongTermDebtAndFinanceLeaseObligationsNoncurrent', 'OtherLongTermDebtNoncurrent'], 'USD', 'inst');
       const dCur = A(['LongTermDebtCurrent', 'DebtCurrent', 'LongTermDebtAndCapitalLeaseObligationsCurrent', 'LongTermDebtAndFinanceLeaseObligationsCurrent'], 'USD', 'inst');
       const dShort = A(['ShortTermBorrowings', 'CommercialPaper'], 'USD', 'inst');
@@ -1008,6 +1008,16 @@ async function getDeep(sym) {
       else out.buyQ.push({ d: it.period, shares: sh, price: px, fromTable: true });
     }
     out.buyQ = out.buyQ.sort((a, b) => (a.d < b.d ? 1 : -1)).slice(0, 12);
+    for (const y of out.buyA) {
+      if (y.shares !== undefined) continue;
+      const t = Date.parse(y.d), qs = out.buyQ.filter(q => { const u = Date.parse(q.d); return u <= t + 10 * DAY && u > t - 355 * DAY; });
+      if (qs.length === 4 && qs.every(q => q.shares > 0)) {
+        y.shares = qs.reduce((a, q) => a + q.shares, 0);
+        const usd = y.value !== undefined ? y.value : y.paid;
+        if (usd !== undefined) y.price = usd / y.shares;
+        y.fromTable = true;
+      }
+    }
     return out;
   });
 }
@@ -1037,7 +1047,9 @@ async function secCik(sym) {
 }
 const DAY = 86400000;
 function annualFacts(gaap, tags, unit, kind) {
-  // returns {endDate: value} using 10-K style annual facts; latest filing wins
+  // returns {endDate: value} using 10-K style annual facts; latest filing wins. Tags are merged year by
+  // year in priority order, since companies switch tags over time (an early tag must not hide later years).
+  const merged = {};
   for (const tag of tags) {
     const f = gaap[tag] && gaap[tag].units && gaap[tag].units[unit];
     if (!f) continue;
@@ -1051,9 +1063,9 @@ function annualFacts(gaap, tags, unit, kind) {
       }
       if (!filed[x.end] || x.filed >= filed[x.end]) { out[x.end] = x.val; filed[x.end] = x.filed; }
     }
-    if (Object.keys(out).length) return out;
+    for (const [k, v] of Object.entries(out)) if (merged[k] === undefined) merged[k] = v;
   }
-  return {};
+  return merged;
 }
 async function getTen(sym, yahooYears) {
   const rows = {};
@@ -1069,9 +1081,9 @@ async function getTen(sym, yahooYears) {
       const cash1 = annualFacts(g, ['CashCashEquivalentsAndShortTermInvestments'], 'USD', 'inst');
       const cash2 = annualFacts(g, ['CashAndCashEquivalentsAtCarryingValue', 'CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents'], 'USD', 'inst');
       const sti = annualFacts(g, ['ShortTermInvestments', 'MarketableSecuritiesCurrent', 'AvailableForSaleSecuritiesDebtSecuritiesCurrent'], 'USD', 'inst');
-      const dComb = annualFacts(g, ['DebtLongtermAndShorttermCombinedAmount'], 'USD', 'inst');
-      const dNon = annualFacts(g, ['LongTermDebtNoncurrent'], 'USD', 'inst');
-      const dCur = annualFacts(g, ['LongTermDebtCurrent', 'DebtCurrent'], 'USD', 'inst');
+      const dComb = annualFacts(g, ['DebtLongtermAndShorttermCombinedAmount', 'LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities', 'DebtAndCapitalLeaseObligations'], 'USD', 'inst');
+      const dNon = annualFacts(g, ['LongTermDebtNoncurrent', 'LongTermDebtAndCapitalLeaseObligations', 'LongTermDebtAndFinanceLeaseObligationsNoncurrent', 'OtherLongTermDebtNoncurrent'], 'USD', 'inst');
+      const dCur = annualFacts(g, ['LongTermDebtCurrent', 'DebtCurrent', 'LongTermDebtAndCapitalLeaseObligationsCurrent', 'LongTermDebtAndFinanceLeaseObligationsCurrent'], 'USD', 'inst');
       const dShort = annualFacts(g, ['ShortTermBorrowings', 'CommercialPaper'], 'USD', 'inst');
       const dLt = annualFacts(g, ['LongTermDebt'], 'USD', 'inst');
       const sh = annualFacts(g, ['CommonStockSharesOutstanding'], 'shares', 'inst');
