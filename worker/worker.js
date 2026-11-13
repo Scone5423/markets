@@ -610,7 +610,7 @@ const IDX_SOURCES = {
 const NASDAQ_LISTED = ['NMS', 'NGM', 'NCM'];
 const ENT = { nbsp: ' ', amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", mdash: '\u2014', ndash: '\u2013', rsquo: '\u2019', lsquo: '\u2018', rdquo: '\u201d', ldquo: '\u201c', hellip: '\u2026', bull: '\u2022', dollar: '$', percnt: '%' };
 const decodeEnt = t => t.replace(/&#x([0-9a-f]+);/gi, (m, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (m, d) => String.fromCodePoint(+d)).replace(/&([a-z]+);/gi, (m, n) => ENT[n.toLowerCase()] !== undefined ? ENT[n.toLowerCase()] : m);
-const cellText = h => decodeEnt(h.replace(/<sup[\s\S]*?<\/sup>/g, '').replace(/<[^>]*>/g, ' ')).replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+const cellText = h => decodeEnt(h.replace(/<sup[\s\S]*?<\/sup>/g, '').replace(/<[^>]*>/g, ' ')).replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').replace(/\$ (?=[\d(])/g, '$').trim();
 const normSym = t => String(t || '').trim().toUpperCase().replace(/\./g, '-').replace(/[^A-Z0-9\-]/g, '');
 function wikiSymbols(html) {
   const tables = [...html.matchAll(/<table[^>]*class="[^"]*wikitable[^"]*"[^>]*>([\s\S]*?)<\/table>/g)].map(m => m[1]);
