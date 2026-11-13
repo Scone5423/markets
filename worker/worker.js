@@ -855,7 +855,9 @@ function qFacts(g, tags, unit) {
       for (const x of grp) {
         if (x.d >= 80 && x.d <= 100) prev = x;
         else if (prev && ((x.d >= 170 && x.d <= 195) || (x.d >= 260 && x.d <= 285) || (x.d >= 350 && x.d <= 380))) {
-          if (tq[x.e] === undefined) tq[x.e] = x.v - prev.v;
+          // only difference consecutive year-to-date figures (a missing 9-month figure must not turn 12m - 6m into one quarter)
+          const step = x.d - prev.d;
+          if (step >= 80 && step <= 100 && tq[x.e] === undefined) tq[x.e] = x.v - prev.v;
           prev = x;
         }
       }
@@ -882,6 +884,13 @@ function issuerTable(html) {
     if (!t) continue;
     const rows = tableRows(t[0]);
     if (rows.length >= 2 && rows.some(r => /average\s+price|price\s+paid/i.test(r.join(' ')))) return rows;
+  }
+  // Some filings word the heading differently: take any table whose columns are shares purchased and average price.
+  for (const t of html.matchAll(/<table[\s\S]*?<\/table>/gi)) {
+    const txt = cellText(t[0]);
+    if (!/total\s+number\s+of\s+shares/i.test(txt) || !/average\s+price/i.test(txt)) continue;
+    const rows = tableRows(t[0]);
+    if (rows.length >= 2) return rows;
   }
   return null;
 }
@@ -1003,18 +1012,28 @@ async function getDeep(sym) {
       if (ci < 0 || pi < 0) continue;
       if (!headLabel) { ci += 1; pi += 1; } // positions in a labelled data row
       let tot = rows.slice(1).find(r => /^total\b/i.test(r[0]) && r.slice(1).some(isNum));
-      let shift = 0;
+      let shift = 0, sh, px;
       if (!tot) { const last = rows[rows.length - 1]; if (last.every(isNum)) { tot = last; shift = -1; } } // unlabelled total row
-      if (!tot) continue;
-      let sh = numOf(tot[ci + shift]), px = numOf(tot[pi + shift]);
+      if (tot) { sh = numOf(tot[ci + shift]); px = numOf(tot[pi + shift]); }
+      else {
+        // no total row: add up the monthly rows ("—" means none that month)
+        let n = 0, cost = 0, seen = 0;
+        for (const r of rows.slice(1)) {
+          if (isNum(r[0]) || /total|balance/i.test(r[0])) continue;
+          const a = numOf(r[ci]), b = numOf(r[pi]);
+          if (/^[—–-]$/.test(r[ci] || '')) { seen++; continue; }
+          if (a > 0 && b > 0) { n += a; cost += a * b; seen++; }
+        }
+        if (seen >= 2 && n > 0) { sh = n; px = cost / n; }
+      }
       if (!(sh > 0) || !(px > 0)) continue;
       const f = (out.splits || []).reduce((a, s) => (it.filed < s.date ? a * s.ratio : a), 1);
       const near = out.buyQ.find(b => Math.abs(Date.parse(b.d) - Date.parse(it.period)) < 10 * DAY);
-      const usd = near ? (near.value !== undefined ? near.value : near.paid) : undefined;
+      const usds = near ? [near.paid, near.value].filter(v => v > 0) : [];
       // scale: pick the multiplier that makes shares x price match the tagged dollars; else read the header
       let mult = /in millions/.test(head.join(' ')) && !/dollar value[^|]*in millions/.test(head.join(' ')) ? 1e6 : /shares in thousands|in thousands/.test(head.join(' ')) ? 1e3 : 1;
-      if (usd > 0) {
-        const best = [1, 1e3, 1e6].map(m => [m, Math.abs(Math.log(sh * m * px / usd))]).sort((a, b) => a[1] - b[1])[0];
+      if (usds.length) {
+        const best = [1, 1e3, 1e6].flatMap(m => usds.map(u => [m, Math.abs(Math.log(sh * m * px / u))])).sort((a, b) => a[1] - b[1])[0];
         if (best[1] > Math.log(1.6)) continue; // the total does not reconcile with the tagged dollars; skip it
         mult = best[0];
       }
