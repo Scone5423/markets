@@ -2228,7 +2228,7 @@ function deepRender(sym) {
   const splits = (d && d.splits) || [];
   const sTxt = sp => (sp.ratio >= 1 ? +sp.ratio.toFixed(2) + '-for-1' : '1-for-' + +(1 / sp.ratio).toFixed(2)) + ' split on ' + sp.date;
   if (splits.length) body.appendChild(el('div', 'text-xs text-slate-500 mb-4', 'Share counts and per-share figures are adjusted for the ' + splits.map(sTxt).join(', ') + '.'));
-  if (d === undefined && !st.nonsec) { body.appendChild(el('div', 'text-sm text-slate-400', 'Loading filings…')); return; }
+  if (d === undefined && !st.nonsec) { body.appendChild(el('div', 'text-sm text-slate-400 mb-8', 'Loading filings…')); body.appendChild(deepNotes(sym)); return; }
   const live = d && !d.error && !d.note && !st.nonsec;
   if (d && d.error && !st.nonsec) body.appendChild(el('div', 'text-sm text-rose-400 mb-4', 'Could not load the filings: ' + d.error));
   if (d && d.note && !st.nonsec) body.appendChild(el('div', 'text-sm text-amber-400 mb-4', d.note));
@@ -2297,6 +2297,85 @@ function deepRender(sym) {
     s4.appendChild(el('div', 'text-xs text-slate-500', 'Blank cells mean the company does not tag that item in its 10-K.'));
   } else if (st.nonsec) s4.appendChild(el('div', 'text-sm text-slate-400', 'Not available: this company does not file 10-Ks.'));
   body.appendChild(s4);
+  body.appendChild(deepNotes(sym));
+}
+// ---- Deep Dive notes: a dated diary per stock, saved in the worker's KV store until deleted ----
+const deepNotesEl = {};
+const notesKeyGet = () => { try { return localStorage.getItem('deepNotesKey') || ''; } catch (e) { return ''; } };
+const notesKeySet = v => { try { localStorage.setItem('deepNotesKey', v); } catch (e) {} };
+const noteWhen = iso => new Date(iso).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'});
+function deepNotes(sym) {
+  if (deepNotesEl[sym]) return deepNotesEl[sym];
+  const s = dSection('Notes');
+  const keyRow = el('div', 'hidden flex flex-wrap items-center gap-2 mb-3');
+  const keyMsg = el('span', 'text-sm text-slate-400');
+  const keyIn = el('input', 'rounded border border-slate-700 bg-transparent px-2 py-1 text-sm w-56'); keyIn.type = 'password'; keyIn.placeholder = 'Notes passphrase';
+  const keyBtn = el('button', 'rounded border border-slate-700 px-3 py-1 text-sm hover:border-sky-500', 'Unlock'); keyBtn.type = 'button';
+  keyRow.append(keyMsg, keyIn, keyBtn);
+  const ta = el('textarea', 'w-full rounded-lg border border-slate-700 bg-transparent p-3 text-sm leading-relaxed'); ta.rows = 4; ta.placeholder = 'Add a note…';
+  const bar = el('div', 'flex items-center gap-3 mt-2 mb-5');
+  const save = el('button', 'rounded bg-sky-600 hover:bg-sky-500 text-white text-sm px-4 py-1.5', 'Save note'); save.type = 'button';
+  const status = el('span', 'text-xs text-slate-500');
+  bar.append(save, status);
+  const list = el('div', 'space-y-3');
+  s.append(keyRow, ta, bar, list);
+  deepNotesEl[sym] = s;
+  const api = (body) => {
+    const url = cfg.worker.replace(/\/+$/, '') + '/?notes=' + encodeURIComponent(sym);
+    const key = keyIn.value || notesKeyGet();
+    return fetch(url, body ? {method: 'POST', headers: {'content-type': 'application/json', 'x-notes-key': key}, body: JSON.stringify(body)} : {headers: {'x-notes-key': key}})
+      .then(r => r.json()).catch(e => ({error: String(e.message || e)}));
+  };
+  const needKey = (msg) => { keyRow.classList.remove('hidden'); keyRow.classList.add('flex'); keyMsg.textContent = msg; };
+  const draw = notes => {
+    list.textContent = '';
+    if (!notes.length) { list.appendChild(el('div', 'text-sm text-slate-500', 'No notes yet.')); return; }
+    notes.slice().sort((a, b) => (a.t < b.t ? 1 : -1)).forEach(n => {
+      const card = el('div', 'rounded-lg border border-slate-800 p-3');
+      const top = el('div', 'flex items-center justify-between gap-3 mb-1');
+      top.appendChild(el('span', 'text-xs font-medium text-slate-400', noteWhen(n.t)));
+      const del = el('button', 'text-xs text-slate-500 hover:text-rose-400', 'Delete'); del.type = 'button';
+      let armed = null;
+      del.addEventListener('click', async () => {
+        if (!armed) { del.textContent = 'Click again to delete'; del.className = 'text-xs text-rose-400'; armed = setTimeout(() => { armed = null; del.textContent = 'Delete'; del.className = 'text-xs text-slate-500 hover:text-rose-400'; }, 4000); return; }
+        clearTimeout(armed); del.textContent = 'Deleting…';
+        const r = await api({del: n.id});
+        if (r.notes) draw(r.notes); else { status.textContent = r.error || 'Could not delete.'; del.textContent = 'Delete'; armed = null; }
+      });
+      top.appendChild(del);
+      card.appendChild(top);
+      card.appendChild(el('div', 'text-sm text-slate-200 whitespace-pre-wrap', n.text));
+      list.appendChild(card);
+    });
+  };
+  const load = async () => {
+    if (!cfg.worker) { list.textContent = 'Add your price proxy address under Price sources first.'; return; }
+    list.textContent = 'Loading notes…';
+    const r = await api();
+    if (r.setup) { needKey('Choose a passphrase (6+ characters) to protect your notes. It is set with your first note.'); draw([]); }
+    else if (r.auth) { needKey('Enter your notes passphrase.'); list.textContent = ''; }
+    else if (r.error) list.textContent = 'Could not load notes: ' + r.error;
+    else { draw(r.notes || []); keyRow.classList.add('hidden'); }
+  };
+  const doSave = async () => {
+    const text = ta.value.trim();
+    if (!text) { ta.focus(); return; }
+    if (!keyIn.value && !notesKeyGet()) { needKey('Choose a passphrase (6+ characters) to protect your notes.'); keyIn.focus(); return; }
+    save.disabled = true; status.textContent = 'Saving…';
+    const r = await api({text});
+    save.disabled = false;
+    if (r.notes) {
+      if (keyIn.value) { notesKeySet(keyIn.value); keyIn.value = ''; keyRow.classList.add('hidden'); }
+      ta.value = ''; status.textContent = 'Saved ' + noteWhen(new Date().toISOString()); draw(r.notes);
+    } else if (r.auth) { status.textContent = ''; needKey('Wrong passphrase. Enter your notes passphrase.'); keyIn.focus(); }
+    else if (r.setup) { status.textContent = ''; needKey('Choose a passphrase of at least 6 characters.'); keyIn.focus(); }
+    else status.textContent = 'Not saved: ' + (r.error || 'unknown error');
+  };
+  save.addEventListener('click', doSave);
+  ta.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); doSave(); } });
+  keyBtn.addEventListener('click', async () => { if (!keyIn.value) return; const r = await api(); if (r.notes) { notesKeySet(keyIn.value); keyIn.value = ''; keyRow.classList.add('hidden'); draw(r.notes); } else if (r.setup) needKey('No passphrase is set yet. Type a note and save to set this one.'); else needKey('Wrong passphrase.'); });
+  load();
+  return s;
 }
 async function deepLoad(sym) {
   if (deepData[sym] !== undefined) return;

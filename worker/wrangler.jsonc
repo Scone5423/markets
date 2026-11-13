@@ -3,5 +3,7 @@
   // The name must match the Worker in the Cloudflare dashboard (markets-proxy).
   "name": "markets-proxy",
   "main": "worker.js",
-  "compatibility_date": "2026-11-01"
+  "compatibility_date": "2026-11-01",
+  // Deep Dive notes storage
+  "kv_namespaces": [{ "binding": "NOTES", "id": "be7be853925e4c2999836f296f675be5" }]
 }

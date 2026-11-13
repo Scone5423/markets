@@ -1057,6 +1057,41 @@ async function getDeep(sym) {
   });
 }
 
+// ---- Deep Dive notes (diary per stock, stored in KV) ----------------------------
+// The first save sets the passphrase (only its SHA-256 hash is stored); every read and write after that must send it.
+async function sha256(t) {
+  const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+  return [...new Uint8Array(d)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+async function notesHandler(request, env, url, h) {
+  const reply = (o, status) => new Response(JSON.stringify(o), { status: status || 200, headers: h });
+  if (!env || !env.NOTES) return reply({ error: 'Notes storage is not connected to the worker.' }, 500);
+  const sym = (url.searchParams.get('notes') || '').toUpperCase().replace(/[^A-Z0-9.\-]/g, '').slice(0, 12);
+  if (!sym) return reply({ error: 'missing symbol' }, 400);
+  const key = request.headers.get('x-notes-key') || '';
+  const stored = await env.NOTES.get('auth:hash');
+  if (!stored) {
+    if (request.method !== 'POST' || key.length < 6) return reply({ setup: true });
+    await env.NOTES.put('auth:hash', await sha256(key)); // first use: this passphrase becomes the key
+  } else if (!key || (await sha256(key)) !== stored) {
+    return reply({ error: 'wrong passphrase', auth: true }, 401);
+  }
+  const k = 'notes:' + sym;
+  let list = [];
+  try { list = JSON.parse((await env.NOTES.get(k)) || '[]'); } catch (e) { list = []; }
+  if (request.method === 'POST') {
+    let body = {};
+    try { body = await request.json(); } catch (e) {}
+    if (body.del) list = list.filter(n => n.id !== body.del);
+    else if (body.edit && typeof body.text === 'string') list = list.map(n => (n.id === body.edit ? { ...n, text: body.text.slice(0, 20000), edited: new Date().toISOString() } : n));
+    else if (typeof body.text === 'string' && body.text.trim()) {
+      list.push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), t: new Date().toISOString(), text: body.text.slice(0, 20000) });
+    } else if (stored) return reply({ error: 'nothing to save' }, 400);
+    await env.NOTES.put(k, JSON.stringify(list));
+  }
+  return reply({ symbol: sym, notes: list });
+}
+
 // ---- Basic financials for the Charts page ---------------------------------
 const FIN_TYPES = ['TotalRevenue', 'GrossProfit', 'OperatingIncome', 'EBITDA', 'NetIncome', 'DilutedEPS',
   'CashAndCashEquivalents', 'TotalAssets', 'TotalDebt', 'TotalLiabilitiesNetMinorityInterest', 'StockholdersEquity',
@@ -1288,13 +1323,21 @@ async function getMovers() {
 const num = v => (typeof v === 'number' && isFinite(v) ? v : null);
 
 export default {
-  async fetch(request) {
+  async fetch(request, env) {
     const url = new URL(request.url);
     const headers = {
       'content-type': 'application/json',
       'access-control-allow-origin': '*',
       'cache-control': 'public, max-age=60'
     };
+
+    // Deep Dive notes, kept in Cloudflare KV (binding NOTES) until deleted.
+    if (url.searchParams.has('notes')) {
+      const cors = { 'access-control-allow-origin': '*', 'access-control-allow-methods': 'GET, POST, OPTIONS', 'access-control-allow-headers': 'content-type, x-notes-key', 'access-control-max-age': '86400' };
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+      const h = { ...cors, 'content-type': 'application/json', 'cache-control': 'no-store' };
+      return notesHandler(request, env, url, h);
+    }
 
     // Diagnostics: open /?debug=1 to see how each data source answers from Cloudflare.
     if (url.searchParams.get('debug')) {
