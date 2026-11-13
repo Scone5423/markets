@@ -2253,7 +2253,9 @@ function deepRender(sym) {
     const mt = [['Shares repurchased', p => dN(p.shares)], ['Cash paid ($M)', p => dM(p.paid)], ['Value repurchased ($M)', p => dM(p.value)], ['Average price per share', p => dP(p.price)]];
     const a = dPeriods('By fiscal year, last 10 years', d.buyA || [], mt, 'Year end');
     if (a) s2.appendChild(a);
-    if (!a) s2.appendChild(el('div', 'text-sm text-slate-400 mb-3', 'No repurchase figures are tagged in the filings.'));
+    const qt = dPeriods('By quarter, last 12 quarters', d.buyQ || [], mt, 'Quarter end');
+    if (qt) s2.appendChild(qt);
+    if (!a && !qt) s2.appendChild(el('div', 'text-sm text-slate-400 mb-3', 'No repurchase figures are tagged in the filings.'));
     s2.appendChild(el('div', 'text-sm text-slate-400 mb-2 mt-4', 'Each purchase period reported, from Issuer Purchases of Equity Securities in the last 12 10-Ks and 10-Qs (companies report monthly, not trade by trade)'));
     (d.issuer || []).forEach(f => {
       const h = el('div', 'text-sm text-slate-300 mb-1 mt-3');

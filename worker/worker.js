@@ -990,6 +990,24 @@ async function getDeep(sym) {
       out.issuer.push(item);
     }));
     out.issuer.sort((a, b) => (a.filed < b.filed ? 1 : -1));
+    // Where the XBRL data has no quarterly share count, use the "Total" row of that filing's purchase table.
+    const numOf = t => { const m = String(t || '').replace(/[$,\s]/g, '').match(/^\(?(\d+(\.\d+)?)\)?$/); return m ? +m[1] : null; };
+    for (const it of out.issuer) {
+      const rows = it.rows; if (!rows || rows.length < 3) continue;
+      const head = rows[0].map(h => h.toLowerCase());
+      const ci = head.findIndex(h => /total number of shares/.test(h) && !/part of|plans?|program/.test(h));
+      const pi = head.findIndex(h => /average price/.test(h));
+      const tot = rows.find(r => /^total\b/i.test(r[0]));
+      if (ci < 0 || pi < 0 || !tot) continue;
+      let sh = numOf(tot[ci]), px = numOf(tot[pi]);
+      if (!(sh > 0)) continue;
+      const f = (out.splits || []).reduce((a, s) => (it.filed < s.date ? a * s.ratio : a), 1);
+      sh *= f; if (px) px /= f;
+      const near = out.buyQ.find(b => Math.abs(Date.parse(b.d) - Date.parse(it.period)) < 10 * DAY);
+      if (near) { if (near.shares === undefined) { near.shares = sh; near.price = px || (near.value || near.paid) / sh; near.fromTable = true; } }
+      else out.buyQ.push({ d: it.period, shares: sh, price: px, fromTable: true });
+    }
+    out.buyQ = out.buyQ.sort((a, b) => (a.d < b.d ? 1 : -1)).slice(0, 12);
     return out;
   });
 }
@@ -1347,6 +1365,27 @@ export default {
       if (!/^[A-Z0-9.\-^=]{1,14}$/.test(sym)) return new Response('{}', { status: 400, headers });
       const d = await getFin(sym).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=900' } });
+    }
+
+    // Lists the XBRL concepts a company uses whose names match a pattern (for diagnosing blank Deep Dive rows).
+    if (url.searchParams.get('facttags')) {
+      try {
+        const sym = url.searchParams.get('facttags').toUpperCase().replace(/[^A-Z0-9.\-]/g, '').slice(0, 10);
+        const re = new RegExp((url.searchParams.get('re') || 'Repurchase').slice(0, 80), 'i');
+        const cik = await secCik(sym);
+        const j = await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + String(cik).padStart(10, '0') + '.json')).json();
+        const out = [];
+        for (const [ns, o] of Object.entries(j.facts || {})) for (const [k, v] of Object.entries(o)) {
+          if (!re.test(k)) continue;
+          for (const [u, list] of Object.entries(v.units || {})) {
+            const last = list.slice().sort((a, b) => (a.filed < b.filed ? 1 : -1))[0];
+            out.push({ ns, tag: k, unit: u, n: list.length, first: list.map(x => x.end).sort()[0], last: last && { start: last.start, end: last.end, val: last.val, form: last.form, filed: last.filed } });
+          }
+        }
+        return new Response(JSON.stringify(out.slice(0, 80)), { headers });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: String(e.message || e) }), { headers });
+      }
     }
 
     if (url.searchParams.get('deep')) {
