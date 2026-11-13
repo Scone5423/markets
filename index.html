@@ -2176,6 +2176,42 @@ function dBullets(arr) {
   (arr || []).forEach(x => u.appendChild(el('li', '', x)));
   return u;
 }
+// IR page, latest annual report, last 5 annual filings and last 10 10-Qs
+function dLink(text, url, cls) {
+  const a = el('a', cls || 'text-sky-400 hover:underline', text); a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; return a;
+}
+const dFy = p => p ? 'FY ended ' + p : '';
+function deepLinks(st, d) {
+  const s = el('div', 'mb-8 rounded-lg border border-slate-800 p-4');
+  const top = el('div', 'flex flex-wrap gap-x-6 gap-y-2 mb-4 text-sm font-medium');
+  if (st.ir) top.appendChild(dLink('Investor relations', st.ir));
+  const docs = (d && d.docs && !d.docs.error) ? d.docs : null;
+  const latestK = docs && docs.annual[0];
+  // The annual report posted on the IR site wins unless a newer 10-K has come out since.
+  let ar = null;
+  if (st.ar && (!latestK || !st.arPeriod || st.arPeriod >= latestK.period)) ar = st.ar.map(x => ({t: x.t, u: x.u}));
+  else if (docs && docs.ars && (!latestK || docs.ars.filed >= latestK.filed)) ar = [{t: 'Annual Report to Shareholders (filed ' + docs.ars.filed + ')', u: docs.ars.url}];
+  else if (latestK) ar = [{t: 'Annual Report on Form ' + latestK.form + ' (' + dFy(latestK.period) + ')', u: latestK.url}];
+  (ar || []).forEach((x, i) => top.appendChild(dLink((i ? '' : 'Latest annual report: ') + x.t, x.u)));
+  if (!st.ir && !ar) top.appendChild(el('span', 'text-slate-400', d === undefined ? 'Loading links…' : 'No links available.'));
+  s.appendChild(top);
+  if (!docs) {
+    if (d && d.docs && d.docs.error) s.appendChild(el('div', 'text-xs text-rose-400', 'Could not load the SEC filing list: ' + d.docs.error));
+    return s;
+  }
+  const grp = (title, list, label) => {
+    if (!list.length) return;
+    const g = el('div', 'mb-3');
+    g.appendChild(el('div', 'text-xs uppercase tracking-wide text-slate-400 mb-1', title));
+    const w = el('div', 'flex flex-wrap gap-2');
+    list.forEach(x => w.appendChild(dLink(label(x), x.url, 'rounded border border-slate-700 px-2.5 py-1 text-xs text-sky-400 hover:border-sky-500')));
+    g.appendChild(w); s.appendChild(g);
+  };
+  const af = [...new Set(docs.annual.map(x => x.form))].join(' / ') || '10-K';
+  grp('Last ' + docs.annual.length + ' annual reports (' + af + ')', docs.annual, x => (x.form !== '10-K' ? x.form + ' · ' : '') + (x.period ? dFy(x.period) : 'filed ' + x.filed));
+  grp('Last ' + docs.quarterly.length + ' quarterly reports (10-Q)', docs.quarterly, x => 'Quarter ended ' + (x.period || '?'));
+  return s;
+}
 function deepRender(sym) {
   const body = $('deepBody'); body.textContent = '';
   const st = (deepStatic || {})[sym] || {};
@@ -2188,6 +2224,7 @@ function deepRender(sym) {
     if (pq.prev) { const c = (pq.price / pq.prev - 1) * 100; hd.appendChild(el('span', 'text-sm ' + (c >= 0 ? 'text-emerald-400' : 'text-rose-400'), (c >= 0 ? '+' : '') + c.toFixed(2) + '%')); }
   }
   body.appendChild(hd);
+  body.appendChild(deepLinks(st, d));
   if (d === undefined && !st.nonsec) { body.appendChild(el('div', 'text-sm text-slate-400', 'Loading filings…')); return; }
   const live = d && !d.error && !d.note && !st.nonsec;
   if (d && d.error && !st.nonsec) body.appendChild(el('div', 'text-sm text-rose-400 mb-4', 'Could not load the filings: ' + d.error));
@@ -2254,7 +2291,7 @@ function deepRender(sym) {
   body.appendChild(s4);
 }
 async function deepLoad(sym) {
-  if (deepData[sym] !== undefined || (deepStatic && (deepStatic[sym] || {}).nonsec)) return;
+  if (deepData[sym] !== undefined) return;
   if (!cfg.worker) { deepData[sym] = {error: 'Add your price proxy address under Price sources first.'}; return; }
   try { deepData[sym] = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?deep=' + encodeURIComponent(sym), 60000); }
   catch (e) { deepData[sym] = {error: String(e.message || e)}; }

@@ -10,7 +10,15 @@
   "buy": [
    "Sep 2026 quarter: 3,196K shares for $299.3M (about $93.64 a share). Jun 2026 quarter: 3,258K shares for $338.2M. Six-month cash paid $637.5M; excise tax $10.4M paid, $6.2M accrued."
   ],
-  "src": "Form 10-Q for the quarter ended Sep 30, 2026"
+  "src": "Form 10-Q for the quarter ended Sep 30, 2026",
+  "ir": "https://ir.deckers.com/",
+  "ar": [
+   {
+    "t": "Fiscal 2026 Annual Report",
+    "u": "https://ir.deckers.com/sec-filings/all-sec-filings/content/0000910521-26-000020/0000910521-26-000020.pdf"
+   }
+  ],
+  "arPeriod": "2026-03-31"
  },
  "NKE": {
   "name": "Nike",
@@ -22,7 +30,19 @@
    "75.1M options outstanding at a weighted $97.99 exercise price. FY2025 grants: 13.3M options at $83.20, grant-date fair value $25.90.",
    "ESPP: employees bought 3.6M, 3.1M and 3.0M shares in FY2025, FY2024 and FY2023 at 85% of the lower of start or end-of-period market price."
   ],
-  "src": "Form 10-K for the fiscal year ended May 31, 2025"
+  "src": "Form 10-K for the fiscal year ended May 31, 2025",
+  "ir": "https://investors.nike.com/",
+  "ar": [
+   {
+    "t": "Fiscal 2026 Annual Report (Form 10-K)",
+    "u": "https://s1.q4cdn.com/806093406/files/doc_financials/2026/ar/Nike-Inc-2026-10K.pdf"
+   },
+   {
+    "t": "Fiscal 2026 Shareholder Letter",
+    "u": "https://s1.q4cdn.com/806093406/files/doc_financials/2026/ar/Nike-Inc-2026-Shareholder-Letter.pdf"
+   }
+  ],
+  "arPeriod": "2026-05-31"
  },
  "PYPL": {
   "name": "PayPal",
@@ -34,7 +54,8 @@
    "Awards 2025: 22.3M RSU/PBRSU/restricted units granted ($70.92); 15.9M vested; 31.8M outstanding at year end. Intrinsic value vested: $1.1B in 2025.",
    "ESPP: 2.6M shares bought in 2025 at an average $45.85."
   ],
-  "src": "Form 10-K for the year ended Dec 31, 2025"
+  "src": "Form 10-K for the year ended Dec 31, 2025",
+  "ir": "https://investor.pypl.com/"
  },
  "ADSK": {
   "name": "Autodesk",
@@ -45,7 +66,15 @@
    "Unrecognized at Jan 31, 2026: RSUs $737M (1.80 years), PSUs $24M (1.14 years).",
    "Repurchases: FY2026 about 5M shares at $290.38; FY2025 3M at $278.86; FY2024 4M at $201.54. $2.48B left on the Nov 2022 program and $5B on the Nov 2024 program (no expiry)."
   ],
-  "src": "Form 10-K for the fiscal year ended Jan 31, 2026"
+  "src": "Form 10-K for the fiscal year ended Jan 31, 2026",
+  "ir": "https://investors.autodesk.com/",
+  "ar": [
+   {
+    "t": "Fiscal 2026 Annual Report",
+    "u": "https://investors.autodesk.com/static-files/f91824e0-bf06-49a5-b953-dc3a215aba8f"
+   }
+  ],
+  "arPeriod": "2026-01-31"
  },
  "CPRT": {
   "name": "Copart",
@@ -53,7 +82,8 @@
    "The filing text for Copart's stock compensation note was not readable from here, so no written description yet. The tables above come straight from Copart's SEC data.",
    "Copart's 10-Q has notes titled Stock-Based Compensation (option activity, RSA/RSU/PSU awards) and Stock Repurchases."
   ],
-  "src": "Form 10-K / 10-Q (SEC XBRL data)"
+  "src": "Form 10-K / 10-Q (SEC XBRL data)",
+  "ir": "https://www.copart.com/investorrelations"
  },
  "PRKA": {
   "name": "Parks! America",
@@ -63,7 +93,8 @@
    "Compensation is paid in shares: FY2024 expense $57,500 (209,088 shares issued to directors); FY2023 $131,667 (162,500 director shares plus 128,205 shares to the CEO under his employment agreement, equity statement value $115,000).",
    "Shares outstanding 75,726,851 at Sep 29, 2024 and 75,517,763 at Oct 1, 2023. The FY2024 10-K reports no repurchases; the company has since announced a share repurchase program, which the live tables pick up once it shows in a filing."
   ],
-  "src": "Form 10-K for the fiscal year ended Sep 29, 2024"
+  "src": "Form 10-K for the fiscal year ended Sep 29, 2024",
+  "ir": "https://www.animalsafari.com/investor-relation"
  },
  "KSPI": {
   "name": "Kaspi.kz",
@@ -107,7 +138,15 @@
   "buy": [
    "The buyback programme details (shares, prices, amounts) sit in Item 16E and the share capital note of the 20-F, which I could not read yet."
   ],
-  "src": "Form 20-F for 2025"
+  "src": "Form 20-F for 2025",
+  "ir": "https://ir.kaspi.kz/",
+  "ar": [
+   {
+    "t": "2025 Annual Report (Form 20-F)",
+    "u": "https://ir.kaspi.kz/media/Form_20-F_2025.pdf"
+   }
+  ],
+  "arPeriod": "2025-12-31"
  },
  "RIVN": {
   "name": "Rivian Automotive",
@@ -121,7 +160,8 @@
    "CEO award: January 2021 option for 27M shares (fair value $241M). In November 2025 it was replaced with an option for up to 36.5M shares at $15.22, a modification adding $285M of fair value. About 14.5M shares carry performance and service conditions and about 22M market and service conditions. Unrecognized expense on it: $355M over 5.8 years.",
    "Unrecognized cost on all unvested awards at Dec 31, 2025: about $1,131M (options 5.2 years, RSUs 1.8 years)."
   ],
-  "src": "Form 10-K for the year ended Dec 31, 2025"
+  "src": "Form 10-K for the year ended Dec 31, 2025",
+  "ir": "https://rivian.com/investors"
  },
  "BLDR": {
   "name": "Builders FirstSource",
@@ -132,7 +172,15 @@
    "Expense: $53.5M (2025), $63.1M (2024), $48.5M (2023).",
    "Repurchases: 3.4M shares at $118.65 in 2025 ($403.6M cost, $414.0M cash paid); 8.9M at $170.74 in 2024 ($1,514.1M); 17.8M at $100.49 in 2023 ($1,784.1M). Costs include fees and taxes. The 2023 buybacks offset dilution from the BMC merger. Programs were authorized in Nov 2022, expanded Apr 2023, and authorized again Feb and Aug 2024."
   ],
-  "src": "Form 10-K for the year ended Dec 31, 2025"
+  "src": "Form 10-K for the year ended Dec 31, 2025",
+  "ir": "https://investors.bldr.com/",
+  "ar": [
+   {
+    "t": "2025 Annual Report (Form 10-K)",
+    "u": "https://s202.q4cdn.com/867695273/files/doc_financials/2025/ar/BLDR_10-K_2025-12-31.pdf"
+   }
+  ],
+  "arPeriod": "2025-12-31"
  },
  "LULU": {
   "name": "lululemon athletica",
@@ -144,6 +192,7 @@
    "FY2024 grants: 232K options (exercise price $383.09), 125K PSUs ($354.40), 146K RSUs ($375.99), 5K restricted shares ($319.19). Balances at Feb 2, 2025: 849K options (weighted exercise price $314.27), 177K PSUs, 239K RSUs, 5K restricted shares.",
    "Repurchases, including commissions and excise tax: 5.1M shares for $1.6B in FY2024 (about $318 a share, my division), 1.5M for $558.7M in FY2023, 1.4M for $444.0M in FY2022. $1.6B was left at Feb 2, 2025. After year end, through March 21, 2025, 0.6M more shares were bought for $230.5M."
   ],
-  "src": "Form 10-K for the fiscal year ended Feb 2, 2025 (the later fiscal 2025 10-K was not read)"
+  "src": "Form 10-K for the fiscal year ended Feb 2, 2025 (the later fiscal 2025 10-K was not read)",
+  "ir": "https://corporate.lululemon.com/investors"
  }
 }

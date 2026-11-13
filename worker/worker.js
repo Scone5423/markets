@@ -831,17 +831,37 @@ function issuerTable(html) {
   }
   return null;
 }
+// Links to the last five annual reports (10-K, or 20-F / 40-F for foreign filers), the last ten 10-Qs
+// and the latest ARS (the glossy annual report to shareholders). Older filings live in extra submission files.
+async function secDocs(cik, sub) {
+  const rows = [];
+  const add = r => (r.form || []).forEach((f, i) => rows.push({ form: f, acc: r.accessionNumber[i], doc: r.primaryDocument[i], period: r.reportDate[i], filed: r.filingDate[i] }));
+  add((sub.filings || {}).recent || {});
+  const enough = () => rows.filter(x => /^(10-K|10-KT|20-F|40-F)$/.test(x.form)).length >= 5 && rows.filter(x => x.form === '10-Q').length >= 10;
+  for (const f of ((sub.filings || {}).files || [])) {
+    if (enough()) break;
+    try { add(await (await secGet('https://data.sec.gov/submissions/' + f.name)).json()); } catch (e) { break; }
+  }
+  rows.sort((a, b) => (a.filed < b.filed ? 1 : -1));
+  const link = x => ({ form: x.form, period: x.period || '', filed: x.filed,
+    url: 'https://www.sec.gov/Archives/edgar/data/' + parseInt(cik, 10) + '/' + x.acc.replace(/-/g, '') + '/' + x.doc });
+  const annual = rows.filter(x => /^(10-K|10-KT|20-F|40-F)$/.test(x.form)).slice(0, 5).map(link);
+  const quarterly = rows.filter(x => x.form === '10-Q').slice(0, 10).map(link);
+  const ars = rows.find(x => x.form === 'ARS');
+  return { annual, quarterly, ars: ars ? link(ars) : null };
+}
 async function getDeep(sym) {
-  return cached('deep:' + sym, 43200000, async () => {
+  return cached('deep2:' + sym, 43200000, async () => {
     const cik = await secCik(sym);
     if (!cik) return { symbol: sym, note: 'Not found in the SEC company list (not a US domestic filer).' };
     const id = String(cik).padStart(10, '0');
     const sub = await (await secGet('https://data.sec.gov/submissions/CIK' + id + '.json')).json();
+    const docs = await secDocs(cik, sub).catch(e => ({ error: String(e.message || e) }));
     const rec = (sub.filings || {}).recent || {};
     const filings = [];
     (rec.form || []).forEach((f, i) => { if (/^10-(K|Q)$/.test(f)) filings.push({ form: f, acc: rec.accessionNumber[i], doc: rec.primaryDocument[i], period: rec.reportDate[i], filed: rec.filingDate[i] }); });
-    if (!filings.length) return { symbol: sym, name: sub.name, note: 'Files annual and interim reports as ' + [...new Set((rec.form || []).filter(f => /^(20-F|40-F|6-K)$/.test(f)))].join('/') + ', not 10-K / 10-Q.' };
-    const out = { symbol: sym, name: sub.name, cik };
+    if (!filings.length) return { symbol: sym, name: sub.name, cik, docs, note: 'Files annual and interim reports as ' + [...new Set((rec.form || []).filter(f => /^(20-F|40-F|6-K)$/.test(f)))].join('/') + ', not 10-K / 10-Q.' };
+    const out = { symbol: sym, name: sub.name, cik, docs };
     const j = await (await secGet('https://data.sec.gov/api/xbrl/companyfacts/CIK' + id + '.json')).json();
     const g = (j.facts || {})['us-gaap'] || {}, dei = (j.facts || {}).dei || {};
     // shares outstanding
