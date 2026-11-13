@@ -829,7 +829,8 @@ function shareScaleFix(j) {
 }
 
 // ---- Deep Dive: shares, buybacks and SBC from SEC 10-K / 10-Q filings --------
-function qFacts(g, tags, unit) {
+function qFacts(g, tags, unit, noDiff) {
+  // noDiff: for averages (weighted share counts), which cannot be derived by subtracting year-to-date figures
   // {q:{endDate:value}, a:{endDate:value}} - discrete quarters (YTD figures are differenced) and fiscal years
   const q = {}, a = {};
   for (const tag of tags) {
@@ -854,7 +855,7 @@ function qFacts(g, tags, unit) {
       let prev = null;
       for (const x of grp) {
         if (x.d >= 80 && x.d <= 100) prev = x;
-        else if (prev && ((x.d >= 170 && x.d <= 195) || (x.d >= 260 && x.d <= 285) || (x.d >= 350 && x.d <= 380))) {
+        else if (!noDiff && prev && ((x.d >= 170 && x.d <= 195) || (x.d >= 260 && x.d <= 285) || (x.d >= 350 && x.d <= 380))) {
           // only difference consecutive year-to-date figures (a missing 9-month figure must not turn 12m - 6m into one quarter)
           const step = x.d - prev.d;
           if (step >= 80 && step <= 100 && tq[x.e] === undefined) tq[x.e] = x.v - prev.v;
@@ -936,8 +937,8 @@ async function getDeep(sym) {
     const coverRows = Object.values(cover).sort((a, b) => (a.filed < b.filed ? 1 : -1));
     const bs = {};
     for (const x of ((g.CommonStockSharesOutstanding || {}).units || {}).shares || []) { if (/^10-(K|Q)/.test(x.form || '') && (!bs[x.end] || x.filed >= bs[x.end].filed)) bs[x.end] = x; }
-    const wd = qFacts(g, ['WeightedAverageNumberOfDilutedSharesOutstanding'], 'shares');
-    const wb = qFacts(g, ['WeightedAverageNumberOfSharesOutstandingBasic'], 'shares');
+    const wd = qFacts(g, ['WeightedAverageNumberOfDilutedSharesOutstanding'], 'shares', true);
+    const wb = qFacts(g, ['WeightedAverageNumberOfSharesOutstandingBasic'], 'shares', true);
     out.shares = coverRows.slice(0, 12).map(c => ({ d: c.d, filed: c.filed, form: c.form, cover: c.v }));
     out.balance = Object.keys(bs).sort().reverse().slice(0, 12).map(d => ({ d, v: bs[d].val }));
     out.weighted = Object.keys(Object.assign({}, wd.q, wb.q)).sort().reverse().slice(0, 12).map(d => ({ d, basic: wb.q[d], diluted: wd.q[d] }));
