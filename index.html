@@ -2140,6 +2140,12 @@ function wLinks(list) {
   list.forEach(x => { const li = el('li'); const a = el('a', 'text-sky-400 hover:underline', x[0]); a.href = x[1]; a.target = '_blank'; a.rel = 'noopener'; li.appendChild(a); u.appendChild(li); });
   return u;
 }
+// Daily NAV series: Yahoo's own history if it exists, else this page's daily log once it has a week of entries.
+function wNavSeries() {
+  const L = wagnLive || {};
+  if (L.navs && L.navs.length) return L.navs;
+  return (L.log || []).length >= 5 ? L.log.map(n => [n[0], n[1]]) : [];
+}
 function wNavState() {
   const L = wagnLive || {}, seeds = (wagnPage || {}).navSeeds || [];
   const prices = L.prices || [];
@@ -2147,7 +2153,9 @@ function wNavState() {
   const price = typeof L.last === 'number' ? L.last : lastRow ? lastRow[1] : null;
   const priceDate = lastRow ? lastRow[0] : null;
   let nav = null, navDate = null, navNote = '';
+  const lg = L.log || [];
   if (L.navs && L.navs.length) { const n = L.navs[L.navs.length - 1]; nav = n[1]; navDate = n[0]; }
+  else if (lg.length && typeof L.nav !== 'number') { const n = lg[lg.length - 1]; nav = n[1]; navDate = n[0]; navNote = 'daily record kept by this page'; }
   else if (typeof L.nav === 'number') { nav = L.nav; navDate = null; navNote = 'latest NAV reported by Yahoo'; }
   else if (seeds.length) { const n = seeds[seeds.length - 1]; nav = n[1]; navDate = n[0]; navNote = 'from ' + n[2].toLowerCase(); }
   return {price, priceDate, nav, navDate, navNote, prices};
@@ -2170,15 +2178,16 @@ function wBanner(box) {
   const notes = [];
   if (st.navNote) notes.push('NAV source: ' + st.navNote + '.');
   notes.push(prem > 0 ? 'A premium means buyers pay more than the holdings are worth; a discount means they pay less.' : 'A discount means buyers pay less than the holdings are worth; a premium means they pay more.');
-  if (st.navDate && st.priceDate && st.navDate !== st.priceDate && !(wagnLive && wagnLive.navs)) notes.push('The NAV and the price are from different days, so treat the gap as approximate.');
+  if (st.navDate && st.priceDate && st.navDate !== st.priceDate && !wNavSeries().length) notes.push('The NAV and the price are from different days, so treat the gap as approximate.');
   b.appendChild(el('div', 'text-xs text-slate-400 mt-2', notes.join(' ')));
   box.appendChild(b);
 }
 function wChart(box, st) {
   const prices = st.prices || [];
   if (prices.length < 2) { box.appendChild(el('div', 'text-sm text-slate-400', 'No price history loaded.')); return; }
-  const navS = (wagnLive && wagnLive.navs) || [];
+  const navS = wNavSeries();
   const pts = [];
+  if (!navS.length) ((wagnLive || {}).log || []).forEach(n => pts.push([n[0], n[1]]));
   ((wagnPage || {}).navSeeds || []).forEach(n => pts.push([n[0], n[1]]));
   if (!navS.length && typeof (wagnLive || {}).nav === 'number') pts.push([prices[prices.length - 1][0], wagnLive.nav]);
   const W = 860, H = 280, L = 48, R = 12, T = 10, B = 28;
@@ -2203,13 +2212,14 @@ function wChart(box, st) {
   box.appendChild(lg);
 }
 function wTable(box, st) {
-  const navS = (wagnLive && wagnLive.navs) || [];
+  const navS = wNavSeries();
   const byDate = {}; (st.prices || []).forEach(r => { byDate[r[0]] = r[1]; });
   let rows = [];
   if (navS.length) {
     rows = navS.slice(-20).reverse().filter(n => byDate[n[0]] != null).map(n => [n[0], byDate[n[0]], n[1]]);
   } else {
     const pts = ((wagnPage || {}).navSeeds || []).map(n => [n[0], n[1], n[2]]);
+    ((wagnLive || {}).log || []).forEach(n => pts.push([n[0], n[1], 'Daily record kept by this page']));
     pts.forEach(n => { rows.push([n[0], byDate[n[0]], n[1], n[2]]); });
     if (typeof (wagnLive || {}).nav === 'number' && st.priceDate) rows.push([st.priceDate, byDate[st.priceDate], wagnLive.nav, 'Yahoo latest NAV (date approximate)']);
     rows.reverse();
@@ -2221,7 +2231,7 @@ function wTable(box, st) {
     return [wDate(r[0]), r[1] != null ? '$' + r[1].toFixed(2) : '—', '$' + r[2].toFixed(2), prem == null ? '—' : (prem >= 0 ? 'Premium ' : 'Discount ') + Math.abs(prem).toFixed(2) + '%'].concat(navS.length ? [] : [r[3] || '']);
   });
   box.appendChild(dTable(head, body));
-  if (!navS.length) box.appendChild(el('div', 'text-xs text-slate-400 mb-2', 'A daily NAV history could not be loaded, so only the NAV points above are shown. Reference points from other sites: ' + ((wagnPage || {}).navRefs || []).join(' ')));
+  if (!navS.length) box.appendChild(el('div', 'text-xs text-slate-400 mb-2', 'No daily NAV history yet: this page now records the NAV each weekday after the close, and the chart turns into a line after about a week of entries. For now only the NAV points above are shown. Reference points from other sites: ' + ((wagnPage || {}).navRefs || []).join(' ')));
 }
 function wagnRender() {
   const body = $('wagnBody'); body.textContent = '';

@@ -5,5 +5,7 @@
   "main": "worker/worker.js",
   "compatibility_date": "2026-11-01",
   // Deep Dive notes storage
-  "kv_namespaces": [{ "binding": "NOTES", "id": "be7be853925e4c2999836f296f675be5" }]
+  "kv_namespaces": [{ "binding": "NOTES", "id": "be7be853925e4c2999836f296f675be5" }],
+  // Logs WAGN's price and NAV once a weekday after the US close (21:30 UTC) for the WAGN page
+  "triggers": { "crons": ["30 21 * * 1-5"] }
 }

@@ -164,6 +164,21 @@ async function getWagnNav() {
   });
 }
 
+// Daily record of WAGN's NAV (Yahoo only reports today's NAV), kept in the NOTES KV namespace.
+async function logWagnNav(env) {
+  if (!env || !env.NOTES) return { error: 'no storage' };
+  cache.delete('wagnnav');
+  const d = await getWagnNav();
+  const rows = d.prices || [];
+  if (!rows.length || typeof d.nav !== 'number') return { error: 'no price or NAV' };
+  const last = rows[rows.length - 1];
+  let log = {};
+  try { log = JSON.parse((await env.NOTES.get('wagnlog')) || '{}'); } catch (e) { log = {}; }
+  log[last[0]] = [last[1], d.nav];
+  await env.NOTES.put('wagnlog', JSON.stringify(log));
+  return { date: last[0], price: last[1], nav: d.nav, days: Object.keys(log).length };
+}
+
 // Yield for a money market fund such as FZCXX. Tries Yahoo's own yield field first, then
 // annualizes the most recent monthly payout (payout x 12 / price).
 async function fetchFundYield(sym) {
@@ -1348,6 +1363,9 @@ async function getMovers() {
 const num = v => (typeof v === 'number' && isFinite(v) ? v : null);
 
 export default {
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(logWagnNav(env).catch(() => {}));
+  },
   async fetch(request, env) {
     const url = new URL(request.url);
     const headers = {
@@ -1458,7 +1476,11 @@ export default {
     }
 
     if (url.searchParams.get('wagnnav')) {
-      const d = await getWagnNav().catch(e => ({ error: String(e.message || e) }));
+      let d = await getWagnNav().catch(e => ({ error: String(e.message || e) }));
+      try {
+        const log = JSON.parse((env && env.NOTES && (await env.NOTES.get('wagnlog'))) || '{}');
+        d = { ...d, log: Object.keys(log).sort().map(k => [k, log[k][1], log[k][0]]) };
+      } catch (e) {}
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=300' } });
     }
 
