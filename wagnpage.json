@@ -273,11 +273,11 @@
    "Summary prospectuses (Feb 9 and Oct 31, 2026), Fact Sheet (Oct 31, 2026), Investor Presentation (Nov 2026)",
    "Annual shareholder report (N-CSR) for the year to June 30, 2026; the N-CSR for June 30, 2025",
    "Combined Information Statement and Prospectus, Dec 29, 2025 (first 100,000 characters of about 518,000)",
-   "Investor call transcripts: Sep 23, 2026 (full 16 pages, supplied by you), Jun 10, 2026, Dec 3, 2025, Aug 20, 2025",
+   "Investor call transcripts: Sep 23, 2026 (16 pages), Jun 10, 2026 (16 pages) and Mar 11, 2026 (21 pages), all supplied by you in full, plus Dec 3, 2025 and Aug 20, 2025",
    "Adviser Form ADV Part 2A, and the Pabrai biography page"
   ],
   "notread": [
-   "Investor call transcripts for Mar 11, 2026, May 14, 2025, Mar 19, 2025, Sep 18, 2024 and Mar 14, 2024 (the files were not reachable from here), and the video replays themselves (they are YouTube videos behind a sign-up form)",
+   "Investor call transcripts for May 14, 2025, Mar 19, 2025, Sep 18, 2024 and Mar 14, 2024 (the files were not reachable from here), and the video replays themselves (they are YouTube videos behind a sign-up form)",
    "Annual Letter to Shareholders (fiscal year ending Jun 30, 2024), the annual and semi-annual tailored shareholder reports for the two mutual fund share classes, the semi-annual financial statements (Dec 2023, Dec 2024, Dec 2025), the complete holdings schedules (Mar 2024, Sep 2024, Mar 2025, Sep 2025, Mar 2026), the June 18, 2026 press release, and the proxy voting records (Form N-PX) for 2024, 2025 and 2026",
    "The Press page (the site returned an error). Two listed items are not documents: the Q3 2023 factsheet link points to google.com and the Sep 29, 2023 holdings entries link nowhere"
   ],
@@ -491,51 +491,131 @@
   ],
   "note": "Net assets on the dates each source gave them, so the points are uneven and the Mar 31, 2026 figure is approximate. The Feb 6, 2026 conversion to an ETF fell between the Dec 2025 and Mar 2026 points. The drop from $313.0 million to about $298 million after Oct 31 matches the roughly 5% fall in the fund's price over those days, not withdrawals. YCharts shows about $174 million of net inflows over the past year, so most of the growth appears to be new money rather than gains."
  },
- "call": {
-  "title": "Sep 23, 2026 shareholder call: what Pabrai said",
-  "intro": "Summary of the full 16-page transcript, which you supplied. Pabrai answered one question per holding, then a few fund-wide ones, and said he ran out of time. The summary is in my words, not his, and he gave no figures beyond those noted. The call date is Sep 23, 2026, so weights and prices he cites are as of then.",
-  "items": [
-   {
-    "h": "Reysas (largest position)",
-    "p": "Across the Wagons Fund, his private funds and related entities he owns about 30% of Reysas Logistics and a little over 12% of Reysas REIT. He said a founder hinted years ago that he was uncomfortable with a stake above 30%, so he voluntarily capped Logistics at 30%; that cap is why WAGN holds little of it. He said Logistics is the cheaper bet, trading below the value of the REIT shares it owns, and he would own more if free to. In WAGN, about 15% of assets is Reysas REIT and about 3% to 4% is Reysas Logistics (a little under a fifth of the fund together). He called Reysas his highest-conviction idea and said he would sell only if the family sold. His case rests on the founder's son Egemen's energy and creativity, with examples: a former Tata factory in Turkey (over 1 million square feet) being redeveloped into warehouses, and a government-matched organic tomato farm for export to Germany. He also said he may do a podcast on this."
-   },
-   {
-    "h": "Warrior and Alpha (metallurgical coal)",
-    "p": "He called the two similar but said Warrior is the better business and deserves the larger allocation. Warrior is all longwall mining, has mines closer to the port and can ship by barge or rail, so he estimates it pays the railroad under half of what Alpha pays. Alpha has a single railroad to the port, and he said the railroad takes roughly a quarter of the coal price, up to about $60 a ton. Alpha's reserves are in effect near-endless because it runs many small mines that become viable at higher prices. He likened Warrior to Aramco: near the bottom of the seaborne cost curve."
-   },
-   {
-    "h": "Transocean (debt)",
-    "p": "He agreed debt is a concern but said Transocean's management dislikes it and has cut it sharply. He praised the equity issuance at about $3 a share. He expects the Valaris merger to close in the fourth quarter, with Brazil's approval expected, which would cut leverage further. He said management told him the top goal is taking debt to zero and that he expects asset sales without a fire sale. He expects leverage to be a non-issue by the end of 2027 and acknowledged going 'out on a limb'."
-   },
-   {
-    "h": "Edelweiss and Nuvama",
-    "p": "He has owned both for almost ten years. Nuvama was spun out of Edelweiss. He sees Indian financial services as early-stage, comparing it with the US around 1980 to 1982, and likened the bet to buying Schwab then."
-   },
-   {
-    "h": "TAV Airports",
-    "p": "He agreed airports like TAV are not comparable to Heathrow or Paris and that geopolitics (the Ukraine and Iran wars) has hurt. Tailwinds: low-cost carriers at Antalya, Ankara, Izmir and Almaty use gates efficiently, and the aircraft-delivery squeeze should ease. In Almaty, TAV gave up fuel income earlier than planned in return for much higher per-passenger fees, which he expects to show up in 2027 results. TAV is paying out cash and may buy more assets."
-   },
-   {
-    "h": "Gimat",
-    "p": "He is disappointed that the founder owns under 1%. The issue is his pay, not his stake. He has urged him, last year and again this year, to raise his pay and find a way to give himself shares or options, and has seen no movement. He is not worried, calling the founder a servant leader who is not money-motivated."
-   },
-   {
-    "h": "Danaos",
-    "p": "He met senior management in Athens for the first time within the last couple of weeks, and his view of the company rose. He began buying in the $70s to $80s a share less than a year ago; the stock is now more than twice that and still deeply below net asset value in his view. He cited low-cost, light-covenant ship financing through Japanese special purpose vehicles that most shippers cannot get. Calling it a special company, not a typical Greek shipper."
-   },
-   {
-    "h": "Kaspi",
-    "p": "Not part of a broader emerging-markets theme; he said he is opportunistic, as with Danaos. The bet is on the founder and the cash returned to investors. Kaspi owns 92% to 93% of Hepsiburada in Istanbul and he expects it to take it private eventually. He visited Hepsiburada and said founder Mikhail spends about 40% of his time in Turkey, teams in Istanbul and Almaty are sharing products, and the Hepsiburada app is already improving. He expects clearer results in one to three years."
-   },
-   {
-    "h": "Constellation, Tab Gida, Mongolian Mining",
-    "p": "Constellation: sad about Mark Leonard's health, which led him to leave the board, but he said Leonard's culture is firmly built in. Tab Gida: he expects GLP-1 drugs to hurt it in Turkey as elsewhere; he is excited about its Doner brand in China and urged management to copy Chipotle; it is one of his lowest-conviction holdings. Mongolian Mining: sold because Mongolian government factions want to revisit the mining deal terms, which he called an existential threat he could not handicap. He still liked the business (surface coal mine, and a gold side that did far better than designed, with gold at about $5,000 an ounce)."
-   },
-   {
-    "h": "Fund-wide answers",
-    "p": "On recommending Berkshire over the fund for young investors: he will not use podcasts to promote products he has a stake in, and said an S&P 500 holder with liquidity could do better in Berkshire. On cyclicals versus compounders: he rejects the labels, calling Warrior his Aramco and Reysas REIT a compounder, not a REIT. On minority shareholders at Kaspi and Gimat: he has no concern about unfair treatment. On inflows to the ETF: he and his team decide where each day's new money goes (which positions, how much) based on conviction and position limits, and he has felt no discomfort so far."
-   }
-  ],
-  "note": "The transcript's own disclosures say the Predecessor Fund started Sep 29, 2023, the ETF succeeded its Institutional Class, history before Feb 6, 2026 is the predecessor's, and the ETF began trading on NYSE Feb 9, 2026."
- }
+ "calls": [
+  {
+   "title": "Sep 23, 2026 shareholder call: what Pabrai said",
+   "intro": "Summary of the full 16-page transcript you supplied. Pabrai answered one question per holding, then a few fund-wide ones, and said he ran out of time. The summary is in my words, not his, and he gave no figures beyond those noted. The call date is Sep 23, 2026, so weights and prices he cites are as of then.",
+   "items": [
+    {
+     "h": "Reysas (largest position)",
+     "p": "Across the Wagons Fund, his private funds and related entities he owns about 30% of Reysas Logistics and a little over 12% of Reysas REIT. He said a founder hinted years ago that he was uncomfortable with a stake above 30%, so he voluntarily capped Logistics at 30%; that cap is why WAGN holds little of it. He said Logistics is the cheaper bet, trading below the value of the REIT shares it owns, and he would own more if free to. In WAGN, about 15% of assets is Reysas REIT and about 3% to 4% is Reysas Logistics (a little under a fifth of the fund together). He called Reysas his highest-conviction idea and said he would sell only if the family sold. His case rests on the founder's son Egemen's energy and creativity, with examples: a former Tata factory in Turkey (over 1 million square feet) being redeveloped into warehouses, and a government-matched organic tomato farm for export to Germany. He also said he may do a podcast on this."
+    },
+    {
+     "h": "Warrior and Alpha (metallurgical coal)",
+     "p": "He called the two similar but said Warrior is the better business and deserves the larger allocation. Warrior is all longwall mining, has mines closer to the port and can ship by barge or rail, so he estimates it pays the railroad under half of what Alpha pays. Alpha has a single railroad to the port, and he said the railroad takes roughly a quarter of the coal price, up to about $60 a ton. Alpha's reserves are in effect near-endless because it runs many small mines that become viable at higher prices. He likened Warrior to Aramco: near the bottom of the seaborne cost curve."
+    },
+    {
+     "h": "Transocean (debt)",
+     "p": "He agreed debt is a concern but said Transocean's management dislikes it and has cut it sharply. He praised the equity issuance at about $3 a share. He expects the Valaris merger to close in the fourth quarter, with Brazil's approval expected, which would cut leverage further. He said management told him the top goal is taking debt to zero and that he expects asset sales without a fire sale. He expects leverage to be a non-issue by the end of 2027 and acknowledged going 'out on a limb'."
+    },
+    {
+     "h": "Edelweiss and Nuvama",
+     "p": "He has owned both for almost ten years. Nuvama was spun out of Edelweiss. He sees Indian financial services as early-stage, comparing it with the US around 1980 to 1982, and likened the bet to buying Schwab then."
+    },
+    {
+     "h": "TAV Airports",
+     "p": "He agreed airports like TAV are not comparable to Heathrow or Paris and that geopolitics (the Ukraine and Iran wars) has hurt. Tailwinds: low-cost carriers at Antalya, Ankara, Izmir and Almaty use gates efficiently, and the aircraft-delivery squeeze should ease. In Almaty, TAV gave up fuel income earlier than planned in return for much higher per-passenger fees, which he expects to show up in 2027 results. TAV is paying out cash and may buy more assets."
+    },
+    {
+     "h": "Gimat",
+     "p": "He is disappointed that the founder owns under 1%. The issue is his pay, not his stake. He has urged him, last year and again this year, to raise his pay and find a way to give himself shares or options, and has seen no movement. He is not worried, calling the founder a servant leader who is not money-motivated."
+    },
+    {
+     "h": "Danaos",
+     "p": "He met senior management in Athens for the first time within the last couple of weeks, and his view of the company rose. He began buying in the $70s to $80s a share less than a year ago; the stock is now more than twice that and still deeply below net asset value in his view. He cited low-cost, light-covenant ship financing through Japanese special purpose vehicles that most shippers cannot get. Calling it a special company, not a typical Greek shipper."
+    },
+    {
+     "h": "Kaspi",
+     "p": "Not part of a broader emerging-markets theme; he said he is opportunistic, as with Danaos. The bet is on the founder and the cash returned to investors. Kaspi owns 92% to 93% of Hepsiburada in Istanbul and he expects it to take it private eventually. He visited Hepsiburada and said founder Mikhail spends about 40% of his time in Turkey, teams in Istanbul and Almaty are sharing products, and the Hepsiburada app is already improving. He expects clearer results in one to three years."
+    },
+    {
+     "h": "Constellation, Tab Gida, Mongolian Mining",
+     "p": "Constellation: sad about Mark Leonard's health, which led him to leave the board, but he said Leonard's culture is firmly built in. Tab Gida: he expects GLP-1 drugs to hurt it in Turkey as elsewhere; he is excited about its Doner brand in China and urged management to copy Chipotle; it is one of his lowest-conviction holdings. Mongolian Mining: sold because Mongolian government factions want to revisit the mining deal terms, which he called an existential threat he could not handicap. He still liked the business (surface coal mine, and a gold side that did far better than designed, with gold at about $5,000 an ounce)."
+    },
+    {
+     "h": "Fund-wide answers",
+     "p": "On recommending Berkshire over the fund for young investors: he will not use podcasts to promote products he has a stake in, and said an S&P 500 holder with liquidity could do better in Berkshire. On cyclicals versus compounders: he rejects the labels, calling Warrior his Aramco and Reysas REIT a compounder, not a REIT. On minority shareholders at Kaspi and Gimat: he has no concern about unfair treatment. On inflows to the ETF: he and his team decide where each day's new money goes (which positions, how much) based on conviction and position limits, and he has felt no discomfort so far."
+    }
+   ],
+   "note": "The transcript's own disclosures say the Predecessor Fund started Sep 29, 2023, the ETF succeeded its Institutional Class, history before Feb 6, 2026 is the predecessor's, and the ETF began trading on NYSE Feb 9, 2026."
+  },
+  {
+   "title": "Jun 10, 2026 shareholder call: what Pabrai said",
+   "intro": "Summary of the full 16-page transcript you supplied. About 25 questions were chosen from 100 to 125 submitted. In my words, not his.",
+   "items": [
+    {
+     "h": "Warrior versus Alpha",
+     "p": "Asked why WAGN holds about twice as much Warrior as Alpha. Both are shareholder-focused, but Warrior uses longwall mining, which is cheaper, sits in the bottom quartile of the global cost curve, and can reach the port of Mobile by rail or barge. Alpha depends on a single railroad that takes a percentage of revenue. He put Warrior's cost to the port at $15 to $30 a ton and Alpha's at roughly $25 to $60. He said Warrior would rank higher even if it paid only dividends. Warrior was barred from buying back stock until Apr 19, 2026 because of its tax loss carryforwards, so buybacks could join dividends once its cash balance rises, perhaps in a quarter or two."
+    },
+    {
+     "h": "Offshore drilling",
+     "p": "Transocean, Noble and Valaris together were over 19% of the fund (the question said about 17%). He said capital-intensive businesses can be excellent (Micron, FlightSafety, BNSF) if bought well below replacement cost, and has no plan to exit soon. He cited the thesis that the last drillship ever built by humans has already been built. He called the Transocean and Valaris deal a big win-win with little spread, and said Transocean's management would run the combination."
+    },
+    {
+     "h": "Constellation",
+     "p": "P/E is the wrong lens because of non-cash goodwill charges. On free cash flow the multiple is nowhere near 20 or 40 times. Organic growth has been about 3% a year, which he thinks deserves a cash-flow multiple somewhere in the middle of 10 to 17 times. The second engine is buying businesses at about 4 or 5 times cash flow, a 20% to 25% reinvestment return."
+    },
+    {
+     "h": "Reysas",
+     "p": "The company has no real investor disclosure, and nudges to provide an investor deck have mostly been ignored. He is fine with that because the father-son team are exceptional capital allocators who want returns of 20% to 30% or more. He warned that he mostly gives the bull case and that some holdings will lose."
+    },
+    {
+     "h": "Gimat",
+     "p": "He corrected the question: buying began 10 to 11 months earlier, in 2025, not 2024, and across everything he manages he owns over 25%, not 20%. At purchase the market cap was about $70 million to $80 million, and the real estate alone was about $70 million. He called it partly a venture-style bet on growing beyond two stores, compared it to Walmart and See's Candies, and said that not adding would have been a cardinal sin. The market cap is now over $300 million."
+    },
+    {
+     "h": "TAV, Kaspi, Edelweiss",
+     "p": "TAV: he said the headwinds are mostly unrelated to the Iran war: Pratt & Whitney engine groundings, Boeing delivery shortages and very low per-passenger fees at Almaty, which the government is helping raise. He expects these to ease in two to three years. Kaspi: a good management team replicating its Kazakhstan playbook in Turkey, with WeChat recently taking a stake. The dividend was reinstated and yields about 10%. He sees Turkey as a moonshot on top of a business he paid a fair price for. Edelweiss: Nuvama's market cap now exceeds Edelweiss's, an IPO of its EAAA asset-management arm is planned in months, but one of two co-CEOs there recently left, which he called not good news; the thesis remains intact."
+    },
+    {
+     "h": "Micron",
+     "p": "The fund never held it; he fully exited before the mutual fund started in Sep 2023. It was his largest US bet for six years (2017 to 2023) and roughly doubled. He sold in 2023 when Samsung turned aggressive on market share and the oligopoly's rationality looked broken. He has no regrets about the sale and no plan to buy at current valuations, but regrets exits such as Ferrari, Goldman Sachs and BYD."
+    },
+    {
+     "h": "Philosophy and fund questions",
+     "p": "He said he once overdosed on Graham and underdosed on Munger, and since about 2017 to 2018 (Nick Sleep's influence) he does not sell at fair value and may sell only far above it. He rejected the cyclical versus compounder labels using Aramco and Warrior as examples. He named Constellation as the top management team and Kaspi as the likely second. He said ETF rules do not force trimming winners that rise in value. He will be at the Pareto Energy Conference in Oslo on Sep 16. On Warrior and Alpha price spreads: High Vol A is oversupplied by Warrior's volumes, and he expects the spreads to normalize in a year to 18 months. On distributions: as a regulated investment company the ETF must distribute in December, including nearly all dividend income and net realized gains, and holders can reinvest through their broker."
+    }
+   ],
+   "note": "Mohnish's remarks are paraphrased. Any weights or prices are as of Jun 10, 2026."
+  },
+  {
+   "title": "Mar 11, 2026 shareholder call: what Pabrai said",
+   "intro": "Summary of the full 21-page transcript you supplied. It was the first call after the ETF began trading on the NYSE. He said he prioritized newer positions. In my words, not his.",
+   "items": [
+    {
+     "h": "Cyclicals versus compounders",
+     "p": "He rejects the buckets, using Saudi Aramco (all-in cost under $12 a barrel, about 12 million barrels a day) as an example of a low-cost producer that rarely loses money. The PLV index was about $220 a ton, roughly its seven-year average and, adjusted for inflation, near a floor, with several Central Appalachian mines closing as cash-flow negative. At $220 for a full year he put Warrior at over $550 million of cash flow (market cap under $5 billion) and Alpha at over $350 million (under $3 billion), which he said he would sign for."
+    },
+    {
+     "h": "Software: Constellation, Topicus, Lumine",
+     "p": "His degree is in computer engineering and he ran an IT firm for over a decade, but software was usually too expensive. Constellation fell from about $5,500 to the low $2,000s. He argued AI helps incumbents in vertical-market software: more founders may sell, acquisition multiples (historically 4 to 5 times cash flow) could fall, and costs may drop. He said no portfolio manager escapes a high miss rate (Buffett had about 12 decisions that moved the needle). On Topicus: similar DNA, a less competitive European market, nothing he does not like."
+    },
+    {
+     "h": "Kaspi and Gimat",
+     "p": "Kaspi: a 'heads I win, tails I do not lose much' bet. The price fell after a dividend cut tied to buying a Turkish fintech and bank; Turkey is seven or eight times Kazakhstan's market and far less digital; the founder is 'a total rock star'. Gimat: he will not be an activist. Across all entities he had just crossed 25% ownership (a filing that week). It has two stores and is venture-like, with downside protected by an entry at a modest valuation and real estate it plans to monetize."
+    },
+    {
+     "h": "Transocean and Valaris",
+     "p": "He called Transocean's acquisition of Valaris a stroke of genius: leverage falls because Valaris is underlevered, a larger footprint improves contract negotiations, and Transocean is the stronger operator. The deal had not yet closed."
+    },
+    {
+     "h": "Warrior and Alpha buybacks",
+     "p": "Warrior's tax loss carryforward rules cap any holder at 5% and block buybacks until Apr 19, 2026 (he owned about 4% across entities). Alpha cut its fully diluted share count about 32% over four years (2022 to 2026) and has under 12 million shares left. He sketched a scenario in which only about 8 million shares can be bought, Alpha reaches about $180 and then turns into a dividend payer, possibly over $250 a share in seven or eight years, about $1 billion a year. He cited India's steel demand rising around 2028 to 2029 as the supply-demand turn, said nothing so far has invalidated his coal thesis, and said what he watches is shares outstanding in 2035."
+    },
+    {
+     "h": "Reysas and TAB Gida",
+     "p": "Reysas: no investor relations or deck. He cited exceptional capital allocation (investments need a 25% to 35% annual return), productivity like Greg Abel's, and creativity (rooftop solar, a small German apartment venture). Footprint is about 12 million square feet, going to about 23 million in three years. TAB Gida: Burger King and Popeyes master franchisee in Turkey; revenue is in lira, which he accepts because the team is a 'jockey bet' (civil engineers who beat McDonald's), though it is not a hard-currency earner like TAV."
+    },
+    {
+     "h": "Sales and the ETF conversion",
+     "p": "Exited OXY, auto dealers and homebuilders because they were his lowest-conviction ideas, replaced by higher-conviction ones (opportunity cost). On converting to an ETF: in hindsight, he might have started as one, citing lower frictional costs, lower fees and access to non-US investors. He said he expects to beat the S&P 500 over the long term, with no guarantee, and expects the S&P's heavy Magnificent 7 weighting to struggle over 10 to 15 years. He declined thermal coal (Core Natural Resources) because of the Iran war. Investors from India and Canada can buy; some European and other countries are restricted; the investor-relations manager can confirm the list."
+    },
+    {
+     "h": "Why emerging markets",
+     "p": "He said Turkey felt like the US in the 1960s: investors overweight macro and underweight micro, and 'micro trumps macro'. He said Reysas's market cap was about $15 million when he first visited versus $600 million to $800 million of liquidation value (2% to 4%). TAV is mostly hard-currency (euro) revenue and about 46% owned by the French government."
+    }
+   ],
+   "note": "Paraphrased. Figures are as he stated them on Mar 11, 2026."
+  }
+ ]
 }
