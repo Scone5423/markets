@@ -79,6 +79,7 @@
     <a href="#bloggers" data-nav="bloggers" class="pb-3 text-sm">Bloggers</a>
     <a href="#screener" data-nav="screener" class="pb-3 text-sm">Screener</a>
     <a href="#deep" data-nav="deep" class="pb-3 text-sm">Deep Dive</a>
+    <a href="#wagn" data-nav="wagn" class="pb-3 text-sm">WAGN</a>
   </nav>
 
   <section id="view-home">
@@ -176,6 +177,10 @@
     <div id="bloggersBody"></div>
   </section>
 
+
+  <section id="view-wagn" hidden>
+    <div id="wagnBody"></div>
+  </section>
 
   <section id="view-deep" hidden>
     <div class="mb-4"><h2 class="text-3xl font-semibold text-white">Deep Dive</h2></div>
@@ -2124,6 +2129,156 @@ function scCsv() {
 }
 function screenerShow() { scBuild(); }
 
+
+// ---- WAGN page: price vs NAV, fund summary, commentary, opinions --------------------
+let wagnPage = null, wagnLive = null, wagnBusy = false;
+const wPct = (v, d) => (v >= 0 ? '+' : '') + v.toFixed(d == null ? 2 : d) + '%';
+const wDate = iso => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
+function wSection(title) { const s = el('div', 'mb-8'); s.appendChild(el('h3', 'text-xl font-semibold text-white mb-3', title)); return s; }
+function wLinks(list) {
+  const u = el('ul', 'text-sm space-y-1 mt-2');
+  list.forEach(x => { const li = el('li'); const a = el('a', 'text-sky-400 hover:underline', x[0]); a.href = x[1]; a.target = '_blank'; a.rel = 'noopener'; li.appendChild(a); u.appendChild(li); });
+  return u;
+}
+function wNavState() {
+  const L = wagnLive || {}, seeds = (wagnPage || {}).navSeeds || [];
+  const prices = L.prices || [];
+  const lastRow = prices.length ? prices[prices.length - 1] : null;
+  const price = typeof L.last === 'number' ? L.last : lastRow ? lastRow[1] : null;
+  const priceDate = lastRow ? lastRow[0] : null;
+  let nav = null, navDate = null, navNote = '';
+  if (L.navs && L.navs.length) { const n = L.navs[L.navs.length - 1]; nav = n[1]; navDate = n[0]; }
+  else if (typeof L.nav === 'number') { nav = L.nav; navDate = null; navNote = 'latest NAV reported by Yahoo'; }
+  else if (seeds.length) { const n = seeds[seeds.length - 1]; nav = n[1]; navDate = n[0]; navNote = 'from ' + n[2].toLowerCase(); }
+  return {price, priceDate, nav, navDate, navNote, prices};
+}
+function wBanner(box) {
+  const st = wNavState();
+  const b = el('div', 'rounded-lg border border-slate-700 p-5 mb-6');
+  if (st.price == null || st.nav == null) {
+    b.appendChild(el('div', 'text-lg text-white', 'Price versus NAV is not available right now.'));
+    b.appendChild(el('div', 'text-sm text-slate-400 mt-1', st.price == null ? 'Could not load the WAGN price.' : 'No NAV could be loaded.'));
+    box.appendChild(b); return;
+  }
+  const prem = (st.price / st.nav - 1) * 100;
+  const word = Math.abs(prem) < 0.05 ? 'in line with' : prem > 0 ? 'at a PREMIUM to' : 'at a DISCOUNT to';
+  const cls = Math.abs(prem) < 0.05 ? 'text-white' : prem > 0 ? 'text-amber-400' : 'text-emerald-400';
+  const head = el('div', 'text-2xl font-semibold ' + cls);
+  head.textContent = 'WAGN is trading ' + word + ' NAV' + (Math.abs(prem) < 0.05 ? '' : ': ' + Math.abs(prem).toFixed(2) + '%');
+  b.appendChild(head);
+  b.appendChild(el('div', 'text-base text-slate-200 mt-2', 'Share price $' + st.price.toFixed(2) + (st.priceDate ? ' (last close ' + wDate(st.priceDate) + ')' : '') + ' versus NAV $' + st.nav.toFixed(2) + (st.navDate ? ' (' + wDate(st.navDate) + ')' : '') + '.'));
+  const notes = [];
+  if (st.navNote) notes.push('NAV source: ' + st.navNote + '.');
+  notes.push(prem > 0 ? 'A premium means buyers pay more than the holdings are worth; a discount means they pay less.' : 'A discount means buyers pay less than the holdings are worth; a premium means they pay more.');
+  if (st.navDate && st.priceDate && st.navDate !== st.priceDate && !(wagnLive && wagnLive.navs)) notes.push('The NAV and the price are from different days, so treat the gap as approximate.');
+  b.appendChild(el('div', 'text-xs text-slate-400 mt-2', notes.join(' ')));
+  box.appendChild(b);
+}
+function wChart(box, st) {
+  const prices = st.prices || [];
+  if (prices.length < 2) { box.appendChild(el('div', 'text-sm text-slate-400', 'No price history loaded.')); return; }
+  const navS = (wagnLive && wagnLive.navs) || [];
+  const pts = [];
+  ((wagnPage || {}).navSeeds || []).forEach(n => pts.push([n[0], n[1]]));
+  if (!navS.length && typeof (wagnLive || {}).nav === 'number') pts.push([prices[prices.length - 1][0], wagnLive.nav]);
+  const W = 860, H = 280, L = 48, R = 12, T = 10, B = 28;
+  const all = prices.map(x => x[1]).concat(navS.map(x => x[1]), pts.map(x => x[1]));
+  let lo = Math.min.apply(null, all), hi = Math.max.apply(null, all); const pad = (hi - lo) * 0.08 || 1; lo -= pad; hi += pad;
+  const t0 = Date.parse(prices[0][0]), t1 = Date.parse(prices[prices.length - 1][0]);
+  const X = d => L + (Date.parse(d) - t0) / ((t1 - t0) || 1) * (W - L - R), Y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+  const ns = 'http://www.w3.org/2000/svg';
+  const mk = (n, a) => { const e = document.createElementNS(ns, n); Object.keys(a).forEach(k => e.setAttribute(k, a[k])); return e; };
+  const svg = mk('svg', {viewBox: '0 0 ' + W + ' ' + H, class: 'w-full'});
+  for (let i = 0; i <= 4; i++) { const v = lo + (hi - lo) * i / 4, y = Y(v); svg.appendChild(mk('line', {x1: L, x2: W - R, y1: y, y2: y, stroke: '#334155', 'stroke-width': 0.5})); const t = mk('text', {x: L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 11, fill: '#94a3b8'}); t.textContent = '$' + v.toFixed(2); svg.appendChild(t); }
+  const seen = {};
+  prices.forEach(r => { const m = r[0].slice(0, 7); if (!seen[m]) { seen[m] = 1; const x = X(r[0]); const t = mk('text', {x, y: H - 8, 'text-anchor': 'middle', 'font-size': 11, fill: '#94a3b8'}); t.textContent = new Date(r[0] + 'T12:00:00Z').toLocaleDateString('en-US', {month: 'short', timeZone: 'UTC'}); svg.appendChild(t); } });
+  const line = (rows, color) => svg.appendChild(mk('polyline', {points: rows.map(r => X(r[0]).toFixed(1) + ',' + Y(r[1]).toFixed(1)).join(' '), fill: 'none', stroke: color, 'stroke-width': 1.8}));
+  line(prices, '#38bdf8');
+  if (navS.length) line(navS, '#f59e0b');
+  pts.forEach(p => { if (Date.parse(p[0]) >= t0) svg.appendChild(mk('circle', {cx: X(p[0]), cy: Y(p[1]), r: 4.5, fill: '#f59e0b', stroke: '#0f1419', 'stroke-width': 1})); });
+  box.appendChild(svg);
+  const lg = el('div', 'flex gap-5 text-xs text-slate-400 mt-1');
+  lg.appendChild(el('span', '', '— Share price (daily close)'));
+  lg.appendChild(el('span', '', navS.length ? '— NAV (daily)' : '● NAV (points reported by the fund or data sites)'));
+  box.appendChild(lg);
+}
+function wTable(box, st) {
+  const navS = (wagnLive && wagnLive.navs) || [];
+  const byDate = {}; (st.prices || []).forEach(r => { byDate[r[0]] = r[1]; });
+  let rows = [];
+  if (navS.length) {
+    rows = navS.slice(-20).reverse().filter(n => byDate[n[0]] != null).map(n => [n[0], byDate[n[0]], n[1]]);
+  } else {
+    const pts = ((wagnPage || {}).navSeeds || []).map(n => [n[0], n[1], n[2]]);
+    pts.forEach(n => { rows.push([n[0], byDate[n[0]], n[1], n[2]]); });
+    if (typeof (wagnLive || {}).nav === 'number' && st.priceDate) rows.push([st.priceDate, byDate[st.priceDate], wagnLive.nav, 'Yahoo latest NAV (date approximate)']);
+    rows.reverse();
+  }
+  if (!rows.length) return;
+  const head = ['Date', 'Share price', 'NAV', 'Premium / discount'].concat(navS.length ? [] : ['Where the NAV comes from']);
+  const body = rows.map(r => {
+    const prem = r[1] != null ? (r[1] / r[2] - 1) * 100 : null;
+    return [wDate(r[0]), r[1] != null ? '$' + r[1].toFixed(2) : '—', '$' + r[2].toFixed(2), prem == null ? '—' : (prem >= 0 ? 'Premium ' : 'Discount ') + Math.abs(prem).toFixed(2) + '%'].concat(navS.length ? [] : [r[3] || '']);
+  });
+  box.appendChild(dTable(head, body));
+  if (!navS.length) box.appendChild(el('div', 'text-xs text-slate-400 mb-2', 'A daily NAV history could not be loaded, so only the NAV points above are shown. Reference points from other sites: ' + ((wagnPage || {}).navRefs || []).join(' ')));
+}
+function wagnRender() {
+  const body = $('wagnBody'); body.textContent = '';
+  const P = wagnPage || {};
+  const st = wNavState();
+  const hd = el('div', 'flex flex-wrap items-baseline gap-x-3 mb-4');
+  hd.appendChild(el('h2', 'text-3xl font-semibold text-white', 'WAGN'));
+  hd.appendChild(el('span', 'text-lg text-slate-300', 'Pabrai Wagons ETF'));
+  if (st.price != null) hd.appendChild(el('span', 'text-lg font-medium text-white', '$' + st.price.toFixed(2)));
+  body.appendChild(hd);
+  wBanner(body);
+  const s1 = wSection('Share price versus NAV'); wChart(s1, st); wTable(s1, st); body.appendChild(s1);
+  if (!P.summary) { body.appendChild(el('div', 'text-sm text-slate-400', 'Loading…')); return; }
+  const s2 = wSection('Fund summary');
+  const t = el('div', 'rounded-lg border border-slate-800 divide-y divide-slate-800');
+  P.summary.forEach(r => { const row = el('div', 'grid sm:grid-cols-[9rem_1fr] gap-x-4 px-4 py-3 text-sm'); row.appendChild(el('div', 'text-slate-400', r[0])); row.appendChild(el('div', 'text-slate-200', r[1])); t.appendChild(row); });
+  s2.appendChild(t); body.appendChild(s2);
+  const s3 = wSection('Performance, as reported by the fund');
+  s3.appendChild(dTable(P.perf.head, P.perf.rows));
+  s3.appendChild(dTable(['Period', 'Fund return', 'Comparison'], P.perf.annual));
+  s3.appendChild(el('div', 'text-xs text-slate-500', 'Figures come from the fund\u2019s replay pages, fact sheet and shareholder reports. Market return is the exchange price return; NAV return is the holdings. Past performance does not predict future results.'));
+  body.appendChild(s3);
+  const s4 = wSection('Commentary: what the fund\u2019s documents say');
+  P.commentary.forEach(c => { s4.appendChild(el('h4', 'text-base font-semibold text-white mt-5 mb-2', c.h)); c.p.forEach(x => s4.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', x))); });
+  body.appendChild(s4);
+  const s5 = wSection('Does Mohnish Pabrai own the fund himself?');
+  const card = el('div', 'rounded-lg border border-slate-700 p-5');
+  card.appendChild(el('div', 'text-lg text-white mb-3', P.stake.answer));
+  const ul = el('ul', 'list-disc pl-5 space-y-2 text-sm text-slate-300'); P.stake.points.forEach(x => ul.appendChild(el('li', '', x))); card.appendChild(ul);
+  card.appendChild(wLinks(P.stake.sources)); s5.appendChild(card); body.appendChild(s5);
+  const s6 = wSection('What people say about the fund');
+  const g = el('div', 'grid md:grid-cols-2 gap-5');
+  [['The case for it', P.opinions.good, 'text-emerald-400'], ['The case against it', P.opinions.bad, 'text-amber-400']].forEach(c => {
+    const col = el('div', 'rounded-lg border border-slate-800 p-4'); col.appendChild(el('div', 'font-semibold mb-2 ' + c[2], c[0]));
+    const u = el('ul', 'list-disc pl-5 space-y-2 text-sm text-slate-300'); c[1].forEach(x => u.appendChild(el('li', '', x))); col.appendChild(u); g.appendChild(col);
+  });
+  s6.appendChild(g);
+  s6.appendChild(el('p', 'text-sm text-slate-400 mt-3', P.opinions.note));
+  s6.appendChild(wLinks(P.opinions.sources)); body.appendChild(s6);
+  const s7 = wSection('What I read and what I could not');
+  s7.appendChild(el('div', 'text-sm font-semibold text-slate-200 mb-1', 'Read'));
+  const r1 = el('ul', 'list-disc pl-5 space-y-1 text-sm text-slate-300 mb-3'); P.read.read.forEach(x => r1.appendChild(el('li', '', x))); s7.appendChild(r1);
+  s7.appendChild(el('div', 'text-sm font-semibold text-amber-400 mb-1', 'Not read'));
+  const r2 = el('ul', 'list-disc pl-5 space-y-1 text-sm text-slate-300 mb-3'); P.read.notread.forEach(x => r2.appendChild(el('li', '', x))); s7.appendChild(r2);
+  s7.appendChild(el('p', 'text-xs text-slate-500', P.read.why));
+  body.appendChild(s7);
+}
+async function wagnShow() {
+  wagnRender();
+  if (!wagnPage) { try { wagnPage = await (await fetch('wagnpage.json?v=' + Date.now())).json(); } catch (e) { wagnPage = {}; } wagnRender(); }
+  if (!wagnLive && !wagnBusy && cfg.worker) {
+    wagnBusy = true;
+    try { wagnLive = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?wagnnav=1', 30000); } catch (e) { wagnLive = {}; }
+    wagnBusy = false; wagnRender();
+  }
+}
+
 // ---- Deep Dive (shares, buybacks, SBC from SEC filings) --------------------------------
 const DEEP_SYMS = ['DECK','NKE','PYPL','KSPI','ADSK','CPRT','PRKA','RIVN','BLDR','LULU'];
 let deepStatic = null, deepSym = null, deepBuilt = false;
@@ -2569,14 +2724,14 @@ function renderCape() {
 }
 function show() {
   const h = location.hash;
-  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : h === "#bloggers" ? "bloggers" : h === "#screener" ? "screener" : h.startsWith('#deep') ? "deep" : 'home';
-  ["home", "watchlist", "charts", "gurus", "semper", "pabrai", "bloggers", "screener", "deep"].forEach(n => { $('view-' + n).hidden = v !== n; });
+  const v = h.startsWith('#charts') ? 'charts' : h === '#watchlist' ? 'watchlist' : h === "#gurus" ? "gurus" : h === "#semper" ? "semper" : h === "#pabrai" ? "pabrai" : h === "#bloggers" ? "bloggers" : h === "#screener" ? "screener" : h.startsWith('#deep') ? "deep" : h === "#wagn" ? "wagn" : 'home';
+  ["home", "watchlist", "charts", "gurus", "semper", "pabrai", "bloggers", "screener", "deep", "wagn"].forEach(n => { $('view-' + n).hidden = v !== n; });
   document.querySelectorAll('[data-nav]').forEach(a => {
     const on = a.dataset.nav === v;
     a.className = 'pb-3 text-sm border-b-2 -mb-px ' + (on ? 'text-white border-sky-500' : 'text-slate-400 border-transparent hover:text-slate-200');
     on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   });
-  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Dhandho | Markets", bloggers: "Bloggers | Markets", screener: "Screener | Markets", deep: "Deep Dive | Markets"}[v];
+  document.title = {home: 'Markets', watchlist: 'Watchlist | Markets', charts: 'Charts | Markets', gurus: "Gurus | Markets", semper: "Semper | Markets", pabrai: "Dhandho | Markets", bloggers: "Bloggers | Markets", screener: "Screener | Markets", deep: "Deep Dive | Markets", wagn: "WAGN | Markets"}[v];
   if (v === 'charts') chartsRoute();
   if (v === "gurus") gurusShow();
   if (v === "semper") semperShow();
@@ -2584,6 +2739,7 @@ function show() {
   if (v === "bloggers") bloggersShow();
   if (v === "screener") screenerShow();
   if (v === "deep") deepShow();
+  if (v === "wagn") wagnShow();
 }
 window.addEventListener('hashchange', show);
 

@@ -127,6 +127,43 @@ async function getWagn() {
   });
 }
 
+
+// ---- WAGN price vs NAV ----------------------------------------------------------
+async function yahooDaily(sym, range) {
+  const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=' + range, { headers: { 'User-Agent': UA } });
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  const res = ((await r.json()).chart || {}).result;
+  if (!res || !res[0]) throw new Error('no data');
+  const ts = res[0].timestamp || [], cl = ((res[0].indicators || {}).quote || [{}])[0].close || [];
+  const out = [];
+  ts.forEach((t, i) => { if (typeof cl[i] === 'number') out.push([new Date(t * 1000).toISOString().slice(0, 10), Math.round(cl[i] * 10000) / 10000]); });
+  return { rows: out, meta: res[0].meta || {} };
+}
+async function getWagnNav() {
+  return cached('wagnnav', 900000, async () => {
+    const out = {};
+    try {
+      const p = await yahooDaily('WAGN', '1y');
+      out.prices = p.rows; out.last = p.meta.regularMarketPrice; out.lastTime = p.meta.regularMarketTime ? new Date(p.meta.regularMarketTime * 1000).toISOString() : null;
+    } catch (e) { out.priceError = String(e.message || e); }
+    try {
+      const s = await getSession();
+      const r = await fetch('https://query1.finance.yahoo.com/v10/finance/quoteSummary/WAGN?modules=summaryDetail,price&crumb=' + encodeURIComponent(s.crumb), { headers: { 'User-Agent': UA, Cookie: s.cookie } });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = ((await r.json()).quoteSummary.result || [])[0] || {};
+      const nav = ((d.summaryDetail || {}).navPrice || {}).raw;
+      if (typeof nav === 'number') out.nav = nav; else out.navError = 'Yahoo has no NAV for WAGN';
+    } catch (e) { out.navError = String(e.message || e); }
+    for (const sym of ['WAGN.NV', '^WAGN-NV', '^WAGN-IV']) {
+      try {
+        const n = await yahooDaily(sym, '1y');
+        if (n.rows.length >= 5) { out.navs = n.rows; out.navSymbol = sym; break; }
+      } catch (e) {}
+    }
+    return out;
+  });
+}
+
 // Yield for a money market fund such as FZCXX. Tries Yahoo's own yield field first, then
 // annualizes the most recent monthly payout (payout x 12 / price).
 async function fetchFundYield(sym) {
@@ -1418,6 +1455,11 @@ export default {
       if (!/^\d{1,10}$/.test(cik)) return new Response('{}', { status: 400, headers });
       const d = await getFiler(cik).catch(e => ({ error: String(e.message || e) }));
       return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=3600' } });
+    }
+
+    if (url.searchParams.get('wagnnav')) {
+      const d = await getWagnNav().catch(e => ({ error: String(e.message || e) }));
+      return new Response(JSON.stringify(d), { headers: { ...headers, 'cache-control': 'public, max-age=300' } });
     }
 
     if (url.searchParams.get('wagn')) {

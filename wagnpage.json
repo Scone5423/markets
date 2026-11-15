@@ -1,0 +1,286 @@
+{
+ "updated": "2026-11-15",
+ "summary": [
+  [
+   "Fund",
+   "Pabrai Wagons ETF, ticker WAGN, NYSE Arca (it began trading on the NYSE on Feb 9, 2026 ; a June 18, 2026 release announced the move to NYSE Arca). Actively managed, long-only, non-diversified. CUSIP 74316P538."
+  ],
+  [
+   "Manager",
+   "Mohnish Pabrai is the sole portfolio manager. The adviser is Dhandho Funds LLC, doing business as Pabrai Wagons Advisors, in West Lake Hills, Texas. The prospectus says the fund depends on him and would have to liquidate without him."
+  ],
+  [
+   "Objective",
+   "Long-term capital appreciation: a concentrated portfolio of high-quality businesses bought at a meaningful discount to intrinsic value and held for many years. No geographic or industry limits; up to 100% outside the US, including emerging and frontier markets."
+  ],
+  [
+   "History",
+   "Started as the Pabrai Wagons Fund, a mutual fund, on Sep 29, 2023. It converted into the ETF on Feb 6, 2026 (first ETF trade Feb 9) and carries the mutual fund's Institutional Class performance history. The ETF replaced share classes costing 1.25% (retail) and 1.00% (institutional) net."
+  ],
+  [
+   "Fee",
+   "0.90% a year, a single flat fee. The adviser pays most operating costs. Brokerage costs, taxes, borrowing interest and acquired-fund fees are excluded. There is no 12b-1 fee and no performance fee."
+  ],
+  [
+   "Size",
+   "About $298 million in early November 2026 (the fact sheet shows $313.0 million at its reporting date). Pabrai's firms manage $1.4 billion in total across the private funds and the ETF."
+  ],
+  [
+   "Holdings",
+   "20 positions. The top 10 are 67.4% of assets (Oct 31, 2026): Reysas REIT 14.9%, Transocean 9.2%, Warrior Met Coal 7.0%, Edelweiss 5.9%, Gimat 5.8%, Valaris 5.6%, Noble 5.0%, TAV Airports 4.8%, Odfjell Drilling 4.7%, Constellation Software 4.5%. The fund reports zero overlap with the S&P 500."
+  ],
+  [
+   "Sectors",
+   "Energy 24.7%, Real Estate 14.9%, Information Technology 14.3%, Financials 13.6%, Industrials 12.3%, Materials 11.4%, Consumer Staples 5.8%, Consumer Discretionary 2.9%, cash 0.2% (Oct 31, 2026). At June 30, 2026 the country split was Turkey 29.7%, US 23.1%, India 13.7%, Switzerland 9.5%, Canada 8.9%, Kazakhstan 4.9%."
+  ],
+  [
+   "Turnover",
+   "40% for the year to June 30, 2026 (69.25% the year before)."
+  ],
+  [
+   "Shareholders",
+   "Held mostly through brokers. As of Oct 7, 2026 record holders over 5%: Charles Schwab 23.81%, National Financial Services 19.32%, Vanguard Brokerage 17.69%, Interactive Brokers 10.12%, Stifel 6.94%, Pershing 5.03%."
+  ]
+ ],
+ "perf": {
+  "head": [
+   "As of",
+   "YTD NAV",
+   "YTD market",
+   "YTD S&P 500",
+   "1-yr NAV",
+   "1-yr market",
+   "1-yr S&P 500",
+   "Since start, annualized NAV",
+   "Since start, annualized market",
+   "Since start, annualized S&P 500"
+  ],
+  "rows": [
+   [
+    "Feb 28, 2026",
+    "16.13%",
+    "16.54%",
+    "0.68%",
+    "40.90%",
+    "41.40%",
+    "16.99%",
+    "16.48%",
+    "16.64%",
+    "23.25%"
+   ],
+   [
+    "May 31, 2026",
+    "21.05%",
+    "21.54%",
+    "11.27%",
+    "51.66%",
+    "52.27%",
+    "29.78%",
+    "16.59%",
+    "16.77%",
+    "25.42%"
+   ],
+   [
+    "Aug 31, 2026",
+    "32.60%",
+    "32.92%",
+    "13.14%",
+    "40.98%",
+    "41.32%",
+    "20.38%",
+    "18.70%",
+    "18.80%",
+    "23.70%"
+   ],
+   [
+    "Sep 30, 2026",
+    "21.70%",
+    "21.87%",
+    "12.75%",
+    "29.28%",
+    "29.46%",
+    "15.74%",
+    "14.84%",
+    "14.89%",
+    "22.87%"
+   ],
+   [
+    "Oct 31, 2026",
+    "30.14%",
+    "30.71%",
+    "11.77%",
+    "34.30%",
+    "34.89%",
+    "12.11%",
+    "16.91%",
+    "17.08%",
+    "21.83%"
+   ]
+  ],
+  "annual": [
+   [
+    "Fiscal year to Jun 30, 2025 (mutual fund)",
+    "-13.29%",
+    "S&P 500: 15.16%"
+   ],
+   [
+    "Calendar 2024 (mutual fund)",
+    "10.91%",
+    ""
+   ],
+   [
+    "Calendar 2025 (mutual fund)",
+    "3.98%",
+    "S&P 500: 17.88%"
+   ],
+   [
+    "Fiscal year to Jun 30, 2026",
+    "28.90%",
+    "S&P 500: 22.32%"
+   ]
+  ]
+ },
+ "commentary": [
+  {
+   "h": "Structure and cost",
+   "p": [
+    "WAGN is the exchange-traded successor to the Pabrai Wagons Fund. The board approved the reorganization on Nov 18, 2025, and shareholders did not need to vote. It closed around Feb 6, 2026. The stated reasons were reaching more investors, greater tax efficiency from in-kind redemptions, intraday trading, lower expected total expenses and daily holdings transparency. The ETF also dropped the mutual fund's 1.00% fee on shares sold within 90 days.",
+    "The 0.90% single fee compares with 1.25% (retail) and 1.00% (institutional) net, and 1.84% and 1.59% gross, at the old mutual fund. On $10,000 the prospectus shows $92 for one year and $1,108 over ten at a 5% assumed return. In the year to June 30, 2025 the adviser had been waiving part of its fee to keep expenses at the cap; in fiscal 2026 the fund's reported expense ratio was 0.94% after a waiver and 1.08% before it, and the net advisory fee was $876,703 after a $253,408 waiver.",
+    "Shares are created and redeemed only in blocks of 10,000 by authorized participants, so the price on the exchange can drift away from net asset value (NAV). The prospectus lists that as a risk and says the fund's website carries daily premium and discount data."
+   ]
+  },
+  {
+   "h": "How the fund has performed",
+   "p": [
+    "The record is short and uneven. The mutual fund lost 13.29% in the year to June 30, 2025, gained 3.98% in calendar 2025 against 17.88% for the S&P 500, and then did sharply better after the ETF launch: 28.90% for the year to June 30, 2026 against 22.32% for the index, and 30.14% for 2026 through Oct 31 against 11.77%.",
+    "Even so, since inception on Sep 29, 2023 the fund trails the index: 16.91% a year at Oct 31, 2026 against 21.83%. The June 2026 shareholder report says so directly: the since-inception returns 'continue to trail the S&P 500'. Monthly swings are large (+13.8% in August 2026, then about -8.2% in September).",
+    "Market-price returns have run slightly ahead of NAV returns at every reported date (table above), so the shares' premium to NAV is a bit wider than at the start of 2026."
+   ]
+  },
+  {
+   "h": "What the fund owns",
+   "p": [
+    "The June 2026 report groups about 78% of the portfolio into six themes: offshore oil services (18%), financial services in India (14%), the 'Mark Leonard complex' of Constellation Software-related companies in Canada and Europe (14%), metallurgical coal in the US (14%), the Reysas group in Turkey (9%) and TAV Airports in Turkey (9%).",
+    "By Oct 31, 2026 the top ten were 67.4% of assets. Energy was 24.7%, real estate 14.9% (almost all Reysas REIT), and the fund held nothing in the S&P 500. Since March 31, 2026 the fund added Odfjell Drilling and Odfjell Technology (Norway), and Mongolian Mining dropped out of the holdings list.",
+    "Valuation claims come from the sponsor's own investor presentation and are not independently checked. For example: Reysas, over $3 billion of liquidation value against a market value of about $2.1 billion; Transocean, a 2–3x return in the downside case; Warrior Met Coal, a 9% free cash flow yield; Kaspi, worth 2–3x its market cap even if its Turkey expansion fails; Gimat, a Turkish wholesale-club chain with two stores today and 'significant execution risk'."
+   ]
+  },
+  {
+   "h": "What Pabrai told shareholders on the calls",
+   "p": [
+    "Aug 20, 2025 call: the fund was about $80 million and would turn profitable for the adviser at about $150 million. He said no fee increase was planned and fees could fall as assets grow. He admitted the fund had badly underperformed the S&P 500 in its first two years and argued many holdings need five years or more to pay off, pointing to Reysas, held since 2019, which showed little return for three or four years. He explained most of the early turnover by launch timing and the sizing of Edelweiss (about 20%) and offshore drillers (about 12%). He expects only two or three new ideas a year. He said trades are allocated on a compliance-approved rotation: the Wagons fund gets priority every fifth day, and the three private funds the other days.",
+    "Dec 3, 2025 call: the fund passed $100 million that day, and he announced the ETF conversion. He called Edelweiss the largest position (about 18–19%) with several more subsidiary IPOs planned, described Warrior Met Coal (13–15% of the fund) as one of the lowest-cost seaborne producers, and added Gimat, where his funds own more than 20%. He rejected Penske Automotive as too expensive and listed Toll Brothers, Pulte and Occidental among his lowest-conviction bets. He said mutual fund rules force more positions than he would hold in his private funds, which he does not see as a big penalty.",
+    "June 10, 2026 shareholder meeting: mostly detailed holding by holding discussion. He called Constellation Software the best-managed holding and said the Kaspi dividend yield is around 10%. On the offshore drillers (over 19% together) he argued that capital intensity does not make a business bad if bought well below asset value, and that Transocean and Valaris is a 'win-win' deal. TAV Airports was down about 30% in dollars over two years because of engine groundings, Boeing delays and low airport fees, and he stayed bullish. He said he no longer sells just because a stock nears intrinsic value, and has no rule forcing him to trim winners. Fund-level performance, premiums and fees were not discussed in that transcript.",
+    "I could not open the Sept 23, 2026 and March 11, 2026 transcripts, so they are not summarized here. The replay pages for those calls show the performance tables used above."
+   ]
+  },
+  {
+   "h": "Risks the fund itself lists",
+   "p": [
+    "Key man: the fund depends on Pabrai and would have to liquidate without him. Non-diversified and concentrated. Foreign and emerging-market exposure, with Turkey (lira volatility, a large current account deficit, political risk) and India (government influence, family-controlled companies, illiquidity, and tax accruals on capital gains that reduce NAV) both named. Sector emphasis of 25% or more in one sector is permitted. Cash can be large for long periods. ETF-specific risks: few authorized participants, cash redemptions, and the chance of material discounts to NAV."
+   ]
+  },
+  {
+   "h": "Conflicts and incentives to know about",
+   "p": [
+    "Pabrai also runs private funds through Dalal Street LLC, which pay him performance fees. The adviser's own filing says this creates an incentive to direct the best ideas to the performance-fee accounts, and that trades are allocated pro rata by procedure. The ETF itself pays no performance fee. Pabrai receives no salary from the adviser; he is part owner and gets distributions based on firm profits, plus pay from Dalal Street."
+   ]
+  }
+ ],
+ "stake": {
+  "answer": "Almost nothing, in the ETF itself. The fund's Statement of Additional Information (dated Oct 31, 2026) reports Mohnish Pabrai's ownership in the fund as $1–$10,000 as of June 30, 2026. That is the lowest range the form offers. A year earlier, for the mutual fund, it said he did not beneficially own any shares as of June 30, 2025.",
+  "points": [
+   "Where his money is: he indirectly owns about 19% of the adviser (through Dhandho Holdings), which earns the 0.90% fee, and he gets distributions from it. He also earns a salary and performance fees from Dalal Street, which runs the private Pabrai Investment Funds. Those private funds hold many of the same companies, and the fund documents say his funds own more than 20% of Gimat.",
+   "The documents do not say how much of his own wealth sits in the private funds, so his total personal exposure to these same stocks cannot be read from the ETF filings.",
+   "Neither the website, the FAQ, the investor presentation nor the 2025 and 2026 shareholder reports mention a personal investment amount. The adviser's regulatory brochure says only that the adviser, its employees or related persons 'may hold an interest in the ETF'.",
+   "Trustees: none owns any ETF shares, and trustees and officers as a group own under 1% (as of Sep 30, 2026)."
+  ],
+  "sources": [
+   [
+    "Statement of Additional Information, Oct 31, 2026",
+    "https://wagonsfund.b-cdn.net/Pabrai%20Wagons%20ETF%20SAI.pdf"
+   ],
+   [
+    "Prospectus and SAI, Feb 9, 2026 (SEC)",
+    "https://www.sec.gov/Archives/edgar/data/811030/000089418926003432/pabraiwagonsetf497c.htm"
+   ],
+   [
+    "Adviser Form ADV Part 2A",
+    "https://wagonsfund.b-cdn.net/Wagons%20Advisors/Pabrai%20Wagons%20Advisors%20Form%20ADV%20Part%202A%20and%202B.pdf"
+   ]
+  ]
+ },
+ "opinions": {
+  "good": [
+   "Distinct portfolio. Several writers say the holdings are hard to replicate: international value, mostly outside the US, with zero overlap with the S&P 500. (Bezek, Seeking Alpha; ETF Central)",
+   "Pedigree and process. A manager who describes himself as a student of Warren Buffett, with a stated discipline of buying great businesses cheaply and holding them for a long time. Supporters like the willingness to hold cash and to hold winners. (Binary Tree Analytics, Seeking Alpha; the fund's own materials)",
+   "Cheaper and simpler than the old mutual fund. The ETF costs 0.90% against 1.00%–1.25% net before, with better tax efficiency and intraday trading. The adviser's own presentation and the information statement make this case.",
+   "Recent results. 28.90% for the year to June 30, 2026 against 22.32% for the S&P 500, and 30.14% for 2026 through October.",
+   "Steady inflows. Data sites show net inflows over the last one and three months and assets roughly doubling in 2026 (about $150 million in March to about $300 million)."
+  ],
+  "bad": [
+   "The fee. At 0.90% the fund costs far more than index funds (VT is 0.06% on ETF Database's comparison page) and more than the 0.69% average ETF Database shows for its segment. Ian Bezek, a former hedge fund analyst writing on Seeking Alpha in June 2026, called the fee relatively high and said it is only justified if the unique portfolio delivers, which he doubted. He rated the fund bearish.",
+   "Concentration and key-man risk. 20 positions and the top ten at 67%, with the prospectus saying the fund would liquidate without Pabrai.",
+   "Country and sector bets. Nearly 30% in Turkey, large energy and offshore-drilling exposure, and cyclical coal, all of which can fall together. India and Kazakhstan add governance and currency risk.",
+   "Track record. It still trails the S&P 500 since inception (16.91% a year against 21.83% at Oct 31, 2026), and the ETF itself is under a year old. Binary Tree Analytics noted the short history and said it would watch risk-adjusted results.",
+   "Trading costs. ETF Database lists an average bid-ask spread of 3.22% and a median premium to NAV of 0.47% with a historical maximum of 1.87%. Treat that as one data point; I could not check how current it is. Use limit orders, as the sponsor's own deck advises.",
+   "Promotional material. The ETF Central article on the fund reads as sponsor-written and does not list fees; the valuation claims in the investor presentation are the manager's own."
+  ],
+  "note": "What I could not find: I searched for Reddit, Bogleheads, Morningstar, Barron's and WSJ commentary on the fund and none came back readable, so the views above come from the two Seeking Alpha articles, ETF Central, ETF Database, the adviser's own documents and the SEC filings. The fee criticism is the main theme found; I did not find anyone arguing the 0.90% fee is low.",
+  "sources": [
+   [
+    "Bezek, WAGN: A Unique Portfolio Isn't Always Better (Seeking Alpha, Jun 22, 2026)",
+    "https://seekingalpha.com/article/4916717-wagn-a-unique-portfolio-isnt-always-better"
+   ],
+   [
+    "Binary Tree Analytics, WAGN: Buffett Style Investing Via This ETF (Seeking Alpha, Apr 7, 2026)",
+    "https://seekingalpha.com/article/4889030-wagn-buffett-style-investing-via-this-etf"
+   ],
+   [
+    "ETF Central, WAGN: The ETF That Bets Big on a Few Great Businesses",
+    "https://www.etfcentral.com/news/wagn-the-etf-that-bets-big-on-a-few-great-businesses"
+   ],
+   [
+    "ETF Database, WAGN",
+    "https://etfdb.com/etf/WAGN/"
+   ],
+   [
+    "Pluang republication of the Bezek article",
+    "https://pluang.com/en/news-feed/wagn-portofolio-unik-tidak-selalu-lebih-baik"
+   ]
+  ]
+ },
+ "navSeeds": [
+  [
+   "2026-06-30",
+   13.69,
+   "Year-end NAV per share in the June 2026 shareholder report"
+  ],
+  [
+   "2026-11-12",
+   15.14,
+   "NAV reported by OptionsAnalysisSuite for Nov 12, 2026"
+  ]
+ ],
+ "navRefs": [
+  "YCharts (Nov 13, 2026): premium to NAV 0.33%, last close $15.31.",
+  "ETF Database: historical median premium 0.47%, maximum 1.87%, average bid-ask spread 3.22%."
+ ],
+ "read": {
+  "read": [
+   "wagonsetf.com Investor Resources page: full inventory of 52 entries, plus Fund Summary, FAQ, About, Our Firm, How to Invest, and the replay pages for Sep 23, 2026, Jun 10, 2026, Mar 11, 2026 and Dec 3, 2025",
+   "Prospectus and SAI, Feb 9, 2026 (SEC filing, read in parts: sections through the control persons table) and the Oct 31, 2026 SAI (control persons, portfolio manager ownership)",
+   "Summary prospectuses (Feb 9 and Oct 31, 2026), Fact Sheet (Oct 31, 2026), Investor Presentation (Nov 2026)",
+   "Annual shareholder report (N-CSR) for the year to June 30, 2026; the N-CSR for June 30, 2025",
+   "Combined Information Statement and Prospectus, Dec 29, 2025 (first 100,000 characters of about 518,000)",
+   "Investor call transcripts: Jun 10, 2026, Dec 3, 2025, Aug 20, 2025",
+   "Adviser Form ADV Part 2A, and the Pabrai biography page"
+  ],
+  "notread": [
+   "Investor call transcripts for Sep 23, 2026, Mar 11, 2026, May 14, 2025, Mar 19, 2025, Sep 18, 2024 and Mar 14, 2024 (the files were not reachable from here), and the video replays themselves (they are YouTube videos behind a sign-up form)",
+   "Annual Letter to Shareholders (fiscal year ending Jun 30, 2024), the annual and semi-annual tailored shareholder reports for the two mutual fund share classes, the semi-annual financial statements (Dec 2023, Dec 2024, Dec 2025), the complete holdings schedules (Mar 2024, Sep 2024, Mar 2025, Sep 2025, Mar 2026), the June 18, 2026 press release, and the proxy voting records (Form N-PX) for 2024, 2025 and 2026",
+   "The Press page (the site returned an error). Two listed items are not documents: the Q3 2023 factsheet link points to google.com and the Sep 29, 2023 holdings entries link nowhere"
+  ],
+  "why": "The wagonsfund.b-cdn.net documents can only be opened from here when a web search surfaces them, and most did not surface. The page lists exactly what was read and what was not."
+ }
+}
