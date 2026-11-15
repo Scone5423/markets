@@ -328,7 +328,8 @@
    "firstPx": "$7.95",
    "last": "Jun 30, 2026",
    "lastPx": "$6.05",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Turkish airport operator that runs Istanbul, Ankara, Izmir, Antalya and other terminals, plus airports in Georgia, Tunisia, Saudi Arabia, North Macedonia and Almaty, Kazakhstan. Earns fees per passenger plus duty-free and services, much of it in euros."
   },
   {
    "name": "Anadolu Efes",
@@ -343,7 +344,8 @@
    "last": "Dec 31, 2024",
    "lastPx": "$5.41",
    "status": "Sold",
-   "window": "Sold between Dec 31, 2024 and Mar 31, 2025"
+   "window": "Sold between Dec 31, 2024 and Mar 31, 2025",
+   "desc": "Turkish brewer and Coca-Cola bottler holding company. It makes Efes beer in Turkey and parts of Europe and Central Asia and owns half of Coca-Cola Icecek."
   },
   {
    "name": "Coca-Cola Icecek",
@@ -359,7 +361,8 @@
    "lastPx": "$1.41",
    "status": "Sold",
    "flag": "The Jun 30, 2024 schedule lists 130,150 shares for $3.29 million, which would be about $25 a share. That does not fit the later schedules (about $1.4 to $1.7), so I use Sep 30, 2024 as the first price.",
-   "window": "Sold between Mar 31, 2025 and Jun 30, 2025"
+   "window": "Sold between Mar 31, 2025 and Jun 30, 2025",
+   "desc": "Turkey-based bottler and distributor of Coca-Cola drinks across Turkey, Pakistan, Central Asia and the Middle East. One of the largest Coke bottlers in the world."
   },
   {
    "name": "AG Anadolu Grubu Holding",
@@ -372,7 +375,8 @@
    "last": "Dec 31, 2024",
    "lastPx": "$8.84",
    "status": "Sold",
-   "window": "Sold between Dec 31, 2024 and Mar 31, 2025"
+   "window": "Sold between Dec 31, 2024 and Mar 31, 2025",
+   "desc": "Turkish conglomerate holding company with stakes in Anadolu Efes, Migros supermarkets, Anadolu Isuzu trucks and other businesses."
   },
   {
    "name": "Edelweiss Financial Services",
@@ -388,7 +392,8 @@
    "firstPx": "$1.69",
    "last": "Jun 30, 2026",
    "lastPx": "$1.28",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Indian financial group in alternative asset management, credit, insurance and wealth. It has been spinning off units such as Nuvama, and an asset-management arm is expected to list."
   },
   {
    "name": "Nuvama Wealth Management",
@@ -400,7 +405,8 @@
    "firstPx": "$12.24",
    "last": "Jun 30, 2026",
    "lastPx": "$19.08",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Indian wealth, asset-services and capital-markets firm spun out of Edelweiss and listed in 2025. It serves wealthy and institutional clients."
   },
   {
    "name": "Reysas Logistics",
@@ -416,7 +422,8 @@
    "last": "Jun 30, 2026",
    "lastPx": "$0.470",
    "status": "Still held at Jun 30, 2026",
-   "noteFirst": "The Dec 31, 2024 schedule row for this name is partly garbled in my read; I treat it as Reysas Logistics."
+   "noteFirst": "The Dec 31, 2024 schedule row for this name is partly garbled in my read; I treat it as Reysas Logistics.",
+   "desc": "Turkish logistics and warehousing company run by a father-son team, which develops and operates warehouses and also owns shares in Reysas REIT."
   },
   {
    "name": "Reysas Gayrimenkul (REIT)",
@@ -431,7 +438,8 @@
    "last": "Jun 30, 2026",
    "lastPx": "$0.641",
    "status": "Still held at Jun 30, 2026",
-   "noteFirst": "The Jun 30, 2025 schedule row was not captured in my read; the fund held it then."
+   "noteFirst": "The Jun 30, 2025 schedule row was not captured in my read; the fund held it then.",
+   "desc": "Turkish real estate investment trust that owns and rents out logistics warehouses and land, with inflation-linked leases. A sister company of Reysas Logistics."
   },
   {
    "name": "Gimat",
@@ -446,7 +454,8 @@
    "last": "Jun 30, 2026",
    "lastPx": "$0.972",
    "status": "Still held at Jun 30, 2026",
-   "flag": "Share count rose about 3x between Dec 2025 and Mar 2026 while the price fell, which looks like a bonus issue or split, so the implied price is not like for like across that date."
+   "flag": "Share count rose about 3x between Dec 2025 and Mar 2026 while the price fell, which looks like a bonus issue or split, so the implied price is not like for like across that date.",
+   "desc": "Turkish retailer building a wholesale-club chain. It has two stores today and owns valuable real estate."
   },
   {
    "name": "TAB Gida",
@@ -459,7 +468,8 @@
    "firstPx": "$5.66",
    "last": "Jun 30, 2026",
    "lastPx": "$4.84",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Turkish master franchisee of Burger King and Popeyes, with a growing Doner restaurant brand in China."
   },
   {
    "name": "Kaspi.kz",
@@ -473,7 +483,8 @@
    "firstPx": "$74.07",
    "last": "Jun 30, 2026",
    "lastPx": "$86.64",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Kazakhstan fintech super-app combining payments, online marketplace and consumer lending. It is expanding into Turkey and owns most of Hepsiburada."
   },
   {
    "name": "Transocean",
@@ -487,7 +498,8 @@
    "firstPx": "$3.12",
    "last": "Jun 30, 2026",
    "lastPx": "$4.89",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Offshore drilling contractor that owns and operates deepwater rigs and drillships rented to oil companies. Heavily indebted, and buying Valaris."
   },
   {
    "name": "Valaris",
@@ -500,7 +512,8 @@
    "firstPx": "$39.26",
    "last": "Jun 30, 2026",
    "lastPx": "$72.60",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Offshore drilling contractor with a large fleet of drillships and jack-up rigs, which emerged from bankruptcy in 2021 with little debt. Being acquired by Transocean."
   },
   {
    "name": "Noble Corp.",
@@ -513,7 +526,8 @@
    "last": "Jun 30, 2026",
    "lastPx": "$37.30",
    "status": "Still held at Jun 30, 2026",
-   "noteFirst": "The Sep 30, 2025 row was not captured in my read; the fund appears to have held it then."
+   "noteFirst": "The Sep 30, 2025 row was not captured in my read; the fund appears to have held it then.",
+   "desc": "Offshore drilling contractor renting floating rigs and jack-ups to oil producers worldwide. Emerged from restructuring with low debt and pays a dividend."
   },
   {
    "name": "Tidewater",
@@ -526,7 +540,8 @@
    "last": "Jun 30, 2025",
    "lastPx": "$46.13",
    "status": "Sold",
-   "window": "Sold between Jun 30, 2025 and Sep 30, 2025"
+   "window": "Sold between Jun 30, 2025 and Sep 30, 2025",
+   "desc": "Operator of offshore support vessels that supply and service oil platforms and rigs. Restructured out of bankruptcy in 2017."
   },
   {
    "name": "Warrior Met Coal",
@@ -541,7 +556,8 @@
    "firstPx": "$62.77",
    "last": "Jun 30, 2026",
    "lastPx": "$81.16",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Alabama producer of metallurgical coal used to make steel, shipped through the Port of Mobile. It uses longwall mining and is developing the Blue Creek mine."
   },
   {
    "name": "Alpha Metallurgical Resources",
@@ -556,7 +572,8 @@
    "last": "Jun 30, 2026",
    "lastPx": "$164.94",
    "status": "Still held at Jun 30, 2026",
-   "noteFirst": "The Jun 30, 2025 value in my read was garbled, so that quarter is skipped."
+   "noteFirst": "The Jun 30, 2025 value in my read was garbled, so that quarter is skipped.",
+   "desc": "US producer of metallurgical coal used in steelmaking, mined in Appalachia from many small mines. It has been shrinking its share count through buybacks."
   },
   {
    "name": "Arch Resources",
@@ -569,7 +586,8 @@
    "last": "Sep 30, 2024",
    "lastPx": "$138.16",
    "status": "Sold",
-   "window": "Sold between Sep 30, 2024 and Dec 31, 2024"
+   "window": "Sold between Sep 30, 2024 and Dec 31, 2024",
+   "desc": "US coal producer focused on metallurgical coal, with a thermal-coal business in Wyoming. Merged with CONSOL in early 2025 to form Core Natural Resources."
   },
   {
    "name": "CONSOL Energy",
@@ -583,7 +601,8 @@
    "last": "Sep 30, 2024",
    "lastPx": "$104.65",
    "status": "Sold",
-   "window": "Sold between Sep 30, 2024 and Dec 31, 2024"
+   "window": "Sold between Sep 30, 2024 and Dec 31, 2024",
+   "desc": "US coal miner that mainly sells thermal coal, much of it exported, from its Pennsylvania mining complex. Merged with Arch in early 2025."
   },
   {
    "name": "Occidental Petroleum",
@@ -597,7 +616,8 @@
    "last": "Jun 30, 2025",
    "lastPx": "$42.01",
    "status": "Sold",
-   "window": "Sold between Jun 30, 2025 and Sep 30, 2025"
+   "window": "Sold between Jun 30, 2025 and Sep 30, 2025",
+   "desc": "Large US oil and gas producer with chemicals and carbon-capture businesses. Run by CEO Vicki Hollub."
   },
   {
    "name": "Mongolian Mining",
@@ -610,7 +630,8 @@
    "last": "Mar 31, 2026",
    "lastPx": "$1.33",
    "status": "Sold",
-   "window": "Sold between Mar 31, 2026 and Jun 30, 2026"
+   "window": "Sold between Mar 31, 2026 and Jun 30, 2026",
+   "desc": "Hong Kong-listed Mongolian miner of coking coal (surface mine) and a gold business, selling mostly to Chinese steelmakers."
   },
   {
    "name": "Danaos",
@@ -623,7 +644,8 @@
    "firstPx": "$92.36",
    "last": "Jun 30, 2026",
    "lastPx": "$122.37",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Greek-run owner of container ships that charters them to shipping lines on long contracts. Financing is unusually cheap thanks to Japanese lenders."
   },
   {
    "name": "Euroseas",
@@ -636,7 +658,8 @@
    "last": "Sep 30, 2024",
    "lastPx": "$48.85",
    "status": "Sold",
-   "window": "Sold between Sep 30, 2024 and Dec 31, 2024"
+   "window": "Sold between Sep 30, 2024 and Dec 31, 2024",
+   "desc": "Greek owner of small and mid-size container ships chartered to shipping lines."
   },
   {
    "name": "Daqo New Energy",
@@ -649,7 +672,8 @@
    "last": "Jun 30, 2024",
    "lastPx": "$14.60",
    "status": "Sold",
-   "window": "Sold between Jun 30, 2024 and Sep 30, 2024"
+   "window": "Sold between Jun 30, 2024 and Sep 30, 2024",
+   "desc": "Chinese maker of polysilicon, the raw material for solar panels."
   },
   {
    "name": "Constellation Software",
@@ -664,7 +688,8 @@
    "last": "Jun 30, 2026",
    "lastPx": "$1882.60",
    "status": "Still held at Jun 30, 2026",
-   "noteFirst": "The Mar 2024 call lists it as held at Dec 31, 2023, and it appears as about 0.0% in the first letter's Jun 30, 2024 table; the schedules I read show it again from Mar 31, 2026."
+   "noteFirst": "The Mar 2024 call lists it as held at Dec 31, 2023, and it appears as about 0.0% in the first letter's Jun 30, 2024 table; the schedules I read show it again from Mar 31, 2026.",
+   "desc": "Canadian company that buys and holds thousands of small vertical-market software businesses. Led by founder Mark Leonard until he stepped back from the board."
   },
   {
    "name": "Lumine Group",
@@ -677,7 +702,8 @@
    "last": "Jun 30, 2026",
    "lastPx": "n/a",
    "status": "Still held at Jun 30, 2026",
-   "noteFirst": "The Jun 30, 2026 share count was not readable, so no implied price."
+   "noteFirst": "The Jun 30, 2026 share count was not readable, so no implied price.",
+   "desc": "Canadian spin-off of Constellation Software that buys telecom and media software businesses."
   },
   {
    "name": "Topicus.com",
@@ -690,7 +716,8 @@
    "last": "Jun 30, 2026",
    "lastPx": "$63.75",
    "status": "Still held at Jun 30, 2026",
-   "noteFirst": "A small holding in Jun 2024, absent from the schedules for Sep 2024 to Dec 2025, then re-bought by Mar 2026."
+   "noteFirst": "A small holding in Jun 2024, absent from the schedules for Sep 2024 to Dec 2025, then re-bought by Mar 2026.",
+   "desc": "Dutch spin-off of Constellation Software that buys vertical-market software companies in Europe."
   },
   {
    "name": "Tiny",
@@ -704,7 +731,8 @@
    "lastPx": "n/a",
    "status": "Sold",
    "flag": "Implied price looks unreliable for this tiny position, so I do not show one.",
-   "window": "Sold between Jun 30, 2024 and Sep 30, 2024"
+   "window": "Sold between Jun 30, 2024 and Sep 30, 2024",
+   "desc": "Canadian holding company that buys and runs small internet and technology businesses."
   },
   {
    "name": "Sygnity",
@@ -716,7 +744,8 @@
    "firstPx": "$18.59",
    "last": "Jun 30, 2026",
    "lastPx": "$20.95",
-   "status": "Still held at Jun 30, 2026"
+   "status": "Still held at Jun 30, 2026",
+   "desc": "Polish IT services and software company."
   },
   {
    "name": "Amazon",
@@ -729,7 +758,8 @@
    "last": "Jun 30, 2024",
    "lastPx": "$193.25",
    "status": "Sold",
-   "window": "Sold between Jun 30, 2024 and Sep 30, 2024"
+   "window": "Sold between Jun 30, 2024 and Sep 30, 2024",
+   "desc": "US online retailer and cloud-computing company (Amazon Web Services)."
   },
   {
    "name": "Microsoft",
@@ -742,7 +772,8 @@
    "last": "Jun 30, 2024",
    "lastPx": "$446.95",
    "status": "Sold",
-   "window": "Sold between Jun 30, 2024 and Sep 30, 2024"
+   "window": "Sold between Jun 30, 2024 and Sep 30, 2024",
+   "desc": "US software company behind Windows, Office, Azure cloud and LinkedIn."
   },
   {
    "name": "PulteGroup",
@@ -756,7 +787,8 @@
    "last": "Dec 31, 2025",
    "lastPx": "$117.26",
    "status": "Sold",
-   "window": "Sold between Dec 31, 2025 and Mar 31, 2026"
+   "window": "Sold between Dec 31, 2025 and Mar 31, 2026",
+   "desc": "One of the largest US homebuilders, selling entry-level, move-up and active-adult homes."
   },
   {
    "name": "Toll Brothers",
@@ -769,7 +801,8 @@
    "last": "Dec 31, 2025",
    "lastPx": "$135.22",
    "status": "Sold",
-   "window": "Sold between Dec 31, 2025 and Mar 31, 2026"
+   "window": "Sold between Dec 31, 2025 and Mar 31, 2026",
+   "desc": "US builder of luxury homes."
   },
   {
    "name": "Tri Pointe Homes",
@@ -782,7 +815,8 @@
    "last": "Sep 30, 2024",
    "lastPx": "$45.31",
    "status": "Sold",
-   "window": "Sold between Sep 30, 2024 and Dec 31, 2024"
+   "window": "Sold between Sep 30, 2024 and Dec 31, 2024",
+   "desc": "US homebuilder operating mostly in western and southeastern states, known for large share buybacks."
   },
   {
    "name": "Asbury Automotive",
@@ -795,7 +829,8 @@
    "last": "Sep 30, 2025",
    "lastPx": "$244.45",
    "status": "Sold",
-   "window": "Sold between Sep 30, 2025 and Dec 31, 2025"
+   "window": "Sold between Sep 30, 2025 and Dec 31, 2025",
+   "desc": "US auto dealership group selling new and used cars, parts and service, with its own finance and insurance arm."
   },
   {
    "name": "AutoNation",
@@ -808,7 +843,8 @@
    "last": "Sep 30, 2025",
    "lastPx": "$218.77",
    "status": "Sold",
-   "window": "Sold between Sep 30, 2025 and Dec 31, 2025"
+   "window": "Sold between Sep 30, 2025 and Dec 31, 2025",
+   "desc": "One of the largest US auto dealership groups, selling new and used cars and earning heavily from parts and service."
   },
   {
    "name": "Group 1 Automotive",
@@ -821,7 +857,8 @@
    "last": "Dec 31, 2025",
    "lastPx": "$393.30",
    "status": "Sold",
-   "window": "Sold between Dec 31, 2025 and Mar 31, 2026"
+   "window": "Sold between Dec 31, 2025 and Mar 31, 2026",
+   "desc": "US and UK auto dealership group that sells new and used cars, parts, service and financing."
   },
   {
    "name": "Lithia Motors",
@@ -834,7 +871,8 @@
    "last": "Sep 30, 2024",
    "lastPx": "$317.64",
    "status": "Sold",
-   "window": "Sold between Sep 30, 2024 and Dec 31, 2024"
+   "window": "Sold between Sep 30, 2024 and Dec 31, 2024",
+   "desc": "Large US and international auto dealership group, known for acquisitions and a growing online sales effort."
   },
   {
    "name": "Penske Automotive",
@@ -847,7 +885,8 @@
    "last": "Jun 30, 2024",
    "lastPx": "$149.02",
    "status": "Sold",
-   "window": "Sold between Jun 30, 2024 and Sep 30, 2024"
+   "window": "Sold between Jun 30, 2024 and Sep 30, 2024",
+   "desc": "Auto and truck dealership group in the US, UK and elsewhere, about 70% held by Roger Penske and Mitsui."
   },
   {
    "name": "Berkshire Hathaway",
@@ -860,7 +899,8 @@
    "last": "Sep 30, 2024",
    "lastPx": "$460.26",
    "status": "Sold",
-   "window": "Sold between Sep 30, 2024 and Dec 31, 2024"
+   "window": "Sold between Sep 30, 2024 and Dec 31, 2024",
+   "desc": "Warren Buffett’s holding company: insurance, railroads, utilities, manufacturing and a large stock portfolio."
   },
   {
    "name": "Spirit Airlines",
@@ -874,7 +914,8 @@
    "lastPx": "n/a",
    "status": "Sold",
    "noteFirst": "Only a convertible stock/bond line ($74,400) is in my Jun 30, 2024 read, so there is no implied price.",
-   "window": "Held the stock at Dec 31, 2023 and a convertible/bond position at Jun 30, 2024; no later schedule shows it."
+   "window": "Held the stock at Dec 31, 2023 and a convertible/bond position at Jun 30, 2024; no later schedule shows it.",
+   "desc": "US ultra-low-cost airline that sells cheap base fares plus add-on fees. The JetBlue merger was blocked and it later went through bankruptcy."
   },
   {
    "name": "Brookfield",
@@ -886,7 +927,8 @@
    "firstPx": "n/a",
    "last": "Before Jun 30, 2024",
    "lastPx": "n/a",
-   "status": "Sold (early holding)"
+   "status": "Sold (early holding)",
+   "desc": "Canadian alternative asset manager and owner of real estate, infrastructure and renewable power."
   },
   {
    "name": "First Citizens BancShares",
@@ -898,7 +940,8 @@
    "firstPx": "n/a",
    "last": "Before Jun 30, 2024",
    "lastPx": "n/a",
-   "status": "Sold (early holding)"
+   "status": "Sold (early holding)",
+   "desc": "North Carolina regional bank holding company that bought Silicon Valley Bank’s deposits and loans in 2023."
   },
   {
    "name": "Restaurant Brands International",
@@ -910,7 +953,8 @@
    "firstPx": "n/a",
    "last": "Before Jun 30, 2024",
    "lastPx": "n/a",
-   "status": "Sold (early holding)"
+   "status": "Sold (early holding)",
+   "desc": "Canadian owner of Burger King, Tim Hortons, Popeyes and Firehouse Subs, mostly franchised."
   },
   {
    "name": "Odfjell Drilling and Odfjell Technology",
@@ -922,7 +966,8 @@
    "firstPx": "n/a",
    "last": "Held",
    "lastPx": "n/a",
-   "status": "Added after Mar 2026"
+   "status": "Added after Mar 2026",
+   "desc": "Norwegian offshore drilling contractor (Odfjell Drilling) and its spun-off well-services and engineering company (Odfjell Technology)."
   }
  ],
  "stocksNote": "Dates and prices come only from the fund’s quarter-end schedules of investments (Jun 30, 2024 through Jun 30, 2026). The fund does not publish trade dates or trade prices, so ‘first seen’ means the first quarter-end schedule where the stock appears, and ‘sold’ means it was gone by the next schedule. The price shown is the implied price at that quarter-end: the reported value divided by the reported shares, in US dollars. It is not what the fund paid or received. Real entry points were sometimes earlier and exits sometimes later. The Mar 31, 2024 and Dec 31, 2023 schedules are not included here, so names held at launch show Jun 30, 2024 as their first look. Three early names (Brookfield, First Citizens, Restaurant Brands) appear only in the first letter or proxy record. The Sep 30, 2026 schedule was not yet published.",

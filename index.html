@@ -2307,6 +2307,7 @@ function wagnRender() {
       top.appendChild(el('span', 'text-xs text-slate-400', x.country));
       top.appendChild(el('span', 'text-xs font-medium ' + (x.status.indexOf('Still') === 0 || x.status.indexOf('Added') === 0 ? 'text-emerald-400' : 'text-amber-400'), x.status));
       card.appendChild(top);
+      if (x.desc) card.appendChild(el('p', 'text-sm text-slate-400 mt-1', x.desc));
       const g = el('div', 'grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-slate-300 mt-2 mb-2');
       g.appendChild(el('div', '', 'First seen: ' + x.first + (x.firstPx !== 'n/a' ? ', implied price ' + x.firstPx : '')));
       g.appendChild(el('div', '', (x.status.indexOf('Still') === 0 ? 'Latest schedule: ' : 'Last seen: ') + x.last + (x.lastPx !== 'n/a' ? ', implied price ' + x.lastPx : '')));
