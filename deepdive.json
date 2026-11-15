@@ -194,5 +194,18 @@
   ],
   "src": "Form 10-K for the fiscal year ended Feb 2, 2025 (the later fiscal 2025 10-K was not read)",
   "ir": "https://corporate.lululemon.com/investors"
+ },
+ "KMB": {
+  "name": "Kimberly-Clark",
+  "sbc": [
+   "Plans: the Equity Participation Plan and the Outside Directors' Compensation Plan. 6.3M shares were available for grant at Dec 31, 2025.",
+   "Awards: time-vested RSUs (generally 30% / 30% / 40% over three years), performance-based RSUs (vest after three years and pay 0%-200% of the grant, based on modified free cash flow and organic sales growth targets), and stock options (10-year term, vesting 30% / 30% / 40% over three years). No options were granted in 2023, 2024 or 2025. Outside director RSUs vest on grant but are restricted until about 90 days after the director leaves the board.",
+   "Expense (continuing operations) 2025 / 2024 / 2023: $130M / $122M / $160M, with a related tax benefit of $25M / $27M / $34M.",
+   "Unrecognized cost at Dec 31, 2025: $71M on time-vested RSUs (1.3 years) and $16M on performance RSUs (1.6 years).",
+   "2025 grants: 889K time-vested RSUs (grant-date fair value $129.57) and 608K performance RSUs ($131.63). Options outstanding: 2.58M at a weighted $131.75, all exercisable, 3.7 years remaining. RSUs vested in 2025 were worth $170M.",
+   "Repurchases (cost divided by shares, my calculation): 1.1M shares for $141M in 2025 (about $134), 7.2M for $1,000M in 2024 (about $138), 1.8M for $225M in 2023 (about $126). No purchases in the fourth quarter of 2025. Remaining under the 2021 program (40M shares, up to $5B): 30.8M shares at Dec 2025.",
+   "Context: Kimberly-Clark has agreed to buy Kenvue, with $3.50 a share in cash per Kenvue share funded from cash, new debt and proceeds from the IFP transaction. The 10-K does not say buybacks are suspended."
+  ],
+  "src": "Form 10-K for the year ended Dec 31, 2025"
  }
 }
