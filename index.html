@@ -2267,7 +2267,7 @@ function wagnRender() {
   if (st.price != null) hd.appendChild(el('span', 'text-lg font-medium text-white', '$' + st.price.toFixed(2)));
   body.appendChild(hd);
   wBanner(body);
-  const s1 = wSection('Share price versus NAV'); wChart(s1, st); wTable(s1, st); body.appendChild(s1);
+  const s1 = wSection('Share price versus NAV'); wChart(s1, st); body.appendChild(s1);
   if (!P.summary) { body.appendChild(el('div', 'text-sm text-slate-400', 'Loading…')); return; }
   if (P.assets) { const sa = wSection('Fund assets over time'); wAssets(sa, P.assets); body.appendChild(sa); }
   const s2 = wSection('Fund summary');
@@ -2276,75 +2276,54 @@ function wagnRender() {
   s2.appendChild(t); body.appendChild(s2);
   const s3 = wSection('Performance, as reported by the fund');
   s3.appendChild(dTable(P.perf.head, P.perf.rows));
-  s3.appendChild(dTable(['Period', 'Fund return', 'Comparison'], P.perf.annual));
   s3.appendChild(el('div', 'text-xs text-slate-500', 'Figures come from the fund\u2019s replay pages, fact sheet and shareholder reports. Market return is the exchange price return; NAV return is the holdings. Past performance does not predict future results.'));
   body.appendChild(s3);
   if (P.history) {
     const H = P.history, sh = wSection(H.title);
     H.intro.forEach(x => sh.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', x)));
     sh.appendChild(el('h4', 'text-base font-semibold text-white mt-4 mb-2', 'How it performed'));
-    sh.appendChild(dTable(H.perfHead, H.perfRows));
-    sh.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', H.perfNote));
-    sh.appendChild(dTable(H.sizeHead, H.sizeRows));
+    const hu = el('ul', 'list-disc pl-5 space-y-2 text-sm text-slate-300 mb-3'); H.simple.forEach(x => hu.appendChild(el('li', '', x))); sh.appendChild(hu);
     sh.appendChild(el('h4', 'text-base font-semibold text-white mt-4 mb-2', H.whyTitle));
     const wu = el('ul', 'list-disc pl-5 space-y-2 text-sm text-slate-300 mb-3'); H.why.forEach(x => wu.appendChild(el('li', '', x))); sh.appendChild(wu);
-    sh.appendChild(el('h4', 'text-base font-semibold text-white mt-4 mb-2', H.howTitle));
-    sh.appendChild(dTable(['Date', 'What happened'], H.how));
     sh.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', H.after));
     sh.appendChild(wLinks(H.sources));
     body.appendChild(sh);
   }
-  if (P.letter) {
-    const L = P.letter, sl = wSection(L.title);
-    L.intro.forEach(x => sl.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', x)));
-    sl.appendChild(dTable(L.head, L.rows));
-    sl.appendChild(el('p', 'text-xs text-slate-500', L.note));
-    body.appendChild(sl);
+  const sT = wSection('What Pabrai has been saying');
+  sT.appendChild(el('p', 'text-xs text-slate-500 mb-3', 'Across the seven investor calls (Mar 2024 to Sep 2026), the first annual letter and the other fund documents.'));
+  (P.themes || []).forEach(x => { sT.appendChild(el('h4', 'text-base font-semibold text-white mt-4 mb-1', x[0])); sT.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-2', x[1])); });
+  body.appendChild(sT);
+  const sI = wSection('Issues raised by analysts and shareholders');
+  (P.issues || []).forEach(x => { sI.appendChild(el('h4', 'text-base font-semibold text-white mt-4 mb-1', x[0])); sI.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-2', x[1])); });
+  if (P.opinions) sI.appendChild(wLinks(P.opinions.sources));
+  body.appendChild(sI);
+  if (P.stocks) {
+    const sS = wSection('Every stock the fund has held (' + P.stocks.length + ')');
+    sS.appendChild(el('p', 'text-xs text-slate-500 mb-3', P.stocksNote));
+    P.stocks.forEach(x => {
+      const card = el('div', 'rounded-lg border border-slate-800 p-4 mb-4');
+      const top = el('div', 'flex flex-wrap items-baseline gap-x-3 gap-y-1');
+      top.appendChild(el('h4', 'text-base font-semibold text-white', x.name));
+      top.appendChild(el('span', 'text-xs text-slate-400', x.country));
+      top.appendChild(el('span', 'text-xs font-medium ' + (x.status.indexOf('Still') === 0 || x.status.indexOf('Added') === 0 ? 'text-emerald-400' : 'text-amber-400'), x.status));
+      card.appendChild(top);
+      const g = el('div', 'grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-slate-300 mt-2 mb-2');
+      g.appendChild(el('div', '', 'First seen: ' + x.first + (x.firstPx !== 'n/a' ? ', implied price ' + x.firstPx : '')));
+      g.appendChild(el('div', '', (x.status.indexOf('Still') === 0 ? 'Latest schedule: ' : 'Last seen: ') + x.last + (x.lastPx !== 'n/a' ? ', implied price ' + x.lastPx : '')));
+      if (x.window) g.appendChild(el('div', 'sm:col-span-2 text-slate-400', x.window));
+      card.appendChild(g);
+      if (x.noteFirst) card.appendChild(el('p', 'text-xs text-slate-500 mb-2', x.noteFirst));
+      if (x.flag) card.appendChild(el('p', 'text-xs text-slate-500 mb-2', x.flag));
+      const u = el('ul', 'list-disc pl-5 space-y-1.5 text-sm text-slate-300'); x.notes.forEach(n => u.appendChild(el('li', '', n))); card.appendChild(u);
+      sS.appendChild(card);
+    });
+    body.appendChild(sS);
   }
-  if (P.holdings) {
-    const Hh = P.holdings, sh2 = wSection(Hh.title);
-    sh2.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', Hh.intro));
-    sh2.appendChild(dTable(Hh.head, Hh.rows));
-    sh2.appendChild(el('p', 'text-xs text-slate-500', Hh.note));
-    body.appendChild(sh2);
-  }
-  if (P.filings) {
-    const F = P.filings, sf = wSection(F.title);
-    F.items.forEach(c => { sf.appendChild(el('h4', 'text-base font-semibold text-white mt-4 mb-2', c.h)); sf.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', c.p)); });
-    sf.appendChild(el('p', 'text-xs text-slate-500', F.note));
-    body.appendChild(sf);
-  }
-  (P.calls || []).forEach(C => {
-    const sc = wSection(C.title);
-    sc.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', C.intro));
-    C.items.forEach(c => { sc.appendChild(el('h4', 'text-base font-semibold text-white mt-4 mb-2', c.h)); sc.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', c.p)); });
-    sc.appendChild(el('p', 'text-xs text-slate-500', C.note));
-    body.appendChild(sc);
-  });
-  const s4 = wSection('Commentary: what the fund\u2019s documents say');
-  P.commentary.forEach(c => { s4.appendChild(el('h4', 'text-base font-semibold text-white mt-5 mb-2', c.h)); c.p.forEach(x => s4.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', x))); });
-  body.appendChild(s4);
   const s5 = wSection('Does Mohnish Pabrai own the fund himself?');
   const card = el('div', 'rounded-lg border border-slate-700 p-5');
   card.appendChild(el('div', 'text-lg text-white mb-3', P.stake.answer));
   const ul = el('ul', 'list-disc pl-5 space-y-2 text-sm text-slate-300'); P.stake.points.forEach(x => ul.appendChild(el('li', '', x))); card.appendChild(ul);
   card.appendChild(wLinks(P.stake.sources)); s5.appendChild(card); body.appendChild(s5);
-  const s6 = wSection('What people say about the fund');
-  const g = el('div', 'grid md:grid-cols-2 gap-5');
-  [['The case for it', P.opinions.good, 'text-emerald-400'], ['The case against it', P.opinions.bad, 'text-amber-400']].forEach(c => {
-    const col = el('div', 'rounded-lg border border-slate-800 p-4'); col.appendChild(el('div', 'font-semibold mb-2 ' + c[2], c[0]));
-    const u = el('ul', 'list-disc pl-5 space-y-2 text-sm text-slate-300'); c[1].forEach(x => u.appendChild(el('li', '', x))); col.appendChild(u); g.appendChild(col);
-  });
-  s6.appendChild(g);
-  s6.appendChild(el('p', 'text-sm text-slate-400 mt-3', P.opinions.note));
-  s6.appendChild(wLinks(P.opinions.sources)); body.appendChild(s6);
-  const s7 = wSection('What I read and what I could not');
-  s7.appendChild(el('div', 'text-sm font-semibold text-slate-200 mb-1', 'Read'));
-  const r1 = el('ul', 'list-disc pl-5 space-y-1 text-sm text-slate-300 mb-3'); P.read.read.forEach(x => r1.appendChild(el('li', '', x))); s7.appendChild(r1);
-  s7.appendChild(el('div', 'text-sm font-semibold text-amber-400 mb-1', 'Not read'));
-  const r2 = el('ul', 'list-disc pl-5 space-y-1 text-sm text-slate-300 mb-3'); P.read.notread.forEach(x => r2.appendChild(el('li', '', x))); s7.appendChild(r2);
-  s7.appendChild(el('p', 'text-xs text-slate-500', P.read.why));
-  body.appendChild(s7);
 }
 async function wagnShow() {
   wagnRender();
