@@ -274,11 +274,12 @@
    "Annual shareholder report (N-CSR) for the year to June 30, 2026; the N-CSR for June 30, 2025",
    "Combined Information Statement and Prospectus, Dec 29, 2025 (first 100,000 characters of about 518,000)",
    "Investor call transcripts: Sep 23, 2026 (16 pages), Jun 10, 2026 (16 pages), Mar 11, 2026 (21 pages) May 14, 2025 (17 pages) Mar 19, 2025 (12 pages) and Sep 18, 2024 (13 pages), all supplied by you in full, plus Dec 3, 2025 and Aug 20, 2025",
-   "Adviser Form ADV Part 2A, and the Pabrai biography page"
+   "Adviser Form ADV Part 2A, and the Pabrai biography page",
+   "Annual Letter to Shareholders for the year ended Jun 30, 2024 (4 pages, supplied by you in full)"
   ],
   "notread": [
    "Investor call transcripts for Mar 14, 2024 (the files were not reachable from here), and the video replays themselves (they are YouTube videos behind a sign-up form)",
-   "Annual Letter to Shareholders (fiscal year ending Jun 30, 2024), the annual and semi-annual tailored shareholder reports for the two mutual fund share classes, the semi-annual financial statements (Dec 2023, Dec 2024, Dec 2025), the complete holdings schedules (Mar 2024, Sep 2024, Mar 2025, Sep 2025, Mar 2026), the June 18, 2026 press release, and the proxy voting records (Form N-PX) for 2024, 2025 and 2026",
+   "the annual and semi-annual tailored shareholder reports for the two mutual fund share classes, the semi-annual financial statements (Dec 2023, Dec 2024, Dec 2025), the complete holdings schedules (Mar 2024, Sep 2024, Mar 2025, Sep 2025, Mar 2026), the June 18, 2026 press release, and the proxy voting records (Form N-PX) for 2024, 2025 and 2026",
    "The Press page (the site returned an error). Two listed items are not documents: the Q3 2023 factsheet link points to google.com and the Sep 29, 2023 holdings entries link nowhere"
   ],
   "why": "The wagonsfund.b-cdn.net documents can only be opened from here when a web search surfaces them, and most did not surface. The page lists exactly what was read and what was not."
@@ -706,5 +707,192 @@
    ],
    "note": "Paraphrased. Figures are as he stated them on Sep 18, 2024; performance and weights are from that date."
   }
- ]
+ ],
+ "letter": {
+  "title": "Annual letter to shareholders, fiscal year ended Jun 30, 2024",
+  "intro": [
+   "Summary of the 4-page letter you supplied, the fund's first annual letter, signed by Mohnish Pabrai. The fund began Sep 29, 2023.",
+   "Performance: from inception through Jun 30, 2024, WAGNX (retail) was up 24.64% and WGNIX (institutional) 24.86%, against 28.77% for the S&P 500. For the first half of 2024 (through Jun 30) they were up 15.60% and 15.68% against 15.29% for the index. Through Jul 31, 2024 since inception: 32.65% and 32.97% against 30.34%. Year to date through Jul 31: 23.03% and 23.19% against 16.70%. He said the fund did this without meaningful exposure to the tech stocks driving the index.",
+   "Valuation argument: he compared the S&P 500's trailing P/E of 27.5 with 25.6 in Sep 2000, after which it returned near zero for 11 years, and said the fund's portfolio had a P/E of 7.5, so outperformance from there was plausible.",
+   "Philosophy: great results come from a few great investments held a very long time, so the aim is to find them and not sell them, 'circling the wagons' around the highest-conviction holdings. He grouped the holdings into four core allocations making up 94%: Turkish businesses (Coca-Cola Icecek, Anadolu Efes, Anadolu Grubu, TAV), US coal (Consol, Alpha, Warrior, Arch), US car dealers (Asbury, Lithia, Penske, Group 1, AutoNation) and US homebuilders (Pulte, Toll, Tri Pointe).",
+   "Holdings at Jun 30, 2024 (27 businesses in the US, Turkey, Canada, the Netherlands, Greece, China and Mongolia):"
+  ],
+  "head": [
+   "#",
+   "Holding",
+   "Country",
+   "Weight"
+  ],
+  "rows": [
+   [
+    "1",
+    "TAV Airport Holdings",
+    "Turkiye",
+    "12.2%"
+   ],
+   [
+    "2",
+    "Anadolu Efes",
+    "Turkiye",
+    "10.5%"
+   ],
+   [
+    "3",
+    "Coca-Cola Icecek",
+    "Turkiye",
+    "10.2%"
+   ],
+   [
+    "4",
+    "Arch Resources",
+    "USA",
+    "7.0%"
+   ],
+   [
+    "5",
+    "Alpha Metallurgical Resources",
+    "USA",
+    "5.4%"
+   ],
+   [
+    "6",
+    "Consol Energy",
+    "USA",
+    "4.1%"
+   ],
+   [
+    "7",
+    "AG Anadolu Grubu Holding",
+    "Turkiye",
+    "4.0%"
+   ],
+   [
+    "8",
+    "Warrior Met Coal",
+    "USA",
+    "4.0%"
+   ],
+   [
+    "9",
+    "Asbury Automotive",
+    "USA",
+    "4.0%"
+   ],
+   [
+    "10",
+    "Occidental Petroleum",
+    "USA",
+    "3.9%"
+   ],
+   [
+    "11",
+    "Penske Automotive Group",
+    "USA",
+    "3.9%"
+   ],
+   [
+    "12",
+    "Danaos",
+    "Greece",
+    "3.8%"
+   ],
+   [
+    "13",
+    "Lithia Motors",
+    "USA",
+    "3.7%"
+   ],
+   [
+    "14",
+    "PulteGroup",
+    "USA",
+    "3.6%"
+   ],
+   [
+    "15",
+    "AutoNation",
+    "USA",
+    "3.6%"
+   ],
+   [
+    "16",
+    "Group 1 Automotive",
+    "USA",
+    "3.3%"
+   ],
+   [
+    "17",
+    "Toll Brothers",
+    "USA",
+    "3.3%"
+   ],
+   [
+    "18",
+    "Tri Pointe Homes",
+    "USA",
+    "3.3%"
+   ],
+   [
+    "19",
+    "Daqo New Energy",
+    "China",
+    "1.5%"
+   ],
+   [
+    "20",
+    "Amazon.com",
+    "USA",
+    "1.3%"
+   ],
+   [
+    "21",
+    "Microsoft",
+    "USA",
+    "1.0%"
+   ],
+   [
+    "22",
+    "Mongolian Mining",
+    "Mongolia (HK-listed)",
+    "0.5%"
+   ],
+   [
+    "23",
+    "Topicus.com",
+    "Netherlands",
+    "0.5%"
+   ],
+   [
+    "24",
+    "Restaurant Brands International",
+    "Canada",
+    "0.3%"
+   ],
+   [
+    "25",
+    "Spirit Airlines (corporate bond)",
+    "USA",
+    "0.2%"
+   ],
+   [
+    "26",
+    "Tiny",
+    "Canada",
+    "0.1%"
+   ],
+   [
+    "27",
+    "Constellation Software",
+    "Canada",
+    "0.0%"
+   ],
+   [
+    "",
+    "Cash",
+    "",
+    "0.9%"
+   ]
+  ],
+  "note": "The letter's footer gives the Sep 18, 2024 call details and a gross expense ratio of 1.91% (retail) and 1.66% (institutional), net 1.25% and 1.00%, with the adviser's reduction in place through Oct 31, 2025."
+ }
 }

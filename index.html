@@ -2294,6 +2294,13 @@ function wagnRender() {
     sh.appendChild(wLinks(H.sources));
     body.appendChild(sh);
   }
+  if (P.letter) {
+    const L = P.letter, sl = wSection(L.title);
+    L.intro.forEach(x => sl.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', x)));
+    sl.appendChild(dTable(L.head, L.rows));
+    sl.appendChild(el('p', 'text-xs text-slate-500', L.note));
+    body.appendChild(sl);
+  }
   (P.calls || []).forEach(C => {
     const sc = wSection(C.title);
     sc.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', C.intro));
