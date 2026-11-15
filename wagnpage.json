@@ -282,5 +282,158 @@
    "The Press page (the site returned an error). Two listed items are not documents: the Q3 2023 factsheet link points to google.com and the Sep 29, 2023 holdings entries link nowhere"
   ],
   "why": "The wagonsfund.b-cdn.net documents can only be opened from here when a web search surfaces them, and most did not surface. The page lists exactly what was read and what was not."
+ },
+ "history": {
+  "title": "History: the Pabrai Wagons Fund (mutual fund), Sep 29, 2023 to Feb 6, 2026",
+  "intro": [
+   "The Pabrai Wagons Fund opened on September 29, 2023 as a mutual fund run by Mohnish Pabrai with the same approach as today's ETF: a concentrated portfolio of a few high-conviction holdings, anywhere in the world. It had two share classes, Retail (WAGNX) and Institutional (WGNIX). Retail carried a 0.25% 12b-1 fee and a 0.10% servicing fee, Institutional the 0.10% servicing fee only, and both charged a 1.00% fee on shares sold within 90 days. The adviser capped expenses at 1.25% (Retail) and 1.00% (Institutional) net; before the cap they were 1.84% and 1.59% in the year to June 2025.",
+   "It started small: net assets were $32.4 million at June 30, 2024 and $78.9 million at June 30, 2025 (both classes). Brokerage platforms held nearly all of it; at Sep 30, 2025 Vanguard Brokerage held 52.96% of the Institutional class, Schwab 21.19% and National Financial Services 20.74%. The largest single position was an Indian financial company, Edelweiss, at about 20% of the fund when it was bought."
+  ],
+  "perfHead": [
+   "Period",
+   "Fund (Institutional class)",
+   "S&P 500",
+   "Notes"
+  ],
+  "perfRows": [
+   [
+    "Sep 29, 2023 to Jun 30, 2024",
+    "+24.86% (not annualized)",
+    "Not read",
+    "NAV rose from $10.00 to $12.47. Expense ratio after waiver 1.01%."
+   ],
+   [
+    "Calendar 2024",
+    "+10.91%",
+    "Not read",
+    ""
+   ],
+   [
+    "Year to Jun 30, 2025",
+    "-13.29%",
+    "+15.16%",
+    "NAV fell from $12.47 to $10.69. Distributions of $0.15 a share ($0.14 of capital gains). Turnover 69.25%."
+   ],
+   [
+    "Worst and best quarters",
+    "-17.68% (Mar 2025) and +10.28% (Jun 2025)",
+    "",
+    "A very large swing for a fund with about 20 holdings."
+   ],
+   [
+    "Jan 1 to Sep 30, 2025",
+    "-2.12%",
+    "+14.83%",
+    "One-year return to Sep 30, 2025: -7.19% against +17.60%."
+   ],
+   [
+    "Calendar 2025",
+    "+3.98%",
+    "+17.88%",
+    ""
+   ],
+   [
+    "Since Sep 29, 2023, annualized, to Dec 31, 2025",
+    "+10.20%",
+    "+24.74%",
+    "After taxes on distributions 9.92%; after distributions and sale 7.82%."
+   ]
+  ],
+  "perfNote": "In short: a strong first nine months, a deep drawdown in early 2025, and a recovery that still left it well behind the S&P 500 at the end of 2025. On the Aug 20, 2025 call Pabrai said the fund had badly underperformed the index in its first two years, more than he would have expected, and that since early 2025 it had roughly kept pace. He argued many of the holdings take five or more years to pay off, citing Reysas, held since 2019, which went three or four years with little return despite a wide discount.",
+  "sizeHead": [
+   "Date",
+   "Net assets or size",
+   "NAV per share"
+  ],
+  "sizeRows": [
+   [
+    "Sep 29, 2023 (launch)",
+    "",
+    "$10.00"
+   ],
+   [
+    "Jun 30, 2024",
+    "$32.4 million",
+    "$12.47 (Institutional)"
+   ],
+   [
+    "Jun 30, 2025",
+    "$78.9 million",
+    "$10.69 (Institutional)"
+   ],
+   [
+    "Aug 20, 2025",
+    "About $80 million (Pabrai, on the call)",
+    ""
+   ],
+   [
+    "Dec 3, 2025",
+    "Passed $100 million (Pabrai, on the call)",
+    ""
+   ],
+   [
+    "Jun 30, 2026 (after becoming the ETF)",
+    "$212.7 million",
+    "$13.69"
+   ]
+  ],
+  "whyTitle": "Why it became an ETF",
+  "why": [
+   "Growth. The fund and adviser said the ETF would reach more investors. Pabrai said the mutual fund would not be profitable for the adviser until about $150 million of assets (he said the fund was about $80 million in August 2025). The documents do not tie the conversion to that number, but it shows why growth mattered.",
+   "Tax efficiency. ETFs can meet redemptions by handing over shares instead of selling them, which usually means fewer capital-gains distributions. The mutual fund had paid $0.14 a share in capital gains for the year to June 2025. The fund's FAQ says the ETF also uses tax-loss harvesting.",
+   "Lower and simpler cost. One 0.90% fee replaced the 1.25% (Retail) and 1.00% (Institutional) net expense ratios, and the ETF drops the 1.00% short-term redemption fee. The information statement shows $92 a year on $10,000 for the ETF against $127 for Retail and $102 for Institutional, and says the adviser could not recoup earlier fee waivers from the ETF.",
+   "Trading and transparency. Intraday trading at market prices, and daily holdings disclosure. The FAQ says Pabrai spent most of a 28-year career running private funds for institutions and the ETF extends the strategy to a broader audience.",
+   "What shareholders gave up, which the information statement also lists: the ability to redeem directly at NAV, and brokerage costs and bid-ask spreads when trading. ETF shares can also trade above or below NAV."
+  ],
+  "howTitle": "How the conversion happened",
+  "how": [
+   [
+    "Nov 18, 2025",
+    "The Trust's board unanimously approved the reorganization. No shareholder vote was needed."
+   ],
+   [
+    "Dec 3, 2025",
+    "Pabrai announced it on the quarterly call."
+   ],
+   [
+    "Dec 29, 2025",
+    "Information statement sent to shareholders."
+   ],
+   [
+    "About Jan 24, 2026",
+    "The Retail class closed and was merged into the Institutional class."
+   ],
+   [
+    "Feb 2, 2026",
+    "Last day to buy or redeem mutual fund shares. Holders without a qualifying brokerage account were cashed out around Feb 2 to 5, which could be taxable (and carried a 10% withholding for direct IRA holders)."
+   ],
+   [
+    "Feb 6, 2026",
+    "The ETF took over the mutual fund's assets, accounting and performance history, intended as a tax-free reorganization."
+   ],
+   [
+    "Feb 9, 2026",
+    "WAGN began trading on the NYSE. A June 18, 2026 press release announced the transfer to NYSE Arca."
+   ]
+  ],
+  "after": "Since the conversion the record has been much better (28.90% for the year to June 30, 2026 against 22.32% for the index) and assets have roughly doubled to about $300 million. The documents do not say the conversion caused either; the period also coincided with strong gains in his energy and coal holdings.",
+  "sources": [
+   [
+    "Combined Information Statement and Prospectus, Dec 29, 2025",
+    "https://wagonsfund.b-cdn.net/Combined%20Information%20Statement%20&%20Prospectus%20dated%20December%2029,%202025.pdf"
+   ],
+   [
+    "Annual report (N-CSR) for June 30, 2025",
+    "https://www.sec.gov/Archives/edgar/data/811030/000113322825009634/towf-efp16872_ncsr.htm"
+   ],
+   [
+    "Aug 20, 2025 investor call transcript",
+    "https://wagonsfund.b-cdn.net/Investor%20Call%20Transcript%20-%20August%2020%202025.pdf"
+   ],
+   [
+    "Dec 3, 2025 investor call transcript",
+    "https://wagonsfund.b-cdn.net/Investor%20Call%20Transcript%20-%20December%203%202025.pdf"
+   ]
+  ]
  }
 }
