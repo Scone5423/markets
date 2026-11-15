@@ -277,12 +277,12 @@
    "Adviser Form ADV Part 2A, and the Pabrai biography page",
    "Annual Letter to Shareholders for the year ended Jun 30, 2024 (4 pages, supplied by you in full)",
    "Complete holdings schedules for Mar 31, 2026 and Sep 30, 2025 (opened in Chrome)",
-   "Mar 31, 2025, Sep 30, 2024 and Mar 31, 2024 holdings schedules; Dec 31, 2025 semi-annual financial statements (net assets and results only); Jun 25, 2026 press release; 2026 proxy voting record (N-PX, counted by script)"
+   "Holdings schedules for Mar 31, 2024, Sep 30, 2024, Mar 31, 2025, Sep 30, 2025 and Mar 31, 2026; Dec 31, 2025 semi-annual financial statements (summary of statements, advisory-fee and subsequent-events notes); Jun 25, 2026 press release; shareholder reports (TSR) for Jun 2025 (retail), Dec 2025 (retail) and Jun 2026 (ETF); proxy voting records for 2024, 2025 and 2026 (counted by script)"
   ],
   "notread": [
    "The video replays of the calls (they are YouTube videos behind a sign-up form)",
-   "The annual and semi-annual tailored shareholder reports for the two mutual fund share classes (largely repeat the figures above), the notes and the full text of the Dec 31, 2025 semi-annual statements beyond net assets and results, the proxy voting records for 2024 and 2025, and the Sep 29, 2023 holdings entries (they link nowhere)",
-   "The Press page (the site returned an error earlier; not retried). The Q3 2023 factsheet link points to google.com, so there is nothing to read there"
+   "The institutional-class shareholder reports for Jun 2025 and Dec 2025 and the Dec 2024 and Jun 2024 shareholder reports (the retail-class versions of the later two were not opened; they mostly repeat the figures above), the remaining notes to the Dec 31, 2025 statements (tax, share-class and risk notes), and the Sep 29, 2023 holdings entries (they link nowhere)",
+   "The Press page: the link on the site goes to a 404 page, so it appears to be a dead link. The Q3 2023 factsheet link points to google.com, so there is nothing to read there"
   ],
   "why": "The wagonsfund.b-cdn.net documents can only be opened from here when a web search surfaces them, and most did not surface. The page lists exactly what was read and what was not."
  },
@@ -1089,18 +1089,22 @@
     "p": "Net assets were $16.7 million at Mar 31, 2024, $41.4 million at Sep 30, 2024, $59.3 million at Mar 31, 2025, $90.2 million at Sep 30, 2025, $103.5 million at Dec 31, 2025 and $150.0 million at Mar 31, 2026. Edelweiss grew from about 12% of net assets (Sep 2024, $4.94 million of $41.4 million) to 21.8% (Mar 2025) and 19.6% (Sep 2025), then fell to about 10% by Mar 2026. TAV was about 15% in Sep 2024 and about 9% in Mar 2026. By Mar 2026, Coca-Cola Icecek, Anadolu Efes, the car dealers and the homebuilders were all gone from the schedule; Warrior, Valaris, Transocean, Noble, Kaspi, Lumine, Gimat, TAB Gida and Danaos had joined or grown."
    },
    {
-    "h": "Semi-annual financial statements, Dec 31, 2025",
-    "p": "Total net assets of $103,495,491 and a net increase in net assets from operations of $12,361,678 for the six months. This is the last report for the mutual fund before the Feb 2026 conversion."
+    "h": "Semi-annual financial statements, Dec 31, 2025 (including the notes)",
+    "p": "Total net assets of $103,495,491 and a net increase in net assets from operations of $12,361,678 for the six months. The notes say the adviser's fee is 0.90% of average daily net assets, with an expense cap of 0.90% effective Jan 1, 2024. The adviser can recoup waived fees for three years, and $761,103 was still recoverable ($269,171 expiring Jun 30, 2027, $295,892 Jun 30, 2028 and $196,040 Dec 31, 2029). A subsequent-events note says the retail class converted into the institutional class on Jan 23, 2026 at 1.191 institutional shares per retail share, and the institutional class converted into ETF shares at 1:1 after the close on Feb 6, 2026. This is the last report for the mutual fund."
    },
    {
     "h": "June 25, 2026 press release: listing move",
     "p": "The fund announced it would move its listing from the NYSE to NYSE Arca after markets opened on Jun 30, 2026. The release says no shareholder action was needed and trading would not be affected, because NYSE Arca is the primary venue for most US ETFs and its listing rules fit how the fund is managed. The fund's website lists this release as Jun 18, 2026; the release itself is dated Jun 25."
    },
    {
-    "h": "Proxy voting record (Form N-PX) for the year to Jun 30, 2026",
-    "p": "The record covers eight companies: Alpha Metallurgical, Constellation Software, Group 1 Automotive, Kaspi.kz, Lumine, Toll Brothers, Topicus and Warrior. Every vote I could find was cast For, mostly director elections, with some audit, governance, compensation and capital structure items. I found no Against, Withhold or Abstain votes. I counted the entries by script, so treat the totals as approximate."
+    "h": "Proxy voting records (Form N-PX), 2024, 2025 and 2026",
+    "p": "I counted the entries in all three filings by script, so totals are approximate. Every vote I could find in all three years was cast For, and I found no Against, Withhold or Abstain votes. The year to Jun 30, 2026 covers eight companies (Alpha, Constellation, Group 1, Kaspi, Lumine, Toll, Topicus, Warrior). The year to Jun 30, 2025 covers 20 (including Edelweiss, TAV, both Reysas companies, Valaris, Noble, Tidewater, the dealers and homebuilders, and Spirit Airlines). The year to Jun 30, 2024 covers 22, including early holdings that later left the fund (Amazon, Berkshire Hathaway, Brookfield, First Citizens BancShares, Tiny)."
+   },
+   {
+    "h": "Shareholder reports (TSRs): Jun 2025, Dec 2025 and Jun 2026",
+    "p": "Year to Jun 30, 2025 (retail class): the report said the portfolio traded at a trailing P/E of about 9 with 7% overlap with the S&P 500, and admitted 'in hindsight, we were early'. The S&P rose 41.65% through Feb 2025 while WAGNX rose 2.18%; from Mar 1 to Jun 30, 2025 WAGNX gained 5.55% versus 4.70%; over the 12 months it was down 13.47%. Top holdings at Jun 30, 2025: Edelweiss 24.8%, TAV 16.0%, Warrior 9.3%. Dec 31, 2025: net assets $103.5 million, 18 holdings, 21% turnover, and a top 10 of Edelweiss 16.9%, Warrior 14.4%, TAV 13.4%, Alpha 5.9%, Transocean 4.7%. Year to Jun 30, 2026 (ETF): WAGN rose 28.90% on NAV against 22.32% for the S&P 500, and 12.02% year to date against 10.21%, but since-inception annualized returns still trail the index. Net assets $212.7 million, 19 holdings, 40% turnover, and a net advisory fee of $876,703. The report says the portfolio has no overlap with the S&P 500 and groups 78% into six buckets: offshore oil services 18%, Indian financial services 14%, the Mark Leonard complex (Constellation, Topicus, Lumine) 14%, metallurgical coal 14%, the Reysas group 9% and TAV 9%. Top 10 at Jun 30, 2026: Warrior 9.7%, Transocean 9.5%, Edelweiss 8.7%, TAV 8.5%, Gimat 7.6%, Nuvama 5.0%, Kaspi 4.9%, Reysas REIT 4.7%, Danaos 4.6%, Topicus 4.6%. It describes the fee as a single 0.90% fee, against net 1.25% (retail) and 1.00% (institutional) at the mutual fund."
    }
   ],
-  "note": "Read in Chrome from the fund's website and SEC filing links. Holdings figures are from the schedules of investments."
+  "note": "Read in Chrome from the fund's website and SEC filing links; PDF text was extracted by script. Holdings figures are from the schedules of investments and the shareholder reports."
  }
 }
