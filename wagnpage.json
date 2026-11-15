@@ -273,11 +273,11 @@
    "Summary prospectuses (Feb 9 and Oct 31, 2026), Fact Sheet (Oct 31, 2026), Investor Presentation (Nov 2026)",
    "Annual shareholder report (N-CSR) for the year to June 30, 2026; the N-CSR for June 30, 2025",
    "Combined Information Statement and Prospectus, Dec 29, 2025 (first 100,000 characters of about 518,000)",
-   "Investor call transcripts: Sep 23, 2026 (16 pages), Jun 10, 2026 (16 pages), Mar 11, 2026 (21 pages) May 14, 2025 (17 pages) and Mar 19, 2025 (12 pages), all supplied by you in full, plus Dec 3, 2025 and Aug 20, 2025",
+   "Investor call transcripts: Sep 23, 2026 (16 pages), Jun 10, 2026 (16 pages), Mar 11, 2026 (21 pages) May 14, 2025 (17 pages) Mar 19, 2025 (12 pages) and Sep 18, 2024 (13 pages), all supplied by you in full, plus Dec 3, 2025 and Aug 20, 2025",
    "Adviser Form ADV Part 2A, and the Pabrai biography page"
   ],
   "notread": [
-   "Investor call transcripts for Sep 18, 2024 and Mar 14, 2024 (the files were not reachable from here), and the video replays themselves (they are YouTube videos behind a sign-up form)",
+   "Investor call transcripts for Mar 14, 2024 (the files were not reachable from here), and the video replays themselves (they are YouTube videos behind a sign-up form)",
    "Annual Letter to Shareholders (fiscal year ending Jun 30, 2024), the annual and semi-annual tailored shareholder reports for the two mutual fund share classes, the semi-annual financial statements (Dec 2023, Dec 2024, Dec 2025), the complete holdings schedules (Mar 2024, Sep 2024, Mar 2025, Sep 2025, Mar 2026), the June 18, 2026 press release, and the proxy voting records (Form N-PX) for 2024, 2025 and 2026",
    "The Press page (the site returned an error). Two listed items are not documents: the Q3 2023 factsheet link points to google.com and the Sep 29, 2023 holdings entries link nowhere"
   ],
@@ -682,6 +682,29 @@
     }
    ],
    "note": "Paraphrased. Figures are as he stated them on Mar 19, 2025."
+  },
+  {
+   "title": "Sep 18, 2024 semi-annual call (mutual fund era): what Pabrai said",
+   "intro": "Summary of the full 13-page transcript you supplied, the fund's second semi-annual call, nearly a year after launch. In my words, not his.",
+   "items": [
+    {
+     "h": "Opening: the fund as of mid-2024",
+     "p": "As of June 30, 2024 the fund held 27 securities across Turkey, the US, Canada, Europe, China and Mongolia, with the top five over 45%. Four core allocations made up 94%: Turkish holdings (Coca-Cola Icecek, Anadolu Efes, TAV), US coal, a few US car dealers and US homebuilders. Performance since the Sep 29, 2023 inception to Aug 31, 2024: retail class +21.54%, institutional +21.86%, against +33.5% for the S&P 500. He said the fund led the index six weeks earlier and fell behind in August, which he called temporary. He noted the S&P 500's trailing P/E of 27.2 versus 25.6 in Sep 2000 and said the portfolio's was 7.5. The fund was on Vanguard, Interactive Brokers and Pershing, with Fidelity and Schwab pending."
+    },
+    {
+     "h": "Turkey",
+     "p": "The top three positions at the end of June were all Turkish (TAV, Anadolu Efes, Coca-Cola Icecek), exactly 33% together, and among his highest-conviction ideas. On capital-flow or political risk, he said much of the revenue is earned outside Turkey and ring-fenced: TAV's non-Turkish airports and euro-denominated contracts, Anadolu Efes's beer volumes in Russia, Ukraine and elsewhere, and Coca-Cola Icecek's volumes outside Turkey. On boycotts at Coca-Cola Icecek, he said they are hard to handicap, he would not sell because of them, and he praised the brand, management and the CEO. He described the Uzbekistan bottling deal (about $300 million for about $20 million of pretax earnings, now over $100 million) and a small chance that Coca-Cola Icecek could get part of India."
+    },
+    {
+     "h": "Coal and the Arch-CONSOL merger",
+     "p": "He said the coal businesses were priced as if they would go out of business, are net cash for the first time in their histories, and are stress-tested. The Australian premium low-vol index was about $185 a ton (recent low $176); around 10 million tons of capacity outside his holdings was underwater and likely to shut, and mines that close do not come back quickly (equipment lead times of two years, no workers, no capital). He was surprised by the Arch and CONSOL merger but liked it: a combined company of about $5 billion market cap would, in his estimate, make about $500 million of cash in a bad year and over $1 billion in a good one, with buybacks the only use of cash."
+    },
+    {
+     "h": "Nvidia, OXY, homebuilders, Danaos",
+     "p": "Nvidia: outside his circle of competence. At a $2.8 trillion market cap and roughly $60 billion of annual cash flow he would need to believe in much larger cash flows, and compared it to Schlumberger in the 1980s. OXY: a placeholder with a low downside, under 4% of the fund, run by Vicki Hollub. The fund needs about 15 or 16 positions at least (realistically 20 to 30), and he said he cannot find that many ideas. Homebuilders: not as cyclical as thought, a US shortage of over 5 million homes, big builders have lower capital costs and move toward the NVR model; Tri Pointe bought back more than half its shares in a few years. Danaos: his only Greek position, with cash flows locked in by long charters."
+    }
+   ],
+   "note": "Paraphrased. Figures are as he stated them on Sep 18, 2024; performance and weights are from that date."
   }
  ]
 }
