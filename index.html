@@ -2233,6 +2233,30 @@ function wTable(box, st) {
   box.appendChild(dTable(head, body));
   if (!navS.length) box.appendChild(el('div', 'text-xs text-slate-400 mb-2', 'No daily NAV history yet: this page now records the NAV each weekday after the close, and the chart turns into a line after about a week of entries. For now only the NAV points above are shown. Reference points from other sites: ' + ((wagnPage || {}).navRefs || []).join(' ')));
 }
+function wAssets(box, A) {
+  const pts = A.points.map(x => ({d: x[0], v: x[1], n: x[2]}));
+  const W = 860, H = 280, L = 52, R = 16, T = 14, B = 28;
+  const hi = Math.ceil(Math.max.apply(null, pts.map(p => p.v)) / 50) * 50;
+  const t0 = Date.parse(pts[0].d), t1 = Date.parse(pts[pts.length - 1].d);
+  const X = d => L + (Date.parse(d) - t0) / ((t1 - t0) || 1) * (W - L - R), Y = v => T + (hi - v) / hi * (H - T - B);
+  const ns = 'http://www.w3.org/2000/svg';
+  const mk = (n, a) => { const e = document.createElementNS(ns, n); Object.keys(a).forEach(k => e.setAttribute(k, a[k])); return e; };
+  const svg = mk('svg', {viewBox: '0 0 ' + W + ' ' + H, class: 'w-full'});
+  for (let v = 0; v <= hi; v += 50) { const y = Y(v); svg.appendChild(mk('line', {x1: L, x2: W - R, y1: y, y2: y, stroke: '#334155', 'stroke-width': 0.5})); const t = mk('text', {x: L - 6, y: y + 4, 'text-anchor': 'end', 'font-size': 11, fill: '#94a3b8'}); t.textContent = '$' + v + 'M'; svg.appendChild(t); }
+  [['2024-07-01', 'Jul 2024'], ['2025-01-01', 'Jan 2025'], ['2025-07-01', 'Jul 2025'], ['2026-01-01', 'Jan 2026'], ['2026-07-01', 'Jul 2026']].forEach(m => {
+    if (Date.parse(m[0]) < t0 || Date.parse(m[0]) > t1) return;
+    const t = mk('text', {x: X(m[0]), y: H - 8, 'text-anchor': 'middle', 'font-size': 11, fill: '#94a3b8'}); t.textContent = m[1]; svg.appendChild(t); });
+  const cv = Date.parse('2026-02-06');
+  if (cv > t0 && cv < t1) { const x = X('2026-02-06'); svg.appendChild(mk('line', {x1: x, x2: x, y1: T, y2: H - B, stroke: '#64748b', 'stroke-dasharray': '4 3', 'stroke-width': 1})); const t = mk('text', {x: x - 4, y: T + 12, 'text-anchor': 'end', 'font-size': 11, fill: '#94a3b8'}); t.textContent = 'Became an ETF, Feb 6, 2026'; svg.appendChild(t); }
+  svg.appendChild(mk('polyline', {points: pts.map(p => X(p.d).toFixed(1) + ',' + Y(p.v).toFixed(1)).join(' '), fill: 'none', stroke: '#38bdf8', 'stroke-width': 2}));
+  pts.forEach((p, i) => {
+    svg.appendChild(mk('circle', {cx: X(p.d), cy: Y(p.v), r: 4, fill: '#38bdf8', stroke: '#0f1419', 'stroke-width': 1}));
+    if (i === 0 || i === 1 || i === 4 || i === 6 || i === 8 || i === pts.length - 1) { const t = mk('text', {x: X(p.d), y: Y(p.v) - 9, 'text-anchor': i === pts.length - 1 ? 'end' : 'middle', 'font-size': 11, fill: '#e2e8f0'}); t.textContent = '$' + (p.v >= 100 ? Math.round(p.v) : p.v) + 'M'; svg.appendChild(t); }
+  });
+  box.appendChild(svg);
+  box.appendChild(dTable(['Date', 'Net assets ($M)', 'Source'], pts.map(p => [wDate(p.d), p.v.toFixed(1), p.n])));
+  box.appendChild(el('p', 'text-xs text-slate-400 mb-2', A.note));
+}
 function wagnRender() {
   const body = $('wagnBody'); body.textContent = '';
   const P = wagnPage || {};
@@ -2245,6 +2269,7 @@ function wagnRender() {
   wBanner(body);
   const s1 = wSection('Share price versus NAV'); wChart(s1, st); wTable(s1, st); body.appendChild(s1);
   if (!P.summary) { body.appendChild(el('div', 'text-sm text-slate-400', 'Loading…')); return; }
+  if (P.assets) { const sa = wSection('Fund assets over time'); wAssets(sa, P.assets); body.appendChild(sa); }
   const s2 = wSection('Fund summary');
   const t = el('div', 'rounded-lg border border-slate-800 divide-y divide-slate-800');
   P.summary.forEach(r => { const row = el('div', 'grid sm:grid-cols-[9rem_1fr] gap-x-4 px-4 py-3 text-sm'); row.appendChild(el('div', 'text-slate-400', r[0])); row.appendChild(el('div', 'text-slate-200', r[1])); t.appendChild(row); });
