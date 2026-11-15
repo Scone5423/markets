@@ -2308,6 +2308,12 @@ function wagnRender() {
     sh2.appendChild(el('p', 'text-xs text-slate-500', Hh.note));
     body.appendChild(sh2);
   }
+  if (P.filings) {
+    const F = P.filings, sf = wSection(F.title);
+    F.items.forEach(c => { sf.appendChild(el('h4', 'text-base font-semibold text-white mt-4 mb-2', c.h)); sf.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', c.p)); });
+    sf.appendChild(el('p', 'text-xs text-slate-500', F.note));
+    body.appendChild(sf);
+  }
   (P.calls || []).forEach(C => {
     const sc = wSection(C.title);
     sc.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mb-3', C.intro));

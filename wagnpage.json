@@ -276,12 +276,13 @@
    "Investor call transcripts: Sep 23, 2026 (16 pages), Jun 10, 2026 (16 pages), Mar 11, 2026 (21 pages) May 14, 2025 (17 pages) Mar 19, 2025 (12 pages) Sep 18, 2024 (13 pages) and Mar 14, 2024 (14 pages), all supplied by you in full, plus Dec 3, 2025 and Aug 20, 2025",
    "Adviser Form ADV Part 2A, and the Pabrai biography page",
    "Annual Letter to Shareholders for the year ended Jun 30, 2024 (4 pages, supplied by you in full)",
-   "Complete holdings schedules for Mar 31, 2026 and Sep 30, 2025 (opened in Chrome)"
+   "Complete holdings schedules for Mar 31, 2026 and Sep 30, 2025 (opened in Chrome)",
+   "Mar 31, 2025, Sep 30, 2024 and Mar 31, 2024 holdings schedules; Dec 31, 2025 semi-annual financial statements (net assets and results only); Jun 25, 2026 press release; 2026 proxy voting record (N-PX, counted by script)"
   ],
   "notread": [
    "The video replays of the calls (they are YouTube videos behind a sign-up form)",
-   "the annual and semi-annual tailored shareholder reports for the two mutual fund share classes, the semi-annual financial statements (Dec 2023, Dec 2024, Dec 2025), the complete holdings schedules (Mar 2024, Sep 2024, Mar 2025, Sep 2025, Mar 2026), the June 18, 2026 press release, and the proxy voting records (Form N-PX) for 2024, 2025 and 2026",
-   "The Press page (the site returned an error). Two listed items are not documents: the Q3 2023 factsheet link points to google.com and the Sep 29, 2023 holdings entries link nowhere"
+   "The annual and semi-annual tailored shareholder reports for the two mutual fund share classes (largely repeat the figures above), the notes and the full text of the Dec 31, 2025 semi-annual statements beyond net assets and results, the proxy voting records for 2024 and 2025, and the Sep 29, 2023 holdings entries (they link nowhere)",
+   "The Press page (the site returned an error earlier; not retried). The Q3 2023 factsheet link points to google.com, so there is nothing to read there"
   ],
   "why": "The wagonsfund.b-cdn.net documents can only be opened from here when a web search surfaces them, and most did not surface. The page lists exactly what was read and what was not."
  },
@@ -441,9 +442,24 @@
  "assets": {
   "points": [
    [
+    "2024-03-31",
+    16.7,
+    "Schedule of investments: $16,716,806 total net assets"
+   ],
+   [
     "2024-06-30",
     32.4,
     "Annual report: $32,354,406 total net assets (both mutual fund classes)"
+   ],
+   [
+    "2024-09-30",
+    41.4,
+    "Schedule of investments: $41,359,426 total net assets"
+   ],
+   [
+    "2025-03-31",
+    59.3,
+    "Schedule of investments: $59,319,805 total net assets"
    ],
    [
     "2025-06-30",
@@ -456,19 +472,19 @@
     "Pabrai on the Aug 20, 2025 call: 'around $80 million'"
    ],
    [
+    "2025-09-30",
+    90.2,
+    "Schedule of investments: $90,164,996 total net assets"
+   ],
+   [
     "2025-12-03",
     100,
     "Pabrai on the Dec 3, 2025 call: passed $100 million that day"
    ],
    [
     "2025-12-31",
-    104.0,
-    "Adviser's Form ADV: $104,034,265 managed for the fund"
-   ],
-   [
-    "2025-09-30",
-    90.2,
-    "Schedule of investments: $90,164,996 total net assets"
+    103.5,
+    "Semi-annual report: $103,495,491 total net assets"
    ],
    [
     "2026-03-31",
@@ -496,7 +512,7 @@
     "YCharts: $298.0 million (ETF Central, Nov 11: $298.27 million)"
    ]
   ],
-  "note": "Net assets on the dates each source gave them, so the points are uneven, though most now come from the fund's own filings. The Feb 6, 2026 conversion to an ETF fell between the Dec 2025 and Mar 2026 points. The drop from $313.0 million to about $298 million after Oct 31 matches the roughly 5% fall in the fund's price over those days, not withdrawals. YCharts shows about $174 million of net inflows over the past year, so most of the growth appears to be new money rather than gains."
+  "note": "Net assets on the dates each source gave them, so the points are uneven. Most come from the fund's own schedules and reports. The Feb 6, 2026 conversion to an ETF fell between the Dec 2025 and Mar 2026 points. The drop from $313.0 million to about $298 million after Oct 31 matches the roughly 5% fall in the fund's price over those days, not withdrawals. YCharts shows about $174 million of net inflows over the past year, so most of the growth appears to be new money rather than gains."
  },
  "calls": [
   {
@@ -1064,5 +1080,27 @@
    ]
   ],
   "note": "By sector, metals and mining (coal and Mongolian Mining) was 21.0%, energy equipment and services 16.7%, capital markets 12.3% and software 14.1%. The Sep 30, 2025 schedule showed total net assets of $90,164,996 with Edelweiss at 19.6% of net assets, versus about 10% by Mar 2026."
+ },
+ "filings": {
+  "title": "What the other filings and releases show",
+  "items": [
+   {
+    "h": "Net assets and concentration over time (schedules of investments)",
+    "p": "Net assets were $16.7 million at Mar 31, 2024, $41.4 million at Sep 30, 2024, $59.3 million at Mar 31, 2025, $90.2 million at Sep 30, 2025, $103.5 million at Dec 31, 2025 and $150.0 million at Mar 31, 2026. Edelweiss grew from about 12% of net assets (Sep 2024, $4.94 million of $41.4 million) to 21.8% (Mar 2025) and 19.6% (Sep 2025), then fell to about 10% by Mar 2026. TAV was about 15% in Sep 2024 and about 9% in Mar 2026. By Mar 2026, Coca-Cola Icecek, Anadolu Efes, the car dealers and the homebuilders were all gone from the schedule; Warrior, Valaris, Transocean, Noble, Kaspi, Lumine, Gimat, TAB Gida and Danaos had joined or grown."
+   },
+   {
+    "h": "Semi-annual financial statements, Dec 31, 2025",
+    "p": "Total net assets of $103,495,491 and a net increase in net assets from operations of $12,361,678 for the six months. This is the last report for the mutual fund before the Feb 2026 conversion."
+   },
+   {
+    "h": "June 25, 2026 press release: listing move",
+    "p": "The fund announced it would move its listing from the NYSE to NYSE Arca after markets opened on Jun 30, 2026. The release says no shareholder action was needed and trading would not be affected, because NYSE Arca is the primary venue for most US ETFs and its listing rules fit how the fund is managed. The fund's website lists this release as Jun 18, 2026; the release itself is dated Jun 25."
+   },
+   {
+    "h": "Proxy voting record (Form N-PX) for the year to Jun 30, 2026",
+    "p": "The record covers eight companies: Alpha Metallurgical, Constellation Software, Group 1 Automotive, Kaspi.kz, Lumine, Toll Brothers, Topicus and Warrior. Every vote I could find was cast For, mostly director elections, with some audit, governance, compensation and capital structure items. I found no Against, Withhold or Abstain votes. I counted the entries by script, so treat the totals as approximate."
+   }
+  ],
+  "note": "Read in Chrome from the fund's website and SEC filing links. Holdings figures are from the schedules of investments."
  }
 }
