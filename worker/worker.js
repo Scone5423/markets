@@ -433,7 +433,7 @@ async function getSource(src, kind, match) {
 
 // ---- 13F holdings straight from the SEC (EDGAR) -----------------------------------
 // Dataroma blocks Cloudflare, so holdings come from each manager's own 13F filings.
-const SEC_UA = 'Markets Dashboard personal non-commercial scone5423.github.io/markets';
+const SEC_UA = 'Markets Dashboard personal non-commercial jmf702@gmail.com';
 const secGet = async url => {
   const r = await fetch(url, { headers: { 'User-Agent': SEC_UA, Accept: 'application/json,text/xml,*/*' } });
   if (!r.ok) throw new Error('SEC HTTP ' + r.status);
