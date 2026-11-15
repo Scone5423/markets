@@ -275,7 +275,8 @@
    "Combined Information Statement and Prospectus, Dec 29, 2025 (first 100,000 characters of about 518,000)",
    "Investor call transcripts: Sep 23, 2026 (16 pages), Jun 10, 2026 (16 pages), Mar 11, 2026 (21 pages) May 14, 2025 (17 pages) Mar 19, 2025 (12 pages) Sep 18, 2024 (13 pages) and Mar 14, 2024 (14 pages), all supplied by you in full, plus Dec 3, 2025 and Aug 20, 2025",
    "Adviser Form ADV Part 2A, and the Pabrai biography page",
-   "Annual Letter to Shareholders for the year ended Jun 30, 2024 (4 pages, supplied by you in full)"
+   "Annual Letter to Shareholders for the year ended Jun 30, 2024 (4 pages, supplied by you in full)",
+   "Complete holdings schedules for Mar 31, 2026 and Sep 30, 2025 (opened in Chrome)"
   ],
   "notread": [
    "The video replays of the calls (they are YouTube videos behind a sign-up form)",
@@ -465,9 +466,14 @@
     "Adviser's Form ADV: $104,034,265 managed for the fund"
    ],
    [
+    "2025-09-30",
+    90.2,
+    "Schedule of investments: $90,164,996 total net assets"
+   ],
+   [
     "2026-03-31",
-    150,
-    "About $150 million, from the Mar 31, 2026 holdings schedule (approximate)"
+    150.0,
+    "Schedule of investments: $149,992,898 total net assets"
    ],
    [
     "2026-06-30",
@@ -490,7 +496,7 @@
     "YCharts: $298.0 million (ETF Central, Nov 11: $298.27 million)"
    ]
   ],
-  "note": "Net assets on the dates each source gave them, so the points are uneven and the Mar 31, 2026 figure is approximate. The Feb 6, 2026 conversion to an ETF fell between the Dec 2025 and Mar 2026 points. The drop from $313.0 million to about $298 million after Oct 31 matches the roughly 5% fall in the fund's price over those days, not withdrawals. YCharts shows about $174 million of net inflows over the past year, so most of the growth appears to be new money rather than gains."
+  "note": "Net assets on the dates each source gave them, so the points are uneven, though most now come from the fund's own filings. The Feb 6, 2026 conversion to an ETF fell between the Dec 2025 and Mar 2026 points. The drop from $313.0 million to about $298 million after Oct 31 matches the roughly 5% fall in the fund's price over those days, not withdrawals. YCharts shows about $174 million of net inflows over the past year, so most of the growth appears to be new money rather than gains."
  },
  "calls": [
   {
@@ -925,5 +931,138 @@
    ]
   ],
   "note": "The letter's footer gives the Sep 18, 2024 call details and a gross expense ratio of 1.91% (retail) and 1.66% (institutional), net 1.25% and 1.00%, with the adviser's reduction in place through Oct 31, 2025."
+ },
+ "holdings": {
+  "title": "Holdings at Mar 31, 2026 (schedule of investments)",
+  "intro": "From the fund's Mar 31, 2026 schedule of investments, which I opened in Chrome. Total net assets were $149,992,898 and the fund held 95.0% in common stocks, 4.3% in a REIT and 2.3% in cash, with liabilities in excess of other assets of 1.6%. Weights are my arithmetic from the stated values over net assets, so they are approximate. The fund's top-10 list can differ.",
+  "head": [
+   "Holding",
+   "Country",
+   "Value",
+   "Weight"
+  ],
+  "rows": [
+   [
+    "Edelweiss Financial Services",
+    "India",
+    "$15.31M",
+    "10.2%"
+   ],
+   [
+    "Warrior Met Coal",
+    "US",
+    "$16.80M",
+    "11.2%"
+   ],
+   [
+    "TAV Airports",
+    "Turkey",
+    "$13.84M",
+    "9.2%"
+   ],
+   [
+    "Valaris",
+    "US",
+    "$9.48M",
+    "6.3%"
+   ],
+   [
+    "Transocean",
+    "Switzerland",
+    "$8.37M",
+    "5.6%"
+   ],
+   [
+    "Alpha Metallurgical Resources",
+    "US",
+    "$8.10M",
+    "5.4%"
+   ],
+   [
+    "Kaspi.kz (ADR)",
+    "Kazakhstan",
+    "$7.15M",
+    "4.8%"
+   ],
+   [
+    "Constellation Software",
+    "Canada",
+    "$7.12M",
+    "4.7%"
+   ],
+   [
+    "Lumine Group",
+    "Canada",
+    "$7.06M",
+    "4.7%"
+   ],
+   [
+    "Noble Corp.",
+    "US",
+    "$7.11M",
+    "4.7%"
+   ],
+   [
+    "Topicus.com",
+    "Netherlands",
+    "$6.96M",
+    "4.6%"
+   ],
+   [
+    "Danaos",
+    "Greece",
+    "$6.89M",
+    "4.6%"
+   ],
+   [
+    "Gimat",
+    "Turkey",
+    "$6.65M",
+    "4.4%"
+   ],
+   [
+    "Mongolian Mining",
+    "Mongolia",
+    "$6.61M",
+    "4.4%"
+   ],
+   [
+    "Reysas Gayrimenkul (REIT)",
+    "Turkey",
+    "$6.55M",
+    "4.4%"
+   ],
+   [
+    "TAB Gida",
+    "Turkey",
+    "$6.30M",
+    "4.2%"
+   ],
+   [
+    "Reysas Logistics",
+    "Turkey",
+    "$5.11M",
+    "3.4%"
+   ],
+   [
+    "Nuvama Wealth Management",
+    "India",
+    "$3.15M",
+    "2.1%"
+   ],
+   [
+    "Sygnity",
+    "Poland",
+    "$0.45M",
+    "0.3%"
+   ],
+   [
+    "Cash (money market)",
+    "",
+    "$3.46M",
+    "2.3%"
+   ]
+  ],
+  "note": "By sector, metals and mining (coal and Mongolian Mining) was 21.0%, energy equipment and services 16.7%, capital markets 12.3% and software 14.1%. The Sep 30, 2025 schedule showed total net assets of $90,164,996 with Edelweiss at 19.6% of net assets, versus about 10% by Mar 2026."
  }
 }
