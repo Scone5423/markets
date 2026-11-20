@@ -439,10 +439,21 @@ const DEFAULTS = [
 ['000660.KS','SK Hynix',null,null,''],
 ['PEP','PepsiCo',100,141.34,''],
 ['HHH','Howard Hughes Holdings',30,77.73,'Ackman takes 15 million out every quarter!'],
-['CSU.TO','Constellation Software',2500,3526.52,'']
+['CSU.TO','Constellation Software',2500,3526.52,''],
+['ANT','Anthropic',75,86.86,'Damodaran: about $76 a share (Nov 18, 2026); IPO $83']
 ].map(([s,n,t,p,note]) => ({s,n,t,p,note}));
 
 let list = load();
+// Stocks added to the built-in list later: add once to a saved list, and respect later removal.
+(function () {
+  try {
+    const seen = JSON.parse(localStorage.getItem(KEY + '.added') || '[]');
+    ['ANT'].forEach(sym => {
+      if (seen.indexOf(sym) < 0) { if (!list.some(x => x.s === sym)) list.push({...DEFAULTS.find(d => d.s === sym)}); seen.push(sym); }
+    });
+    localStorage.setItem(KEY + '.added', JSON.stringify(seen)); save();
+  } catch (e) {}
+})();
 let quotes = {};   // symbol -> {price, prev, cur, live}
 
 function load() {
