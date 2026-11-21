@@ -53,7 +53,8 @@ async function fetchMortgage() {
     .filter(x => x.length >= 2 && isFinite(parseFloat(x[1])));
   if (rows.length < 2) throw new Error('no data');
   const a = rows[rows.length - 1], b = rows[rows.length - 2], y = rows[rows.length - 53];
-  return { rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null };
+  const hi = Math.max(...rows.slice(-52).map(x => parseFloat(x[1])));
+  return { rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null, hi };
 }
 
 // Daily FRED series (e.g. DGS2, the 2-year Treasury yield): latest, previous day and a year ago.
@@ -67,7 +68,8 @@ async function fetchFredDaily(id) {
   const cut = new Date(a[0] + 'T00:00:00Z'); cut.setUTCFullYear(cut.getUTCFullYear() - 1);
   const cs = cut.toISOString().slice(0, 10);
   let y = null; for (let i = rows.length - 1; i >= 0; i--) if (rows[i][0] <= cs) { y = rows[i]; break; }
-  return { rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null };
+  const hi = Math.max(...rows.filter(x => x[0] > cs).map(x => parseFloat(x[1])));
+  return { rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null, hi };
 }
 
 // ---- Pabrai Wagons ETF (WAGN): documents from wagonsetf.com/ir and holdings from StockAnalysis ----
@@ -181,7 +183,26 @@ async function logWagnNav(env) {
 
 // Yield for a money market fund such as FZCXX. Tries Yahoo's own yield field first, then
 // annualizes the most recent monthly payout (payout x 12 / price).
+// Highest annualized monthly payout yield over the past year (money market funds hold a $1 price).
+async function fundYieldHigh(sym) {
+  try {
+    const r = await fetch(
+      'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?range=1y&interval=1d&events=div',
+      { headers: { 'User-Agent': UA } }
+    );
+    const res = (await r.json()).chart.result[0];
+    const amts = Object.values((res.events && res.events.dividends) || {}).map(d => d.amount).filter(a => a > 0);
+    const px = res.meta.regularMarketPrice;
+    return amts.length && px ? Math.max(...amts) * 12 / px * 100 : null;
+  } catch (e) { return null; }
+}
+
 async function fetchFundYield(sym) {
+  const [y, hi] = await Promise.all([fetchFundYieldNow(sym), fundYieldHigh(sym)]);
+  return hi !== null ? { ...y, hi: Math.max(hi, y.yield) } : y;
+}
+
+async function fetchFundYieldNow(sym) {
   try {
     const s = await getSession();
     const r = await fetch(

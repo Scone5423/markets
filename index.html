@@ -547,7 +547,8 @@ function parseFred(txt) {
   const rows = txt.trim().split(/\r?\n/).slice(1).map(l => l.split(',')).filter(r => r.length >= 2 && isFinite(parseFloat(r[1])));
   if (rows.length < 2) throw new Error('no data');
   const a = rows[rows.length - 1], b = rows[rows.length - 2], y = rows[rows.length - 53];
-  return {rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null};
+  const hi = Math.max(...rows.slice(-52).map(x => parseFloat(x[1])));
+  return {rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null, hi};
 }
 async function getText(url, ms = 10000) {
   const c = new AbortController(), t = setTimeout(() => c.abort(), ms);
@@ -559,8 +560,8 @@ async function fetchMortgage() {
     try {
       const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?mortgage=1');
       if (nz(d.rate) !== null) {
-        mortgage = {rate: d.rate, prev: nz(d.prev) ?? d.rate, date: d.date, yago: nz(d.yago)};
-        if (mortgage.yago !== null) return;
+        mortgage = {rate: d.rate, prev: nz(d.prev) ?? d.rate, date: d.date, yago: nz(d.yago), hi: nz(d.hi)};
+        if (mortgage.yago !== null && mortgage.hi !== null) return;
       }
     } catch (e) {}
   }
@@ -568,7 +569,7 @@ async function fetchMortgage() {
   for (const mk of PROXIES) {
     try {
       const m = parseFred(await getText(mk(url)));
-      mortgage = mortgage ? Object.assign(mortgage, {yago: m.yago}) : m;   // an older Worker has no year-ago rate, so fill it in here
+      mortgage = mortgage ? Object.assign(mortgage, {yago: m.yago, hi: m.hi}) : m;   // an older Worker has no year-ago rate, so fill it in here
       return;
     } catch (e) {}
   }
@@ -583,13 +584,14 @@ function parseFredDaily(txt) {
   const cut = new Date(a[0] + 'T00:00:00'); cut.setFullYear(cut.getFullYear() - 1);
   const cs = cut.toISOString().slice(0, 10);
   let y = null; for (let i = rows.length - 1; i >= 0; i--) if (rows[i][0] <= cs) { y = rows[i]; break; }
-  return {rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null};
+  const hi = Math.max(...rows.filter(x => x[0] > cs).map(x => parseFloat(x[1])));
+  return {rate: parseFloat(a[1]), prev: parseFloat(b[1]), date: a[0], yago: y ? parseFloat(y[1]) : null, hi};
 }
 async function fetchTwoYear() {
   if (cfg.worker) {
     try {
       const d = await getJSON(cfg.worker.replace(/\/+$/, '') + '/?fred=DGS2');
-      if (nz(d.rate) !== null) { twoYear = {rate: d.rate, prev: nz(d.prev) ?? d.rate, date: d.date, yago: nz(d.yago)}; return; }
+      if (nz(d.rate) !== null) { twoYear = {rate: d.rate, prev: nz(d.prev) ?? d.rate, date: d.date, yago: nz(d.yago), hi: nz(d.hi)}; return; }
     } catch (e) {}
   }
   const url = 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2';
@@ -766,7 +768,7 @@ async function loadYearly() {
   await Promise.all(INDEX.filter(ix => !ix.mm && !ix.fred).map(async ix => {
     try {
       const d = await fetchChartData(ix.s, RANGES[3]);
-      if (d.bars.length > 20) yearly[ix.s] = {base: d.bars[0].close, last: d.bars[d.bars.length - 1].close};
+      if (d.bars.length > 20) yearly[ix.s] = {base: d.bars[0].close, last: d.bars[d.bars.length - 1].close, hi: Math.max(...d.bars.map(b => Math.max(b.high || 0, b.close || 0)))};
     } catch (e) {}
   }));
   renderIndices();
@@ -794,6 +796,7 @@ function renderIndices() {
       const dd = twoYear ? (twoYear.rate - twoYear.prev) * 100 : null, yy = twoYear && twoYear.yago !== null ? (twoYear.rate - twoYear.yago) * 100 : null;
       c.appendChild(statRow('Day', dd === null ? '—' : bpText(dd), dd === null ? '' : tone(dd)));
       c.appendChild(statRow('Year', yy === null ? '—' : bpText(yy), yy === null ? '' : tone(yy)));
+      c.appendChild(statRow('52-wk high', twoYear && nz(twoYear.hi) !== null ? twoYear.hi.toFixed(2) + '%' : '—', 'text-slate-300'));
       box.appendChild(c);
       return;
     }
@@ -804,6 +807,7 @@ function renderIndices() {
       c.children[0].textContent = ix.n;
       c.children[1].textContent = fundYield ? fundYield.yield.toFixed(2) + '%' : '—';
       c.children[2].textContent = fundYield ? (fundYield.src === 'payout' ? 'Annualized from latest monthly payout' : 'Fund yield, per Yahoo Finance') : 'Yield';
+      c.insertBefore(statRow('52-wk high', fundYield && nz(fundYield.hi) !== null ? fundYield.hi.toFixed(2) + '%' : '—', 'text-slate-300'), c.children[2]);
       box.appendChild(c);
       return;
     }
@@ -818,6 +822,10 @@ function renderIndices() {
     card.children[1].textContent = k ? (yld ? k.price.toFixed(2) + '%' : money(k.price, ix.s.startsWith('^') ? '' : k.cur)) : '—';
     card.appendChild(statRow('Day', day === null ? '—' : (yld ? bpText(day) : pct(day)), day === null ? '' : tone(day)));
     card.appendChild(statRow('Year', yr === null ? '—' : (yld ? bpText(yr) : pct(yr)), yr === null ? '' : tone(yr)));
+    const hi = Math.max(k && k.hi ? k.hi : 0, y && y.hi ? y.hi : 0, lastPx || 0) || null;
+    let hiText = '—';
+    if (hi) hiText = yld ? hi.toFixed(2) + '%' : money(hi, ix.s.startsWith('^') ? '' : (k ? k.cur : 'USD')) + (lastPx ? ' (' + pct((lastPx / hi - 1) * 100) + ')' : '');
+    card.appendChild(statRow('52-wk high', hiText, 'text-slate-300'));
     box.appendChild(card);
   });
   const card = document.createElement('div');
@@ -830,11 +838,12 @@ function renderIndices() {
     val.textContent = mortgage.rate.toFixed(2) + '%';
     card.appendChild(statRow('Week', bpText(wk), tone(wk)));
     card.appendChild(statRow('Year', yr === null ? '—' : bpText(yr), yr === null ? '' : tone(yr)));
+    card.appendChild(statRow('52-wk high', nz(mortgage.hi) !== null ? mortgage.hi.toFixed(2) + '%' : '—', 'text-slate-300'));
     const dt = new Date(mortgage.date + 'T00:00:00');
     cap.textContent = 'Freddie Mac survey' + (isNaN(dt) ? '' : ', week of ' + dt.toLocaleDateString('en-US', {month: 'short', day: 'numeric'}));
   } else {
     val.textContent = '—';
-    card.appendChild(statRow('Week', '—', '')); card.appendChild(statRow('Year', '—', ''));
+    card.appendChild(statRow('Week', '—', '')); card.appendChild(statRow('Year', '—', '')); card.appendChild(statRow('52-wk high', '—', ''));
     cap.textContent = 'Freddie Mac weekly survey';
   }
   card.appendChild(cap);
