@@ -207,5 +207,19 @@
    "Context: Kimberly-Clark has agreed to buy Kenvue, with $3.50 a share in cash per Kenvue share funded from cash, new debt and proceeds from the IFP transaction. The 10-K does not say buybacks are suspended."
   ],
   "src": "Form 10-K for the year ended Dec 31, 2025"
+ },
+ "GOOGL": {
+  "name": "Alphabet",
+  "sbc": [
+   "Plan: Alphabet 2021 Stock Plan, which grants Class C RSUs. 534M Class C shares were reserved for future issuance at Dec 31, 2025. Other Bets units (such as Waymo) also have their own stock-based plans.",
+   "RSUs generally vest over four years if the employee is still employed on the vesting date.",
+   "Expense 2025 / 2024 / 2023: $27.1B / $22.8B / $22.1B. Of that, $24.1B / $22.0B / $21.7B is expected to settle in Alphabet stock. Tax benefit on the expense: $5.0B / $4.6B / $4.5B.",
+   "Unrecognized cost at Dec 31, 2025: $42.9B on unvested RSUs, to be recognized over a weighted 2.6 years.",
+   "2025 RSU activity (millions of shares): 299 unvested at the start ($122.77), 198 granted ($188.82), 181 vested ($133.90), 34 forfeited, 282 unvested at year end ($159.75). RSUs vested in 2025 were worth $39.7B ($33.3B in 2024, $26.6B in 2023).",
+   "Repurchases (cost divided by shares, my calculation): 2025: 37M Class A for $6.5B (about $176) and 203M Class C for $38.9B (about $192), $45.4B in total. 2024: 73M A for $11.9B (about $162) and 306M C for $50.2B (about $164), $62.0B in total. 2023: 78M A for $9.3B (about $119) and 450M C for $52.9B (about $117), $62.2B in total.",
+   "Q4 2025 purchases: October 0.84M A at $253.20 and 13.3M C at $255.03; November 0.21M A at $286.00 and 5.9M C at $281.46; none in December. $69.5B remained under the April 2024 and April 2025 $70B programs, which have no expiration date."
+  ],
+  "src": "Form 10-K for the year ended Dec 31, 2025",
+  "ir": "https://abc.xyz/investor/"
  }
 }
