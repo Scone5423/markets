@@ -221,5 +221,25 @@
   ],
   "src": "Form 10-K for the year ended Dec 31, 2025",
   "ir": "https://abc.xyz/investor/"
+ },
+ "PEP": {
+  "name": "PepsiCo",
+  "sbc": [
+   "Plan: the shareholder-approved PepsiCo, Inc. Long-Term Incentive Plan (LTIP). 89 million shares were available for future share-based grants at Dec 27, 2025. The company may use authorized and unissued shares to meet exercises and vesting.",
+   "Awards: stock options, RSUs, PSUs and long-term cash awards. Executives who earn long-term incentives can generally choose stock options or RSUs, and get four options for every one RSU they would otherwise have received. Certain executive officers and other senior executives are granted 66% PSUs and 34% long-term cash, subject to pre-set performance targets. Options generally have a 10-year term and an exercise price equal to the market price on the grant date.",
+   "Expense on equity awards 2025 / 2024 / 2023: $288M / $362M / $380M. Total share-based compensation expense including liability awards and restructuring offsets: $293M / $364M / $398M. Income tax benefit recognized: $53M / $68M / $73M.",
+   "Unrecognized cost at Dec 27, 2025: $329 million on unvested awards, expected to be recognized over a weighted average of two years.",
+   "Grants 2025 / 2024 / 2023: 2,199K / 2,348K / 2,151K RSUs and PSUs, at a weighted-average grant-date fair value of $153.22 / $164.25 / $171.11 per unit. Grant-date fair value of options granted: $21.13 / $27.29 / $29.81 (Black-Scholes, 7-year expected life, 16% volatility).",
+   "Buyback context: all shares were bought on the open market under the $10 billion program announced Feb 10, 2022. Fourth quarter 2025: 1.6 million shares at an average $144.88, with $5.5 billion left. A new $10 billion program was announced Feb 3, 2026 and runs to Feb 28, 2030."
+  ],
+  "src": "Form 10-K for the fiscal year ended Dec 27, 2025",
+  "ir": "https://www.pepsico.com/investors",
+  "ar": [
+   {
+    "t": "2025 Annual Report to Shareholders",
+    "u": "https://www.sec.gov/Archives/edgar/data/77476/000130817926000172/pep015012-ars.pdf"
+   }
+  ],
+  "arPeriod": "2025-12-27"
  }
 }
